@@ -2,3 +2,7 @@
 .env.*.php
 .env.php
 .env
+.DS_store
+.ds_store
+.idea
+
