@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="title">Belgify</div>
+
+    {{-- TODO: LOGIN form --}}
+
 @stop
