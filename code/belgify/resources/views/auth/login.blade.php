@@ -2,72 +2,66 @@
 
 @section('content')
 
-    <div class="panel-heading">
-    </div>
+    <h1>Login</h1>
 
-    <div class="panel-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Login</div>
+                    <div class="panel-body">
+                        @include('errors.errors')
 
-        @include('layouts.errors')
+                        {!!Form::open(['route' => 'postLogin', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
-        {!!Form::open(['route' => 'postLogin'])  !!}
+                        <div class="form-group">
 
-        <form id="login-form" class="form-visitors" role="form" method="POST" action="{{ URL::asset('/auth/login') }}">
-            <header>
-                <h4>Login form</h4>
+                            {!! Form::label('email', 'E-mail Address', ['class' => 'col-md-4 control-label']) !!}
 
+                            <div class="col-md-6">
 
-            </header>
+                                {!! Form::text('email', old('email'), ['class' => 'form-control', 'placeholder' => 'email']) !!}
 
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-            <fieldset>
-                <section>
-                    <div class="row">
-
-                        <label class="label col col-4">E-mail:</label>
-                        <div class="col col-8">
-                            <label class="input">
-                                <i class="icon icon-user"></i>
-                                <input type="email" name="email" value="{{ old('email') }}">
-                            </label>
+                            </div>
                         </div>
-                    </div>
 
-                </section>
+                        <div class="form-group">
 
-                <section>
-                    <div class="row">
-                        <label class="label col col-4">Password:</label>
-                        <div class="col col-8">
-                            <label class="input">
-                                <i class="icon icon-lock"></i>
-                                <input type="password" name="password">
-                            </label>
-                            <a class="note" href="{{ URL::asset('/password/email') }}">Forgot Your Password?</a>
+                            {!! Form::label('password', 'Password', ['class' => 'col-md-4 control-label']) !!}
+
+                            <div class="col-md-6">
+
+                                {!! Form::password('password', ['class' => 'form-control',  'placeholder' => 'password']) !!}
+
+                            </div>
+
                         </div>
-                    </div>
-                </section>
 
-                <section>
-                    <div class="row">
-                        <div class="col col-4"></div>
-                        <div class="col col-8">
-                            <label class="checkbox"><input type="checkbox" name="checkbox-inline" checked=""><i></i>Keep me logged in</label>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember"> Remember Me
+                                    </label>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+
+                                {!! Form::submit('Login') !!}
+
+
+                                <a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
+                            </div>
+                        </div>
+
+                        {!! Form::close() !!}
                     </div>
-                </section>
-
-
-
-            </fieldset>
-            <footer>
-                <button type="submit" class="button">
-                    Login
-                </button>
-
-            </footer>
-
-        </form>
+                </div>
+            </div>
+        </div>
     </div>
 
 @stop

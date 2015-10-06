@@ -3,37 +3,39 @@
 <head>
     <title>Belgify</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    {{--<link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">--}}
 
-    <style>
-        html, body {
-            height: 100%;
-        }
+    <link rel="stylesheet" href="{{ url('css/app.css') }}">
 
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            display: table;
-            font-weight: 100;
-            font-family: 'Lato';
-        }
+    {{--<style>--}}
+        {{--html, body {--}}
+            {{--height: 100%;--}}
+        {{--}--}}
 
-        .container {
-            text-align: center;
-            display: table-cell;
-            vertical-align: middle;
-        }
+        {{--body {--}}
+            {{--margin: 0;--}}
+            {{--padding: 0;--}}
+            {{--width: 100%;--}}
+            {{--display: table;--}}
+            {{--font-weight: 100;--}}
+            {{--font-family: 'Lato';--}}
+        {{--}--}}
 
-        .content {
-            text-align: center;
-            display: inline-block;
-        }
+        {{--.container {--}}
+            {{--text-align: center;--}}
+            {{--display: table-cell;--}}
+            {{--vertical-align: middle;--}}
+        {{--}--}}
 
-        .title {
-            font-size: 96px;
-        }
-    </style>
+        {{--.content {--}}
+            {{--text-align: center;--}}
+            {{--display: inline-block;--}}
+        {{--}--}}
+
+        {{--.title {--}}
+            {{--font-size: 96px;--}}
+        {{--}--}}
+    {{--</style>--}}
 </head>
 <body>
 <div class="container">
