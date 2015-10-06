@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Auth\Guard;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\Http\Requests\RegisterRequest;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -29,8 +32,9 @@ class AuthController extends Controller
      * Create a new authentication controller instance.
      *
      */
-    public function __construct()
+    public function __construct( Guard $auth )
     {
+        $this->auth = $auth;
         $this->middleware('guest', ['except' => 'getLogout', 'getRegister', 'postRegister']);
     }
 
@@ -61,7 +65,6 @@ class AuthController extends Controller
 
 
     }
-
 
 
     public function postRegister( RegisterRequest $request){

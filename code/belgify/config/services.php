@@ -34,5 +34,20 @@ return [
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'fb' => [
+//        'client_id' => 'your-fb-app-id',
+//        'client_secret' => 'your-fb-app-secret',
+//        'redirect' => 'http://your-callback-url',
+    ],
+    'twitter' => [
+//        'client_id' => 'your-twitter-app-id',
+//        'client_secret' => 'your-twitter-app-secret',
+//        'redirect' => 'http://your-callback-url',
+    ],
+    'gplus' => [
+//        'client_id' => 'your-gplus-app-id',
+//        'client_secret' => 'your-gplus-app-secret',
+//        'redirect' => 'http://your-callback-url',
+    ],
 
 ];
