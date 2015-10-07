@@ -34,20 +34,21 @@ return [
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-    'fb' => [
-//        'client_id' => 'your-fb-app-id',
-//        'client_secret' => 'your-fb-app-secret',
-//        'redirect' => 'http://your-callback-url',
+
+    'facebook' => [
+        'client_id'     =>  env('FB_ID'),
+        'client_secret' =>  env('FB_SECRET'),
+        'redirect'      =>  env('FB_REDIRECT'),
     ],
     'twitter' => [
 //        'client_id' => 'your-twitter-app-id',
 //        'client_secret' => 'your-twitter-app-secret',
 //        'redirect' => 'http://your-callback-url',
     ],
-    'gplus' => [
-//        'client_id' => 'your-gplus-app-id',
-//        'client_secret' => 'your-gplus-app-secret',
-//        'redirect' => 'http://your-callback-url',
+    'google' => [
+        'client_id'     => env('GOOGLE_ID'),
+        'client_secret' => env('GOOGLE_SECRET'),
+        'redirect'      => env('GOOGLE_REDIRECT')
     ],
 
 ];

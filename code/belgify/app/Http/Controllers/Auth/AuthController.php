@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\AuthenticateUser;
+use App\AuthenticateUserListener;
 use Illuminate\Auth\Guard;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -11,7 +13,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 
-class AuthController extends Controller
+class AuthController extends Controller implements AuthenticateUserListener
 {
     /*
     |--------------------------------------------------------------------------
@@ -69,9 +71,10 @@ class AuthController extends Controller
 
     public function postRegister( RegisterRequest $request){
 
-        $data['name']       = $request->get('name');
-        $data['email']      = $request->get('email');
-        $data['password']   = $request->get('password');
+        $data['name']       =   $request->get('name');
+        $data['email']      =   $request->get('email');
+        $data['password']   =   $request->get('password');
+        $data['role']       =   $request->get('role'); // 0 = admin; 1 = local; 2 = new local;
 
         $this->create($data);
 
@@ -103,9 +106,44 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'name'      => $data['name'],
+            'email'     => $data['email'],
+            'password'  => bcrypt($data['password']),
         ]);
     }
+
+
+
+    /**
+     * Login with some social provider, like facebook, twiiter and google+.
+     *
+     * @param AuthenticateUser $authenticateUser
+     * @param Request $request
+     * @param null $provider
+     * @return mixed
+     */
+    public function login( AuthenticateUser $authenticateUser, Request $request, $provider = null) {
+
+
+        if($provider == 'twitter'){
+
+            return $authenticateUser->execute($request->has('oauth_token'), $this, $provider);
+
+        }
+
+        return $authenticateUser->execute($request->has('code'), $this, $provider);
+
+    }
+
+    /**
+     * @param $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function userHasLoggedIn($user) {
+
+        Session::flash('message', 'Welcome, ' . $user->first_name.' '. $user->last_name);
+
+        return redirect()->route('dashboard');
+    }
+
 }

@@ -17,6 +17,16 @@
 
                         <div class="form-group">
 
+                            {!! Form::label('role', "I'm local", ['class' => 'col-md-4 control-label']) !!}
+
+                            <div class="col-md-6">
+                                {!! Form::checkbox('role', 1,  false) !!} check for yes!
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
                             {!! Form::label('username', 'Username', ['class' => 'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">

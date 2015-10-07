@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
 
             $table->increments('id');
             $table->string('username');
-            $table->tinyInteger('role'); // 0 = local; 1 = new local;
+            $table->tinyInteger('role'); // 0 = admin; 1 = local; 2 = new local;
             $table->string('email')->unique();
             $table->string('password', 60);
 
@@ -31,21 +31,23 @@ class CreateUsersTable extends Migration
             //Todo: FOLLOWERS INTEGRATION => many to many relation ??
 //            $table->integer('user_id');
 
-//            Schema::create('user_user', function(Blueprint $table)
-//            {
-//                $table->increments('id');
-//                $table->integer('user_id')->unsigned();
-//                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-//
-//                $table->integer('user_id')->unsigned();
-//                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-//
-//                $table->timestamps();
-//            });
 
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::create('user_follower', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->integer('follower_id')->unsigned();
+            $table->foreign('follower_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
+
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
+
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -56,5 +58,6 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::drop('users');
+        Schema::drop('follower_user');
     }
 }

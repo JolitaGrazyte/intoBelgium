@@ -21,10 +21,16 @@ get('home', function(){
 
 
 // Authentication routes...
-Route::get('auth/login',    ['as' => 'getLogin',    'uses' => 'Auth\AuthController@getLogin']);
-Route::post('auth/login',   ['as' => 'postLogin',   'uses' => 'Auth\AuthController@postLogin']);
-Route::get('auth/logout',   ['as' => 'getLogout',   'uses' => 'Auth\AuthController@getLogout']);
+get('auth/login',       ['as' => 'getLogin',            'uses' => 'Auth\AuthController@getLogin']);
+post('auth/login',      ['as' => 'postLogin',           'uses' => 'Auth\AuthController@postLogin']);
+get('auth/logout',      ['as' => 'getLogout',           'uses' => 'Auth\AuthController@getLogout']);
+
+get('login/{provider?}', 'Auth\AuthController@login'); // socialite login
+
 
 // Registration routes...
 Route::get('auth/register',     ['as'   =>  'getRegister', 'uses' =>   'Auth\AuthController@getRegister']);
 Route::post('auth/register',    ['as'   =>  'postRegister', 'uses' =>   'Auth\AuthController@postRegister']);
+
+
+Route::resource('events', 'EventsController');
