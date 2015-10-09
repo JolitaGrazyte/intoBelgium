@@ -32,19 +32,14 @@ class AuthController extends Controller implements AuthenticateUserListener
 
     /**
      * Create a new authentication controller instance.
-     *
+     * @param Guard $auth
      */
     public function __construct( Guard $auth )
     {
         $this->auth = $auth;
-        $this->middleware('guest', ['except' => 'getLogout', 'getRegister', 'postRegister']);
+        $this->middleware('guest', ['except' => 'getLogout']);
     }
 
-//
-//    public function getLogin(){
-//
-//        return view('auth.login');
-//    }
 
     public function postLogin( Request $request){
 
@@ -113,8 +108,6 @@ class AuthController extends Controller implements AuthenticateUserListener
             'password'  => bcrypt($data['password']),
         ]);
     }
-
-
 
     /**
      * Login with some social provider, like facebook, twiiter and google+.

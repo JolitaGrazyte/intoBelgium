@@ -20,8 +20,9 @@ class CreateEventsTable extends Migration
             $table->dateTime('date');
             $table->string('description');
             $table->string('street_address');
-            $table->string('city');
+            $table->string('place');
             $table->smallInteger('post_code');
+            $table->string('city');
             $table->tinyInteger('is_active')->nullable();
             $table->tinyInteger('is_public')->nullable();
 

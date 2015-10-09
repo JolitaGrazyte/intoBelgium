@@ -17,7 +17,6 @@ class CreatePostsTable extends Migration
             $table->increments('id');
 
             $table->string('title');
-            $table->dateTime('date');
             $table->string('body');
             $table->tinyInteger('is_active')->nullable();
             $table->tinyInteger('is_public')->nullable();

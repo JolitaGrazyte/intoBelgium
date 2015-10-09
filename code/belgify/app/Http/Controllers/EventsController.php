@@ -5,9 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Event;
 
 class EventsController extends Controller
 {
+    private $event;
+
+
+    public function __construct( Event $event ){
+
+        $this->event = $event;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,11 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return view('events.index');
+
+        $event = $this->event;
+        $events = $event->latest('created_at')->get();
+
+        return view('events.index', compact('events'))->withTitle('Events');
     }
 
     /**
@@ -25,7 +37,7 @@ class EventsController extends Controller
      */
     public function create()
     {
-        //
+        return view('events.create')->withTitle('Create event');
     }
 
     /**
@@ -58,7 +70,7 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('events.edit')->withTitle('Edit event');
     }
 
     /**

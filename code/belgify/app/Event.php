@@ -13,12 +13,14 @@ class Event extends Model
      */
     protected $table = 'events';
 
+    protected $dates = ['date'];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['title', 'date', 'description', 'street_address', 'city', 'post_code', 'author_id'];
+    protected $fillable = ['title', 'date', 'description', 'street_address', 'place', 'city', 'post_code', 'author_id'];
 
     protected $primaryKey = "id";
 

@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
-@section('title', 'Posts')
+@section('title', $title)
 
 @section('content')
 
-<h1> Posts </h1>
+<h1> {{ $title }} </h1>
 
 @stop

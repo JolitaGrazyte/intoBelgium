@@ -1,7 +1,9 @@
 @extends('layouts.master')
 
+@section('title', $title)
+
 @section('content')
 
-    <h1>Events</h1>
+    <h1>{{ $title }}</h1>
 
-    @stop
+@stop

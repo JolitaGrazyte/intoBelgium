@@ -1,7 +1,9 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: jolita_pabludo
- * Date: 07/10/15
- * Time: 14:31
- */
+@extends('layouts.master')
+
+@section('title', $title)
+
+@section('content')
+
+    <h1>{{ $title }}</h1>
+
+@stop

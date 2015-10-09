@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+
 class PostsController extends Controller
 {
+
+    private $post;
+
+    public function __construct( Post $post ){
+
+        $this->post = $post;
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +25,10 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        $post = $this->post;
+        $posts = $post->get();
+
+        return view('posts.index', compact('posts'))->withTitle('Questions');
     }
 
     /**
@@ -25,7 +38,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -58,7 +71,7 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('posts.edit');
     }
 
     /**

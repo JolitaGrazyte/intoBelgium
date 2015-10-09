@@ -1,39 +1,57 @@
 @extends('layouts.master')
 
-@section('title', 'Create post')
+@section('title', $title)
 
 @section('content')
 
-    <h1> Create event </h1>
+    <h1>{{ $title }}</h1>
 
     <div class="container-fluid">
+
         <div class="row">
+
             <div class="col-md-8 col-md-offset-2">
+
                 <div class="panel panel-default">
-                    <div class="panel-heading">Login</div>
+
+                    <div class="panel-heading">Ask a question</div>
+
                     <div class="panel-body">
+
                         @include('errors.errors')
 
-                        {!!Form::open(['route' => 'postLogin', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+                        {!!Form::open(['route' => 'events.create', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
                         <div class="form-group">
 
-                            {!! Form::label('email', 'E-mail Address', ['class' => 'col-md-4 control-label']) !!}
+                            {!! Form::label('title', 'Title', ['class' => 'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">
 
-                                {!! Form::text('email', old('email'), ['class' => 'form-control', 'placeholder' => 'email']) !!}
+                                {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'titlel']) !!}
 
                             </div>
                         </div>
 
                         <div class="form-group">
 
-                            {!! Form::label('password', 'Password', ['class' => 'col-md-4 control-label']) !!}
+                            {!! Form::label('description', 'Description', ['class' => 'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">
 
-                                {!! Form::password('password', ['class' => 'form-control',  'placeholder' => 'password']) !!}
+                                {!! Form::textarea('description', null, ['class' => 'form-control',  'placeholder' => 'type a description in here']) !!}
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            {!! Form::label('tags', 'Tags', ['class' => 'col-md-4 control-label']) !!}
+
+                            <div class="col-md-6">
+
+                                {!! Form::select('tag_list[]', ['tag1', 'tag2', 'tag3'], null, [ 'id' => 'tag_list', 'class' => 'form-control',  'multiple']) !!}
 
                             </div>
 
@@ -41,20 +59,9 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                                {!! Form::submit('Post', ['class' => 'btn btn-primary']) !!}
 
-                                {!! Form::submit('Login', ['class' => 'btn btn-primary']) !!}
-
-                                <a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
                             </div>
                         </div>
 
@@ -66,5 +73,7 @@
         </div>
     </div>
 
-
+    <script>
+        $('#tag_list').select2();
+    </script>
 @stop

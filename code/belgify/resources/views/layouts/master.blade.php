@@ -3,9 +3,15 @@
 <head>
     <title> intoB | @yield('title') </title>
 
-    {{--<link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">--}}
+    @section('styles')
 
-    <link rel="stylesheet" href="{{ url('css/app.css') }}">
+        {{--<link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">--}}
+
+
+        <link rel="stylesheet" href="{{ url('css/app.css') }}">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" />
+
+    @show
 
     @section('scripts')
 
@@ -35,9 +41,13 @@
 @show
 
 <div class="container">
+
     <div class="content">
+
         @yield('content')
+
     </div>
+
 </div>
 </body>
 </html>

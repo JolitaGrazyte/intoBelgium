@@ -15,15 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//get('home', function(){
-//    return view('home');
-//});
-//
-//get('dashboard', function(){
-//    return view('dashboard');
-//});
+get('home', ['as' => 'home', function(){
+    return view('home');
+}]);
 
-get('/{page}',         ['as' => 'pages',       'uses' => 'PagesController@index']);
+get('dashboard',['as' => 'dashboard', function(){
+    return view('dashboard');
+}]);
+
+
+//get('/{page}',         ['as' => 'pages',       'uses' => 'PagesController@index']);
 
 
 // Authentication routes...
@@ -39,5 +40,10 @@ get('auth/register',     ['as'   =>  'getRegister', 'uses' =>   'Auth\AuthContro
 post('auth/register',    ['as'   =>  'postRegister', 'uses' =>   'Auth\AuthController@postRegister']);
 
 
-resource('events',  'EventsController');
-resource('posts',   'PostsController');
+Route::group([/*'prefix' => 'dashboard',*/ 'middleware' => 'auth'  ], function(){
+
+    resource('events',  'EventsController');
+    resource('posts',   'PostsController');
+
+
+});
