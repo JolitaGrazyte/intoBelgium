@@ -25,7 +25,7 @@ class AuthController extends Controller implements AuthenticateUserListener
     | a simple trait to add these behaviors. Why don't you explore it?
     |
     */
-    protected $redirectPath =   '/home';
+    protected $redirectPath =   '/dashboard';
     protected $loginPath    =   '/auth/login';
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
@@ -40,11 +40,11 @@ class AuthController extends Controller implements AuthenticateUserListener
         $this->middleware('guest', ['except' => 'getLogout', 'getRegister', 'postRegister']);
     }
 
-
-    public function getLogin(){
-
-        return view('auth.login');
-    }
+//
+//    public function getLogin(){
+//
+//        return view('auth.login');
+//    }
 
     public function postLogin( Request $request){
 
@@ -65,7 +65,6 @@ class AuthController extends Controller implements AuthenticateUserListener
                 'email' => $this->getFailedLoginMessage(),
             ]);
 
-
     }
 
 
@@ -75,6 +74,8 @@ class AuthController extends Controller implements AuthenticateUserListener
         $data['email']      =   $request->get('email');
         $data['password']   =   $request->get('password');
         $data['role']       =   $request->get('role'); // 0 = admin; 1 = local; 2 = new local;
+
+//        dd($data['role']);
 
         $this->create($data);
 
@@ -106,6 +107,7 @@ class AuthController extends Controller implements AuthenticateUserListener
     protected function create(array $data)
     {
         return User::create([
+            'role'      => $data['role'],
             'name'      => $data['name'],
             'email'     => $data['email'],
             'password'  => bcrypt($data['password']),

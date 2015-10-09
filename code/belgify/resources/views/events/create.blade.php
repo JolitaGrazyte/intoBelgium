@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
-@section('title', 'Login')
+@section('title', 'Create post')
 
 @section('content')
 
-    <h1>Login</h1>
+    <h1> Create event </h1>
 
     <div class="container-fluid">
         <div class="row">
@@ -60,17 +60,11 @@
 
                         {!! Form::close() !!}
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <a href="{{ url('login/facebook') }}"><button class="btn btn-primary">FB login</button></a>
-                                <a href="{{ url('login/twitter') }}"><button class="btn btn-primary">Twitter login</button></a>
-                                <a href="{{ url('login/google') }}"><button class="btn btn-primary">Google+ login</button></a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 @stop
