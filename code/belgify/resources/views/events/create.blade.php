@@ -58,6 +58,18 @@
                         </div>
 
                         <div class="form-group">
+
+                            {!! Form::label('publish_on', 'Publish on', ['class' => 'col-md-4 control-label']) !!}
+
+                            <div class="col-md-6">
+
+                                {!! Form::date('publish_on', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
 
                                 {!! Form::submit('Post', ['class' => 'btn btn-primary']) !!}

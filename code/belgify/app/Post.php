@@ -25,7 +25,7 @@ class Post extends Model
 
     /**
      *
-     * Event author, user who placed the event.
+     * Post author, user who placed the event.
      * Relation to the user model.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -35,6 +35,18 @@ class Post extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
+    /**
+     * Get the comments for the blog post.
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
+
+    /**
+     * Get the tags for the blog post.
+     */
     public function tags()
     {
         return $this->morphToMany('App\Tag', 'taggable')->withTimestamps();
