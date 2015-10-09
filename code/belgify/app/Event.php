@@ -20,7 +20,7 @@ class Event extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'date', 'description', 'street_address', 'place', 'city', 'post_code', 'author_id'];
+    protected $fillable = ['title', 'date', 'description', 'street_address', 'place_id', 'author_id'];
 
     protected $primaryKey = "id";
 
@@ -63,6 +63,13 @@ class Event extends Model
     public function scopePublic($q){
         $q->where('is_public', 1);
 
+    }
+
+
+    public function place(){
+
+        //ToDo: select like tags !!! http://www.postcodezoeker.be/Provincie/Antwerpen.php
+        return $this->hasOne('App\Place', 'place_id');
     }
 
 
