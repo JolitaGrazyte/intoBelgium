@@ -15,13 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-get('home', function(){
-    return view('home');
-});
+//get('home', function(){
+//    return view('home');
+//});
+//
+//get('dashboard', function(){
+//    return view('dashboard');
+//});
 
-get('dashboard', function(){
-    return view('dashboard');
-});
+get('/{page}',         ['as' => 'pages',       'uses' => 'PagesController@index']);
 
 
 // Authentication routes...
