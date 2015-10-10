@@ -110,7 +110,7 @@
 
                             <div class="col-md-10">
 
-                                {!! Form::select('location', $locations, null, ['class' => 'form-control', 'placeholder' => 'choose your location']) !!}
+                                {!! Form::select('location', $locations, $user_location->id, ['class' => 'form-control', 'placeholder' => 'choose your location']) !!}
 
                             </div>
                         </div>

@@ -31,6 +31,18 @@
 
                         <div class="col-md-12">
 
+                            {{ $user->first_name }}
+
+                        </div>
+
+                        <div class="col-md-12">
+
+                            {{ $user->last_name }}
+
+                        </div>
+
+                        <div class="col-md-12">
+
                         {{ $user->username }}
 
                         </div>
@@ -38,6 +50,18 @@
                         <div class="col-md-12">
 
                             {{ $user->email }}
+
+                        </div>
+
+                        <div class="col-md-12">
+
+                            {{ $user->occupation }}
+
+                        </div>
+
+                        <div class="col-md-12">
+
+                            {{ $location->name }}
 
                         </div>
 
