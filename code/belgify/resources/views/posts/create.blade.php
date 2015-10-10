@@ -13,7 +13,7 @@
 
         <div class="row">
 
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-9">
 
                 <div class="panel panel-default">
 
@@ -27,9 +27,9 @@
 
                         <div class="form-group">
 
-                            {!! Form::label('title', 'Title', ['class' => 'col-md-4 control-label']) !!}
+                            {!! Form::label('title', 'Title', ['class' => 'col-md-1 control-label']) !!}
 
-                            <div class="col-md-6">
+                            <div class="col-md-11">
 
                                 {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'titlel']) !!}
 
@@ -38,9 +38,9 @@
 
                         <div class="form-group">
 
-                            {!! Form::label('body', 'Body', ['class' => 'col-md-4 control-label']) !!}
+                            {!! Form::label('body', 'Body', ['class' => 'col-md-1 control-label']) !!}
 
-                            <div class="col-md-6">
+                            <div class="col-md-11">
 
                                 {!! Form::textarea('body', null, ['class' => 'form-control',  'placeholder' => 'ask here your question']) !!}
 
@@ -49,9 +49,9 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-11 col-md-offset-1">
 
-                                {!! Form::submit('Post', ['class' => 'btn btn-primary']) !!}
+                                {!! Form::submit('Post', ['class' => 'btn btn-primary form-control']) !!}
 
                             </div>
                         </div>

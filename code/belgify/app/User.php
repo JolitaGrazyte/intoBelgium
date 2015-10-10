@@ -41,4 +41,10 @@ class User extends Model implements AuthenticatableContract,
 
         $this->hasMany('App\Follower', 'user_id_1', 'user_id_2');
     }
+
+    public function location(){
+
+        return $this->hasOne('App\Location');
+
+    }
 }

@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
+//use App\Http\Requests\Request;
+//use App\Http\Requests\RegisterRequest;
 
-class RegisterRequest extends Request
+class UpdateProfileRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,9 @@ class RegisterRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        if ( \Auth::check('auth')) {
+            return true;
+        }
     }
 
     /**
@@ -24,10 +27,7 @@ class RegisterRequest extends Request
     public function rules()
     {
         return [
-            'username'  => 'required|max:255',
-            'email'     => 'required|email|max:255|unique:users',
-            'password'  => 'required|confirmed|min:4',
-            'role'      => 'required|digits_between: 1,2'
+
         ];
     }
 }

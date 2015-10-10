@@ -19,7 +19,7 @@ get('home', ['as' => 'home', function(){
     return view('home');
 }]);
 
-get('dashboard',['as' => 'dashboard', function(){
+get('dashboard',['as' => 'dashboard', 'middleware' => 'auth', function(){
     return view('dashboard');
 }]);
 
@@ -32,7 +32,7 @@ get('auth/login',       ['as' => 'getLogin',            'uses' => 'Auth\AuthCont
 post('auth/login',      ['as' => 'postLogin',           'uses' => 'Auth\AuthController@postLogin']);
 get('auth/logout',      ['as' => 'getLogout',           'uses' => 'Auth\AuthController@getLogout']);
 
-get('login/{provider?}', 'Auth\AuthController@login'); // socialite login
+get('login/{provider}', 'Auth\AuthController@login'); // socialite login
 
 
 // Registration routes...
@@ -44,6 +44,7 @@ Route::group([/*'prefix' => 'dashboard',*/ 'middleware' => 'auth'  ], function()
 
     resource('events',  'EventsController');
     resource('posts',   'PostsController');
+    resource('profile', 'ProfileController', ['except' => ['index']]);
 
 
 });

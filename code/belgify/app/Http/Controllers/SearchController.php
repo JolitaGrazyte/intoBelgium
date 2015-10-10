@@ -2,23 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Location;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Event;
 
-class EventsController extends Controller
+class SearchController extends Controller
 {
-    private $event;
-    private $locations;
-
-
-    public function __construct( Event $event, Location $location ){
-
-        $this->event        = $event;
-        $this->locations    = $location;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -26,10 +15,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $event = $this->event;
-        $events = $event->latest('created_at')->get();
-
-        return view('events.index', compact('events'))->withTitle('Events');
+        //
     }
 
     /**
@@ -39,8 +25,7 @@ class EventsController extends Controller
      */
     public function create()
     {
-        $locations = $this->locations->lists('name', 'id');
-        return view('events.create', compact('locations'))->withTitle('Create event');
+        //
     }
 
     /**
@@ -73,7 +58,7 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        return view('events.edit')->withTitle('Edit event');
+        //
     }
 
     /**

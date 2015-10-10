@@ -4,6 +4,8 @@
 
 @section('content')
 
-<h1> {{ $title }} </h1>
+    <h1>{{ $title }}</h1>
+
+    <div><a href="{{ route('posts.create') }}">Ask a question</a></div>
 
 @stop

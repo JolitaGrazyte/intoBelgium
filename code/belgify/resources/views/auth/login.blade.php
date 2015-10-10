@@ -22,7 +22,7 @@
 
                             <div class="col-md-6">
 
-                                {!! Form::text('email', old('email'), ['class' => 'form-control', 'placeholder' => 'email']) !!}
+                                {!! Form::email('email', old('email'), ['class' => 'form-control', 'placeholder' => 'email']) !!}
 
                             </div>
                         </div>

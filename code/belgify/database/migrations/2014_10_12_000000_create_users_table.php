@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
 
             $table->increments('id');
             $table->string('username');
-            $table->tinyInteger('role'); // 0 = admin; 1 = new local;
+            $table->tinyInteger('role')->default(2); // 0 = admin; 1 = local; 2 = newcomer
             $table->string('email')->unique();
             $table->string('password', 60);
 

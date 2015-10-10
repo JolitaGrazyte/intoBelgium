@@ -23,6 +23,7 @@ return [
     'before'               => 'The :attribute must be a date before :date.',
     'between'              => [
         'numeric' => 'The :attribute must be between :min and :max.',
+        'numeric' =>    'Please, choose your :attribute.',
         'file'    => 'The :attribute must be between :min and :max kilobytes.',
         'string'  => 'The :attribute must be between :min and :max characters.',
         'array'   => 'The :attribute must have between :min and :max items.',

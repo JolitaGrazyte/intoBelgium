@@ -20,7 +20,7 @@
                             {!! Form::label('role', "I'm local", ['class' => 'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">
-                                {!! Form::checkbox('role', 1,  false) !!} check for yes!
+                                {!! Form::select('role', [1 => 'local', 2 => 'newcomer'], null,  ['class' => 'form-control', 'placeholder' => 'please select your status']) !!}
                             </div>
 
                         </div>
@@ -41,7 +41,7 @@
 
                             <div class="col-md-6">
 
-                                {!! Form::text('email', old('email'), ['class' => 'form-control', 'placeholder' => 'email']) !!}
+                                {!! Form::email('email', old('email'), ['class' => 'form-control', 'placeholder' => 'email']) !!}
 
                             </div>
 

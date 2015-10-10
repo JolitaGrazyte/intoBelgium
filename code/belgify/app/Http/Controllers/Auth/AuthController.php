@@ -26,7 +26,7 @@ class AuthController extends Controller implements AuthenticateUserListener
     |
     */
     protected $redirectPath =   '/dashboard';
-    protected $loginPath    =   '/auth/login';
+//    protected $loginPath    =   '/auth/login';
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
@@ -65,33 +65,35 @@ class AuthController extends Controller implements AuthenticateUserListener
 
     public function postRegister( RegisterRequest $request){
 
-        $data['name']       =   $request->get('name');
+        $data['name']       =   $request->get('username');
         $data['email']      =   $request->get('email');
         $data['password']   =   $request->get('password');
-        $data['role']       =   $request->get('role'); // 0 = admin; 1 = local; 2 = new local;
+        $data['role']       =   $request->get('role'); // 0 = admin and may not be chosen; 1 = local; 2 = new local;
 
 //        dd($data['role']);
 
-        $this->create($data);
+        $user = $this->create($data);
 
-        return redirect()->route('getLogin');
+        if($user) $this->auth->login($user);
+
+        return redirect()->route('dashboard');
 
     }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
-    }
+//
+//    /**
+//     * Get a validator for an incoming registration request.
+//     *
+//     * @param  array  $data
+//     * @return \Illuminate\Contracts\Validation\Validator
+//     */
+//    protected function validator(array $data)
+//    {
+//        return Validator::make($data, [
+//            'name' => 'required|max:255',
+//            'email' => 'required|email|max:255|unique:users',
+//            'password' => 'required|confirmed|min:6',
+//        ]);
+//    }
 
     /**
      * Create a new user instance after a valid registration.

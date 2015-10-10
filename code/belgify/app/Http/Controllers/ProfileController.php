@@ -3,21 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Location;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\Event;
+use App\Http\Requests\UpdateProfileRequest;
 
-class EventsController extends Controller
+
+class ProfileController extends Controller
 {
-    private $event;
-    private $locations;
 
+    private $user;
+    private $location;
 
-    public function __construct( Event $event, Location $location ){
+    public function __construct( User $user, Location $location ){
 
-        $this->event        = $event;
-        $this->locations    = $location;
+        $this->user     = $user;
+        $this->location = $location;
+
     }
     /**
      * Display a listing of the resource.
@@ -26,10 +28,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $event = $this->event;
-        $events = $event->latest('created_at')->get();
-
-        return view('events.index', compact('events'))->withTitle('Events');
+        //
     }
 
     /**
@@ -39,8 +38,7 @@ class EventsController extends Controller
      */
     public function create()
     {
-        $locations = $this->locations->lists('name', 'id');
-        return view('events.create', compact('locations'))->withTitle('Create event');
+        //
     }
 
     /**
@@ -62,7 +60,11 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = $this->user->find($id);
+
+//        dd($user);
+
+        return view('profile.index', compact('user'))->withTitle('Your profile');
     }
 
     /**
@@ -73,19 +75,28 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        return view('events.edit')->withTitle('Edit event');
+        $user        = $this->user->find($id);
+        $locations   = $this->location->lists('name', 'id');
+
+//        dd($user);
+
+        return view('profile.edit', compact('user', 'locations', 'id'))->withTitle('Edit your profile');
     }
 
+
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateProfileRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update( UpdateProfileRequest $request, $id)
     {
-        //
+
+        $user = $this->user->find($id);
+
+        $user->fill($request->all())->save();
+
+            return redirect()->route('profile.show', $id);
     }
 
     /**

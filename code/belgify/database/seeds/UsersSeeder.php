@@ -12,7 +12,18 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
+        DB::table('users')->delete();
+        $users = [
+
+            [
+                'username'  =>  'Jolita',
+                'email'     =>  'test@test.be',
+                'password'  =>  Hash::make('testing'),
+
+            ]
+        ];
+        DB::table('users')->insert($users);
+
         factory(User::class, 25)->create();
 
     }
