@@ -38,6 +38,19 @@ class TagsSeeder extends Seeder
             [
                 'name' => 'Transport',
             ],
+            [
+                'name' => 'Shoping',
+            ],
+            [
+                'name' => 'Culture',
+            ],
+            [
+                'name' => 'Students',
+            ],
+            [
+                'name' => 'Party',
+            ],
+
         ];
         DB::table('tags')->insert($tags);
     }

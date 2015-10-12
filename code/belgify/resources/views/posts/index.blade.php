@@ -8,4 +8,15 @@
 
     <div><a href="{{ route('posts.create') }}">Ask a question</a></div>
 
+    @if(count($posts))
+
+        @foreach($posts as $post)
+
+            <div> {{ $post }} </div>
+
+        @endforeach
+
+    @endif
+
+
 @stop

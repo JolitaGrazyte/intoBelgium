@@ -24,4 +24,13 @@ class Comment extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function votes(){
+
+        return $this->hasMany('App\Votes');
+    }
+
 }

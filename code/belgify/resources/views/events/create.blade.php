@@ -35,6 +35,20 @@
 
                         <div class="form-group">
 
+                            {!! Form::label('date', 'Date', ['class' => 'col-md-2 control-label']) !!}
+
+                            <div class="col-md-10">
+
+                                {{--                                {!! Form::date('date', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}--}}
+                                {!! Form::text('date', \Carbon\Carbon::now()->toDateString(), ['id' => 'datepicker', 'class' => 'form-control']) !!}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
                             {!! Form::label('description', 'Description', ['class' => 'col-md-2 control-label']) !!}
 
                             <div class="col-md-10">
@@ -74,6 +88,7 @@
 
                             <div class="col-md-10">
 
+
                                 {!! Form::text('postcode', null, ['class' => 'form-control', 'placeholder' => 'postcode']) !!}
 
                             </div>
@@ -85,23 +100,12 @@
 
                             <div class="col-md-10">
 
-                                {!! Form::select('tag_list[]', ['tag1', 'tag2', 'tag3'], null, [ 'id' => 'tag_list', 'class' => 'form-control',  'multiple']) !!}
+                                {!! Form::select('tag_list[]', $tags, null, [ 'id' => 'tag_list', 'class' => 'form-control',  'multiple']) !!}
 
                             </div>
 
                         </div>
 
-                        <div class="form-group">
-
-                            {!! Form::label('publish_on', 'Publish on', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-                                {!! Form::date('publish_on', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
-
-                            </div>
-
-                        </div>
 
                         <div class="form-group">
                             <div class="col-md-10 col-md-offset-2">
@@ -121,5 +125,9 @@
 
     <script>
         $('#tag_list').select2();
+
+        $(function() {
+            $( "#datepicker" ).datepicker();
+        });
     </script>
 @stop

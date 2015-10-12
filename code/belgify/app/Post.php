@@ -12,14 +12,14 @@ class Post extends Model
      *
      * @var string
      */
-    protected $table = 'events';
+    protected $table = 'posts';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['title', 'date', 'body', 'is_active', 'is_public'];
+    protected $fillable = ['title', 'body','is_active', 'is_public'];
 
     protected $primaryKey = "id";
 

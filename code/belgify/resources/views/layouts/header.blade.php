@@ -1,5 +1,5 @@
 <header>
 
-    @include('layouts.nav');
+    @include('layouts.nav')
 
 </header>

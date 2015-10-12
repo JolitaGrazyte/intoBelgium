@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-//use App\Http\Requests\Request;
-//use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\Request;
 
-class UpdateProfileRequest extends Request
+class EventRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,12 +26,10 @@ class UpdateProfileRequest extends Request
     public function rules()
     {
         return [
-
-            'username'  => 'required|max:255',
-            'email'     => 'required|email|max:255|unique:users',
-            'password'  => 'required|confirmed|min:4',
-            'role'      => 'required|digits_between: 1,2'
-
+            'title'     => 'required|max:255',
+            'date'     => 'required|date',
+//            'password'  => 'required|confirmed|min:4',
+//            'role'      => 'required|digits_between: 1,2'
         ];
     }
 }

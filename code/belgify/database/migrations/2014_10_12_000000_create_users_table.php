@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->dateTime('birth_date')->nullable();
             $table->string('occupation')->nullable();
             $table->string('origin')->nullable();
-            $table->string('location')->nullable();
+            $table->smallInteger('location_id')->nullable();
             $table->text('story')->nullable();
 
             //Todo: FOLLOWERS INTEGRATION => many to many relation ??

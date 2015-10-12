@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         'users',
         'tags',
         'locations',
-//        'events',
+        'events',
 //        'posts'
 //        'follower'
 
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         'TagsSeeder',
         'LocationsSeeder',
 //        'PostsSeeder',
-//        'EventsSeeder',
+        'EventsSeeder',
 
     ];
 

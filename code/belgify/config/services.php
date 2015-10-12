@@ -38,7 +38,7 @@ return [
     'facebook' => [
         'client_id'     =>  env('FB_ID'),
         'client_secret' =>  env('FB_SECRET'),
-        'redirect'      =>  env('FB_REDIRECT'),
+        'redirect'      =>  'http://intob.local.com/login/facebook',
     ],
     'twitter' => [
 //        'client_id' => 'your-twitter-app-id',
@@ -48,7 +48,7 @@ return [
     'google' => [
         'client_id'     => env('GOOGLE_ID'),
         'client_secret' => env('GOOGLE_SECRET'),
-        'redirect'      => env('GOOGLE_REDIRECT')
+        'redirect'      => 'http://intob.local.com/login/google'
     ],
 
 ];

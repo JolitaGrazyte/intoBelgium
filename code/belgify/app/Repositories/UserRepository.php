@@ -8,7 +8,7 @@ class UserRepository {
 
     public function findByEmailOrCreate($userData){
 
-//        $name = explode(' ', $userData->name);
+        $name = explode(' ', $userData->name);
         $role = 1;
 
         return User::firstOrCreate([

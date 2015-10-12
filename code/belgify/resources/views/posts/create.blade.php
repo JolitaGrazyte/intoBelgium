@@ -1,13 +1,12 @@
 @extends('layouts.master')
 
-{{--@section('title', $title)--}}
+@section('title', $title)
 
 @section('title', 'Create')
 
 @section('content')
 
-    <h1>Ask a question</h1>
-    {{--<h1>{{ $title }}</h1>--}}
+    <h1>{{ $title }}</h1>
 
     <div class="container-fluid">
 
@@ -49,6 +48,18 @@
                         </div>
 
                         <div class="form-group">
+
+                            {!! Form::label('tags', 'Tags', ['class' => 'col-md-1 control-label']) !!}
+
+                            <div class="col-md-11">
+
+                                {!! Form::select('tag_list[]', $tags, null, [ 'id' => 'tag_list', 'class' => 'form-control',  'multiple']) !!}
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
                             <div class="col-md-11 col-md-offset-1">
 
                                 {!! Form::submit('Post', ['class' => 'btn btn-primary form-control']) !!}
@@ -64,5 +75,7 @@
         </div>
     </div>
 
-
+    <script>
+        $('#tag_list').select2();
+    </script>
 @stop

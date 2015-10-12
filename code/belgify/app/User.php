@@ -28,7 +28,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'password', 'role', 'first_name', 'last_name', 'birth_date', 'occupation', 'origin', 'location', 'story'];
+    protected $fillable = ['username', 'email', 'password', 'role', 'first_name', 'last_name', 'birth_date', 'occupation', 'origin', 'location_id', 'story'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -44,7 +44,20 @@ class User extends Model implements AuthenticatableContract,
 
     public function location(){
 
-        return $this->hasOne('App\Location');
+        return $this->hasOne('App\Location', 'id', 'location_id');
 
+    }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function events(){
+
+        return $this->hasMany('App\Event');
     }
 }

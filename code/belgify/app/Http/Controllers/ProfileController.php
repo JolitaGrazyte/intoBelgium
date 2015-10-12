@@ -60,7 +60,7 @@ class ProfileController extends Controller
     public function show($id)
     {
         $user       = $this->user->find($id);
-        $location   = $this->location->where('id', $user->location)->first();
+        $location   = $user->location;
 
         return view('profile.index', compact('user', 'location'))->withTitle('Your profile');
     }
@@ -73,11 +73,11 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $user           = $this->user->find($id);
-        $locations      = $this->location->lists('name', 'id');
-        $user_location  = $this->location->find($user->location);
+        $user          = $this->user->find($id);
+        $locations     = $this->location->lists('name', 'id');
+        $location      = $user->location;
 
-        return view('profile.edit', compact('user', 'locations', 'id', 'user_location'))->withTitle('Edit your profile');
+        return view('profile.edit', compact('user', 'locations', 'id', 'location'))->withTitle('Edit your profile');
     }
 
 
