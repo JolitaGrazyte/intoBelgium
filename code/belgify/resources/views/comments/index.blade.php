@@ -1,50 +1,40 @@
 @extends('layouts.master')
 
-@section('title', $title)
+@section('title', 'Answers')
 
 @section('content')
 
-    @include('layouts.message')
+    <h1>Answers</h1>
+    {{--    <h1>{{ $title }}</h1>--}}
 
-    <h1>{{ $title }}</h1>
+    <div class="container-fluid">
 
-    <div><a href="{{ route('posts.create') }}">Ask a question</a></div>
+        <div class="row">
 
-    @if(count($posts))
+            <div class="col-md-10">
 
-        @foreach($posts as $post)
+                <div class="panel panel-default">
 
-            <div> {{ $post }} </div>
-            <div>
-                Tags:
-                @foreach($post->tags as $tag)
+                    <div class="panel-heading">Answer</div>
 
-                    {{ $tag->name }}
+                    <div class="panel-body">
 
-                @endforeach
-            </div>
+                        {{--@include('errors.errors')--}}
 
-            <div><a href="{{ route('posts.edit', $post->id) }}">update this post</a></div> 
-            <div><a href="{{ route('posts.show', $post->id) }}">Answers: </a> <span> {{ $post->comments->count() }}</span></div>
-            <div>VOTES: <span> {{ $votes }}</span></div>
-            
-            <div>
-                {!!Form::open(['route' => ['posts.destroy', $post->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
-                
-                <div class="form-group">
-                    <div class="col-md-2">
+                        {{--<strong><em> {{ $post->title }} </em></strong>--}}
 
-                        {!! Form::submit('delete', ['class' => 'btn btn-primary form-control']) !!}
+                        {{--<div>{{ $post->body }}</div>--}}
+
+                        {{--@foreach($answers as $answer)--}}
+
+                            {{--<div> {{ $answer->body }}</div>--}}
+
+                        {{--@endforeach--}}
 
                     </div>
                 </div>
-                {!!Form::close() !!}
             </div>
-
-
-        @endforeach
-
-    @endif
-
+        </div>
+    </div>
 
 @stop

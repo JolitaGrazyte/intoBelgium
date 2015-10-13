@@ -19,15 +19,15 @@
 
                     <div class="panel-body">
 
-                        {{--@include('errors.errors')--}}
+                        @include('errors.errors')
 
                         <strong><em> {{ $post->title }} </em></strong>
 
                         <div>{{ $post->body }}</div>
 
-                        @foreach($answers as $answer)
+                        @foreach($answers as $key => $answer)
 
-                            <div> {{ $answer->body }}</div>
+                            <div> {{ $key.'. '.$answer->body }}</div>
 
                         @endforeach
 

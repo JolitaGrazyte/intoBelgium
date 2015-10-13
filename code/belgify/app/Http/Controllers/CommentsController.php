@@ -12,10 +12,12 @@ class CommentsController extends Controller
 {
 
     private $comment;
+    private $tag;
 
-    public function __construct( Comment $comment ){
+    public function __construct( Comment $comment, Tag $tag ){
 
-        $this->comment = $comment;
+        $this->comment  =   $comment;
+        $this->tag      =   $tag;
 
     }
     /**
@@ -39,7 +41,7 @@ class CommentsController extends Controller
      */
     public function create()
     {
-        $tags = Tag::lists('name', 'id');
+        $tags = $this->tag->lists('name', 'id');
 
         return view('comments.create', compact('tags'))->withTitle('Answer');
     }
@@ -50,7 +52,7 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( Request $request )
     {
         //
     }
@@ -74,7 +76,13 @@ class CommentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comment = $this->comment->find($id);
+
+        $tags = $this->tag->lists('name', 'id');
+
+        $comment_tags = $comment->tags;
+
+        return view('comments.create', compact('tags', 'comment', 'comment_tags'))->withTitle('Answer');
     }
 
     /**

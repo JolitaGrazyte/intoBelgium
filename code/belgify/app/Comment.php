@@ -44,5 +44,14 @@ class Comment extends Model
         return $query->where('votes', '>', 100);
     }
 
+    /**
+     * Relation with the tag model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags()
+    {
+        return $this->morphToMany('App\Tag', 'taggable')->withTimestamps();
+    }
 
 }

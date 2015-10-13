@@ -31,7 +31,6 @@ class CreateUsersTable extends Migration
             //Todo: FOLLOWERS INTEGRATION => many to many relation ??
 //            $table->integer('user_id');
 
-
             $table->rememberToken();
             $table->timestamps();
         });
