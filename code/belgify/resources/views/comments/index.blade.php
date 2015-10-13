@@ -24,8 +24,7 @@
                 @endforeach
             </div>
 
-            <div><a href="{{ route('comments.create') }}">answer this question</a></div>
-            <div><a href="{{ route('posts.edit', $post->id) }}">update this question</a></div>
+            <div><a href="{{ route('posts.edit', $post->id) }}">update this post</a></div> 
             <div><a href="{{ route('posts.show', $post->id) }}">Answers: </a> <span> {{ $post->comments->count() }}</span></div>
             <div>VOTES: <span> {{ $votes }}</span></div>
             

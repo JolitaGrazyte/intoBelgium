@@ -42,14 +42,14 @@ post('auth/register',    ['as'   =>  'postRegister', 'uses' =>   'Auth\AuthContr
 
 Route::group([/*'prefix' => 'dashboard',*/ 'middleware' => 'auth'  ], function(){
 
-    resource('events',  'EventsController');
-    resource('posts',   'PostsController');
-    resource('profile', 'ProfileController', ['except' => ['index']]);
+    resource('events',      'EventsController');
+    resource('comments',    'CommentsController');
+    resource('posts',       'PostsController');
+    resource('profile',     'ProfileController', ['except' => ['index']]);
 
 
 });
 
 
 //Extra routes
-
 post('events/{id}', ['as' => 'attend', 'uses' => 'EventsController@postAttend']);
