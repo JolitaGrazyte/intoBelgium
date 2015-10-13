@@ -26,10 +26,19 @@ class CreateEventsTable extends Migration
             $table->tinyInteger('is_active')->nullable();
             $table->tinyInteger('is_public')->nullable();
             $table->integer('user_id')->unsigned();
-
-//            $table->tinyInteger('author_id')->unsigned();
-
             $table->timestamps();
+
+            Schema::create('event_user', function(Blueprint $table)
+            {
+                $table->increments('id');
+                $table->integer('event_id')->unsigned();
+                $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade')->onUpdate('cascade');
+
+                $table->integer('user_id')->unsigned();
+                $table->foreign('user_id')->references('id')->on('teams')->onDelete('restrict')->onUpdate('cascade');
+
+                $table->timestamps();
+            });
 
         });
     }

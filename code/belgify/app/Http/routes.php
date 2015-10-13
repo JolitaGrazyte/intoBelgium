@@ -48,3 +48,8 @@ Route::group([/*'prefix' => 'dashboard',*/ 'middleware' => 'auth'  ], function()
 
 
 });
+
+
+//Extra routes
+
+post('events/{id}', ['as' => 'attend', 'uses' => 'EventsController@postAttend']);

@@ -31,6 +31,7 @@
                                 {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'title']) !!}
 
                             </div>
+
                         </div>
 
                         <div class="form-group">
@@ -39,12 +40,23 @@
 
                             <div class="col-md-10">
 
-                                {!! Form::text('date', \Carbon\Carbon::now(), ['id' => 'datepicker', 'class' => 'form-control']) !!}
+                                {!! Form::text('date', \Carbon\Carbon::now()->format('d/m/Y'), ['id' => 'datepicker', 'class' => 'form-control']) !!}
 
                             </div>
 
                         </div>
 
+                        <div class="form-group">
+
+                            {!! Form::label('start_time', 'Start time', ['class' => 'col-md-2 control-label']) !!}
+
+                            <div class="col-md-10">
+
+                                {!! Form::input('time', 'start_time',  \Carbon\Carbon::now()->format('H:m'),  ['class' => 'col-md-2 control-label']) !!}
+
+                            </div>
+
+                        </div>
 
                         <div class="form-group">
 
@@ -91,6 +103,7 @@
                                 {!! Form::text('postcode', null, ['class' => 'form-control', 'placeholder' => 'postcode']) !!}
 
                             </div>
+
                         </div>
 
                         <div class="form-group">
@@ -107,11 +120,13 @@
 
 
                         <div class="form-group">
+
                             <div class="col-md-10 col-md-offset-2">
 
                                 {!! Form::submit('Post', ['class' => 'btn btn-primary form-control']) !!}
 
                             </div>
+
                         </div>
 
                         {!! Form::close() !!}

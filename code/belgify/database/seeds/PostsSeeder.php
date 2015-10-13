@@ -16,22 +16,22 @@ class PostsSeeder extends Seeder
         $posts = [
             [
                 'title'      => 'Question 1',
-                'body'       => 'body...',
+                'body'       => 'question question question question',
                 'user_id'    =>  1
             ],
             [
                 'title'      => 'Question 2',
-                'body'       => 'body...',
+                'body'       => 'question question question question',
                 'user_id'    =>  1
             ],
             [
                 'title'      => 'Question 3',
-                'body'       => 'some body...',
+                'body'       => 'question question question question',
                 'user_id'    =>  1
             ],
             [
                 'title'      => 'Question 4',
-                'body'       => 'some body...',
+                'body'       => 'question question question question',
                 'user_id'    =>  1
             ],
 

@@ -74,12 +74,64 @@
 
                             {!! Form::label('birth_date', 'Birth date', ['class' => 'col-md-2 control-label']) !!}
 
+
+                            <div class="col-md-10">
+
+                                {!! Form::selectRange('day', 1, 31, null,['class' => 'col-md-2 control-label']) !!}
+
+                                {!! Form::selectMonth('month', null, ['class' => 'col-md-2 control-label']) !!}
+
+                                {!! Form::selectRange('year', 1900, 1997, null,['class' => 'col-md-2 control-label']) !!}
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            {!! Form::label('birth_date', 'Birth date', ['class' => 'col-md-2 control-label']) !!}
+
+
                             <div class="col-md-10">
 
                                 {!! Form::date('birth_date', $user->birth_date, ['id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'YYYY-mm-dd']) !!}
 
                             </div>
 
+                        </div>
+
+
+
+                        <script> // TODO: GENDER and file upload </script>
+                        {{--<div class="row">--}}
+                            {{--{!! Form::label('gender', trans('form.gender'), ['class' => 'label']) !!}--}}
+
+                            {{--<div class="inline-group">--}}
+                                {{--<label class="radio">--}}
+                                    {{--{!! Form::radio('gender', 0, null, ['class' => 'field']) !!}--}}
+                                    {{--<i></i>--}}
+                                    {{--<span>Man </span>--}}
+                                {{--</label>--}}
+                                {{--<label class="radio">--}}
+                                    {{--{!! Form::radio('gender', 1, null, ['class' => 'field']) !!}--}}
+                                    {{--<i></i>--}}
+                                    {{--<span> Woman</span>--}}
+                                {{--</label>--}}
+
+                                {{--<span class="help-block">{{ $errors->first('gender') }}</span>--}}
+
+                            {{--</div>--}}
+                        <div class="row">
+                            {!! Form::label('image upload', 'Profile image',['class' => 'col-md-2 control-label']) !!}
+
+                            <div class="col-md-10   ">
+
+                                {{--{!! Form::input('file', 'file', null) !!}--}}
+                                {!! Form::file('file', ['class' => 'form-control', 'placeholder' => 'occupation']) !!}
+                                <span class="help-block">{{ $errors->first('file') }}</span>
+
+                            </div>
                         </div>
 
                         <div class="form-group">

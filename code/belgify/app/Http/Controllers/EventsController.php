@@ -42,6 +42,7 @@ class EventsController extends Controller
     public function index()
     {
         $event = $this->event;
+
         $events = $event->latest('created_at')->get();
 
         return view('events.index', compact('events'))->withTitle('Events');
@@ -203,4 +204,13 @@ class EventsController extends Controller
 
         $this->flashMsg->successMessage($msg);
     }
+
+    public function postAttend($id){
+
+        Session::flash('message', 'You are going to event:  '.$id.'.');
+
+        return redirect()->back();
+
+    }
 }
+

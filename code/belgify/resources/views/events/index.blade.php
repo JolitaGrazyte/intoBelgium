@@ -23,6 +23,25 @@
                 @endforeach
 
             </div>
+
+            <div>
+                {!!Form::open(['route' => ['attend', $event->id], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+
+                <div class="form-group">
+
+                    {!! Form::label('going', 'Going', ['class' => 'col-md-1 control-label']) !!}
+
+                    <div class="col-md-2">
+
+                        {!! Form::checkbox('going', 'going', 0, ['class' => 'btn btn-primary form-control', 'onchange' => 'this.form.submit()']) !!}
+
+                    </div>
+
+                </div>
+                {!!Form::close() !!}
+            </div>
+
+
             <div><a href="{{ route('events.edit', $event->id) }}">update this event</a></div>
             <div>
                 {!!Form::open(['route' => ['events.destroy', $event->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
@@ -35,6 +54,8 @@
                 </div>
                 {!!Form::close() !!}
             </div>
+
+
         @endforeach
 
     @endif
