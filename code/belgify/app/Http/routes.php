@@ -19,9 +19,7 @@ get('home', ['as' => 'home', function(){
     return view('home');
 }]);
 
-get('dashboard',['as' => 'dashboard', 'middleware' => 'auth', function(){
-    return view('dashboard');
-}]);
+get('dashboard',['as' => 'dashboard', 'middleware' => 'auth', 'uses' => 'DashboardController@index']);
 
 
 //get('/{page}',         ['as' => 'pages',       'uses' => 'PagesController@index']);

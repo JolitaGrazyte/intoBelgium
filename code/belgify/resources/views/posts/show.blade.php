@@ -5,6 +5,7 @@
 @section('content')
 
     <h1>Answers</h1>
+
 {{--    <h1>{{ $title }}</h1>--}}
 
     <div class="container-fluid">
@@ -25,9 +26,9 @@
 
                         <div>{{ $post->body }}</div>
 
-                        @foreach($answers as $key => $answer)
+                        @foreach($answers as $answer)
 
-                            <div> {{ $key.'. '.$answer->body }}</div>
+                            <div><a href="">{{ $answer->id.'. '.$answer->body }}</a></div>
 
                         @endforeach
 

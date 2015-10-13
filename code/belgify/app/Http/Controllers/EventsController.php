@@ -41,11 +41,14 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $event = $this->event;
+        $event      =   $this->event;
+        $events     =   $event->latest('created_at')->get();
+        $user       =   Auth::user();
+        $my_events  =   $user->events_attending;
 
-        $events = $event->latest('created_at')->get();
+//        dd($my_events);
 
-        return view('events.index', compact('events'))->withTitle('Events');
+        return view('events.index', compact('events', 'my_events'))->withTitle('Events');
     }
 
     /**
@@ -206,6 +209,15 @@ class EventsController extends Controller
     }
 
     public function postAttend($id){
+
+        $event = $this->event->find($id);
+
+        $user = Auth::user();
+
+//        $user->events_attending()->sync([$event->id]);
+        $user->events_attending()->attach($event->id);
+
+//        dd($user->events_attending);
 
         Session::flash('message', 'You are going to event:  '.$id.'.');
 
