@@ -18,7 +18,6 @@ class Tag extends Model
         return $this->morphedByMany('App\Post', 'taggable');
     }
 
-
     public function events()
     {
         return $this->morphedByMany('App\Event', 'taggable');

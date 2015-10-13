@@ -48,6 +48,8 @@ Route::group([/*'prefix' => 'dashboard',*/ 'middleware' => 'auth'  ], function()
 
 });
 
+//SEARCH
+post('search', ['as' => 'search', 'uses' => 'SearchController@search']);
 
 //Extra routes
 post('events/{id}', ['as' => 'attend', 'uses' => 'EventsController@postAttend']);

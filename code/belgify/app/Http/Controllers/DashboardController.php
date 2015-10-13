@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -18,8 +19,25 @@ class DashboardController extends Controller
         $user           =   Auth::user();
         $my_events      =   $user->events_attending;
         $my_questions   =   $user->posts;
+        $users          =   [];
 
-        return view('dashboard', compact('my_events', 'my_questions'))->withTitle('Dashboard');
+        foreach($my_events as $evnt){
+
+            array_push($users, User::find($evnt->user_id));
+        }
+
+
+           foreach($my_questions as $question){
+
+               foreach($question->comments as $answer){
+
+                   array_push($users, User::find($answer->user_id));
+               }
+           }
+
+        $users = array_unique($users);
+
+        return view('dashboard', compact('my_events', 'my_questions', 'users'))->withTitle('Dashboard');
     }
 
 

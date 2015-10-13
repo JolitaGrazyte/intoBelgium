@@ -41,7 +41,7 @@
 
             <div> Tags: @foreach($event->tags as $tag)
 
-                    {{$tag->name}}
+                    {{ $tag->name }}
 
                 @endforeach
 
@@ -65,7 +65,12 @@
             </div>
 
 
-            <div><a href="{{ route('events.edit', $event->id) }}">update this event</a></div>
+            @if( Auth::user()->id == $event->user_id )
+
+                <div><a href="{{ route('events.edit', $event->id) }}">update this event</a></div>
+
+            @endif
+            
             <div>
                 {!!Form::open(['route' => ['events.destroy', $event->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
                 <div class="form-group">

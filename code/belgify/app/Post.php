@@ -43,6 +43,9 @@ class Post extends Model
         return $this->hasMany('App\Comment');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
     public function votes()
     {
         return $this->hasManyThrough('App\Comment', 'App\Votes', 'post_id', 'id');
@@ -63,6 +66,7 @@ class Post extends Model
      * @param $q
      */
     public function scopeActive($q){
+
         $q->where('is_active', 1);
     }
 
@@ -72,6 +76,7 @@ class Post extends Model
      * @param $q
      */
     public function scopePublic($q){
+
         $q->where('is_public', 1);
 
     }

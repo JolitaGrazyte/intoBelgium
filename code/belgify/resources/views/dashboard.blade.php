@@ -1,62 +1,37 @@
 @extends('layouts.master')
 
-@section('title', 'Dashboard')
+@section('title', $title)
 
 @section('content')
 
-    <h1> Dashboard </h1>
+    <h1> {{ $title }} </h1>
 
     <div class="container-fluid">
 
         <div class="row">
 
-            @if(count($my_events))
+           <div class="col-md-8">
 
-                <h2>My events</h2>
+               <div>
 
-                @foreach($my_events as $event)
+                   @include('dashboard.partials.my_events')
 
-                    <div> {{ $event }} </div>
+               </div>
 
-                    <div> Tags: @foreach($event->tags as $tag)
 
-                            {{$tag->name}}
+               <div>
 
-                        @endforeach
+                   @include('dashboard.partials.my_questions')
 
-                    </div>
+               </div>
 
-                @endforeach
+           </div>
 
-            @endif
+              <div class="col-md-4">
 
-                @if(count($my_questions))
+                  @include('dashboard.partials.following')
 
-                    <h2>My questions</h2>
-
-                    @foreach($my_questions as $question)
-
-                        <div>Question: {{ $question }} </div>
-
-                        <div> Tags: @foreach( $question->tags as $tag )
-
-                                {{ $tag->name }}
-
-                            @endforeach
-
-                        </div>
-
-                        <div> Answers: @foreach( $question->comments as $comment )
-
-                                <p><a href="">{{ $comment->body }}</a></p>
-
-                            @endforeach
-
-                        </div>
-
-                    @endforeach
-
-                @endif
+              </div>
 
         </div>
     </div>

@@ -1,11 +1,10 @@
 @extends('layouts.master')
 
-@section('title', 'Answers')
+@section('title', $title)
 
 @section('content')
 
-    <h1>Answers</h1>
-    {{--    <h1>{{ $title }}</h1>--}}
+    <h1>{{ $title }}</h1>
 
     <div class="container-fluid">
 
@@ -19,17 +18,17 @@
 
                     <div class="panel-body">
 
-                        {{--@include('errors.errors')--}}
+                        @include('errors.errors')
 
-                        {{--<strong><em> {{ $post->title }} </em></strong>--}}
+                        <strong><em> {{ $post->title }} </em></strong>
 
-                        {{--<div>{{ $post->body }}</div>--}}
+                        <div>{{ $post->body }}</div>
 
-                        {{--@foreach($answers as $answer)--}}
+                        @foreach($answers as $answer)
 
-                            {{--<div> {{ $answer->body }}</div>--}}
+                            <div> {{ $answer->body }}</div>
 
-                        {{--@endforeach--}}
+                        @endforeach
 
                     </div>
                 </div>
