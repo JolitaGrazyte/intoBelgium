@@ -25,6 +25,7 @@ class CreateEventsTable extends Migration
             $table->string('city');
             $table->tinyInteger('is_active')->nullable();
             $table->tinyInteger('is_public')->nullable();
+            $table->integer('user_id')->unsigned();
 
 //            $table->tinyInteger('author_id')->unsigned();
 

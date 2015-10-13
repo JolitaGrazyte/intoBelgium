@@ -39,7 +39,6 @@
 
                             <div class="col-md-10">
 
-                                {{--  {!! Form::date('date', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}--}}
                                 {!! Form::text('date', $event->date, ['id' => 'datepicker', 'class' => 'form-control']) !!}
 
                             </div>
@@ -77,7 +76,7 @@
 
                             <div class="col-md-10">
 
-                                {!! Form::select('location', $locations, $event->location->id, ['class' => 'form-control', 'placeholder' => 'choose a location']) !!}
+                                {!! Form::select('location', $locations, isset($event->location)?$event->location->id:0, ['class' => 'form-control', 'placeholder' => 'choose a location']) !!}
 
                             </div>
                         </div>
@@ -100,7 +99,7 @@
 
                             <div class="col-md-10">
 
-                                {!! Form::select('tag_list[]', $tags, $event->tags->lists('id'), [ 'id' => 'tag_list', 'class' => 'form-control',  'multiple']) !!}
+                                {!! Form::select('tag_list[]', $tags, $evnt_tags, [ 'id' => 'tag_list', 'class' => 'form-control',  'multiple']) !!}
 
                             </div>
 

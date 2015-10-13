@@ -43,6 +43,11 @@ class Post extends Model
         return $this->hasMany('App\Comment');
     }
 
+    public function votes()
+    {
+        return $this->hasManyThrough('App\Comment', 'App\Votes', 'post_id', 'id');
+    }
+
 
     /**
      * Get the tags for the blog post.

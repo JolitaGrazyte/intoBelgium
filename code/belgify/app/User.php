@@ -60,4 +60,12 @@ class User extends Model implements AuthenticatableContract,
 
         return $this->hasMany('App\Event');
     }
+
+    /**
+     * Get all of the users images.
+     */
+    public function images()
+    {
+        return $this->morphMany('App\Image', 'imageable');
+    }
 }

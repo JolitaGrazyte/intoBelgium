@@ -76,7 +76,7 @@
 
                             <div class="col-md-10">
 
-                                {!! Form::date('birth_date', $user->birth_date, ['class' => 'form-control', 'placeholder' => 'YYYY-mm-dd']) !!}
+                                {!! Form::date('birth_date', $user->birth_date, ['id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'YYYY-mm-dd']) !!}
 
                             </div>
 
@@ -118,13 +118,13 @@
 
                         <div class="form-group">
 
-                        {!! Form::label('story', 'My story', ['class' => 'col-md-2 control-label']) !!}
+                            {!! Form::label('story', 'My story', ['class' => 'col-md-2 control-label']) !!}
 
-                        <div class="col-md-10">
+                            <div class="col-md-10">
 
-                        {!! Form::textarea('story', null, ['class' => 'form-control',  'placeholder' => 'my story']) !!}
+                                {!! Form::textarea('story', null, ['class' => 'form-control',  'placeholder' => 'my story']) !!}
 
-                        </div>
+                            </div>
 
                         </div>
 
@@ -144,5 +144,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $('#tag_list').select2();
+
+        $(function() {
+            $( "#datepicker" ).datepicker();
+        });
+    </script>
 
 @stop

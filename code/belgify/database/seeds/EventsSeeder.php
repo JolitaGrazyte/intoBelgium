@@ -21,7 +21,8 @@ class EventsSeeder extends Seeder
                 'date'              => \Carbon\Carbon::now(),
                 'location_id'       => 1,
                 'postcode'          => 2000,
-                'city'              => 'Antwerp'
+                'city'              => 'Antwerp',
+                'user_id'           =>  1
 
             ],
 
@@ -32,7 +33,8 @@ class EventsSeeder extends Seeder
                 'date'              => \Carbon\Carbon::now(),
                 'location_id'       => 1,
                 'postcode'          => 2000,
-                'city'              => 'Antwerp'
+                'city'              => 'Antwerp',
+                'user_id'           =>  1
 
             ],
             [
@@ -42,7 +44,8 @@ class EventsSeeder extends Seeder
                 'date'              => \Carbon\Carbon::now(),
                 'location_id'       => 1,
                 'postcode'          => 2000,
-                'city'              => 'Antwerp'
+                'city'              => 'Antwerp',
+                'user_id'           =>  1
 
             ],
 

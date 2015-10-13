@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-//use App\Http\Requests\Request;
-//use App\Http\Requests\RegisterRequest;
 
 class UpdateProfileRequest extends Request
 {
@@ -26,12 +24,15 @@ class UpdateProfileRequest extends Request
      */
     public function rules()
     {
+        $path   = Request::path();
+        $pathid = explode('/', $path);
+        $id     = $pathid[1];
+
+
         return [
 
             'username'  => 'required|max:255',
-            'email'     => 'required|email|max:255|unique:users',
-            'password'  => 'required|confirmed|min:4',
-            'role'      => 'required|digits_between: 1,2'
+            'email'     => 'required|email|max:255|unique:users' . ($id ? ",id,$id" : ''),
 
         ];
     }
