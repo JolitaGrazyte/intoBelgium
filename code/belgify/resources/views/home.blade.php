@@ -4,6 +4,10 @@
 
 @section('content')
 
+    @include('layouts.message')
+
+    @include('errors.errors')
+
     <h1>HOME</h1>
 
 

@@ -214,10 +214,7 @@ class EventsController extends Controller
 
         $user = Auth::user();
 
-//        $user->events_attending()->sync([$event->id]);
         $user->events_attending()->attach($event->id);
-
-//        dd($user->events_attending);
 
         Session::flash('message', 'You are going to event:  '.$id.'.');
 

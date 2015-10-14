@@ -73,7 +73,16 @@
                                 </button>
                             </div>
                         </div>
+
                         {!! Form::close() !!}
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <a href="{{ url('login/facebook') }}"><button class="btn btn-primary">facebook</button></a>
+                                <a href="{{ url('login/twitter') }}"><button class="btn btn-primary">twitter</button></a>
+                                <a href="{{ url('login/google') }}"><button class="btn btn-primary">google+</button></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

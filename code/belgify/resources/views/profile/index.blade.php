@@ -21,7 +21,7 @@
                         Your profile
 
                         <span class="navbar-right">
-                            <a href="{{ route('profile.edit', 1) }}">
+                            <a href="{{ route('profile.edit', Auth::user()->id) }}">
                                 Edit your profile
                             </a>
                         </span>
@@ -55,13 +55,13 @@
 
                         <div class="col-md-12">
 
-                            {{ $user->occupation }}
+                            {{ isset($user->occupation)?$user->occupation:null  }}
 
                         </div>
 
                         <div class="col-md-12">
 
-                            {{ $location->name }}
+                            {{ isset($location->name)?$location->name:null }}
 
                         </div>
 

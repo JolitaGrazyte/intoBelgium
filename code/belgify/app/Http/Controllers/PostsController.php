@@ -172,7 +172,6 @@ class PostsController extends Controller
 
     }
 
-
     /**
      * Check if session exist and return it.
      * @param $q

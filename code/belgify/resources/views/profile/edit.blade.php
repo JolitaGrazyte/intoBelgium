@@ -140,7 +140,7 @@
 
                             <div class="col-md-10">
 
-                                {!! Form::text('occupation', $user->occupation, ['class' => 'form-control', 'placeholder' => 'occupation']) !!}
+                                {!! Form::text('occupation', isset($user->occupation)?$user->occupation:null, ['class' => 'form-control', 'placeholder' => 'occupation']) !!}
 
                             </div>
                         </div>
@@ -162,7 +162,7 @@
 
                             <div class="col-md-10">
 
-                                {!! Form::select('location', $locations, $location->id, ['class' => 'form-control', 'placeholder' => 'choose your location']) !!}
+                                {!! Form::select('location', $locations, isset($location->name)?$location->name:null, ['class' => 'form-control', 'placeholder' => 'choose your location']) !!}
 
                             </div>
                         </div>
@@ -174,7 +174,7 @@
 
                             <div class="col-md-10">
 
-                                {!! Form::textarea('story', null, ['class' => 'form-control',  'placeholder' => 'my story']) !!}
+                                {!! Form::textarea('story', isset($user->story)?$user->story:null, ['class' => 'form-control',  'placeholder' => 'my story']) !!}
 
                             </div>
 
