@@ -67,10 +67,7 @@ class ProfileController extends Controller
     {
         $user       = $this->user->find($id);
         $location   = $user->location;
-
         $avatar     = $user->avatar;
-
-//        dd($avatar);
 
         return view('profile.index', compact('user', 'location', 'avatar'))->withTitle('Your profile');
     }
@@ -88,9 +85,7 @@ class ProfileController extends Controller
         $location   = $user->location;
         $avatar     = $user->avatar;
 
-        dd($avatar);
-
-        return view('profile.edit', compact('user', 'locations', 'id', 'location'))->withTitle('Edit your profile');
+        return view('profile.edit', compact('user', 'locations', 'id', 'location', 'avatar'))->withTitle('Edit your profile');
     }
 
     public function getImage($filename){

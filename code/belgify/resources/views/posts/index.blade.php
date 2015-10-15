@@ -14,33 +14,67 @@
 
         @foreach($posts as $post)
 
-            <div> {{ $post }} </div>
-            <div>
-                Tags:
-                @foreach($post->tags as $tag)
+            <div class="row">
 
-                    {{ $tag->name }}
+                <div class="col-md-2">
 
-                @endforeach
+                    <div><a href="{{ route('posts.show', $post->id) }}">Answers: </a> <span> {{ $post->comments->count() }}</span></div>
+
+                    <div>VOTES: <span> {{ $votes }}</span></div>
+
+                </div>
+
+                <div class="col-md-10">
+
+                    <div> {{ $post }} </div>
+
+                    <div>
+                        @if(count($post->tags))
+                            Tags:
+                            @foreach($post->tags as $tag)
+
+                                {{ $tag->name }}
+
+                            @endforeach
+
+                        @endif
+                    </div>
+
+                </div>
+
             </div>
 
-            <div><a href="{{ route('comments.create') }}">answer this question</a></div>
-            <div><a href="{{ route('posts.edit', $post->id) }}">update this question</a></div>
-            <div><a href="{{ route('posts.show', $post->id) }}">Answers: </a> <span> {{ $post->comments->count() }}</span></div>
-            <div>VOTES: <span> {{ $votes }}</span></div>
-            
-            <div>
-                {!!Form::open(['route' => ['posts.destroy', $post->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
-                
-                <div class="form-group">
-                    <div class="col-md-2">
 
-                        {!! Form::submit('delete', ['class' => 'btn btn-primary form-control']) !!}
+
+
+            @if( Auth::user()->id == $post->user_id )
+
+                <div class="row col-md-offset-2">
+
+                    <div class="col-md-2"><a href="{{ route('comments.create') }}"><button class="btn btn-primary">answer this question</button></a></div>
+
+                    <div class="col-md-2"><a href="{{ route('posts.edit', $post->id) }}"><button class="btn btn-primary">update this question</button></a></div>
+
+                    <div class="col-md-2">
+                        {!!Form::open(['route' => ['posts.destroy', $post->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
+
+                        <div class="form-group">
+
+                            <div class="col-md-12">
+
+                                {!! Form::submit('delete', ['class' => 'btn btn-primary form-control']) !!}
+
+                            </div>
+
+                        </div>
+
+                        {!!Form::close() !!}
 
                     </div>
+
                 </div>
-                {!!Form::close() !!}
-            </div>
+
+            @endif
 
 
         @endforeach

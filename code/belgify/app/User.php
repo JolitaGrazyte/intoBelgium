@@ -95,4 +95,5 @@ class User extends Model implements AuthenticatableContract,
         return $this->belongsToMany('App\Event')->withTimestamps();
     }
 
+
 }

@@ -79,5 +79,10 @@ class Event extends Model
         return $this->morphMany('App\Image', 'imageable');
     }
 
+    public function attenders(){
+
+        return $this->belongsToMany('App\User');
+    }
+
 
 }

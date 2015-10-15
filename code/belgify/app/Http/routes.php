@@ -19,7 +19,9 @@ get('home', ['as' => 'home', function(){
     return view('home');
 }]);
 
-get('dashboard',['as' => 'dashboard', 'middleware' => 'auth', 'uses' => 'DashboardController@index']);
+get('dashboard',                ['as' => 'dashboard', 'middleware' => 'auth', 'uses' => 'DashboardController@index']);
+get('dashboard/my-events',      ['as' => 'dashboard', 'middleware' => 'auth', 'uses' => 'DashboardController@index']);
+get('dashboard/my-questions',   ['as' => 'dashboard', 'middleware' => 'auth', 'uses' => 'DashboardController@index']);
 
 
 //get('/{page}',         ['as' => 'pages',       'uses' => 'PagesController@index']);
@@ -54,4 +56,4 @@ post('search', ['as' => 'search', 'uses' => 'SearchController@search']);
 //Extra routes
 post('events/{id}',     ['as' => 'attend', 'uses' => 'EventsController@postAttend']);
 get('image/{id}',       ['as'=>'getImage',     'uses' => 'ProfileController@getImage' ]);
-post('image/{user_id}', ['as'=>'postImage',    'uses' => 'ImagesController@postImage' ]);
+//post('image/{user_id}', ['as'=>'postImage',    'uses' => 'ImagesController@postImage' ]);
