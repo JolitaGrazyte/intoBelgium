@@ -16,16 +16,42 @@
                 <li><a href="{{ route('posts.index') }}">Questions</a></li>
                 <li><a href="{{ route('events.index') }}">Events</a></li>
 
-
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 @if ( Auth::guest() )
-                    <li><a href="{{ url('/auth/login') }}">Login</a></li>
+                    <li>
+                        {!!Form::open(['route' => 'postLogin', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+
+
+                        <div class="col-md-4">
+
+                            {!! Form::email('email', old('email'), ['class' => 'form-control', 'placeholder' => 'email']) !!}
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            {!! Form::password('password', ['class' => 'form-control',  'placeholder' => 'password']) !!}
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            {!! Form::submit('Login', ['class' => 'btn btn-primary']) !!}
+
+                        </div>
+
+                        {!! Form::close() !!}
+                    </li>
+
+
+                    {{--<li><a href="{{ url('/auth/login') }}">Login</a></li>--}}
                     <li><a href="{{ url('/auth/register') }}">Register</a></li>
                 @else
+
+                    <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

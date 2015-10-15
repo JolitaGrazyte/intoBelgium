@@ -4,6 +4,7 @@ namespace App;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 use Illuminate\Contracts\Auth\Guard;
 use App\Repositories\UserRepository;
+use Request;
 
 
 class AuthenticateUser {
@@ -44,6 +45,7 @@ class AuthenticateUser {
         if(!$hasCode) return $this->getAuthorizationFirst($social_provider);
 
         $user = $this->users->findByEmailOrCreate($this->getSocialUser($social_provider));
+
         $this->auth->login($user, true);
 
         return $listener->userHasLoggedIn($user);

@@ -11,8 +11,8 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract,
-                                    AuthorizableContract,
-                                    CanResetPasswordContract
+    AuthorizableContract,
+    CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
 
@@ -42,12 +42,18 @@ class User extends Model implements AuthenticatableContract,
         $this->hasMany('App\Follower', 'user_id_1', 'user_id_2');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function location(){
 
         return $this->hasOne('App\Location', 'id', 'location_id');
 
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function posts()
     {
         return $this->hasMany('App\Post');
@@ -56,8 +62,37 @@ class User extends Model implements AuthenticatableContract,
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function events(){
 
         return $this->hasMany('App\Event');
     }
+
+    /**
+     * Get all of the users images.
+     */
+    public function image()
+    {
+        return $this->hasOne('App\Image', 'imageable');
+    }
+
+
+    public function scopeEvents($query)
+    {
+        return $query->where();
+    }
+
+    public function events_attending(){
+
+        return $this->belongsToMany('App\Event')->withTimestamps();
+    }
+
 }

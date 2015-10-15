@@ -71,6 +71,13 @@ class Event extends Model
         return $this->hasOne('App\Location', 'id', 'location_id');
     }
 
+    /**
+     * Get all of the events images.
+     */
+    public function images()
+    {
+        return $this->morphMany('App\Image', 'imageable');
+    }
 
 
 }

@@ -14,12 +14,14 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
 
+            //Sign up fields
             $table->increments('id');
             $table->string('username');
             $table->tinyInteger('role')->default(2); // 0 = admin; 1 = local; 2 = newcomer
             $table->string('email')->unique();
             $table->string('password', 60);
 
+            //Profile fields
             $table->string('last_name')->nullable();
             $table->string('first_name')->nullable();
             $table->dateTime('birth_date')->nullable();
@@ -31,22 +33,21 @@ class CreateUsersTable extends Migration
             //Todo: FOLLOWERS INTEGRATION => many to many relation ??
 //            $table->integer('user_id');
 
-
             $table->rememberToken();
             $table->timestamps();
         });
 
-        Schema::create('user_follower', function(Blueprint $table)
-        {
-            $table->increments('id');
-            $table->integer('follower_id')->unsigned();
-            $table->foreign('follower_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
-
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
-
-            $table->timestamps();
-        });
+//        Schema::create('user_follower', function(Blueprint $table)
+//        {
+//            $table->increments('id');
+//            $table->integer('follower_id')->unsigned();
+//            $table->foreign('follower_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
+//
+//            $table->integer('user_id')->unsigned();
+//            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
+//
+//            $table->timestamps();
+//        });
 
     }
 
@@ -58,6 +59,6 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::drop('users');
-        Schema::drop('follower_user');
+//        Schema::drop('follower_user');
     }
 }

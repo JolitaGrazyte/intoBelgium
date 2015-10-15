@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('body');
             $table->tinyInteger('is_active')->nullable();
             $table->tinyInteger('is_public')->nullable();
+            $table->integer('user_id')->unsigned();
 
 //            $table->tinyInteger('author_id')->unsigned();
 

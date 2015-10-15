@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
+use App\Libraries\FlashMessages;
 use App\Post;
 use App\Tag;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+//use App\Http\Controllers\Controller;
 
 
 class PostsController extends Controller
@@ -15,11 +18,15 @@ class PostsController extends Controller
 
     private $post;
     private $tag;
+    private $flashMsg;
+    private $authUser;
 
-    public function __construct( Post $post, Tag $tag ){
+    public function __construct( Post $post, Tag $tag, FlashMessages $flashMsg ){
 
-        $this->post = $post;
-        $this->tag  = $tag;
+        $this->post     = $post;
+        $this->tag      = $tag;
+        $this->flashMsg = $flashMsg;
+        $this->authUser = Auth::user();
 
     }
     /**
@@ -29,9 +36,13 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = $this->post->get();
+        $posts = $this->post->latest('created_at')->get();
 
-        return view('posts.index', compact('posts'))->withTitle('Questions');
+        //TODO: votes
+        $votes      = 0;
+
+
+        return view('posts.index', compact('posts', 'votes'))->withTitle('Questions');
     }
 
     /**
@@ -54,7 +65,19 @@ class PostsController extends Controller
      */
     public function store( PostRequest $request )
     {
-        $post = $this->post->create($request->all());
+        try{
+
+            $post = $this->post;
+
+            $this->postFill($post, $request, 'added');
+
+        }
+        catch( QueryException $e ){
+
+            $this->flashMsg->failMessage('added!');
+        }
+
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -65,7 +88,16 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $post       = $this->post->find($id);
+        $answers    = $post->comments;
+
+        foreach($answers as $answer){
+
+            //TODO votes !!!
+            //votes
+        }
+
+        return view('posts.show', compact('answers', 'id', 'post', 'votes'));
     }
 
     /**
@@ -76,9 +108,12 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $tags = $this->tag->lists('name', 'id');
-        $title = 'Update your question';
-        return view('posts.edit', compact('tags'))->withTitle($title);
+        $tags       = $this->tag->lists('name', 'id');
+        $post       = $this->post->find($id);
+        $post_tags  = $post->tags->lists('id')->all();
+        $title      = 'Update your question';
+
+        return view('posts.edit', compact('tags', 'id', 'post', 'post_tags'))->withTitle($title);
 
     }
 
@@ -91,7 +126,19 @@ class PostsController extends Controller
      */
     public function update( PostRequest $request , $id)
     {
-        //
+        try{
+
+            $post = $this->post->find($id);
+
+            $this->postFill($post, $request, 'updated');
+
+        }
+        catch( QueryException $e ){
+
+            $this->flashMsg->failMessage('updated!');
+        }
+
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -102,20 +149,56 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->post->destroy($id);
+
+        return redirect()->route('posts.index');
     }
 
 
     /**
      *
-     * Sync tags when update.
+     * Sync tags when adding / updating.
      *
      * @param $post
      * @param $tags
+     * @internal param $event
      */
     public function syncTags($post, $tags){
 
-        $post->tags()->sync($tags);
+        if(isset($tags)){
+
+            $post->tags()->sync($tags);
+        }
+
+    }
+
+    /**
+     * Check if session exist and return it.
+     * @param $q
+     * @return mixed
+     */
+    public function session($q){
+
+        if( Session::has($q))
+            return Session::get($q);
+    }
+
+
+    public function postFill($post, $request, $msg){
+
+        $tags  = $request->get('tag_list');
+
+        $new_post = $post->fill([
+            'title'  => $request->get('title'),
+            'body'   => $request->get('body'),
+
+        ]);
+
+        $this->authUser->posts()->save($new_post);
+
+        $this->syncTags($new_post, $tags);
+
+        $this->flashMsg->successMessage($msg);
 
     }
 }

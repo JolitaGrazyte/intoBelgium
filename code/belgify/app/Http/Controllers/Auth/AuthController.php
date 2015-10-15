@@ -6,12 +6,14 @@ use App\User;
 use App\AuthenticateUser;
 use App\AuthenticateUserListener;
 use Illuminate\Auth\Guard;
+use Session;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
+
 
 class AuthController extends Controller implements AuthenticateUserListener
 {
@@ -26,7 +28,6 @@ class AuthController extends Controller implements AuthenticateUserListener
     |
     */
     protected $redirectPath =   '/dashboard';
-//    protected $loginPath    =   '/auth/login';
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 

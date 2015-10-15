@@ -22,7 +22,7 @@
 
                         @include('errors.errors')
 
-                        {!!Form::open(['route' => 'posts.create', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+                        {!!Form::open(['route' => 'posts.store', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
                         <div class="form-group">
 
@@ -30,7 +30,7 @@
 
                             <div class="col-md-11">
 
-                                {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'titlel']) !!}
+                                {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'title']) !!}
 
                             </div>
                         </div>

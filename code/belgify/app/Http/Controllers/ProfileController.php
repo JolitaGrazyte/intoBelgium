@@ -91,7 +91,7 @@ class ProfileController extends Controller
 
         $user = $this->user->find($id);
 
-        $user->fill($request->all())->save();
+        $user->update($request->all());
 
             return redirect()->route('profile.show', $id);
     }

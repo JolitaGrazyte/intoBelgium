@@ -13,7 +13,9 @@ class PostRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        if ( \Auth::check('auth')) {
+            return true;
+        }
     }
 
     /**
@@ -24,7 +26,8 @@ class PostRequest extends Request
     public function rules()
     {
         return [
-            //
+            'title'     => 'required|max:255',
+            'body'     => 'required',
         ];
     }
 }

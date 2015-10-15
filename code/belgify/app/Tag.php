@@ -18,11 +18,14 @@ class Tag extends Model
         return $this->morphedByMany('App\Post', 'taggable');
     }
 
-
     public function events()
     {
-        return $this->morphedByMany('App\Eevent', 'taggable');
+        return $this->morphedByMany('App\Event', 'taggable');
     }
 
+    public function comments()
+    {
+        return $this->morphedByMany('App\Comment', 'taggable');
+    }
 
 }
