@@ -52,4 +52,6 @@ Route::group([/*'prefix' => 'dashboard',*/ 'middleware' => 'auth'  ], function()
 post('search', ['as' => 'search', 'uses' => 'SearchController@search']);
 
 //Extra routes
-post('events/{id}', ['as' => 'attend', 'uses' => 'EventsController@postAttend']);
+post('events/{id}',     ['as' => 'attend', 'uses' => 'EventsController@postAttend']);
+get('image/{id}',       ['as'=>'getImage',     'uses' => 'ProfileController@getImage' ]);
+post('image/{user_id}', ['as'=>'postImage',    'uses' => 'ImagesController@postImage' ]);

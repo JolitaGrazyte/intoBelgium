@@ -24,7 +24,7 @@
 
                         @include('errors.errors')
 
-                        {!!Form::open(['route' => ['profile.update', $id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH'])  !!}
+                        {!!Form::open(['route' => ['profile.update', $id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH', 'files' => true])  !!}
 
                         <div class="form-group">
 
@@ -128,7 +128,7 @@
                             <div class="col-md-10   ">
 
                                 {{--{!! Form::input('file', 'file', null) !!}--}}
-                                {!! Form::file('file', ['class' => 'form-control', 'placeholder' => 'occupation']) !!}
+                                {!! Form::file('image', ['class' => 'form-control', 'placeholder' => 'occupation']) !!}
                                 <span class="help-block">{{ $errors->first('file') }}</span>
 
                             </div>

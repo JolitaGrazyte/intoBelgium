@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
+    protected $table = 'images';
     /**
      * Get all of the owning imageable models.
      */
