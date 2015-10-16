@@ -14,30 +14,34 @@
 
         <div class="row">
 
-           <div class="col-md-8">
+            @if(Request::is('dashboard/my-events') )
 
-               <div>
+                <div>
 
-                   @include('dashboard.partials.my_events')
+                    @include('dashboard.partials.my_events')
 
-               </div>
+                </div>
 
+            @elseif(Request::is('dashboard/my-questions') )
 
-               <div>
+                <div>
 
-                   @include('dashboard.partials.my_questions')
+                    @include('dashboard.partials.my_questions')
 
-               </div>
+                </div>
 
-           </div>
+            @elseif(Request::is('dashboard') )
 
-              <div class="col-md-4">
+                <div>
 
-                  @include('dashboard.partials.following')
+                    @include('dashboard.partials.following')
 
-              </div>
+                </div>
+
+            @endif
 
         </div>
+
     </div>
 
 @stop

@@ -10,83 +10,139 @@
 
     <div><a href="{{ route('events.create') }}">Add new event</a></div>
 
+    <div class="row">
 
-    @if(count($my_events))
+        <div class="col-md-12">
 
-        <h2>My events</h2>
+            {{--@if(isset($eventsData))--}}
 
-        @foreach($my_events as $event)
+            {{--{{dd($eventsData)}}--}}
 
-            <div> {{ $event }} </div>
+            {{--<h2><em>Events</em></h2>--}}
 
-            <div> Tags: @foreach($event->tags as $tag)
+            {{--@each('events.show', $eventsData, 'event');--}}
 
-                    {{$tag->name}}
+            {{--@endif--}}
 
-                @endforeach
+            @if(isset($eventsData))
 
-            </div>
-        @endforeach
+                @foreach($eventsData as $event )
 
-    @endif
+                    <div><a href="{{ route('events.show', $event['id']) }}">{{ $event['title'] }}</a></div>
 
+                    <div><em>author: </em>{{ $event['author'] }}</div>
+                
+                    <div>{{ $event['description'] }}</div>
 
-    @if(count($events))
+                    {!!Form::open(['route' => ['attend', $event['id']], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
-        <h2>All events</h2>
+                    <div class="form-group">
 
-        @foreach($events as $event)
+                        {!! Form::label('going', 'Going', ['class' => 'control-label']) !!}
 
-            <div> {{ $event }} </div>
+                        <div class="">
 
-            <div> Tags: @foreach($event->tags as $tag)
+                            {!! Form::checkbox('going', 'going', $event['attending'], ['class' => 'btn btn-primary form-control', 'onchange' => 'this.form.submit()']) !!}
 
-                    {{ $tag->name }}
-
-                @endforeach
-
-            </div>
-
-            <div>
-                {!!Form::open(['route' => ['attend', $event->id], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
-
-                <div class="form-group">
-
-                    {!! Form::label('going', 'Going', ['class' => 'col-md-1 control-label']) !!}
-
-                    <div class="col-md-2">
-
-                        {!! Form::checkbox('going', 'going', 0, ['class' => 'btn btn-primary form-control', 'onchange' => 'this.form.submit()']) !!}
+                        </div>
 
                     </div>
 
-                </div>
-                {!!Form::close() !!}
-            </div>
+                    {!!Form::close() !!}
+
+                    {{--<div>{{ $event['attending'] }}</div>--}}
+
+                    {!!Form::open(['route' => ['events.destroy', $event['id']], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
 
 
-            @if( Auth::user()->id == $event->user_id )
+                    {!! Form::submit('delete', ['class' => 'btn btn-primary form-control']) !!}
 
-                <div><a href="{{ route('events.edit', $event->id) }}">update this event</a></div>
 
+                    {!!Form::close() !!}
+
+                    @if( $event['isAuthor'] )
+
+                        <a href="{{ route('events.edit', $event['id']) }}">update this event</a>
+
+                    @endif
+
+
+                @endforeach
             @endif
-            
-            <div>
-                {!!Form::open(['route' => ['events.destroy', $event->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
-                <div class="form-group">
-                    <div class="col-md-2">
 
-                        {!! Form::submit('delete', ['class' => 'btn btn-primary form-control']) !!}
-
-                    </div>
-                </div>
-                {!!Form::close() !!}
-            </div>
+        </div>
+    </div>
 
 
-        @endforeach
 
-    @endif
+    {{--@if(count($events))--}}
+
+    {{--@foreach($events as $event)--}}
+
+    {{--<div class="row">--}}
+    {{--<div class="col-md-12">--}}
+    {{--<div> {{ $event }} </div>--}}
+
+    {{--@if(count($event->tags))--}}
+
+    {{--<div> Tags:--}}
+
+    {{--@foreach($event->tags as $tag)--}}
+
+    {{--{{ $tag->name }}--}}
+
+    {{--@endforeach--}}
+
+    {{--</div>--}}
+
+    {{--@endif--}}
+    {{--</div>--}}
+
+    {{--</div>--}}
+
+    {{--<div class="row">--}}
+    {{--<div class="col-md-1">--}}
+
+    {{--{!!Form::open(['route' => ['attend', $event->id], 'class' => 'form-horizontal', 'role' => 'form'])  !!}--}}
+
+    {{--<div class="form-group">--}}
+
+    {{--{!! Form::label('going', 'Going', ['class' => 'col-md-6 control-label']) !!}--}}
+
+    {{--<div class="col-md-6">--}}
+
+    {{--{!! Form::checkbox('going', 'going', 0, ['class' => 'btn btn-primary form-control', 'onchange' => 'this.form.submit()']) !!}--}}
+
+    {{--</div>--}}
+
+    {{--</div>--}}
+
+    {{--{!!Form::close() !!}--}}
+
+    {{--</div>--}}
+
+    {{--{!!Form::open(['route' => ['events.destroy', $event->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}--}}
+
+
+    {{--{!! Form::submit('delete', ['class' => 'btn btn-primary form-control']) !!}--}}
+
+
+    {{--{!!Form::close() !!}--}}
+
+
+
+
+    {{--@if( Auth::user()->id == $event->user_id )--}}
+
+    {{--<a href="{{ route('events.edit', $event->id) }}">update this event</a>--}}
+
+    {{--@endif--}}
+
+    {{--</div>--}}
+
+    {{--@endforeach--}}
+
+    {{--@endif--}}
 
 
 @stop

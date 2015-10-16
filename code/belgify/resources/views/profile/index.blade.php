@@ -12,7 +12,7 @@
 
         <div class="row">
 
-            <div class="col-md-12">
+            <div class="col-md-8">
 
                 <div class="panel panel-default">
 
@@ -29,42 +29,48 @@
 
                     <div class="panel-body">
 
-                        <div class="col-md-12">
+                      <div class="col-md-10">
+                          <div class="col-md-8">
 
-                            {{ $user->first_name }}
+                              {{ $user->first_name }}
 
+                          </div>
+
+                          <div class="col-md-8">
+
+                              {{ $user->last_name }}
+
+                          </div>
+
+                          <div class="col-md-8">
+
+                              {{ $user->username }}
+
+                          </div>
+
+                          <div class="col-md-8">
+
+                              {{ $user->email }}
+
+                          </div>
+
+                          <div class="col-md-8">
+
+                              {{ isset($user->occupation)?$user->occupation:null  }}
+
+                          </div>
+
+                          <div class="col-md-8">
+
+                              {{ isset($location->name)?$location->name:null }}
+
+                          </div>
+                      </div>
+
+                        <div class="col-md-2">
+                            <H4>Profile photo</H4>
+                            <img src="{{ route('getImage', [$avatar->filename]) }}" alt="{{ $avatar->name }}">
                         </div>
-
-                        <div class="col-md-12">
-
-                            {{ $user->last_name }}
-
-                        </div>
-
-                        <div class="col-md-12">
-
-                        {{ $user->username }}
-
-                        </div>
-
-                        <div class="col-md-12">
-
-                            {{ $user->email }}
-
-                        </div>
-
-                        <div class="col-md-12">
-
-                            {{ isset($user->occupation)?$user->occupation:null  }}
-
-                        </div>
-
-                        <div class="col-md-12">
-
-                            {{ isset($location->name)?$location->name:null }}
-
-                        </div>
-
                     </div>
                 </div>
             </div>

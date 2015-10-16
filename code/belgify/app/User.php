@@ -79,9 +79,9 @@ class User extends Model implements AuthenticatableContract,
     /**
      * Get all of the users images.
      */
-    public function image()
+    public function avatar()
     {
-        return $this->hasOne('App\Image', 'imageable');
+        return $this->hasOne('App\Image', 'imageable_id');
     }
 
 
@@ -94,5 +94,6 @@ class User extends Model implements AuthenticatableContract,
 
         return $this->belongsToMany('App\Event')->withTimestamps();
     }
+
 
 }

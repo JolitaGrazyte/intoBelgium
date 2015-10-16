@@ -12,7 +12,7 @@ use App\Event;
 use App\Tag;
 use Auth;
 use Session;
-
+use Illuminate\Support\Facades\DB;
 /**
  * Class EventsController
  * @package App\Http\Controllers
@@ -43,12 +43,35 @@ class EventsController extends Controller
     {
         $event      =   $this->event;
         $events     =   $event->latest('created_at')->get();
-        $user       =   Auth::user();
-        $my_events  =   $user->events_attending;
+        $user       =   $this->authUser;
 
-//        dd($my_events);
+        $eventsData = [];
 
-        return view('events.index', compact('events', 'my_events'))->withTitle('Events');
+        foreach($events as $key => $event){
+
+            $author = $event->author;
+            $start_date = $event->date;
+
+                $eventsData[$event->id] = [
+
+                    'id'            =>  $event->id,
+//                    'start'         =>  $start_date->format('M j, Y'), //date in format
+                    'title'         =>  $event->title,
+//                    'starts_at'     =>  $start_date->format('H:i'),
+                    'description'   =>  str_limit($event->description, 100, ''),
+//                    'd'           =>  $start_date->format('d'), //date in format: day
+//                    'FY'          =>  $start_date->format('F Y'), //date in format: full month + year
+                    'isAuthor'      =>  $user->id == $event->user_id ? true : false,
+                    'author'        =>  $author->first_name.' '.$author->last_name,
+                    'attending'     => $this->userIsAttendingEvent($user->id, $event->id),
+
+                ];
+            }
+
+
+//        return $event->all(); //JSON
+
+        return view('events.index', compact('events', 'eventsData'))->withTitle('Events');
     }
 
     /**
@@ -95,7 +118,27 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        //
+        $event = $this->event->find($id);
+
+        $user = $this->authUser;
+        $author = $event->author;
+        $start_date = $event->date;
+
+        $eventsData[$event->id] = [
+
+            'id'            =>  $event->id,
+//                    'start'         =>  $start_date->format('M j, Y'), //date in format
+            'title'         =>  $event->title,
+//                    'starts_at'     =>  $start_date->format('H:i'),
+            'description'   =>  str_limit($event->description, 100, ''),
+//                    'd'           =>  $start_date->format('d'), //date in format: day
+//                    'FY'          =>  $start_date->format('F Y'), //date in format: full month + year
+            'isAuthor'      =>  $user->id == $event->user_id ? true : false,
+            'author'        =>  $author->first_name.' '.$author->last_name,
+            'attending'     => $this->userIsAttendingEvent($user->id, $event->id),
+
+        ];
+        return view('events.show', compact('event', 'eventsData'));
     }
 
     /**
@@ -171,19 +214,6 @@ class EventsController extends Controller
 
     }
 
-
-    /**
-     * Check if session exist and return it.
-     * @param $q
-     * @return mixed
-     */
-    public function session($q){
-
-        if( Session::has($q))
-            return Session::get($q);
-    }
-
-
     public function eventFill($event, $request, $msg){
 
         $tags   = $request->get('tag_list');
@@ -214,12 +244,30 @@ class EventsController extends Controller
 
         $user = Auth::user();
 
-        $user->events_attending()->attach($event->id);
+        $userIsAttendingEvent = $this->userIsAttendingEvent($user->id, $event->id);
+
+        if(!$userIsAttendingEvent){
+
+            $user->events_attending()->attach($event->id);
+        }
 
         Session::flash('message', 'You are going to event:  '.$id.'.');
 
         return redirect()->back();
 
     }
+
+    public function userIsAttendingEvent($user_id, $event_id)
+    {
+        return !is_null(
+
+            DB::table('event_user')
+                ->where('user_id', $user_id)
+                ->where('event_id', $event_id)
+                ->first()
+        );
+
+    }
+
 }
 

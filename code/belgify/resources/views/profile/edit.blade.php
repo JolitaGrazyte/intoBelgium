@@ -24,7 +24,7 @@
 
                         @include('errors.errors')
 
-                        {!!Form::open(['route' => ['profile.update', $id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH'])  !!}
+                        {!!Form::open(['route' => ['profile.update', $id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH', 'files' => true])  !!}
 
                         <div class="form-group">
 
@@ -88,22 +88,8 @@
 
                         </div>
 
-                        <div class="form-group">
 
-                            {!! Form::label('birth_date', 'Birth date', ['class' => 'col-md-2 control-label']) !!}
-
-
-                            <div class="col-md-10">
-
-                                {!! Form::date('birth_date', $user->birth_date, ['id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'YYYY-mm-dd']) !!}
-
-                            </div>
-
-                        </div>
-
-
-
-                        <script> // TODO: GENDER and file upload </script>
+                        <script> // TODO: GENDER</script>
                         {{--<div class="row">--}}
                             {{--{!! Form::label('gender', trans('form.gender'), ['class' => 'label']) !!}--}}
 
@@ -125,10 +111,15 @@
                         <div class="row">
                             {!! Form::label('image upload', 'Profile image',['class' => 'col-md-2 control-label']) !!}
 
+                            @if($avatar)
+
+                                <img src="{{ route('getImage', [$avatar->filename]) }}" alt="{{ $avatar->name }}">
+
+                            @endif
+
                             <div class="col-md-10   ">
 
-                                {{--{!! Form::input('file', 'file', null) !!}--}}
-                                {!! Form::file('file', ['class' => 'form-control', 'placeholder' => 'occupation']) !!}
+                                {!! Form::file('image', ['class' => 'form-control', 'placeholder' => 'occupation']) !!}
                                 <span class="help-block">{{ $errors->first('file') }}</span>
 
                             </div>
