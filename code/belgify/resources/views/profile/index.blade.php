@@ -29,48 +29,50 @@
 
                     <div class="panel-body">
 
-                      <div class="col-md-10">
-                          <div class="col-md-8">
+                        <div class="col-md-10">
+                            <div class="col-md-8">
 
-                              {{ $user->first_name }}
+                                {{ $user->first_name }}
 
-                          </div>
+                            </div>
 
-                          <div class="col-md-8">
+                            <div class="col-md-8">
 
-                              {{ $user->last_name }}
+                                {{ $user->last_name }}
 
-                          </div>
+                            </div>
 
-                          <div class="col-md-8">
+                            <div class="col-md-8">
 
-                              {{ $user->username }}
+                                {{ $user->username }}
 
-                          </div>
+                            </div>
 
-                          <div class="col-md-8">
+                            <div class="col-md-8">
 
-                              {{ $user->email }}
+                                {{ $user->email }}
 
-                          </div>
+                            </div>
 
-                          <div class="col-md-8">
+                            <div class="col-md-8">
 
-                              {{ isset($user->occupation)?$user->occupation:null  }}
+                                {{ isset($user->occupation)?$user->occupation:null  }}
 
-                          </div>
+                            </div>
 
-                          <div class="col-md-8">
+                            <div class="col-md-8">
 
-                              {{ isset($location->name)?$location->name:null }}
+                                {{ isset($location->name)?$location->name:null }}
 
-                          </div>
-                      </div>
-
-                        <div class="col-md-2">
-                            <H4>Profile photo</H4>
-                            <img src="{{ route('getImage', [$avatar->filename]) }}" alt="{{ $avatar->name }}">
+                            </div>
                         </div>
+                        @if($avatar)
+                            <div class="col-md-2">
+
+                                <H4>Profile photo</H4>
+                                <img src="{{ route('getImage', [$avatar->filename]) }}" alt="{{ $avatar->name }}">
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

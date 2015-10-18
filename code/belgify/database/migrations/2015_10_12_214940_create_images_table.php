@@ -19,7 +19,7 @@ class CreateImagesTable extends Migration
             $table->string('filename');
             $table->integer('imageable_id');
             $table->string('imageable_type');
-            $table->timestamp();
+            $table->timestamps();
         });
     }
 

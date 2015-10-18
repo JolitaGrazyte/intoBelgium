@@ -22,6 +22,22 @@
 
                         {!!Form::open(['route' => 'events.store', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
+
+                        {{--<div class="row">--}}
+                            {{--<div class="col-md-12">--}}
+                                {{--<h6>datetimepicker1</h6>--}}
+
+                                {{--<div class="form-group">--}}
+                                    {{--<div class="input-group date" id="datetimepicker1">--}}
+                                        {{--<input type="text" class="form-control" />	<span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<h6>datetimepicker2</h6>--}}
+
+                                {{--<input type="text" class="form-control" id="datetimepicker2" />--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+
                         <div class="form-group">
 
                             {!! Form::label('title', 'Title', ['class' => 'col-md-2 control-label']) !!}
@@ -36,27 +52,41 @@
 
                         <div class="form-group">
 
-                            {!! Form::label('date', 'Date', ['class' => 'col-md-2 control-label']) !!}
+                            {!! Form::label('date', 'Date and time', ['class' => 'col-md-2 control-label']) !!}
 
-                            <div class="col-md-10">
+                            <div class="input-group date col-md-9" id="datetimepicker">
+                                {!! Form::text('date', null, ['class' => 'form-control', 'placeholder' => \Carbon\Carbon::now()->format('d/m/Y H:i  ')]) !!}
 
-                                {!! Form::text('date', \Carbon\Carbon::now()->format('d/m/Y'), ['id' => 'datepicker', 'class' => 'form-control']) !!}
-
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            {!! Form::label('start_time', 'Start time', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-                                {!! Form::input('time', 'start_time',  \Carbon\Carbon::now()->format('H:m'),  ['class' => 'col-md-2 control-label']) !!}
+                                {{--{!! Form::text('date', \Carbon\Carbon::now()->format('d/m/Y'), ['class' => 'col-md-10 form-control']) !!}--}}
+                                <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
 
                             </div>
-
                         </div>
+
+                        {{--<div class="form-group">--}}
+
+                            {{--{!! Form::label('date', 'Date', ['class' => 'col-md-2 control-label']) !!}--}}
+
+                            {{--<div class="col-md-10">--}}
+
+                                {{--{!! Form::text('date', \Carbon\Carbon::now()->format('d/m/Y'), ['id' => 'datetimepicker', 'class' => 'form-control']) !!}--}}
+                                {{--<span class="glyphicon-calendar glyphicon"></span>--}}
+
+                            {{--</div>--}}
+
+                        {{--</div>--}}
+
+                        {{--<div class="form-group">--}}
+
+                            {{--{!! Form::label('start_time', 'Start time', ['class' => 'col-md-2 control-label']) !!}--}}
+
+                            {{--<div class="col-md-10">--}}
+
+                                {{--{!! Form::input('time', 'start_time',  \Carbon\Carbon::now()->format('H:m'),  ['class' => 'col-md-2 control-label']) !!}--}}
+
+                            {{--</div>--}}
+
+                        {{--</div>--}}
 
                         <div class="form-group">
 
@@ -138,10 +168,9 @@
     </div>
 
     <script>
-        $('#tag_list').select2();
 
-        $(function() {
-            $( "#datepicker" ).datepicker();
-        });
+        $('#tag_list').select2();
+        $('#datetimepicker').datetimepicker();
+
     </script>
 @stop
