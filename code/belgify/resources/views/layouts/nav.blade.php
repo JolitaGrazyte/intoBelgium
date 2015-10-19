@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="{{ route('home') }}">
-                <img class="logo" src="/img/test2.png" alt="Logo Into Belgium"/>
+                <img class="logo" src="/img/Logo.png" alt="Logo Into Belgium"/>
             </a>
         </div>
 
