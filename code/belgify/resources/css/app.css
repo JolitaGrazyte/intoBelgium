@@ -1,0 +1,35 @@
+body{
+    font-family: "Avenir", sans-serif;
+}
+
+.navbar{
+    background-color:   #FFF;
+    border-radius:      0;
+    border:             none;
+    height:             60px;
+}
+
+.navbar .logo{
+    height:             100%;
+}
+
+.navbar .container-fluid, .navbar .navbar-header, .navbar .navbar-brand, .navbar .navbar-collapse{
+    height:             100% !important;
+}
+
+.navbar .navbar-brand{
+    padding:            20% 0 20% 20px;
+}
+
+.navbar .navbar-nav{
+    top:                50%;
+    position:           relative;
+    -webkit-transform:  translateY(-50%);
+    -moz-transform:     translateY(-50%);
+    -ms-transform:      translateY(-50%);
+    -o-transform:       translateY(-50%);
+    transform:          translateY(-50%);
+
+    font-weight:        800;
+    text-transform:     uppercase;
+}
