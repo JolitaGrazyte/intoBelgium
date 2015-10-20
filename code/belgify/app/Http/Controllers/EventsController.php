@@ -46,7 +46,7 @@ class EventsController extends Controller
         $event      =   $this->event;
         $events     =   $event->latest('created_at')->get();
         $user       =   $this->authUser;
-        $user_id    =   isset($user) ? $user->id : 0;
+        $user_id    =   !is_null($user) ? $user->id : 0;
 
         $eventsData = [];
 
@@ -58,15 +58,15 @@ class EventsController extends Controller
                 $eventsData[$event->id] = [
 
                     'id'            =>  $event->id,
-//                    'start'         =>  $start_date->format('M j, Y'), //date in format
+                    'start'         =>  $start_date->format('M j, Y'), //date in format
                     'title'         =>  $event->title,
-//                    'starts_at'     =>  $start_date->format('H:i'),
+                    'starts_at'     =>  $start_date->format('H:i'),
                     'description'   =>  str_limit($event->description, 100, ''),
 //                    'd'           =>  $start_date->format('d'), //date in format: day
 //                    'FY'          =>  $start_date->format('F Y'), //date in format: full month + year
-                    'isAuthor'      =>  $user->id == $event->user_id ? true : false,
+                    'isAuthor'      =>  $user_id == $event->user_id ? true : false,
                     'author'        =>  $author->first_name.' '.$author->last_name,
-                    'attending'     => $this->userIsAttendingEvent($user->id, $event->id),
+                    'attending'     => $this->userIsAttendingEvent($user_id, $event->id),
 
                 ];
             }
@@ -121,18 +121,18 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        $event = $this->event->find($id);
-
-        $user = $this->authUser;
-        $author = $event->author;
+        $event      = $this->event->find($id);
+        $author     = $event->author;
         $start_date = $event->date;
+        $user       = $this->authUser;
+        $user_id    = !is_null($user) ? $user->id : 0;
 
         $eventsData[$event->id] = [
 
             'id'            =>  $event->id,
-//                    'start'         =>  $start_date->format('M j, Y'), //date in format
+            'start'         =>  $start_date->format('M j, Y'), //date in format
             'title'         =>  $event->title,
-//                    'starts_at'     =>  $start_date->format('H:i'),
+            'starts_at'     =>  $start_date->format('H:i'),
             'description'   =>  str_limit($event->description, 100, ''),
 //                    'd'           =>  $start_date->format('d'), //date in format: day
 //                    'FY'          =>  $start_date->format('F Y'), //date in format: full month + year
