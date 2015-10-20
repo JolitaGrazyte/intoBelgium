@@ -121,20 +121,8 @@
                                 {!! Form::select('location_id', $locations, null, ['class' => 'form-control', 'placeholder' => 'choose a location']) !!}
 
                             </div>
+
                         </div>
-
-                        {{--<div class="form-group">--}}
-
-                            {{--{!! Form::label('postcode', 'Postcode', ['class' => 'col-md-2 control-label']) !!}--}}
-
-                            {{--<div class="col-md-10">--}}
-
-
-                                {{--{!! Form::text('postcode', null, ['class' => 'form-control', 'placeholder' => 'postcode']) !!}--}}
-
-                            {{--</div>--}}
-
-                        {{--</div>--}}
 
                         <div class="form-group">
 

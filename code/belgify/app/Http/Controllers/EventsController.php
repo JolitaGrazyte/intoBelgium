@@ -49,35 +49,42 @@ class EventsController extends Controller
         $user       =   $this->authUser;
         $user_id    =   !is_null($user) ? $user->id : 0;
 
-        $eventsData = [];
+        foreach($events as $event){
 
-        foreach($events as $key => $event){
+            $eventsData[$event->id] = $this->eventData($event, $user_id);
 
-            $author = $event->author;
-            $start_date = $event->date;
-
-                $eventsData[$event->id] = [
-
-                    'id'            =>  $event->id,
-                    'start'         =>  $start_date->format('M j, Y'), //date in format
-                    'title'         =>  $event->title,
-                    'starts_at'     =>  $start_date->format('H:i'),
-                    'description'   =>  str_limit($event->description, 100, ''),
-                    'd'             =>  $start_date->format('d'), //date in format: day
-                    'fM'            =>  $start_date->format('F'), //date in format: full month
-                    'Y'             =>  $start_date->format('Y'), //date in format: year
-                    'isAuthor'      =>  $user_id == $event->user_id ? true : false,
-                    'author'        =>  $author->first_name.' '.$author->last_name,
-                    'attending'     =>  $this->userIsAttendingEvent($user_id, $event->id),
-                    'attenders'     =>  count($this->event->attenders)
-
-                ];
-            }
+        }
 
 
 //        return $event->all(); //JSON
 
         return view('events.index', compact('events', 'eventsData'))->withTitle('Events');
+    }
+
+
+    public function eventData($event, $user_id){
+
+            $author = $event->author;
+            $start_date = $event->date;
+
+
+        return [
+
+            'id'            => $event->id,
+            'start'         =>  $start_date->format('M j, Y'), //date in format
+            'title'         =>  $event->title,
+            'starts_at'     =>  $start_date->format('H:i'),
+            'description'   =>  str_limit($event->description, 100, ''),
+            'd'             =>  $start_date->format('d'), //date in format: day
+            'fM'            =>  $start_date->format('F'), //date in format: full month
+            'Y'             =>  $start_date->format('Y'), //date in format: year
+            'isAuthor'      =>  $user_id == $event->user_id ? true : false,
+            'author'        =>  $author->first_name.' '.$author->last_name,
+            'attending'     =>  $this->userIsAttendingEvent($user_id, $event->id),
+            'attenders'     =>  count($this->event->attenders),
+            'location'      =>  !is_null($event->location) ? $event->location->name.', '.$event->location->postcode : ' '
+
+        ];
     }
 
     /**
@@ -138,25 +145,11 @@ class EventsController extends Controller
     public function show($id)
     {
         $event      = $this->event->find($id);
-        $author     = $event->author;
-        $start_date = $event->date;
         $user       = $this->authUser;
         $user_id    = !is_null($user) ? $user->id : 0;
 
-        $eventsData[$event->id] = [
+        $eventsData = $this->eventData($event, $user_id);
 
-            'id'            =>  $event->id,
-            'start'         =>  $start_date->format('M j, Y'), //date in format
-            'title'         =>  $event->title,
-            'starts_at'     =>  $start_date->format('H:i'),
-            'description'   =>  str_limit($event->description, 100, ''),
-            'd'             =>  $start_date->format('d'), //date in format: day
-            'FY'            =>  $start_date->format('F Y'), //date in format: full month + year
-            'isAuthor'      =>  $user->id == $event->user_id ? true : false,
-            'author'        =>  $author->first_name.' '.$author->last_name,
-            'attending'     => $this->userIsAttendingEvent($user->id, $event->id),
-
-        ];
         return view('events.show', compact('event', 'eventsData'));
     }
 
@@ -182,9 +175,7 @@ class EventsController extends Controller
             return view('events.edit', compact('locations', 'tags', 'event', 'id', 'evnt_tags', 'location'))->withTitle('Edit event');
         }
 
-
         else return redirect()->route('events.index')->with("message", "Can't update, not your event!");
-
 
     }
 
@@ -243,6 +234,11 @@ class EventsController extends Controller
 
     }
 
+    /**
+     * @param $event
+     * @param $request
+     * @param $msg
+     */
     public function eventFill($event, $request, $msg){
 
         $tags   = $request->get('tag_list');
@@ -254,13 +250,11 @@ class EventsController extends Controller
             'description'   => $request->get('description'),
             'date'          => $date,
             'street_address'=> $request->get('street_address'),
-//            'postcode'      => $request->get('postcode'),
             'location_id'   => $request->get('location_id'),
-//            'city'          => $request->get('city'),
 
         ]);
 
-         $this->authUser->events()->save($new_event);
+        $this->authUser->events()->save($new_event);
 
         $this->syncTags($new_event, $tags);
 
@@ -278,9 +272,16 @@ class EventsController extends Controller
         if(!$userIsAttendingEvent){
 
             $user->events_attending()->attach($event->id);
-        }
 
-        Session::flash('message', 'You are going to event:  '.$id.'.');
+            Session::flash('message', 'You are going to event:  '.$id.'.');
+        }
+        else{
+
+            $user->events_attending()->detach($event->id);
+
+            Session::flash('message', 'You are not going to event:  '.$id.'.');
+
+        }
 
         return redirect()->back();
 

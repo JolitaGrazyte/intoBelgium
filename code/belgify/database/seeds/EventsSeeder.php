@@ -20,8 +20,6 @@ class EventsSeeder extends Seeder
                 'street_address'    => 'Meir 3',
                 'date'              => \Carbon\Carbon::now(),
                 'location_id'       => 1,
-                'postcode'          => 2000,
-                'city'              => 'Antwerp',
                 'user_id'           =>  1
 
             ],
@@ -32,8 +30,6 @@ class EventsSeeder extends Seeder
                 'street_address'    => 'Lange Nieuwstraat 126',
                 'date'              => \Carbon\Carbon::now(),
                 'location_id'       => 1,
-                'postcode'          => 2000,
-                'city'              => 'Antwerp',
                 'user_id'           =>  1
 
             ],
@@ -43,8 +39,6 @@ class EventsSeeder extends Seeder
                 'street_address'    => ' ',
                 'date'              => \Carbon\Carbon::now(),
                 'location_id'       => 1,
-                'postcode'          => 2000,
-                'city'              => 'Antwerp',
                 'user_id'           =>  1
 
             ],
