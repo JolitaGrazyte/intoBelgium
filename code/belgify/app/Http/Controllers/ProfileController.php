@@ -11,6 +11,16 @@ use Storage;
 use File;
 use App\Image;
 use Illuminate\Http\Response;
+use ImgIntervention as InterventionImage;
+
+
+//Route::get('/image', function()
+//{
+//    $img = InterventionImage::make(public_path('uploads').'/Jolita-Grazyte.jpg')->resize(200, 200);
+//
+//    return $img->response('jpg');
+//});
+
 
 class ProfileController extends Controller
 {
@@ -96,6 +106,10 @@ class ProfileController extends Controller
         $file = Storage::disk('local')->get($entry->filename);
 
 //        dd($file);
+//
+//        $img = InterventionImage::make(public_path('uploads').'/Jolita-Grazyte.jpg')->resize(200, 200);
+//
+//        return $img->response('jpg');
 
         return (new Response($file, 200))
             ->header('Content-Type', $entry->mime);
@@ -104,9 +118,7 @@ class ProfileController extends Controller
     public function postImage( $img, $toName, $user_id ){
 
         try {
-            // request all needed fields
 
-//            dd($img->getClientOriginalExtension());
             $name = $toName;
 
             $filename = str_replace(' ', '-', $name);

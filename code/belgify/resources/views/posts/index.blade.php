@@ -20,7 +20,7 @@
 
                     <div><a href="{{ route('posts.show', $post->id) }}">Answers: </a> <span> {{ $post->comments->count() }}</span></div>
 
-                    <div>VOTES: <span> {{ $votes }}</span></div>
+                    <div>VOTES: <span> {{ $votes[$post->id] }}</span></div>
 
                 </div>
 
@@ -46,34 +46,36 @@
 
 
 
+            @if(!Auth::guest())
 
-            @if( Auth::user()->id == $post->user_id )
+                @if( Auth::user()->id == $post->user_id )
 
-                <div class="row col-md-offset-2">
+                    <div class="row col-md-offset-2">
 
-                    <div class="col-md-2"><a href="{{ route('comments.create') }}"><button class="btn btn-primary">answer this question</button></a></div>
+                        <div class="col-md-2"><a href="{{ route('comments.create') }}"><button class="btn btn-primary">answer this question</button></a></div>
 
-                    <div class="col-md-2"><a href="{{ route('posts.edit', $post->id) }}"><button class="btn btn-primary">update this question</button></a></div>
+                        <div class="col-md-2"><a href="{{ route('posts.edit', $post->id) }}"><button class="btn btn-primary">update this question</button></a></div>
 
-                    <div class="col-md-2">
-                        {!!Form::open(['route' => ['posts.destroy', $post->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
+                        <div class="col-md-2">
+                            {!!Form::open(['route' => ['posts.destroy', $post->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
 
-                        <div class="form-group">
+                            <div class="form-group">
 
-                            <div class="col-md-12">
+                                <div class="col-md-12">
 
-                                {!! Form::submit('delete', ['class' => 'btn btn-primary form-control']) !!}
+                                    {!! Form::submit('delete', ['class' => 'btn btn-primary form-control']) !!}
+
+                                </div>
 
                             </div>
 
-                        </div>
+                            {!!Form::close() !!}
 
-                        {!!Form::close() !!}
+                        </div>
 
                     </div>
 
-                </div>
-
+                @endif
             @endif
 
 

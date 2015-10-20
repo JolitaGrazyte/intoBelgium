@@ -39,10 +39,23 @@ class PostsController extends Controller
     public function index()
     {
         $posts = $this->post->latest('created_at')->get();
+        $user       =   $this->authUser;
+        $user_id    =   !is_null($user) ? $user->id : 0;
 
-        //TODO: votes
-        $votes      = 0;
+        $postData = [];
 
+       if(count($posts)){
+
+           foreach($posts as $post){
+
+               $postData = [
+
+               ];
+
+               $votes[$post->id] = count($post->votes);
+        }
+
+       }
 
         return view('posts.index', compact('posts', 'votes'))->withTitle('Questions');
     }

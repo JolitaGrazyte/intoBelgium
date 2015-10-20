@@ -148,6 +148,7 @@ return [
         // Extras
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -198,9 +199,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
-        'Socialize' => Laravel\Socialite\Facades\Socialite::class,
+        'Form'              => Collective\Html\FormFacade::class,
+        'Html'              => Collective\Html\HtmlFacade::class,
+        'Socialize'         => Laravel\Socialite\Facades\Socialite::class,
+        'ImgIntervention'   => Intervention\Image\ImageServiceProvider::class,
 
     ],
 

@@ -12,7 +12,6 @@
 
     <div class="row">
 
-        <div class="col-md-12">
 
             {{--@if(isset($eventsData))--}}
 
@@ -28,23 +27,33 @@
 
                 @foreach($eventsData as $event )
 
+                <div class="col-md-2">
+                    <hr>
+                    <div>{{ $event['d'] }}</div>
+                    <div>{{ $event['fM'] }}</div>
+                    <div>{{ $event['Y'] }}</div>
+
+                </div>
+
+                <div class="col-md-10">
+
+                    <hr>
+
                     <div><a href="{{ route('events.show', $event['id']) }}">{{ $event['title'] }}</a></div>
 
                     <div><em>author: </em>{{ $event['author'] }}</div>
                 
                     <div>{{ $event['description'] }}</div>
 
-                    {!!Form::open(['route' => ['attend', $event['id']], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+                    {!!Form::open(['route' => ['attend', $event['id']], 'class' => 'form-horizontal col-md-1', 'role' => 'form'])  !!}
 
                     <div class="form-group">
 
                         {!! Form::label('going', 'Going', ['class' => 'control-label']) !!}
 
-                        <div class="">
 
-                            {!! Form::checkbox('going', 'going', $event['attending'], ['class' => 'btn btn-primary form-control', 'onchange' => 'this.form.submit()']) !!}
+                        {!! Form::checkbox('going', 'going', $event['attending'], ['class' => '', 'onchange' => 'this.form.submit()']) !!}
 
-                        </div>
 
                     </div>
 
@@ -52,26 +61,29 @@
 
                     {{--<div>{{ $event['attending'] }}</div>--}}
 
-                    {!!Form::open(['route' => ['events.destroy', $event['id']], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
+                    {{--@if( $event['isAuthor'] )--}}
+
+                    <a href="{{ route('events.edit', $event['id']) }}" class="col-md-2 col-lg-offset-6">update this event</a>
+
+                    {!!Form::open(['route' => ['events.destroy', $event['id']], 'class' => 'form-horizontal col-md-2', 'role' => 'form', 'method' => 'DELETE'])  !!}
 
 
-                    {!! Form::submit('delete', ['class' => 'btn btn-primary form-control']) !!}
+                    {!! Form::submit('delete', ['class' => 'form-control']) !!}
 
 
                     {!!Form::close() !!}
 
-                    @if( $event['isAuthor'] )
-
-                        <a href="{{ route('events.edit', $event['id']) }}">update this event</a>
-
-                    @endif
 
 
+
+                    {{--@endif--}}
+
+                </div>
                 @endforeach
             @endif
 
         </div>
-    </div>
+
 
 
 

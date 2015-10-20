@@ -62,8 +62,9 @@ class EventsController extends Controller
                     'title'         =>  $event->title,
                     'starts_at'     =>  $start_date->format('H:i'),
                     'description'   =>  str_limit($event->description, 100, ''),
-//                    'd'           =>  $start_date->format('d'), //date in format: day
-//                    'FY'          =>  $start_date->format('F Y'), //date in format: full month + year
+                    'd'             =>  $start_date->format('d'), //date in format: day
+                    'fM'            =>  $start_date->format('F'), //date in format: full month
+                    'Y'             =>  $start_date->format('Y'), //date in format: year
                     'isAuthor'      =>  $user_id == $event->user_id ? true : false,
                     'author'        =>  $author->first_name.' '.$author->last_name,
                     'attending'     => $this->userIsAttendingEvent($user_id, $event->id),
@@ -134,8 +135,8 @@ class EventsController extends Controller
             'title'         =>  $event->title,
             'starts_at'     =>  $start_date->format('H:i'),
             'description'   =>  str_limit($event->description, 100, ''),
-//                    'd'           =>  $start_date->format('d'), //date in format: day
-//                    'FY'          =>  $start_date->format('F Y'), //date in format: full month + year
+            'd'             =>  $start_date->format('d'), //date in format: day
+            'FY'            =>  $start_date->format('F Y'), //date in format: full month + year
             'isAuthor'      =>  $user->id == $event->user_id ? true : false,
             'author'        =>  $author->first_name.' '.$author->last_name,
             'attending'     => $this->userIsAttendingEvent($user->id, $event->id),

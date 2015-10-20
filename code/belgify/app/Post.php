@@ -48,7 +48,7 @@ class Post extends Model
      */
     public function votes()
     {
-        return $this->hasManyThrough('App\Comment', 'App\Votes', 'post_id', 'id');
+        return $this->hasManyThrough('App\Votes', 'App\Comment');
     }
 
 

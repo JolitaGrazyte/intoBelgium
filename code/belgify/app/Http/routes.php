@@ -11,6 +11,7 @@
 |
 */
 
+
 get('/', ['as' => 'home', function(){
     return view('home');
 }]);
