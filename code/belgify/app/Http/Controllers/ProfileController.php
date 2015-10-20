@@ -90,15 +90,28 @@ class ProfileController extends Controller
         return view('profile.edit', compact('user', 'locations', 'id', 'location', 'avatar'))->withTitle('Edit your profile');
     }
 
-    public function getImage($filename){
+    public function getImage($filename, $size){
 
-        $entry = Image::where('filename', '=', $filename)->firstOrFail();
-//        dd($entry->filename);
+        $entry = $this->image->where('filename', '=', $filename)->firstOrFail();
 
         $file = Storage::disk('local')->get($entry->filename);
+        $imgObj = new ImageLib();
+        $file = $imgObj->resize_image($filename, $size);
 
-        return (new Response($file, 200))
-            ->header('Content-Type', $entry->mime);
+        $response = new Response($file, 200);
+
+        // Modify output's header.
+        // Set the content type to the mime of the file.
+        $response->header(
+            'Content-type',
+            $entry->mime
+        );
+
+        // Return the image.
+        return $response;
+
+//        return (new Response($file, 200))
+//            ->header('Content-Type', $entry->mime);
     }
 
 

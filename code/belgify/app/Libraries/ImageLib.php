@@ -5,7 +5,7 @@ use Auth;
 use File;
 use Config;
 use Storage;
-use App\Image;
+//use App\Image;
 use Intervention\Image\Facades\Image as InterventionImg;
 
 /**
@@ -48,29 +48,6 @@ class ImageLib {
 //            $entry->original_filename = $image->getClientOriginalName();
         $entry->filename = $filename . '.' . $extension;
         $entry->save();
-
-
-//        //get extension of the image
-//        $extension  = $image->getClientOriginalExtension();
-//
-//        //put the file in the local storage
-//        Storage::disk('local')->put($image->getFilename().'.'.$extension,  File::get($image));
-//
-//        //make new media model with the given data
-//        $image = new Image([
-//            'name'  => $image->getFilename().'.'.$extension
-//        ]);
-//
-//
-//
-
-
-        //save mime and original filename to the database
-//        $media->mime              = $image->getClientMimeType();
-//        $media->original_filename = $image->getClientOriginalName();
-
-        //finally save it to the database and add the authors id
-//        Auth::user()->media()->save($media);
 
         return $entry;
 

@@ -30,38 +30,38 @@
 
                     <div class="panel-body">
 
-                        <div class="col-md-10">
-                            <div class="col-md-8">
+                        <div class="col-md-8">
+                            <div class="">
 
                                 {{ $user->first_name }}
 
                             </div>
 
-                            <div class="col-md-8">
+                            <div class="">
 
                                 {{ $user->last_name }}
 
                             </div>
 
-                            <div class="col-md-8">
+                            <div class="">
 
                                 {{ $user->username }}
 
                             </div>
 
-                            <div class="col-md-8">
+                            <div class="">
 
                                 {{ $user->email }}
 
                             </div>
 
-                            <div class="col-md-8">
+                            <div class="">
 
                                 {{ isset($user->occupation)?$user->occupation:null  }}
 
                             </div>
 
-                            <div class="col-md-8">
+                            <div class="">
 
                                 {{ isset($location->name)?$location->name:null }}
 
@@ -71,7 +71,7 @@
 
                         @if($avatar)
 
-                                <img src="{{ route('getImage', [$avatar->filename]) }}" alt="{{ $avatar->name }}">
+                                <img src="{{ route('getImage', [$avatar->filename,  'small'] ) }}" alt="{{ $avatar->name }}">
 
                         @endif
 
