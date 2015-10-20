@@ -11,6 +11,15 @@
 |
 */
 
+//use Intervention\Image\Facades\Image;
+////use Storage;
+//
+//Route::get('/dashboard', ['as' => 'image-get', function()
+//{
+//    $img = Image::make(public_path('uploads').'/Jolita-Grazyte.jpg')->resize(200, 200);
+//
+//    return $img->response('jpg');
+//}]);
 
 get('/', ['as' => 'home', function(){
     return view('home');

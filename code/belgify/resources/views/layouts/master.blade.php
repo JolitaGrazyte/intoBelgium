@@ -46,17 +46,7 @@
 
 @show
 
-@if(Request::is('dashboard') || Request::is('dashboard/*'))
-
-@section('sidebar')
-
-    @include('layouts.side-nav')
-
-@show
-
-@endif
-
-<div class="container">
+<div class="container-fluid">
 
     <div class="content">
 

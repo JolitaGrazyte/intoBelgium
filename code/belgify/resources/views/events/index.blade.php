@@ -47,21 +47,25 @@
 
                     {!!Form::open(['route' => ['attend', $event['id']], 'class' => 'form-horizontal col-md-1', 'role' => 'form'])  !!}
 
-                    <div class="form-group">
+                    @if(!$event['isAuthor'])
 
-                        {!! Form::label('going', 'Going', ['class' => 'control-label']) !!}
+                        <div class="form-group">
+
+                            {!! Form::label('going', 'Going', ['class' => 'control-label']) !!}
 
 
-                        {!! Form::checkbox('going', 'going', $event['attending'], ['class' => '', 'onchange' => 'this.form.submit()']) !!}
+                            {!! Form::checkbox('going', 'going', $event['attending'], ['class' => '', 'onchange' => 'this.form.submit()']) !!}
 
 
-                    </div>
+                        </div>
+
+                    @endif
 
                     {!!Form::close() !!}
 
                     {{--<div>{{ $event['attending'] }}</div>--}}
 
-                    {{--@if( $event['isAuthor'] )--}}
+                    @if( $event['isAuthor'] )
 
                     <a href="{{ route('events.edit', $event['id']) }}" class="col-md-2 col-lg-offset-6">update this event</a>
 
@@ -74,9 +78,7 @@
                     {!!Form::close() !!}
 
 
-
-
-                    {{--@endif--}}
+                    @endif
 
                 </div>
                 @endforeach

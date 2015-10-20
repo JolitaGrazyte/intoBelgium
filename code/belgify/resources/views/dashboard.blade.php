@@ -8,40 +8,48 @@
 
     @include('errors.errors')
 
-    <h1> {{ $title }} </h1>
-
-    <div class="container-fluid">
-
         <div class="row">
 
-            @if(Request::is('dashboard/my-events') )
+            <div class="col-md-3">
 
-                <div>
 
-                    @include('dashboard.partials.my_events')
+                <h2>{{ Auth::user()->username }}</h2>
 
-                </div>
+                @include('layouts.side-nav')
 
-            @elseif(Request::is('dashboard/my-questions') )
+            </div>
 
-                <div>
+            <div class="col-md-9">
 
-                    @include('dashboard.partials.my_questions')
+                <h1> {{ $title }} </h1>
 
-                </div>
+                @if(Request::is('dashboard/my-events') )
 
-            @elseif(Request::is('dashboard') )
+                    <div>
 
-                <div>
+                        @include('dashboard.partials.my_events')
 
-                    @include('dashboard.partials.following')
+                    </div>
 
-                </div>
+                @elseif(Request::is('dashboard/my-questions') )
 
-            @endif
+                    <div>
+
+                        @include('dashboard.partials.my_questions')
+
+                    </div>
+
+                @elseif(Request::is('dashboard') )
+
+                    <div>
+
+                        @include('dashboard.partials.following')
+
+                    </div>
+
+                @endif
+            </div>
 
         </div>
-
-    </div>
 
 @stop

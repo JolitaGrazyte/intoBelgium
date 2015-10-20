@@ -11,7 +11,6 @@ use Storage;
 use File;
 use App\Image;
 use Illuminate\Http\Response;
-use ImgIntervention as InterventionImage;
 
 
 //Route::get('/image', function()
@@ -104,12 +103,6 @@ class ProfileController extends Controller
 //        dd($entry->filename);
 
         $file = Storage::disk('local')->get($entry->filename);
-
-//        dd($file);
-//
-//        $img = InterventionImage::make(public_path('uploads').'/Jolita-Grazyte.jpg')->resize(200, 200);
-//
-//        return $img->response('jpg');
 
         return (new Response($file, 200))
             ->header('Content-Type', $entry->mime);
