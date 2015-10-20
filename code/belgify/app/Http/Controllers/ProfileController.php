@@ -11,14 +11,7 @@ use Storage;
 use File;
 use App\Image;
 use Illuminate\Http\Response;
-
-
-//Route::get('/image', function()
-//{
-//    $img = InterventionImage::make(public_path('uploads').'/Jolita-Grazyte.jpg')->resize(200, 200);
-//
-//    return $img->response('jpg');
-//});
+use App\Libraries\ImageLib;
 
 
 class ProfileController extends Controller
@@ -108,35 +101,6 @@ class ProfileController extends Controller
             ->header('Content-Type', $entry->mime);
     }
 
-    public function postImage( $img, $toName, $user_id ){
-
-        try {
-
-            $name = $toName;
-
-            $filename = str_replace(' ', '-', $name);
-
-            $extension = $img->getClientOriginalExtension();
-            Storage::disk('local')->put($filename . '.' . $extension, File::get($img));
-            $entry = $this->image;
-            $entry->name = $name;
-            $entry->imageable_id = $user_id;
-            $entry->imageable_type = 'App\User';
-//            $entry->mime = $image->getClientMimeType();
-//            $entry->original_filename = $image->getClientOriginalName();
-            $entry->filename = $filename . '.' . $extension;
-            $entry->save();
-
-        }
-        catch(QueryException $e){
-
-            redirect()->route('profile.show')->withMessage('There were some problems uploading your image.');
-        }
-
-        return redirect()->route('profile.show')->withMessage('Successfully saved!');
-
-    }
-
 
     /**
      * @param UpdateProfileRequest $request
@@ -153,10 +117,21 @@ class ProfileController extends Controller
 
         if($request->file('image')){
 
-            $this->postImage($request->file('image'), $user->username, $user->id );
+            try{
+
+            $imgObj = $this->image;
+            $imgLib = new ImageLib();
+
+            $img = $imgLib->addImage($request->file('image'), $imgObj, $user->username, $user->id );
+
+            }
+            catch(QueryException $e){
+
+                redirect()->back()->withMessage('There were some problems uploading your image.');
+            }
         }
 
-            return redirect()->route('profile.show', $id);
+            return redirect()->route('profile.show', $id)->withMessage('Successfully saved!');
     }
 
     /**

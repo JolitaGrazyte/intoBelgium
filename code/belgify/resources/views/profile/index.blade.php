@@ -7,6 +7,7 @@
     <h1>{{ $title }}</h1>
 
     @include('errors.errors')
+    @include('layouts.message')
 
     <div class="container-fluid">
 
@@ -66,13 +67,15 @@
 
                             </div>
                         </div>
-                        @if($avatar)
-                            <div class="col-md-2">
+                        <div class="col-md-2">
 
-                                <H4>Profile photo</H4>
+                        @if($avatar)
+
                                 <img src="{{ route('getImage', [$avatar->filename]) }}" alt="{{ $avatar->name }}">
-                            </div>
+
                         @endif
+
+                        </div>
                     </div>
                 </div>
             </div>
