@@ -28,6 +28,8 @@ class EventsController extends Controller
 
     public function __construct( Event $event, Location $location, Tag $tag, FlashMessages $flashMsg ){
 
+        $this->middleware('auth', ['except' => 'index', 'show']);
+
         $this->event    = $event;
         $this->location = $location;
         $this->flashMsg = $flashMsg;

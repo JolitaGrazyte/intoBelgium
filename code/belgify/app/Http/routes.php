@@ -15,10 +15,12 @@ get('', ['as' => 'home', function(){
     return view('home');
 }]);
 
-get('dashboard',                ['as' => 'dashboard', 'middleware' => 'auth', 'uses' => 'DashboardController@index']);
-get('dashboard/my-events',      ['as' => 'dashboard', 'middleware' => 'auth', 'uses' => 'DashboardController@index']);
-get('dashboard/my-questions',   ['as' => 'dashboard', 'middleware' => 'auth', 'uses' => 'DashboardController@index']);
+Route::group(['middleware' => 'auth'], function(){
 
+    get('dashboard',                ['as' => 'dashboard-following', 'uses' => 'DashboardController@index']);
+    get('dashboard/my-events',      ['as' => 'my-events',           'uses' => 'DashboardController@index']);
+    get('dashboard/my-questions',   ['as' => 'my-questions',        'uses' => 'DashboardController@index']);
+});
 
 //get('/{page}',         ['as' => 'pages',       'uses' => 'PagesController@index']);
 
@@ -36,15 +38,13 @@ get('auth/register',     ['as'   =>  'getRegister', 'uses' =>   'Auth\AuthContro
 post('auth/register',    ['as'   =>  'postRegister', 'uses' =>   'Auth\AuthController@postRegister']);
 
 
-Route::group([/*'prefix' => 'dashboard',*/ 'middleware' => 'auth'  ], function(){
-
-    resource('events',      'EventsController');
-    resource('comments',    'CommentsController');
-    resource('posts',       'PostsController');
-    resource('profile',     'ProfileController', ['except' => ['index']]);
 
 
-});
+resource('events',      'EventsController');
+resource('comments',    'CommentsController');
+resource('posts',       'PostsController');
+resource('profile',     'ProfileController', ['except' => ['index']]);
+
 
 //SEARCH
 post('search', ['as' => 'search', 'uses' => 'SearchController@search']);

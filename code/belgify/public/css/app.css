@@ -41,7 +41,7 @@ body{
 }
 
 .home_header{
-    background-image:   url("/img/Home_Banner.jpg");
+    background-image:   url("../img/Home_Banner.jpg");
     width:              100vw;
     height:             65vh;
     position:           absolute;

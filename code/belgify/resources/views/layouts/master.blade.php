@@ -52,6 +52,12 @@
 
 @show
 
+@section('sidebar')
+
+    @include('layouts.side-nav')
+
+@show
+
 <div class="container">
 
     <div class="content">
