@@ -26,10 +26,10 @@ class EventRequest extends Request
     public function rules()
     {
         return [
-            'title'     => 'required|max:255',
-            'date'     => 'required|date',
-//            'password'  => 'required|confirmed|min:4',
-//            'role'      => 'required|digits_between: 1,2'
+            'title'         => 'required|max:255',
+            'date'          => 'required|date',
+            'description'   => 'required',
+
         ];
     }
 }

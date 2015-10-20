@@ -123,18 +123,18 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        {{--<div class="form-group">--}}
 
-                            {!! Form::label('postcode', 'Postcode', ['class' => 'col-md-2 control-label']) !!}
+                            {{--{!! Form::label('postcode', 'Postcode', ['class' => 'col-md-2 control-label']) !!}--}}
 
-                            <div class="col-md-10">
+                            {{--<div class="col-md-10">--}}
 
 
-                                {!! Form::text('postcode', null, ['class' => 'form-control', 'placeholder' => 'postcode']) !!}
+                                {{--{!! Form::text('postcode', null, ['class' => 'form-control', 'placeholder' => 'postcode']) !!}--}}
 
-                            </div>
+                            {{--</div>--}}
 
-                        </div>
+                        {{--</div>--}}
 
                         <div class="form-group">
 

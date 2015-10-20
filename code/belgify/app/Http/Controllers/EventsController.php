@@ -20,19 +20,19 @@ use Illuminate\Support\Facades\DB;
 class EventsController extends Controller
 {
     private $event;
-    private $location;
+//    private $location;
     private $tag;
     private $authUser;
     private $flashMsg;
 
 
-    public function __construct( Event $event, Location $location, Tag $tag, FlashMessages $flashMsg ){
+    public function __construct( Event $event, Tag $tag, FlashMessages $flashMsg ){
 
         $this->middleware('auth', ['except' => 'index', 'show']);
         $this->middleware('local', ['only' => ['create', 'edit', 'confirm', 'destroy']]);
 
         $this->event    = $event;
-        $this->location = $location;
+//        $this->location = $location;
         $this->flashMsg = $flashMsg;
         $this->tag      = $tag;
         $this->authUser = Auth::user();
@@ -87,10 +87,23 @@ class EventsController extends Controller
      */
     public function create()
     {
-        $locations  =   $this->location->lists('name', 'id');
-        $tags       =   $this->tag->lists('name', 'id');
+        $tags      = $this->tag->lists('name', 'id');
+        $locations = $this->locations();
+
+//        dd($locations);
 
         return view('events.create', compact('locations', 'tags'))->withTitle('Create event');
+    }
+
+    public function locations(){
+
+        $dbLocations  = Location::get();
+
+        foreach($dbLocations as $location){
+
+            $locations[$location->id] = $location->name.', '.$location->postcode;
+        }
+        return $locations;
     }
 
     /**
@@ -161,11 +174,12 @@ class EventsController extends Controller
 
         if ( Auth::user()->id == $event->author->id) {
 
-            $locations = $this->location->lists('name', 'id');
-            $tags = $this->tag->lists('name', 'id');
-            $evnt_tags = $event->tags->lists('id')->all();
+            $locations  = $this->locations();
+            $location   = ['id' => $event->location->id, 'name' => $event->location->name.', '.$event->location->postcode];
+            $tags       = $this->tag->lists('name', 'id');
+            $evnt_tags  = $event->tags->lists('id')->all();
 
-            return view('events.edit', compact('locations', 'tags', 'event', 'id', 'evnt_tags'))->withTitle('Edit event');
+            return view('events.edit', compact('locations', 'tags', 'event', 'id', 'evnt_tags', 'location'))->withTitle('Edit event');
         }
 
 
@@ -240,9 +254,9 @@ class EventsController extends Controller
             'description'   => $request->get('description'),
             'date'          => $date,
             'street_address'=> $request->get('street_address'),
-            'postcode'      => $request->get('postcode'),
+//            'postcode'      => $request->get('postcode'),
             'location_id'   => $request->get('location_id'),
-            'city'          => $request->get('city'),
+//            'city'          => $request->get('city'),
 
         ]);
 

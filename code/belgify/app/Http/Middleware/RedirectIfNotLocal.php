@@ -20,10 +20,11 @@ class RedirectIfNotLocal
 
         $user = $request->user();
 
-        if(!$user->isLocal()){
-
+//        if(!$user->isLocal()){
+//
 //            return redirect()->back();
-        }
+//        }
+
 
         return $response;
     }

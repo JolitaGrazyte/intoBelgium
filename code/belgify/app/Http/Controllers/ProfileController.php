@@ -102,16 +102,16 @@ class ProfileController extends Controller
 
         // Modify output's header.
         // Set the content type to the mime of the file.
-        $response->header(
-            'Content-type',
-            $entry->mime
-        );
+//        $response->header(
+//            'Content-type',
+//            $entry->mime
+//        );
 
         // Return the image.
-        return $response;
+//        return $response;
 
-//        return (new Response($file, 200))
-//            ->header('Content-Type', $entry->mime);
+        return (new Response($file, 200))
+            ->header('Content-Type', $entry->mime);
     }
 
 
