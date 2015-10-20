@@ -2,64 +2,36 @@
 
 @section('content')
 
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Reset Password</div>
+                <div class="panel-body">
 
-    <div class="panel-body">
+                    @include('partials.errors')
 
-        <form id="reset-form" class="form-visitors" role="form" method="POST" action="{{ URL::asset('/password/email') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-            <header>
-
-                <h4>Reset form</h4>
-
-                @include('partials.errors')
-
-                {{--@if ( session('status') )--}}
-                    {{--<div class="alert alert-success">--}}
-                        {{--{{ session('status') }}--}}
-                    {{--</div>--}}
-
-                {{--@endif--}}
-
-            </header>
-
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-            <fieldset>
-
-                <section>
-
-                    <div class="row">
-
-                        <label class="label col col-4">E-mail:</label>
-
-                        <div class="col col-8">
-
-                            <label class="input">
-
-                                <i class="icon icon-user"></i>
-
-                                <input type="email" name="email" value="{{ old('email') }}">
-
-                            </label>
-
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">E-Mail Address</label>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                            </div>
                         </div>
 
-                    </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Send
+                                </button>
+                            </div>
+                        </div>
+                    </form>
 
-                </section>
-
-            </fieldset>
-
-            <footer>
-
-                <button type="submit" class="button">
-                    Send
-                </button>
-
-            </footer>
-
-        </form>
-
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection
