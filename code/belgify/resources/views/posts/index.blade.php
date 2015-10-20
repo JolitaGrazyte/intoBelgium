@@ -4,83 +4,89 @@
 
 @section('content')
 
-    @include('layouts.message')
+   <div class="container">
 
-    <h1>{{ $title }}</h1>
+       @include('partials.message')
 
-    <div><a href="{{ route('posts.create') }}">Ask a question</a></div>
+       @include('partials.errors')
 
-    @if(count($posts))
+       <h1>{{ $title }}</h1>
 
-        @foreach($posts as $post)
+       @include('partials.search')
 
-            <div class="row">
+       <div><a href="{{ route('posts.create') }}">Ask a question</a></div>
 
-                <div class="col-md-2">
+       @if(count($posts))
 
-                    <div><a href="{{ route('posts.show', $post->id) }}">Answers: </a> <span> {{ $post->comments->count() }}</span></div>
+           @foreach($posts as $post)
 
-                    <div>VOTES: <span> {{ $votes[$post->id] }}</span></div>
+               <div class="row">
 
-                </div>
+                   <div class="col-md-2">
 
-                <div class="col-md-10">
+                       <div><a href="{{ route('posts.show', $post->id) }}">Answers: </a> <span> {{ $post->comments->count() }}</span></div>
 
-                    <div> {{ $post }} </div>
+                       <div>VOTES: <span> {{ $votes[$post->id] }}</span></div>
 
-                    <div>
-                        @if(count($post->tags))
-                            Tags:
-                            @foreach($post->tags as $tag)
+                   </div>
 
-                                {{ $tag->name }}
+                   <div class="col-md-10">
 
-                            @endforeach
+                       <div> {{ $post }} </div>
 
-                        @endif
-                    </div>
+                       <div>
+                           @if(count($post->tags))
+                               Tags:
+                               @foreach($post->tags as $tag)
 
-                </div>
+                                   {{ $tag->name }}
 
-            </div>
+                               @endforeach
+
+                           @endif
+                       </div>
+
+                   </div>
+
+               </div>
+
+               @if(!Auth::guest())
+
+                   @if( Auth::user()->id == $post->user_id )
+
+                       <div class="row col-md-offset-2">
+
+                           <div class="col-md-2"><a href="{{ route('comments.create') }}" class="btn btn-link">answer this question</a></div>
+
+                           <div class="col-md-2"><a href="{{ route('posts.edit', $post->id) }}" class="btn btn-link">update this question</a></div>
+
+                           <div class="col-md-2">
+                               {!!Form::open(['route' => ['posts.destroy', $post->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
+
+                               <div class="form-group">
+
+                                   <div class="col-md-12">
+
+                                       {!! Form::submit('delete', ['class' => 'btn btn-link']) !!}
+
+                                   </div>
+
+                               </div>
+
+                               {!!Form::close() !!}
+
+                           </div>
+
+                       </div>
+
+                   @endif
+               @endif
 
 
+           @endforeach
 
-            @if(!Auth::guest())
+       @endif
 
-                @if( Auth::user()->id == $post->user_id )
-
-                    <div class="row col-md-offset-2">
-
-                        <div class="col-md-2"><a href="{{ route('comments.create') }}" class="btn btn-link">answer this question</a></div>
-
-                        <div class="col-md-2"><a href="{{ route('posts.edit', $post->id) }}" class="btn btn-link">update this question</a></div>
-
-                        <div class="col-md-2">
-                            {!!Form::open(['route' => ['posts.destroy', $post->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
-
-                            <div class="form-group">
-
-                                <div class="col-md-12">
-
-                                    {!! Form::submit('delete', ['class' => 'btn btn-link']) !!}
-
-                                </div>
-
-                            </div>
-
-                            {!!Form::close() !!}
-
-                        </div>
-
-                    </div>
-
-                @endif
-            @endif
-
-
-        @endforeach
-
-    @endif
+   </div>
 
 @stop

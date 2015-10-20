@@ -18,7 +18,7 @@
 
                     <div class="panel-body">
 
-                        @include('errors.errors')
+                        @include('partials.errors')
 
                         <strong><em> {{ $post->title }} </em></strong>
 

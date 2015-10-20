@@ -11,7 +11,7 @@
                     <div class="panel-heading">Register</div>
                     <div class="panel-body">
 
-                        @include('errors.errors')
+                        @include('partials.errors')
 
                         {!! Form::open(['route' => 'getRegister', 'class' => 'form-horizontal', 'role' => 'form']) !!}
 

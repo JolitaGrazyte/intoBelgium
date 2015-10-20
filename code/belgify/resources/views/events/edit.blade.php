@@ -18,7 +18,7 @@
 
                     <div class="panel-body">
 
-                        @include('errors.errors')
+                        @include('partials.errors')
 
                         {!!Form::open(['route' => ['events.update', $id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH'])  !!}
 

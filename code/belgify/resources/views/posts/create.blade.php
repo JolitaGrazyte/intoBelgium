@@ -20,7 +20,7 @@
 
                     <div class="panel-body">
 
-                        @include('errors.errors')
+                        @include('partials.errors')
 
                         {!!Form::open(['route' => 'posts.store', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 

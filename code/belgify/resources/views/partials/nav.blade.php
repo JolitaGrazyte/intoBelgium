@@ -17,7 +17,7 @@
                 <li><a href="{{ route('home') }}">Into Belgium</a></li>
                 @if(!Request::is('/') )
                     <li><a href="{{ route('posts.index') }}">Questions</a></li>
-                    <li><a href="{{ route('events.index') }}">Events</a></li>
+                    <li><a href="{{ route('events.index') }}">Tours</a></li>
                 @endif
             </ul>
 

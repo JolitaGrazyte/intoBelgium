@@ -4,15 +4,15 @@
 
 @section('content')
 
-    @include('layouts.message')
+    @include('partials.message')
 
-    @include('errors.errors')
+    @include('partials.errors')
 
         <div class="row">
 
             <div class="col-md-2">
 
-                @include('layouts.side-nav')
+                @include('partials.side-nav')
 
             </div>
 
@@ -24,7 +24,7 @@
 
                     <div>
 
-                        @include('dashboard.partials.my_events')
+                        @include('partials.dashboard.my_events')
 
                     </div>
 
@@ -32,7 +32,7 @@
 
                     <div>
 
-                        @include('dashboard.partials.my_questions')
+                        @include('partials.dashboard.my_questions')
 
                     </div>
 
@@ -40,7 +40,7 @@
 
                     <div>
 
-                        @include('dashboard.partials.following')
+                        @include('partials.dashboard.following')
 
                     </div>
 

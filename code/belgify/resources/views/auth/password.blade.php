@@ -11,7 +11,7 @@
 
                 <h4>Reset form</h4>
 
-                @include('errors.errors')
+                @include('partials.errors')
 
                 {{--@if ( session('status') )--}}
                     {{--<div class="alert alert-success">--}}

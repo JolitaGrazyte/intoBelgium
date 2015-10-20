@@ -4,7 +4,7 @@
 
 @section('content')
 
-    @include('layouts.message')
+    @include('partials.message')
 
     <h1>{{ $title }}</h1>
 

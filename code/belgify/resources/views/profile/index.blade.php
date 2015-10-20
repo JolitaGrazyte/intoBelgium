@@ -6,8 +6,8 @@
 
     <h1>{{ $title }}</h1>
 
-    @include('errors.errors')
-    @include('layouts.message')
+    @include('partials.errors')
+    @include('partials.message')
 
     <div class="container-fluid">
 

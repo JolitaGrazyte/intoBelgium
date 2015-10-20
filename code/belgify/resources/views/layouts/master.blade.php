@@ -42,7 +42,7 @@
 
 @section('header')
 
-    @include('layouts.header')
+    @include('partials.header')
 
 @show
 

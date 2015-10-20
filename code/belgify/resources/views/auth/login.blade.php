@@ -12,7 +12,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Login</div>
                     <div class="panel-body">
-                        @include('errors.errors')
+                        @include('partials.errors')
 
                         {!!Form::open(['route' => 'postLogin', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
