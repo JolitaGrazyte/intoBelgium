@@ -67,7 +67,8 @@ class EventsController extends Controller
                     'Y'             =>  $start_date->format('Y'), //date in format: year
                     'isAuthor'      =>  $user_id == $event->user_id ? true : false,
                     'author'        =>  $author->first_name.' '.$author->last_name,
-                    'attending'     => $this->userIsAttendingEvent($user_id, $event->id),
+                    'attending'     =>  $this->userIsAttendingEvent($user_id, $event->id),
+                    'attenders'     =>  count($this->event->attenders)
 
                 ];
             }

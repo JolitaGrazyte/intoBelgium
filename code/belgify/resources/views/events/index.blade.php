@@ -63,7 +63,13 @@
 
                     {!!Form::close() !!}
 
-                    {{--<div>{{ $event['attending'] }}</div>--}}
+                    @if($event['attending'])
+
+                        <div>i'm attending</div>
+
+                    @endif
+                    
+                    <div>{{ $event['attenders'] }}</div>
 
                     @if( $event['isAuthor'] )
 

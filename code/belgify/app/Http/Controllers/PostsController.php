@@ -123,12 +123,18 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $tags       = $this->tag->lists('name', 'id');
-        $post       = $this->post->find($id);
-        $post_tags  = $post->tags->lists('id')->all();
-        $title      = 'Update your question';
+        $post = $this->post->find($id);
+        if ( Auth::user()->id == $post->author->id) {
 
-        return view('posts.edit', compact('tags', 'id', 'post', 'post_tags'))->withTitle($title);
+            $tags       = $this->tag->lists('name', 'id');
+            $post_tags  = $post->tags->lists('id')->all();
+            $title      = 'Update your question';
+
+            return view('posts.edit', compact('tags', 'id', 'post', 'post_tags'))->withTitle($title);
+
+        }
+        else return redirect()->route('posts.index')->with("message", "Can't update, not your post");
+
 
     }
 
