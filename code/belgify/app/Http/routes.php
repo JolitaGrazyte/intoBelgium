@@ -17,9 +17,9 @@ get('/', ['as' => 'home', function(){
 
 Route::group(['middleware' => 'auth'], function(){
 
-    get('dashboard',                ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
-    get('dashboard/my-events',      ['as' => 'my-events',           'uses' => 'DashboardController@index']);
-    get('dashboard/my-questions',   ['as' => 'my-questions',        'uses' => 'DashboardController@index']);
+    get('dashboard',                ['as' => 'dashboard',       'uses' => 'DashboardController@index']);
+    get('dashboard/my-events',      ['as' => 'my-events',       'uses' => 'DashboardController@index']);
+    get('dashboard/my-questions',   ['as' => 'my-questions',    'uses' => 'DashboardController@index']);
 });
 
 //get('/{page}',         ['as' => 'pages',       'uses' => 'PagesController@index']);
