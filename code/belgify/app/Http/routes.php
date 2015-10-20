@@ -11,15 +11,6 @@
 |
 */
 
-//use Intervention\Image\Facades\Image;
-////use Storage;
-//
-//Route::get('/dashboard', ['as' => 'image-get', function()
-//{
-//    $img = Image::make(public_path('uploads').'/Jolita-Grazyte.jpg')->resize(200, 200);
-//
-//    return $img->response('jpg');
-//}]);
 
 get('/', ['as' => 'home', function(){
     return view('home');
@@ -32,8 +23,14 @@ Route::group(['middleware' => 'auth'], function(){
     get('dashboard/my-questions',   ['as' => 'my-questions',    'uses' => 'DashboardController@index']);
 });
 
+Route::controllers([
+    'password' => 'Auth\PasswordController',
+]);
+
+
 //get('/{page}',         ['as' => 'pages',       'uses' => 'PagesController@index']);
 
+//get('auth/reset', ['as'=>'reset', 'uses' => 'Auth\PasswordController']);
 
 // Authentication routes...
 get('auth/login',       ['as' => 'getLogin',            'uses' => 'Auth\AuthController@getLogin']);
@@ -62,4 +59,3 @@ post('search', ['as' => 'search', 'uses' => 'SearchController@search']);
 //Extra routes
 post('events/{id}',         ['as' => 'attend', 'uses' => 'EventsController@postAttend']);
 get('image/{id}/{size}',    ['as'=>'getImage',     'uses' => 'ProfileController@getImage' ]);
-//post('image/{user_id}', ['as'=>'postImage',    'uses' => 'ImagesController@postImage' ]);

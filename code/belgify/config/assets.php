@@ -10,6 +10,9 @@ return [
         ],
 
         'sizes' => [
+            'x-small' => [
+                'width' => 100,
+            ],
 
             'small' => [
                 'width' => 300,

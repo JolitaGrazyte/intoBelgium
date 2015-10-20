@@ -10,16 +10,13 @@
 
         <div class="row">
 
-            <div class="col-md-3">
-
-
-                <h2>{{ Auth::user()->username }}</h2>
+            <div class="col-md-2">
 
                 @include('layouts.side-nav')
 
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-7">
 
                 <h1> {{ $title }} </h1>
 

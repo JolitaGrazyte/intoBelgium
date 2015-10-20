@@ -6,8 +6,6 @@
 
     <h1>{{ $title }}</h1>
 
-    <div class="container-fluid">
-
         <div class="row">
 
             <div class="col-md-10">
@@ -88,41 +86,25 @@
 
                         </div>
 
-
-                        <script> // TODO: GENDER</script>
-                        {{--<div class="row">--}}
-                            {{--{!! Form::label('gender', trans('form.gender'), ['class' => 'label']) !!}--}}
-
-                            {{--<div class="inline-group">--}}
-                                {{--<label class="radio">--}}
-                                    {{--{!! Form::radio('gender', 0, null, ['class' => 'field']) !!}--}}
-                                    {{--<i></i>--}}
-                                    {{--<span>Man </span>--}}
-                                {{--</label>--}}
-                                {{--<label class="radio">--}}
-                                    {{--{!! Form::radio('gender', 1, null, ['class' => 'field']) !!}--}}
-                                    {{--<i></i>--}}
-                                    {{--<span> Woman</span>--}}
-                                {{--</label>--}}
-
-                                {{--<span class="help-block">{{ $errors->first('gender') }}</span>--}}
-
-                            {{--</div>--}}
                         <div class="row">
                             {!! Form::label('image upload', 'Profile image',['class' => 'col-md-2 control-label']) !!}
 
-                            @if($avatar)
+                            <div class="col-md-10">
 
-                                <img src="{{ route('getImage', [$avatar->filename]) }}" alt="{{ $avatar->name }}">
 
-                            @endif
+                                {!! Form::file('image', ['class' =>'col-md-3' ]) !!}
 
-                            <div class="col-md-10   ">
+                                <span class="help-block">{{ $errors->first('image') }}</span>
 
-                                {!! Form::file('image', ['class' => 'form-control', 'placeholder' => 'occupation']) !!}
-                                <span class="help-block">{{ $errors->first('file') }}</span>
+                                @if($avatar)
+
+                                    <img src="{{ route('getImage', [$avatar->filename,  'small']) }}" alt="{{ $avatar->name }}">
+
+                                @endif
 
                             </div>
+
+
                         </div>
 
                         <div class="form-group">
@@ -186,14 +168,9 @@
                 </div>
             </div>
         </div>
-    </div>
 
     <script>
         $('#tag_list').select2();
-
-        $(function() {
-            $( "#datepicker" ).datepicker();
-        });
     </script>
 
 @stop

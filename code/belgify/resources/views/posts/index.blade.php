@@ -52,9 +52,9 @@
 
                     <div class="row col-md-offset-2">
 
-                        <div class="col-md-2"><a href="{{ route('comments.create') }}"><button class="btn btn-primary">answer this question</button></a></div>
+                        <div class="col-md-2"><a href="{{ route('comments.create') }}" class="btn btn-link">answer this question</a></div>
 
-                        <div class="col-md-2"><a href="{{ route('posts.edit', $post->id) }}"><button class="btn btn-primary">update this question</button></a></div>
+                        <div class="col-md-2"><a href="{{ route('posts.edit', $post->id) }}" class="btn btn-link">update this question</a></div>
 
                         <div class="col-md-2">
                             {!!Form::open(['route' => ['posts.destroy', $post->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
@@ -63,7 +63,7 @@
 
                                 <div class="col-md-12">
 
-                                    {!! Form::submit('delete', ['class' => 'btn btn-primary form-control']) !!}
+                                    {!! Form::submit('delete', ['class' => 'btn btn-link']) !!}
 
                                 </div>
 
@@ -82,6 +82,5 @@
         @endforeach
 
     @endif
-
 
 @stop
