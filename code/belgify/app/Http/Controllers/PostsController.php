@@ -133,8 +133,7 @@ class PostsController extends Controller
             return view('posts.edit', compact('tags', 'id', 'post', 'post_tags'))->withTitle($title);
 
         }
-        else return redirect()->route('posts.index')->with("message", "Can't update, not your post");
-
+        else return redirect()->route('posts.index')->with("message", "Can't update, not your post!");
 
     }
 

@@ -157,11 +157,20 @@ class EventsController extends Controller
         //ToDo: postcode automatisch volgens locatie !!
 
         $event      =   $this->event->find($id);
-        $locations  =   $this->location->lists('name', 'id');
-        $tags       =   $this->tag->lists('name', 'id');
-        $evnt_tags  =   $event->tags->lists('id')->all();
 
-        return view('events.edit', compact('locations', 'tags', 'event', 'id', 'evnt_tags'))->withTitle('Edit event');
+        if ( Auth::user()->id == $event->author->id) {
+
+            $locations = $this->location->lists('name', 'id');
+            $tags = $this->tag->lists('name', 'id');
+            $evnt_tags = $event->tags->lists('id')->all();
+
+            return view('events.edit', compact('locations', 'tags', 'event', 'id', 'evnt_tags'))->withTitle('Edit event');
+        }
+
+
+        else return redirect()->route('events.index')->with("message", "Can't update, not your event!");
+
+
     }
 
     /**
