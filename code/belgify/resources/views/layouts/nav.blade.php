@@ -24,33 +24,8 @@
             <ul class="nav navbar-nav navbar-right">
 
                 @if ( Auth::guest() )
-                    <li>
-                        {!!Form::open(['route' => 'postLogin', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
-
-                        <div class="col-md-4">
-
-                            {!! Form::email('email', old('email'), ['class' => 'form-control', 'placeholder' => 'email']) !!}
-
-                        </div>
-
-                        <div class="col-md-4">
-
-                            {!! Form::password('password', ['class' => 'form-control',  'placeholder' => 'password']) !!}
-
-                        </div>
-
-                        <div class="col-md-4">
-
-                            {!! Form::submit('Login', ['class' => 'btn btn-primary']) !!}
-
-                        </div>
-
-                        {!! Form::close() !!}
-                    </li>
-
-
-                    {{--<li><a href="{{ url('/auth/login') }}">Login</a></li>--}}
+                    <li><a href="{{ url('/auth/login') }}">Login</a></li>
                     <li><a href="{{ url('/auth/register') }}">Register</a></li>
                 @else
 
