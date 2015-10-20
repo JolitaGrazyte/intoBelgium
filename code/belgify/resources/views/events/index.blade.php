@@ -10,10 +10,11 @@
 
        <h1>{{ $title }}</h1>
 
+       @include('partials.search')
+
        <div><a href="{{ route('events.create') }}">Add new event</a></div>
 
        <div class="row">
-
 
            {{--@if(isset($eventsData))--}}
 

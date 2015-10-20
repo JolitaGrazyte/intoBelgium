@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'donotreply@'.env('MAILGUN_DOMAIN'), 'name' => "Do Not Reply"],
+    'from' => ['address' => 'donotreply@'.env('MAILGUN_DOMAIN'), 'name' => "into Belgium service"],
 
 
     /*
