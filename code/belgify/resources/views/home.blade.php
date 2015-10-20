@@ -13,10 +13,10 @@
 
             <h3 class="quote">“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua”</h3>
 
-            {!!Form::open(['route' => ['search'], 'class' => 'form-horizontal', 'role' => 'form' ])  !!}
+            {!!Form::open(['route' => ['search'], 'class' => 'form-horizontal search-form', 'role' => 'form' ])  !!}
 
-            {!! Form::text('keyword', null, ['placeholder' => 'search', 'class' => 'col-md-9']) !!}
-            {!! Form::submit('search', ['class' => 'btn btn-primary col-md-3']) !!}
+            {!! Form::text('keyword', null, ['placeholder' => 'Ask a question about the Belgian lifestyle...', 'class' => 'col-md-9 text-search']) !!}
+            {!! Form::submit('search', ['class' => 'btn btn-primary col-md-3 btn-search']) !!}
 
             {!!Form::close() !!}
         </div>
