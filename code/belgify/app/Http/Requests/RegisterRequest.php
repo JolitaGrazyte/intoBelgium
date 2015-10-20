@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class RegisterRequest extends Request
 {
     /**
@@ -26,7 +24,7 @@ class RegisterRequest extends Request
         return [
             'username'  => 'required|max:255',
             'email'     => 'required|email|max:255|unique:users',
-            'password'  => 'required|confirmed|min:4',
+            'password'  => 'required|confirmed|min:4', //'password' => 'required|confirmed|min:6',
             'role'      => 'required|digits_between: 1,2'
         ];
     }

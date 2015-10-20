@@ -85,14 +85,30 @@ class User extends Model implements AuthenticatableContract,
     }
 
 
+    /**
+     * @param $query
+     * @return mixed
+     */
     public function scopeEvents($query)
     {
         return $query->where();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function events_attending(){
 
         return $this->belongsToMany('App\Event')->withTimestamps();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLocal(){
+
+        return $this->role == 1 ? true : false; // role 1 = LOCAL
+
     }
 
 

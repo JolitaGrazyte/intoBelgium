@@ -66,14 +66,7 @@ class AuthController extends Controller implements AuthenticateUserListener
 
     public function postRegister( RegisterRequest $request){
 
-        $data['name']       =   $request->get('username');
-        $data['email']      =   $request->get('email');
-        $data['password']   =   $request->get('password');
-        $data['role']       =   $request->get('role'); // 0 = admin and may not be chosen; 1 = local; 2 = new local;
-
-//        dd($data['role']);
-
-        $user = $this->create($data);
+        $user = $this->create($request);
 
         if($user) $this->auth->login($user);
 
@@ -99,16 +92,17 @@ class AuthController extends Controller implements AuthenticateUserListener
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param $request
      * @return User
+     * @internal param array $data
      */
-    protected function create(array $data)
+    protected function create($request)
     {
         return User::create([
-            'role'      => $data['role'],
-            'name'      => $data['name'],
-            'email'     => $data['email'],
-            'password'  => bcrypt($data['password']),
+            'role'      => $request->get('role'),
+            'username'  => $request->get('username'),
+            'email'     => $request->get('email'),
+            'password'  => bcrypt($request->get('password')),
         ]);
     }
 

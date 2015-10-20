@@ -12,7 +12,11 @@
 
        @include('partials.search')
 
-       <div><a href="{{ route('events.create') }}">Add new event</a></div>
+       @if(Auth::user()->isLocal())
+
+           <div><a href="{{ route('events.create') }}">Add new event</a></div>
+
+       @endif
 
        <div class="row">
 
@@ -81,7 +85,7 @@
                            {!!Form::open(['route' => ['events.destroy', $event['id']], 'class' => 'form-horizontal col-md-2', 'role' => 'form', 'method' => 'DELETE'])  !!}
 
 
-                           {!! Form::submit('delete', ['class' => 'btn btn-link   ']) !!}
+                           {!! Form::submit('delete', ['class' => 'btn btn-link']) !!}
 
 
                            {!!Form::close() !!}
@@ -90,83 +94,14 @@
                        @endif
 
                    </div>
+
                @endforeach
+
            @endif
 
        </div>
 
    </div>
-
-
-
-    {{--@if(count($events))--}}
-
-    {{--@foreach($events as $event)--}}
-
-    {{--<div class="row">--}}
-    {{--<div class="col-md-12">--}}
-    {{--<div> {{ $event }} </div>--}}
-
-    {{--@if(count($event->tags))--}}
-
-    {{--<div> Tags:--}}
-
-    {{--@foreach($event->tags as $tag)--}}
-
-    {{--{{ $tag->name }}--}}
-
-    {{--@endforeach--}}
-
-    {{--</div>--}}
-
-    {{--@endif--}}
-    {{--</div>--}}
-
-    {{--</div>--}}
-
-    {{--<div class="row">--}}
-    {{--<div class="col-md-1">--}}
-
-    {{--{!!Form::open(['route' => ['attend', $event->id], 'class' => 'form-horizontal', 'role' => 'form'])  !!}--}}
-
-    {{--<div class="form-group">--}}
-
-    {{--{!! Form::label('going', 'Going', ['class' => 'col-md-6 control-label']) !!}--}}
-
-    {{--<div class="col-md-6">--}}
-
-    {{--{!! Form::checkbox('going', 'going', 0, ['class' => 'btn btn-primary form-control', 'onchange' => 'this.form.submit()']) !!}--}}
-
-    {{--</div>--}}
-
-    {{--</div>--}}
-
-    {{--{!!Form::close() !!}--}}
-
-    {{--</div>--}}
-
-    {{--{!!Form::open(['route' => ['events.destroy', $event->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}--}}
-
-
-    {{--{!! Form::submit('delete', ['class' => 'btn btn-primary form-control']) !!}--}}
-
-
-    {{--{!!Form::close() !!}--}}
-
-
-
-
-    {{--@if( Auth::user()->id == $event->user_id )--}}
-
-    {{--<a href="{{ route('events.edit', $event->id) }}">update this event</a>--}}
-
-    {{--@endif--}}
-
-    {{--</div>--}}
-
-    {{--@endforeach--}}
-
-    {{--@endif--}}
 
 
 @stop
