@@ -46,6 +46,7 @@ class EventsController extends Controller
         $event      =   $this->event;
         $events     =   $event->latest('created_at')->get();
         $user       =   $this->authUser;
+        $user_id    =   isset($user) ? $user->id : 0;
 
         $eventsData = [];
 
