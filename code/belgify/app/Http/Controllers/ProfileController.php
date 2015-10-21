@@ -68,7 +68,7 @@ class ProfileController extends Controller
      */
     public function show($username)
     {
-        $user       = $this->user->whereUsername($username);
+        $user       = $this->user->where('username', $username)->first();
         $location   = $user->location;
         $avatar     = $user->avatar;
 
@@ -78,17 +78,18 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $username
+     * @return Response
+     * @internal param int $id
      */
-    public function edit($id)
+    public function edit($username)
     {
-        $user       = $this->user->find($id);
-        $locations  = $this->location->lists('name', 'id');
+        $user       = $this->user->where('username', $username)->first();
+        $locations  = $this->location->locations();
         $location   = $user->location;
         $avatar     = $user->avatar;
 
-        return view('profile.edit', compact('user', 'locations', 'id', 'location', 'avatar'))->withTitle('Edit your profile');
+        return view('profile.edit', compact('user', 'locations', 'location', 'avatar'))->withTitle('Edit your profile');
     }
 
     public function getImage($filename, $size){
@@ -113,7 +114,6 @@ class ProfileController extends Controller
      */
     public function update( UpdateProfileRequest $request, $id)
     {
-//        dd($request->file('image'));
 
         $user = $this->user->find($id);
 

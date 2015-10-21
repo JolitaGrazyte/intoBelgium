@@ -17,7 +17,9 @@ class Location extends Model
      */
     public function locations(){
 
-        $dbLocations  = Location::get();
+        $locations = [];
+
+        $dbLocations  = $this->get();
 
         foreach($dbLocations as $location){
 
