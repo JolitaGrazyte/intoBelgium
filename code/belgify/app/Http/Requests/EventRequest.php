@@ -29,6 +29,7 @@ class EventRequest extends Request
             'title'         => 'required|max:255',
             'date'          => 'required|date',
             'description'   => 'required',
+            'location'      => 'required'
 
         ];
     }

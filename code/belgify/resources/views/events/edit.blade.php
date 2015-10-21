@@ -37,9 +37,10 @@
 
                             {!! Form::label('date', 'Date', ['class' => 'col-md-2 control-label']) !!}
 
-                            <div class="col-md-10">
+                            <div class="input-group date col-md-9" id="datetimepicker">
 
-                                {!! Form::text('date', $event->date, ['id' => 'datepicker', 'class' => 'form-control']) !!}
+                                {!! Form::text('date', $date, ['id' => 'datetimepicker', 'class' => 'form-control', 'placeholder' => $date]) !!}
+                                <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
 
                             </div>
 
@@ -83,18 +84,6 @@
 
                         <div class="form-group">
 
-                            {!! Form::label('postcode', 'Postcode', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-
-                                {!! Form::text('postcode', $event->postcode, ['class' => 'form-control', 'placeholder' => 'postcode']) !!}
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
                             {!! Form::label('tags', 'Tags', ['class' => 'col-md-2 control-label']) !!}
 
                             <div class="col-md-10">
@@ -124,10 +113,8 @@
 
     <script>
         $('#tag_list').select2();
+        $( "#datetimepicker" ).datetimepicker();
 
-        $(function() {
-            $( "#datepicker" ).datepicker();
-        });
     </script>
 
 @stop

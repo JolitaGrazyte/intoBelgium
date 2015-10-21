@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\DB;
 class EventsController extends Controller
 {
     private $event;
-//    private $location;
     private $tag;
     private $authUser;
     private $flashMsg;
@@ -32,7 +31,6 @@ class EventsController extends Controller
         $this->middleware('local', ['only' => ['create', 'edit', 'confirm', 'destroy']]);
 
         $this->event    = $event;
-//        $this->location = $location;
         $this->flashMsg = $flashMsg;
         $this->tag      = $tag;
         $this->authUser = Auth::user();
@@ -55,8 +53,6 @@ class EventsController extends Controller
 
         }
 
-
-//        return $event->all(); //JSON
 
         return view('events.index', compact('events', 'eventsData'))->withTitle('Events');
     }
@@ -94,14 +90,16 @@ class EventsController extends Controller
      */
     public function create()
     {
-        $tags      = $this->tag->lists('name', 'id');
-        $locations = $this->locations();
+        $tags       = $this->tag->lists('name', 'id');
+        $locations  = $this->locations();
+        $now        = Carbon::now()->format('d/m/Y H:i');
 
-//        dd($locations);
-
-        return view('events.create', compact('locations', 'tags'))->withTitle('Create event');
+        return view('events.create', compact('locations', 'tags', 'now'))->withTitle('Create event');
     }
 
+    /**
+     * @return mixed
+     */
     public function locations(){
 
         $dbLocations  = Location::get();
@@ -161,7 +159,6 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        //ToDo: postcode automatisch volgens locatie !!
 
         $event      =   $this->event->find($id);
 
@@ -172,7 +169,10 @@ class EventsController extends Controller
             $tags       = $this->tag->lists('name', 'id');
             $evnt_tags  = $event->tags->lists('id')->all();
 
-            return view('events.edit', compact('locations', 'tags', 'event', 'id', 'evnt_tags', 'location'))->withTitle('Edit event');
+            $date = $event->date->format('d/m/Y H:i');
+//            dd($date);
+
+            return view('events.edit', compact('locations', 'tags', 'event', 'id', 'evnt_tags', 'location', 'date'))->withTitle('Edit event');
         }
 
         else return redirect()->route('events.index')->with("message", "Can't update, not your event!");
@@ -250,7 +250,7 @@ class EventsController extends Controller
             'description'   => $request->get('description'),
             'date'          => $date,
             'street_address'=> $request->get('street_address'),
-            'location_id'   => $request->get('location_id'),
+            'location_id'   => $request->get('location'),
 
         ]);
 
