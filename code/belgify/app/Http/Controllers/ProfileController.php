@@ -62,12 +62,13 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $username
+     * @return Response
+     * @internal param int $id
      */
-    public function show($id)
+    public function show($username)
     {
-        $user       = $this->user->find($id);
+        $user       = $this->user->whereUsername($username);
         $location   = $user->location;
         $avatar     = $user->avatar;
 
@@ -98,21 +99,11 @@ class ProfileController extends Controller
         $imgObj = new ImageLib();
         $file = $imgObj->resize_image($filename, $size);
 
-        $response = new Response($file, 200);
-
-        // Modify output's header.
-        // Set the content type to the mime of the file.
-//        $response->header(
-//            'Content-type',
-//            $entry->mime
-//        );
-
-        // Return the image.
-//        return $response;
-
         return (new Response($file, 200))
             ->header('Content-Type', $entry->mime);
     }
+
+
 
 
     /**

@@ -29,7 +29,7 @@ class EventsSeeder extends Seeder
                 'description'       => 'some description...',
                 'street_address'    => 'Lange Nieuwstraat 126',
                 'date'              => \Carbon\Carbon::now(),
-                'location_id'       => 1,
+                'location_id'       => 3,
                 'user_id'           =>  1
 
             ],
@@ -38,7 +38,7 @@ class EventsSeeder extends Seeder
                 'description'       => 'some description...',
                 'street_address'    => ' ',
                 'date'              => \Carbon\Carbon::now(),
-                'location_id'       => 1,
+                'location_id'       => 5,
                 'user_id'           =>  1
 
             ],

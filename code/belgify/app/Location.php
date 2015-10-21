@@ -12,5 +12,19 @@ class Location extends Model
 
     protected $primaryKey = "id";
 
+    /**
+     * @return mixed
+     */
+    public function locations(){
+
+        $dbLocations  = Location::get();
+
+        foreach($dbLocations as $location){
+
+            $locations[$location->id] = $location->name.', '.$location->postcode;
+        }
+        return $locations;
+    }
+
 
 }

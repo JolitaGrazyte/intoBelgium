@@ -23,9 +23,10 @@ class EventsController extends Controller
     private $tag;
     private $authUser;
     private $flashMsg;
+    private $location;
 
 
-    public function __construct( Event $event, Tag $tag, FlashMessages $flashMsg ){
+    public function __construct( Event $event, Tag $tag, FlashMessages $flashMsg, Location $location ){
 
         $this->middleware('auth', ['except' => 'index', 'show']);
         $this->middleware('local', ['only' => ['create', 'edit', 'confirm', 'destroy']]);
@@ -33,6 +34,7 @@ class EventsController extends Controller
         $this->event    = $event;
         $this->flashMsg = $flashMsg;
         $this->tag      = $tag;
+        $this->location = $location;
         $this->authUser = Auth::user();
     }
     /**
@@ -91,24 +93,10 @@ class EventsController extends Controller
     public function create()
     {
         $tags       = $this->tag->lists('name', 'id');
-        $locations  = $this->locations();
+        $locations  = $this->location->locations();
         $now        = Carbon::now()->format('d/m/Y H:i');
 
         return view('events.create', compact('locations', 'tags', 'now'))->withTitle('Create event');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function locations(){
-
-        $dbLocations  = Location::get();
-
-        foreach($dbLocations as $location){
-
-            $locations[$location->id] = $location->name.', '.$location->postcode;
-        }
-        return $locations;
     }
 
     /**
@@ -159,18 +147,16 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-
         $event      =   $this->event->find($id);
 
         if ( Auth::user()->id == $event->author->id) {
 
-            $locations  = $this->locations();
+            $locations  = $this->location->locations();
             $location   = ['id' => $event->location->id, 'name' => $event->location->name.', '.$event->location->postcode];
             $tags       = $this->tag->lists('name', 'id');
             $evnt_tags  = $event->tags->lists('id')->all();
 
             $date = $event->date->format('d/m/Y H:i');
-//            dd($date);
 
             return view('events.edit', compact('locations', 'tags', 'event', 'id', 'evnt_tags', 'location', 'date'))->withTitle('Edit event');
         }
@@ -261,6 +247,10 @@ class EventsController extends Controller
         $this->flashMsg->successMessage($msg);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postAttend($id){
 
         $event = $this->event->find($id);
@@ -287,6 +277,11 @@ class EventsController extends Controller
 
     }
 
+    /**
+     * @param $user_id
+     * @param $event_id
+     * @return bool
+     */
     public function userIsAttendingEvent($user_id, $event_id)
     {
         return !is_null(
