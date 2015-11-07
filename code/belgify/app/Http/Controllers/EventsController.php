@@ -70,7 +70,7 @@ class EventsController extends Controller
 
         return [
 
-            'id'            => $event->id,
+            'id'            =>  $event->id,
             'start'         =>  $start_date->format('M j, Y'), //date in format
             'title'         =>  $event->title,
             'starts_at'     =>  $start_date->format('H:i'),
@@ -281,6 +281,8 @@ class EventsController extends Controller
 
     }
 
+
+    //TODO: move to model !!!!
     /**
      * @param $user_id
      * @param $event_id

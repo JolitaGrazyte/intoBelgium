@@ -55,7 +55,7 @@ resource('profile',     'ProfileController', ['except' => ['index']]);
 
 //SEARCH
 post('search', ['as' => 'search', 'uses' => 'SearchController@search']);
-get('search-json', ['as' => 'search-json', 'uses' => 'SearchController@getAll']);
+get('search-json', ['as' => 'search-json', 'uses' => 'SearchController@getAutocomplete']);
 
 //Extra routes
 post('events/{id}',             ['as' => 'attend',          'uses' => 'EventsController@postAttend']);

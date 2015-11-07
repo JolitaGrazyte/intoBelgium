@@ -21,26 +21,26 @@
 
     <div><em>Location: </em>{{ $event['location'] }}</div>
 
-   <div class="col-md-12">
-       @if(!$event['isAuthor'])
+    <div class="col-md-12">
+        @if(!$event['isAuthor'])
 
-           {!!Form::open(['route' => ['attend', $event['id']], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+            {!!Form::open(['route' => ['attend', $event['id']], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
 
-           <div class="form-group">
+            <div class="form-group">
 
-               {!! Form::hidden('going', $event['attending'], ['class' => '', 'onchange' => 'this.form.submit())']) !!}
+                {!! Form::hidden('going', $event['attending'], ['class' => '', 'onchange' => 'this.form.submit())']) !!}
 
-               {{-- TODO: WRITE CLASSES FOR BUTTONS --}}
+                {{-- TODO: WRITE CLASSES FOR BUTTONS --}}
 
-               {!! Form::submit(($event['attending'])?'Attending':'Attend', ['class' => $event['attending']? 'btn' : 'btn  btn-primary btn-search']) !!}
+                {!! Form::submit(($event['attending'])?'Attending':'Attend', ['class' => $event['attending']? 'btn' : 'btn  btn-primary btn-search']) !!}
 
-           </div>
+            </div>
 
-           {!!Form::close() !!}
+            {!!Form::close() !!}
 
-       @endif
-   </div>
+        @endif
+    </div>
 
     <div class="col-md-12">
 

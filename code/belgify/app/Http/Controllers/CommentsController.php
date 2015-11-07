@@ -65,7 +65,8 @@ class CommentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $comment = $this->comment->find($id)->first();
+        return view('comments.show', compact('comment'));
     }
 
     /**

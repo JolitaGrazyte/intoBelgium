@@ -21,7 +21,10 @@
 
                     <div>
 
-                        @include('partials.dashboard.my_events')
+                        @each('partials.dashboard.my_event', $my_events, 'event', 'events.no-events')
+
+
+                        {{--@include('partials.dashboard.my_event')--}}
 
                     </div>
 

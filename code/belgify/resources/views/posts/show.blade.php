@@ -20,11 +20,12 @@
 
                 @foreach($answers as $answer)
 
-                    <p><a href="">{{ $answer->id.'. '.$answer->body }}</a></p>
+                    <p><a href="{{ route('comments.show', [$answer->id]) }}">{{ $answer->id.'. '.$answer->body }}</a></p>
 
                 @endforeach
 
             </div>
+
         </div>
 
     </div>

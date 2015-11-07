@@ -28,7 +28,6 @@
 
     {!!Form::close() !!}
 
-    {{--<div>{{ $event['attending'] }}</div>--}}
 
 @stop
 

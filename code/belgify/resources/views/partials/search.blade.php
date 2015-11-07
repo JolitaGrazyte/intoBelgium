@@ -15,9 +15,10 @@
         minLength:1,
     }).on( "autocompleteselect", function( event, ui ) {
         var term_id = ui.item.id;
+        var model = ui.item.model;
 
 //        console.log(ui.item.id);
 
-        window.location.href = 'http://intob.local.com/events/'+term_id;
+        window.location.href = 'http://intob.local.com/'+model+'/'+term_id;
     });
 </script>
