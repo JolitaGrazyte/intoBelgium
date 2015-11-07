@@ -2,16 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\SearchJsonRequest;
 use App\Http\Requests;
 use App\Event;
 use App\Post;
+use Illuminate\Support\Facades\Response;
 
 class SearchController extends Controller
 {
 
 
-    public function search( Request $request ){
+    public function getAll( SearchJsonRequest $request ){
+//        return Event::all();
+
+
+        $term = $request->get('term');
+
+        $tours = Event::all();
+
+        $results = [];
+
+//        $tours      = $this->searchTours($term);
+
+        foreach ($tours as $tour)
+        {
+            $results[] = [ 'id' => $tour->id, 'value' => $tour->title];
+        }
+        return Response::json($results);
+    }
+
+
+    public function search( SearchJsonRequest $request ){
 
         $keyword = $request->get('keyword');
 

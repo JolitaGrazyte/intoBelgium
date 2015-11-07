@@ -173,16 +173,6 @@ class PostsController extends Controller
 
     }
 
-    /**
-     * Check if session exist and return it.
-     * @param $q
-     * @return mixed
-     */
-    public function session($q){
-
-        if( Session::has($q))
-            return Session::get($q);
-    }
 
 
     public function postFill($post, $request, $msg){

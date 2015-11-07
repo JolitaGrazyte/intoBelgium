@@ -55,8 +55,9 @@ resource('profile',     'ProfileController', ['except' => ['index']]);
 
 //SEARCH
 post('search', ['as' => 'search', 'uses' => 'SearchController@search']);
+get('search-json', ['as' => 'search-json', 'uses' => 'SearchController@getAll']);
 
 //Extra routes
-post('events/{id}',         ['as' => 'attend', 'uses' => 'EventsController@postAttend']);
-get('image/{id}/{size}',    ['as'=>'getImage',     'uses' => 'ProfileController@getImage' ]);
-get('/event/{id}/delete/confirm',  ['as' => 'event-delete',   'uses' => 'EventsController@delete']);
+post('events/{id}',             ['as' => 'attend',          'uses' => 'EventsController@postAttend']);
+get('image/{id}/{size}',        ['as'=>'getImage',          'uses' => 'ProfileController@getImage' ]);
+get('/events/delete-confirm',   ['as' => 'event-delete',    'uses' => 'EventsController@delete_confirm']);

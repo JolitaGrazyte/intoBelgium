@@ -193,29 +193,6 @@ class EventsController extends Controller
     }
 
 
-
-    /**
-     *
-     * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
-    public function delete()
-    {
-        try{
-            $event_id = session('eventDelete');
-            $this->event->destroy($event_id);
-            $this->flashMsg->successMessage('removed');
-        }
-        catch(QueryException $e){
-
-            $this->flashMsg->failMessage('removed!');
-        }
-        return redirect()->route('events.index');
-    }
-
-
     /**
      * Remove the specified resource from storage.
      *
@@ -224,12 +201,10 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        session('eventDelete', $id);
-        return redirect()->back()->with('confirmDelete', 'Are you sure you want to delete this item?');
 
-//        $this->event->destroy($id);
+        $this->event->destroy($id);
 
-//        return redirect()->route('events.index');
+        return redirect()->route('events.index');
     }
 
     /**

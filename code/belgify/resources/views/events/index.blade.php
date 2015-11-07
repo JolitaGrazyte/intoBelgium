@@ -4,9 +4,21 @@
 
 @section('content')
 
+    {{--{{ session('eventDelete') }}--}}
+
    <div class="container">
 
-      @include('partials.page-head')
+       @if (Session::has('confirmDelete'))
+
+           <div class="alert alert-danger">
+
+               <a href="{{ route('events.destroy', [Session::get('eventDelete')]) }}">Yes</a> || <a href="{{ route('events.index') }}">Cancel</a>
+           </div>
+
+       @endif
+
+
+       @include('partials.page-head')
 
        @if(Auth::user()->isLocal())
 

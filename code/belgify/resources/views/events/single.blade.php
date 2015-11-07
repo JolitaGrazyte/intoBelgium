@@ -52,10 +52,10 @@
 
         <a href="{{ route('events.edit', $event['id']) }}" class="col-md-2 col-lg-offset-6 btn btn-link">update this event</a>
 
-        {!!Form::open(['route' => ['events.destroy', $event['id']], 'class' => 'form-horizontal col-md-2', 'role' => 'form', 'method' => 'DELETE'])  !!}
+        {!!Form::open(['route' => ['events.destroy', $event['id']], 'class' => 'form-horizontal col-md-2', 'id'=>$event['id'], 'role' => 'form', 'method' => 'DELETE'])  !!}
 
 
-        {!! Form::submit('delete', ['class' => 'btn btn-link']) !!}
+        {!! Form::submit('YES', ['class' => 'btn btn-link']) !!}
 
 
         {!!Form::close() !!}
