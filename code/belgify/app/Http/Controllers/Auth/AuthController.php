@@ -64,7 +64,7 @@ class AuthController extends Controller implements AuthenticateUserListener
     }
 
 
-    public function postRegister( RegisterRequest $request){
+    public function postRegister( RegisterRequest $request ){
 
         $user = $this->create($request);
 

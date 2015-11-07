@@ -37,17 +37,21 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-//        Schema::create('user_follower', function(Blueprint $table)
-//        {
-//            $table->increments('id');
-//            $table->integer('follower_id')->unsigned();
-//            $table->foreign('follower_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
-//
-//            $table->integer('user_id')->unsigned();
-//            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
-//
-//            $table->timestamps();
-//        });
+        Schema::create('user_follower', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
+
+            $table->integer('follower_id')->unsigned();
+            $table->foreign('follower_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
+
+
+
+            $table->timestamps();
+        });
+
+
 
     }
 
@@ -59,6 +63,6 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::drop('users');
-//        Schema::drop('follower_user');
+        Schema::drop('user_follower');
     }
 }

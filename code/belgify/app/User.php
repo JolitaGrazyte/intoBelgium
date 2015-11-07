@@ -37,9 +37,11 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
-    public function followers(){
 
-        $this->hasMany('App\Follower', 'user_id_1', 'user_id_2');
+    public function follower(){
+
+        return $this->belongsToMany('App\User', 'user_follower', 'user_id', 'follower_id');
+
     }
 
     /**
