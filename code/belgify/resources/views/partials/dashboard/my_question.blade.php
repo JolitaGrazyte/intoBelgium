@@ -1,10 +1,6 @@
-@if(count($my_questions))
 
-    <h2>My questions</h2>
 
-    @foreach($my_questions as $question)
-
-        <div>Question: {{ $question }} </div>
+        <div>Question: <em>{{ $question->title }}</em></div>
 
         <div> Tags: @foreach( $question->tags as $tag )
 
@@ -21,7 +17,3 @@
             @endforeach
 
         </div>
-
-    @endforeach
-
-@endif

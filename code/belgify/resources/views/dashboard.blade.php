@@ -21,10 +21,9 @@
 
                     <div>
 
+                        <h1>My tours</h1>
+
                         @each('partials.dashboard.my_event', $my_events, 'event', 'events.no-events')
-
-
-                        {{--@include('partials.dashboard.my_event')--}}
 
                     </div>
 
@@ -32,7 +31,10 @@
 
                     <div>
 
-                        @include('partials.dashboard.my_questions')
+                        <h2>My questions</h2>
+
+                        @each('partials.dashboard.my_question', $my_questions, 'question', 'partials.no-events')
+
 
                     </div>
 
