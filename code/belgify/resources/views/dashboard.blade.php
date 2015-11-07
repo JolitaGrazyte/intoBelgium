@@ -4,9 +4,6 @@
 
 @section('content')
 
-    @include('partials.message')
-
-    @include('partials.errors')
 
         <div class="row">
 
@@ -18,7 +15,7 @@
 
             <div class="col-md-7">
 
-                <h1> {{ $title }} </h1>
+               @include('partials.page-head')
 
                 @if(Request::is('dashboard/my-events') )
 

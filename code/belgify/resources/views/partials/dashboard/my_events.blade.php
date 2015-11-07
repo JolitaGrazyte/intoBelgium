@@ -1,19 +1,21 @@
-@if(count($my_events))
+{{--@if(count($my_events))--}}
 
-    <h2>My events</h2>
+    {{--<h2>My events</h2>--}}
 
-    @foreach($my_events as $event)
+    {{--@foreach($my_events as $event)--}}
 
-        <div> {{ $event }} </div>
+        {{--<div> {{ $event }} </div>--}}
 
-        <div> Tags: @foreach($event->tags as $tag)
+        {{--<div> Tags: @foreach($event->tags as $tag)--}}
 
-                {{$tag->name}}
+                {{--{{$tag->name}}--}}
 
-            @endforeach
+            {{--@endforeach--}}
 
-        </div>
+        {{--</div>--}}
 
-    @endforeach
+    {{--@endforeach--}}
 
-@endif
+{{--@endif--}}
+
+@include('events.single',$my_events)

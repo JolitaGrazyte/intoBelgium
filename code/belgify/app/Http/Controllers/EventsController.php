@@ -62,8 +62,10 @@ class EventsController extends Controller
 
     public function eventData($event, $user_id){
 
-            $author = $event->author;
-            $start_date = $event->date;
+            $author         = $event->author;
+            $start_date     = $event->date;
+            $isAuthor       = $this->authUser->isAuthor($event->author);
+            $author_name    = $author->first_name.' '.$author->last_name;
 
 
         return [
@@ -76,8 +78,8 @@ class EventsController extends Controller
             'd'             =>  $start_date->format('d'), //date in format: day
             'fM'            =>  $start_date->format('F'), //date in format: full month
             'Y'             =>  $start_date->format('Y'), //date in format: year
-            'isAuthor'      =>  $user_id == $event->user_id ? true : false,
-            'author'        =>  $author->first_name.' '.$author->last_name,
+            'isAuthor'      =>  $isAuthor,
+            'author'        =>  $author_name,
             'attending'     =>  $this->userIsAttendingEvent($user_id, $event->id),
             'attenders'     =>  count($this->event->attenders),
             'location'      =>  !is_null($event->location) ? $event->location->name.', '.$event->location->postcode : ' '
@@ -190,6 +192,30 @@ class EventsController extends Controller
 
     }
 
+
+
+    /**
+     *
+     * Remove the specified resource from storage.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function delete()
+    {
+        try{
+            $event_id = session('eventDelete');
+            $this->event->destroy($event_id);
+            $this->flashMsg->successMessage('removed');
+        }
+        catch(QueryException $e){
+
+            $this->flashMsg->failMessage('removed!');
+        }
+        return redirect()->route('events.index');
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -198,9 +224,12 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        $this->event->destroy($id);
+        session('eventDelete', $id);
+        return redirect()->back()->with('confirmDelete', 'Are you sure you want to delete this item?');
 
-        return redirect()->route('events.index');
+//        $this->event->destroy($id);
+
+//        return redirect()->route('events.index');
     }
 
     /**

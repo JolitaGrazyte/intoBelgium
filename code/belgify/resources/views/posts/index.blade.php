@@ -6,13 +6,7 @@
 
     <div class="container">
 
-        @include('partials.message')
-
-        @include('partials.errors')
-
-        <h1>{{ $title }}</h1>
-
-        @include('partials.search')
+        @include('partials.page-head')
 
         <div>
             <a href="{{ route('posts.create') }}">Ask question</a>

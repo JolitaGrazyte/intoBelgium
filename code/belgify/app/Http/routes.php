@@ -59,3 +59,4 @@ post('search', ['as' => 'search', 'uses' => 'SearchController@search']);
 //Extra routes
 post('events/{id}',         ['as' => 'attend', 'uses' => 'EventsController@postAttend']);
 get('image/{id}/{size}',    ['as'=>'getImage',     'uses' => 'ProfileController@getImage' ]);
+get('/event/{id}/delete/confirm',  ['as' => 'event-delete',   'uses' => 'EventsController@delete']);

@@ -1,4 +1,5 @@
 <div class="col-md-2">
+    <hr>
 
     <div><a href="{{ route('posts.show', $post->id) }}">Answers: </a> <span> {{ $post->comments->count() }}</span></div>
 
@@ -7,6 +8,8 @@
 </div>
 
 <div class="col-md-10">
+
+    <hr>
 
     <div>
 
@@ -31,14 +34,17 @@
 
 </div>
 
+{{--{{ dd() }}--}}
 
 @if(!Auth::guest())
 
-    @if( Auth::user()->id == $post->user_id )
+    <div class="row col-md-offset-2">
 
-        <div class="row col-md-offset-2">
+        @if( !Auth::user()->isAuthor($post->author) )
 
             <div class="col-md-2"><a href="{{ route('comments.create') }}" class="btn btn-link">answer this question</a></div>
+
+        @else
 
             <div class="col-md-2"><a href="{{ route('posts.edit', $post->id) }}" class="btn btn-link">update this question</a></div>
 
@@ -59,8 +65,8 @@
 
             </div>
 
-        </div>
+        @endif
 
-    @endif
+    </div>
 
 @endif

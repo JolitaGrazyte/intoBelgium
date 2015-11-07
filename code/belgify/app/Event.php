@@ -67,7 +67,6 @@ class Event extends Model
 
     public function location(){
 
-        //ToDo: select like tags !!! http://www.postcodezoeker.be/Provincie/Antwerpen.php
         return $this->hasOne('App\Location', 'id', 'location_id');
     }
 

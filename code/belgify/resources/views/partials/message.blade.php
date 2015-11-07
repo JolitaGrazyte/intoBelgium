@@ -2,7 +2,8 @@
 
     <div class="alert {{ Session::get('alert-class', 'alert-info') }}">
 
-        {{ Session::get('message') }}
+        <button type="button" class="close" data-dismiss="alert" aria-hideen="true">&times;</button>
+        {{ session('message') }}
 
     </div>
 
