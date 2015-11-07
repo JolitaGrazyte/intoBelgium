@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Support\Facades\DB;
 
 class User extends Model implements AuthenticatableContract,
     AuthorizableContract,
@@ -119,6 +120,20 @@ class User extends Model implements AuthenticatableContract,
      return $this->id == $q->id;
 
     }
+
+    public function userIsAttendingEvent($user_id, $event_id)
+    {
+        return !is_null(
+
+            DB::table('event_user')
+                ->where('user_id', $user_id)
+                ->where('event_id', $event_id)
+                ->first()
+        );
+
+    }
+
+
 
 
 

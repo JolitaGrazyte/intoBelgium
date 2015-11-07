@@ -80,7 +80,7 @@ class EventsController extends Controller
             'Y'             =>  $start_date->format('Y'), //date in format: year
             'isAuthor'      =>  $isAuthor,
             'author'        =>  $author_name,
-            'attending'     =>  $this->userIsAttendingEvent($user_id, $event->id),
+            'attending'     =>  $this->authUser->userIsAttendingEvent($user_id, $event->id),
             'attenders'     =>  count($this->event->attenders),
             'location'      =>  !is_null($event->location) ? $event->location->name.', '.$event->location->postcode : ' '
 
@@ -261,7 +261,7 @@ class EventsController extends Controller
 
         $user = Auth::user();
 
-        $userIsAttendingEvent = $this->userIsAttendingEvent($user->id, $event->id);
+        $userIsAttendingEvent = $this->authUser->userIsAttendingEvent($user->id, $event->id);
 
         if(!$userIsAttendingEvent){
 
@@ -278,25 +278,6 @@ class EventsController extends Controller
         }
 
         return redirect()->back();
-
-    }
-
-
-    //TODO: move to model !!!!
-    /**
-     * @param $user_id
-     * @param $event_id
-     * @return bool
-     */
-    public function userIsAttendingEvent($user_id, $event_id)
-    {
-        return !is_null(
-
-            DB::table('event_user')
-                ->where('user_id', $user_id)
-                ->where('event_id', $event_id)
-                ->first()
-        );
 
     }
 

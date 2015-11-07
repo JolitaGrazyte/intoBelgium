@@ -5,7 +5,7 @@
 @section('content')
 
     <h1>Answer</h1>
-{{--    <h1>{{ $title }}</h1>--}}
+    {{--    <h1>{{ $title }}</h1>--}}
 
     <div class="container-fluid">
 
@@ -15,12 +15,12 @@
 
                 <div class="panel panel-default">
 
-                        @include('partials.errors')
+                    @include('partials.errors')
 
-                        <div>{{ $comment->body }}</div>
+                    <div>{{ $comment->body }}</div>
 
+                </div>
             </div>
         </div>
-    </div>
 
 @stop
