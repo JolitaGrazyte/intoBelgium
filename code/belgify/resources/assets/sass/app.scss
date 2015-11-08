@@ -1,6 +1,7 @@
 @import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 body{
+  //TODO: change to a WEB-FONT !!!
   font-family: "Avenir", sans-serif;
 }
 
@@ -139,20 +140,23 @@ body{
 
 .sidebar{
 
-  border: 1px red dotted;
-  margin: 2rem 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: 2.2rem 0 0 0;
+  color: #F7F7F9;
 
   .header{
-
-    padding: 2rem 0;
+    padding: 3rem;
     width: 100%;
     background-color: #c1272d;
     text-align: center;
-    margin: 0 0 2rem 0;
+    //margin: 0 0 2rem 0;
   }
   h2{
 
-    color: #F7F7F9;
+    font-weight: 600;
 
   }
 
@@ -160,7 +164,36 @@ body{
     list-style: none;
   }
 
+  .body{
+    padding: 2rem 0 0 0;
+    background-color: #222;
 
+    a, a:link, a:visited{
+      color: #F7F7F9;
+
+    }
+
+  }
+
+}
+
+.my-events-dates{
+
+  text-align: center;
+
+  .border-right{
+    border-right: 1px solid #f2f2f2;
+    min-height:13rem;
+    font-size: 2.8rem;
+
+    div:first-child{
+      font-size: 5.4rem;
+    }
+    div:last-child{
+      font-size: 2.5rem;
+    }
+
+  }
 
 
 }

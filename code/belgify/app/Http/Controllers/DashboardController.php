@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\FollowRequest;
+use App\Http\Requests\Request;
 use App\User;
 use Auth;
 use Session;
@@ -27,7 +27,7 @@ class DashboardController extends Controller
         return view('dashboard', compact('my_events', 'my_questions', 'i_follow', 'following'))->withTitle('Dashboard');
     }
 
-    public function postFollow(FollowRequest $request, $id){
+    public function postFollow(Request $request, $id){
 
 
             $user = User::find($id);

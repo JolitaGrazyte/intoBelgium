@@ -11,9 +11,11 @@
            <h2>{{ Auth::user()->username }}</h2>
    </div>
 
-    <ul>
-        <li><a href="{{ route('dashboard') }}">     Follow      </a></li>
-        <li><a href="{{ route('my-events') }}">     My Tours    </a></li>
-        <li><a href="{{ route('my-questions') }}">  Questions   </a></li>
-    </ul>
+   <div class="body">
+       <ul>
+           <li><a href="{{ route('dashboard') }}">     Follow      </a></li>
+           <li><a href="{{ route('my-events') }}">     My Tours    </a></li>
+           <li><a href="{{ route('my-questions') }}">  Questions   </a></li>
+       </ul>
+   </div>
 </div>

@@ -1,16 +1,18 @@
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-3 my-events-dates">
         <hr>
-        {{--TODO: MOVE INLINE STYLES !!!--}}
-        <div style="border-right: 1px solid #e3e3e3; min-height:13rem;">
-            <div style="font-size: 5rem">{{ $event->date->format('d') }}</div>
-            <div style="font-size: 2.5rem">{{ $event->date->format('M') }}</div>
-            <div style="font-size: 2.5rem">{{ $event->date->format('Y') }}</div>
+
+        <div class="border-right">
+
+            <div>{{ $event->date->format('d') }}</div>
+            <div>{{ $event->date->format('M') }}</div>
+            <div>{{ $event->date->format('Y') }}</div>
+
         </div>
 
     </div>
 
-    <div class="col-md-10">
+    <div class="col-md-9">
 
         <hr>
 
@@ -32,7 +34,7 @@
 
             {{-- TODO: WRITE CLASSES FOR BUTTONS --}}
 
-            {!! Form::submit(Auth::user()->userIsFollowing(Auth::user()->id, $event->author->id)?'Following':'Follow', ['class' =>'btn btn-primary btn-follow']) !!}
+            {!! Form::submit(Auth::user()->userIsFollowing(Auth::user()->id, $event->author->id)?'Following':'Follow', ['class' => !Auth::user()->userIsFollowing(Auth::user()->id, $event->author->id)?'btn-follow btn btn-primary':'btn btn-primary ']) !!}
 
         </div>
 
