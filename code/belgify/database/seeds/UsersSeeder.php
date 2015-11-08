@@ -21,7 +21,8 @@ class UsersSeeder extends Seeder
                 'username'      =>  'Jolita Grazyte',
                 'email'         =>  'jolita.grazyte@student.kdg.be',
                 'password'      =>  Hash::make('testing'),
-                'location_id'   =>  1
+                'location_id'   =>  1,
+                'role'          =>  1
 
             ]
         ];

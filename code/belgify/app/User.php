@@ -39,9 +39,9 @@ class User extends Model implements AuthenticatableContract,
     protected $hidden = ['password', 'remember_token'];
 
 
-    public function follower(){
+    public function following(){
 
-        return $this->belongsToMany('App\User', 'user_follower', 'user_id', 'follower_id');
+        return $this->belongsToMany('App\User', 'user_follower', 'user_id', 'follower_id')->withTimestamps();
 
     }
 
@@ -134,6 +134,17 @@ class User extends Model implements AuthenticatableContract,
     }
 
 
+    public function userIsFollowing($user_id, $follower_id)
+    {
+        return !is_null(
+
+            DB::table('user_follower')
+                ->where('user_id', $user_id)
+                ->where('follower_id', $follower_id)
+                ->first()
+        );
+
+    }
 
 
 

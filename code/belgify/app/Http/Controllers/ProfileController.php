@@ -35,7 +35,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        return view('partials.dashboard.following');
     }
 
     /**
@@ -138,14 +138,4 @@ class ProfileController extends Controller
             return redirect()->route('profile.show', $id)->withMessage('Successfully saved!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
