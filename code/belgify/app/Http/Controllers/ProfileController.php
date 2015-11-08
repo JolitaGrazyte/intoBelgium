@@ -48,6 +48,7 @@ class ProfileController extends Controller
      */
     public function show($username)
     {
+
         $user_name = str_replace('-', ' ', $username);
         $user       = $this->user->where('username', $user_name)->first();
         $location   = $user->location;
@@ -101,6 +102,7 @@ class ProfileController extends Controller
 
         $user->update($request->all());
 
+
         if($request->file('image')){
 
             try{
@@ -117,7 +119,9 @@ class ProfileController extends Controller
             }
         }
 
-        $username = $user->first_name.'-'.$user->last_name;
+        $username = str_replace('-', ' ', $user->username);
+
+//        dd($username);
 
             return redirect()->route('profile.show', $username)->withMessage('Successfully saved!');
     }
