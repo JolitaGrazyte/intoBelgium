@@ -68,7 +68,8 @@ class ProfileController extends Controller
      */
     public function show($username)
     {
-        $user       = $this->user->where('username', $username)->first();
+        $user_name = str_replace('-', ' ', $username);
+        $user       = $this->user->where('username', $user_name)->first();
         $location   = $user->location;
         $avatar     = $user->avatar;
 
@@ -137,7 +138,9 @@ class ProfileController extends Controller
             }
         }
 
-            return redirect()->route('profile.show', $id)->withMessage('Successfully saved!');
+        $username = $user->first_name.'-'.$user->last_name;
+
+            return redirect()->route('profile.show', $username)->withMessage('Successfully saved!');
     }
 
 }

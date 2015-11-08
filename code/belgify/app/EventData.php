@@ -37,7 +37,7 @@ class EventData
             'starts_at'     =>  $start_date->format('H:i'),
             'description'   =>  str_limit($event->description, 100, ''),
             'd'             =>  $start_date->format('d'), //date in format: day
-            'fM'            =>  $start_date->format('F'), //date in format: full month
+            'M'             =>  $start_date->format('M'), //date in format: month (short)
             'Y'             =>  $start_date->format('Y'), //date in format: year
             'isAuthor'      =>  $isAuthor,
             'author'        =>  $author_name,

@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-3 my-events-dates">
+    <div class="col-md-3 events-dates">
         <hr>
 
         <div class="border-right">
@@ -17,6 +17,8 @@
         <hr>
 
         <h2> {{ $event->title }}</h2>
+
+        {{--TODO: remove inline styles--}}
         <em style="color: darkgray">{{ $event->created_at->toDayDateTimeString() }}</em>
         <p> {{ $event->description }} </p>
 
@@ -31,8 +33,6 @@
             {{--TODO: Remove method to a better place--}}
 
             {!! Form::hidden('follow', Auth::user()->userIsFollowing(Auth::user()->id, $event->author->id)?0:1, ['class' => '', 'onchange' => 'this.form.submit())']) !!}
-
-            {{-- TODO: WRITE CLASSES FOR BUTTONS --}}
 
             {!! Form::submit(Auth::user()->userIsFollowing(Auth::user()->id, $event->author->id)?'Following':'Follow', ['class' => !Auth::user()->userIsFollowing(Auth::user()->id, $event->author->id)?'btn-follow btn btn-primary':'btn btn-primary ']) !!}
 
