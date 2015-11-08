@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FollowRequest;
 use App\User;
 use Auth;
-use App\Http\Requests;
 use Session;
+
 
 class DashboardController extends Controller
 {
@@ -18,7 +19,6 @@ class DashboardController extends Controller
     public function index()
     {
         $user           =   Auth::user();
-        $following      =   true;
         $my_events      =   $user->events_attending;
         $my_questions   =   $user->posts;
         $i_follow       =   $user->following;
@@ -27,19 +27,21 @@ class DashboardController extends Controller
         return view('dashboard', compact('my_events', 'my_questions', 'i_follow', 'following'))->withTitle('Dashboard');
     }
 
-    public function postFollow($id){
+    public function postFollow(FollowRequest $request, $id){
+
 
             $user = User::find($id);
 
             $follower = Auth::user();
 
-            $userIsFollowing = $follower->userIsFollowing($user->id, $follower->id);
+//            $userIsNotFollowing = $follower->userIsFollowing($user->id, $follower->id);
 
-            if(!$userIsFollowing){
+            if($request->get('follow')){
 
                 $follower->following()->attach($user->id);
 
                 Session::flash('message', 'Now you are following:  '.$user->username.'.');
+
             }
             else{
 

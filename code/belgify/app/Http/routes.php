@@ -62,4 +62,4 @@ post('events/{id}',             ['as' => 'attend',          'uses' => 'EventsCon
 get('image/{id}/{size}',        ['as'=>'getImage',          'uses' => 'ProfileController@getImage' ]);
 get('/events/delete-confirm',   ['as' => 'event-delete',    'uses' => 'EventsController@delete_confirm']);
 
-post('user/{id}', ['as' => 'follow',          'uses' => 'DashboardController@postFollow']);
+post('dashboard/{id}', ['as' => 'follow', 'uses' => 'DashboardController@postFollow']);

@@ -117,6 +117,8 @@ class ProfileController extends Controller
 
         $user = $this->user->find($id);
 
+//        dd($request->all());
+
         $user->update($request->all());
 
         if($request->file('image')){

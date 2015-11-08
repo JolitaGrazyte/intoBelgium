@@ -114,7 +114,6 @@ class User extends Model implements AuthenticatableContract,
 
     }
 
-
     public function isAuthor($q){
 
      return $this->id == $q->id;
