@@ -85,7 +85,8 @@ class ProfileController extends Controller
      */
     public function edit($username)
     {
-        $user       = $this->user->where('username', $username)->first();
+        $user_name  = str_replace('-', ' ', $username);
+        $user       = $this->user->where('username', $user_name)->first();
         $locations  = $this->location->locations();
         $location   = $user->location;
         $avatar     = $user->avatar;
@@ -121,6 +122,10 @@ class ProfileController extends Controller
 //        dd($request->all());
 
         $user->update($request->all());
+
+        dd($request->get('locations'));
+
+        $user->location()->attach($request->get('locations'));
 
         if($request->file('image')){
 

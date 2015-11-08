@@ -23,7 +23,7 @@
 
             <div class="header">
 
-                <div class=""> <a href="{{ route('profile.edit',str_replace('%20', '-', Auth::user()->username) ) }}">Edit your profile</a> </div>
+                <div class=""> <a href="{{ route('profile.edit', str_replace(' ', '-', Auth::user()->username) ) }}">Edit your profile</a> </div>
 
             </div>
 
@@ -52,13 +52,11 @@
 
                 <div class="">
 
-                    {{ isset($location->name)?$location->name:null }}
+                    {{ isset($user->location)?$user->location->name:null }}
 
                 </div>
 
             </div>
-
-
 
         </div>
 
