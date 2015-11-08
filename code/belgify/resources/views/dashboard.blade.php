@@ -4,9 +4,6 @@
 
 @section('content')
 
-    @include('partials.message')
-
-    @include('partials.errors')
 
         <div class="row">
 
@@ -18,13 +15,15 @@
 
             <div class="col-md-7">
 
-                <h1> {{ $title }} </h1>
+               @include('partials.page-head')
 
                 @if(Request::is('dashboard/my-events') )
 
                     <div>
 
-                        @include('partials.dashboard.my_events')
+                        <h1>My tours</h1>
+
+                        @each('partials.dashboard.my_event', $my_events, 'event', 'events.no-events')
 
                     </div>
 
@@ -32,7 +31,10 @@
 
                     <div>
 
-                        @include('partials.dashboard.my_questions')
+                        <h2>My questions</h2>
+
+                        @each('partials.dashboard.my_question', $my_questions, 'question', 'partials.no-events')
+
 
                     </div>
 

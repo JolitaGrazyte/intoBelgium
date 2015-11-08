@@ -12,27 +12,37 @@ class PostsSeeder extends Seeder
     public function run()
     {
         DB::table('posts')->delete();
+        $now = \Carbon\Carbon::now();
 
         $posts = [
             [
                 'title'      => 'Question 1',
                 'body'       => 'question question question question',
-                'user_id'    =>  1
+                'user_id'    =>  1,
+                'created_at' => $now,
+                'updated_at'  => $now
+
             ],
             [
                 'title'      => 'Question 2',
                 'body'       => 'question question question question',
-                'user_id'    =>  1
+                'user_id'    =>  1,
+                'created_at' => $now,
+                'updated_at'  => $now
             ],
             [
                 'title'      => 'Question 3',
                 'body'       => 'question question question question',
-                'user_id'    =>  1
+                'user_id'    =>  2,
+                'created_at' => $now,
+                'updated_at'  => $now
             ],
             [
                 'title'      => 'Question 4',
                 'body'       => 'question question question question',
-                'user_id'    =>  1
+                'user_id'    =>  3,
+                'created_at' => $now,
+                'updated_at'  => $now
             ],
 
         ];

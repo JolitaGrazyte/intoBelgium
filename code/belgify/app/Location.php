@@ -12,5 +12,21 @@ class Location extends Model
 
     protected $primaryKey = "id";
 
+    /**
+     * @return mixed
+     */
+    public function locations(){
+
+        $locations = [];
+
+        $dbLocations  = $this->get();
+
+        foreach($dbLocations as $location){
+
+            $locations[$location->id] = $location->name.', '.$location->postcode;
+        }
+        return $locations;
+    }
+
 
 }

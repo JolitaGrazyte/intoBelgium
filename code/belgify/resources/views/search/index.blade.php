@@ -8,16 +8,11 @@
 
         @include('partials.page-head')
 
-        <div>
-            <a href="{{ route('posts.create') }}">Ask question</a>
-        </div>
-
         <div class="row">
 
-            @if(isset($posts))
+            @if(isset($search_results))
 
-
-                @each('posts.single', $posts, 'post', 'posts.no-posts')
+                @each('search.single', $search_results, 'search_result', 'search.no-results')
 
             @endif
 

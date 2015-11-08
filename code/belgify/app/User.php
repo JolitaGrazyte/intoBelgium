@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Support\Facades\DB;
 
 class User extends Model implements AuthenticatableContract,
     AuthorizableContract,
@@ -37,9 +38,11 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
-    public function followers(){
 
-        $this->hasMany('App\Follower', 'user_id_1', 'user_id_2');
+    public function follower(){
+
+        return $this->belongsToMany('App\User', 'user_follower', 'user_id', 'follower_id');
+
     }
 
     /**
@@ -110,6 +113,29 @@ class User extends Model implements AuthenticatableContract,
         return $this->role == 1 ? true : false; // role 1 = LOCAL
 
     }
+
+
+    public function isAuthor($q){
+
+     return $this->id == $q->id;
+
+    }
+
+    public function userIsAttendingEvent($user_id, $event_id)
+    {
+        return !is_null(
+
+            DB::table('event_user')
+                ->where('user_id', $user_id)
+                ->where('event_id', $event_id)
+                ->first()
+        );
+
+    }
+
+
+
+
 
 
 }

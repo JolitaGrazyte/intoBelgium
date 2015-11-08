@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class EventRequest extends Request
+class SearchJsonRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,9 +13,7 @@ class EventRequest extends Request
      */
     public function authorize()
     {
-        if ( \Auth::check('auth')) {
-            return true;
-        }
+        return true;
     }
 
     /**
@@ -26,11 +24,7 @@ class EventRequest extends Request
     public function rules()
     {
         return [
-            'title'         => 'required|max:255',
-            'date'          => 'required|date',
-            'description'   => 'required',
-            'location'      => 'required'
-
+            //
         ];
     }
 }

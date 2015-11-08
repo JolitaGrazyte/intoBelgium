@@ -2,16 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\SearchJsonRequest;
 use App\Http\Requests;
 use App\Event;
 use App\Post;
+use App\Tag;
+use Illuminate\Support\Facades\Response;
 
 class SearchController extends Controller
 {
 
 
-    public function search( Request $request ){
+    public function getAutocomplete( SearchJsonRequest $request ){
+
+        $term = $request->get('term');
+
+        $tours = Event::all();
+        $posts = Post::all();
+        $tags = Tag::all();
+
+        $results = [];
+
+        foreach ($tours as $tour)
+        {
+            $results[] = [ 'id' => $tour->id, 'value' => $tour->title, 'model' => 'events'];
+        }
+
+
+        foreach ($posts as $post)
+        {
+            $results[] = [ 'id' => $post->id, 'value' => $post->title, 'model' => 'posts'];
+        }
+
+        foreach ($tags as $tag)
+        {
+            $results[] = [ 'id' => $tag->id, 'value' => $tag->name];
+        }
+
+        return Response::json($results);
+    }
+
+
+
+
+    public function search( SearchJsonRequest $request ){
 
         $keyword = $request->get('keyword');
 
@@ -20,10 +54,12 @@ class SearchController extends Controller
         $tours      = $this->searchTours($keyword);
         $questions  = $this->searchQuestions($keyword);
 
+        $search_results = $this->searchTours($keyword);
 //        dd($questions);
 
-        return [$tours, $questions];
+//        return [$tours, $questions];
 
+        return view('search.index', compact('search_results'))->withTitle('Search result');
     }
 
     public function searchTours($keyword){

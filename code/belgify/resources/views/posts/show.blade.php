@@ -4,38 +4,30 @@
 
 @section('content')
 
-    <h1>Answers</h1>
-
-{{--    <h1>{{ $title }}</h1>--}}
-
-    <div class="container-fluid">
+    <div class="container">
 
         <div class="row">
 
+            @include('partials.page-head')
+
             <div class="col-md-10">
 
-                <div class="panel panel-default">
+                <strong><em> {{ $post->title }} </em></strong>
 
-                    <div class="panel-heading">Answer</div>
+                <p><em> posted on: {{ $post->created_at->diffforHumans() }}</em></p>
 
-                    <div class="panel-body">
+                <p>{{ $post->body }}</p>
 
-                        @include('partials.errors')
+                @foreach($answers as $answer)
 
-                        <strong><em> {{ $post->title }} </em></strong>
+                    <p><a href="{{ route('comments.show', [$answer->id]) }}">{{ $answer->id.'. '.$answer->body }}</a></p>
 
-                        <div>{{ $post->body }}</div>
+                @endforeach
 
-                        @foreach($answers as $answer)
-
-                            <div><a href="">{{ $answer->id.'. '.$answer->body }}</a></div>
-
-                        @endforeach
-
-                    </div>
-                </div>
             </div>
+
         </div>
+
     </div>
 
 @stop

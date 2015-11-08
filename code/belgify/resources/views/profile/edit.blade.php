@@ -22,7 +22,7 @@
 
                         @include('partials.errors')
 
-                        {!!Form::open(['route' => ['profile.update', $id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH', 'files' => true])  !!}
+                        {!!Form::open(['route' => ['profile.update', $user->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH', 'files' => true])  !!}
 
                         <div class="form-group">
 

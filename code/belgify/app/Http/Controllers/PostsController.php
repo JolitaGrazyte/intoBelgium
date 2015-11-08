@@ -42,22 +42,8 @@ class PostsController extends Controller
         $user       =   $this->authUser;
         $user_id    =   !is_null($user) ? $user->id : 0;
 
-        $postData = [];
 
-       if(count($posts)){
-
-           foreach($posts as $post){
-
-               $postData = [
-
-               ];
-
-               $votes[$post->id] = count($post->votes);
-        }
-
-       }
-
-        return view('posts.index', compact('posts', 'votes'))->withTitle('Questions');
+        return view('posts.index', compact('posts'))->withTitle('Questions');
     }
 
     /**
@@ -106,13 +92,8 @@ class PostsController extends Controller
         $post       = $this->post->find($id);
         $answers    = $post->comments;
 
-        foreach($answers as $answer){
 
-            //TODO votes !!!
-            //votes
-        }
-
-        return view('posts.show', compact('answers', 'id', 'post', 'votes'));
+        return view('posts.show', compact('answers', 'id', 'post'))->withTitle('Answers');
     }
 
     /**
@@ -192,16 +173,6 @@ class PostsController extends Controller
 
     }
 
-    /**
-     * Check if session exist and return it.
-     * @param $q
-     * @return mixed
-     */
-    public function session($q){
-
-        if( Session::has($q))
-            return Session::get($q);
-    }
 
 
     public function postFill($post, $request, $msg){

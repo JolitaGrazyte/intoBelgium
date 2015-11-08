@@ -149,6 +149,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class
 
     ],
 
@@ -203,6 +204,7 @@ return [
         'Html'              => Collective\Html\HtmlFacade::class,
         'Socialize'         => Laravel\Socialite\Facades\Socialite::class,
         'ImgIntervention'   => Intervention\Image\ImageServiceProvider::class,
+        'Flash'             => Laracasts\Flash\Flash::class
 
     ],
 

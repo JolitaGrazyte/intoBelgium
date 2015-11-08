@@ -22,7 +22,7 @@
                         Your profile
 
                         <span class="navbar-right">
-                            <a href="{{ route('profile.edit', Auth::user()->id) }}">
+                            <a href="{{ route('profile.edit', Auth::user()->username) }}">
                                 Edit your profile
                             </a>
                         </span>

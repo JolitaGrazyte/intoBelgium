@@ -1,27 +1,13 @@
 <?php
 
-use Illuminate\Database\Seeder;
-
-class LocationsSeeder extends Seeder
+/**
+ * Created by PhpStorm.
+ * User: jolita_pabludo
+ * Date: 28/10/15
+ * Time: 11:25
+ */
+class FileParse
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        DB::table('locations')->delete();
-
-
-        $file = public_path('files').'/provincies.csv';
-
-        $locations = $this->parse_csv($file);
-
-//        dd($locations);
-
-        DB::table('locations')->insert($locations);
-    }
 
     function parse_csv($file, $options = null) {
 
@@ -39,11 +25,12 @@ class LocationsSeeder extends Seeder
             $fields = explode($delimiter, $line);
             foreach ($field_names as $key => $f) {
 
-                    $result[$f] = $fields[$key];
+                $result[$f] = $fields[$key];
             }
             $res[] = $result;
         }
 
         return $res;
     }
+
 }
