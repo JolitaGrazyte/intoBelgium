@@ -1,9 +1,15 @@
 <div class="col-md-2">
     <hr>
 
-    <div><a href="{{ route('posts.show', $post->id) }}">Answers: </a> <span> {{ $post->comments->count() }}</span></div>
+    <div class="col-md-6">
+        <div> {{ $post->comments->count() }}</div>
+        <div><a href="{{ route('posts.show', $post->id) }}">answers </a> </div>
+    </div>
 
-    <div>VOTES: <span>{{ $post->votes->count() }}</span></div>
+    <div class="col-md-6">
+        <div>{{ $post->votes->count() }}</div>
+        <div>votes</div>
+    </div>
 
 </div>
 
@@ -14,18 +20,17 @@
     <div>
 
         <h4><a href="{{route('posts.show', $post->id)}}"> {{ $post->title }} </a></h4>
-        <p>posted by: {{ $post->author->first_name }} {{ $post->author->last_name }}</p>
-        <p>    <em> {{ $post->created_at->diffforHumans() }} </em></p>
+        <p>posted by: {{ $post->author->first_name }} {{ $post->author->last_name }}, <em> {{ $post->created_at->diffforHumans() }} </em></p>
         <p> {{ $post->body }}</p>
 
     </div>
 
     <div>
         @if(count($post->tags))
-            Tags:
+
             @foreach($post->tags as $tag)
 
-                {{ $tag->name }}
+                <a href="">{{ $tag->name }}</a>
 
             @endforeach
 
@@ -34,7 +39,6 @@
 
 </div>
 
-{{--{{ dd() }}--}}
 
 @if(!Auth::guest())
 

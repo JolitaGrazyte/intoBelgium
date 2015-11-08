@@ -1,12 +1,14 @@
-@if(count($i_follow))
 
-    <h2>I'm following</h2>
+<div class="col-md-3 following">
+    <div class="">
+        @if($followed->avatar)
 
-    @foreach($i_follow as $user)
+            <img class="avatars followed-avatar" src="{{ route('getImage', [$followed->avatar->filename,  'small'] ) }}" alt="{{ $followed->avatar->name }}">
 
-        <div> {{ $user->username }} | {{ $user->first_name }} {{ $user->last_name }}</div>
+        @endif
+    </div>
 
-
-    @endforeach
-
-@endif
+    <div>
+        <div class="followed-username"> {{ $followed->username }} </div>
+    </div>
+</div>

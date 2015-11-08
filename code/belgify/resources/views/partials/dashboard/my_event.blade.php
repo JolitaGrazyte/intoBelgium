@@ -21,6 +21,22 @@
 
         <p> Posted by: {{ $event->author->username }}, <em>{{ $event->created_at->diffforHumans() }}</em> </p>
 
+        {!!Form::open(['route' => ['follow', $event->author->id], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+
+        <div class="form-group">
+
+            {{--TODO: Remove method to a better place--}}
+
+            {!! Form::hidden('follow', Auth::user()->userIsFollowing(Auth::user()->id, $event->author->id)?0:1, ['class' => '', 'onchange' => 'this.form.submit())']) !!}
+
+            {{-- TODO: WRITE CLASSES FOR BUTTONS --}}
+
+            {!! Form::submit(Auth::user()->userIsFollowing(Auth::user()->id, $event->author->id)?'Following':'Follow', ['class' => !Auth::user()->userIsFollowing(Auth::user()->id, $event->author->id)?'btn-follow btn btn-primary':'btn btn-primary ']) !!}
+
+        </div>
+
+        {!!Form::close() !!}
+
 
     </div>
 </div>

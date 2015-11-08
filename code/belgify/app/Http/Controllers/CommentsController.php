@@ -54,7 +54,7 @@ class CommentsController extends Controller
      */
     public function store( Request $request )
     {
-        //
+        $this->comment->create($request->all());
     }
 
     /**
@@ -95,7 +95,8 @@ class CommentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comment = $this->comment->find($id);
+        $comment->update($id);
     }
 
     /**
@@ -106,6 +107,6 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 }

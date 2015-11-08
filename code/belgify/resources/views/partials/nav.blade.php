@@ -44,7 +44,7 @@
                     <li>
                         @if( Auth::user()->avatar )
 
-                            <img src="{{ route('getImage', [Auth::user()->avatar->filename, 'x-small']) }}" alt="{{  Auth::user()->avatar->name }}" width="50">
+                            <img class="avatars" src="{{ route('getImage', [Auth::user()->avatar->filename, 'x-small']) }}" alt="{{  Auth::user()->avatar->name }}" width="40">
 
                         @endif
                     </li>

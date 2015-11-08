@@ -22,15 +22,21 @@
 
        @if(Auth::user()->isLocal())
 
-           <div><a href="{{ route('events.create') }}">Add new event</a></div>
+           <h3><a href="{{ route('events.create') }}">Add new event</a></h3>
 
        @endif
 
        <div class="row">
 
+           {{--@if(isset($events))--}}
+
+               {{--@each('partials.dashboard.my_event', $events, 'event')--}}
+
+           {{--@endif--}}
+
            @if(isset($eventsData))
 
-               @each('events.single', $eventsData, 'event', 'no-events')
+               @each('events.single', $eventsData, 'event', 'events.no-events')
 
            @endif
 

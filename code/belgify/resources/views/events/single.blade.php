@@ -21,6 +21,8 @@
 
     <div><em>Location: </em>{{ $event['location'] }}</div>
 
+    <div class="row">
+
     <div class="col-md-12">
         @if(!$event['isAuthor'])
 
@@ -31,9 +33,7 @@
 
                 {!! Form::hidden('going', $event['attending'], ['class' => '', 'onchange' => 'this.form.submit())']) !!}
 
-                {{-- TODO: WRITE CLASSES FOR BUTTONS --}}
-
-                {!! Form::submit(($event['attending'])?'Attending':'Attend', ['class' => $event['attending']? 'btn' : 'btn  btn-primary btn-search']) !!}
+                {!! Form::submit(($event['attending'])?'Attending':'Attend', ['class' => $event['attending']? 'btn' : 'btn  btn-primary btn-attend']) !!}
 
             </div>
 
@@ -41,26 +41,37 @@
 
         @endif
     </div>
+</div>
 
-    <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
 
-        {{ $event['attenders'] }} people attending this event.
+            @if(count($event['attenders']))
+
+                {{ $event['attenders'] > 1 ? $event['attenders']. ' people attending this event.' : $event['attenders'].' person attending this event.' }}
+
+            @endif
+        </div>
     </div>
 
 
-    @if( $event['isAuthor'] )
+    <div class="row">
 
-        <a href="{{ route('events.edit', $event['id']) }}" class="col-md-2 col-lg-offset-6 btn btn-link">update this event</a>
+        @if( $event['isAuthor'] )
 
-        {!!Form::open(['route' => ['events.destroy', $event['id']], 'class' => 'form-horizontal col-md-2', 'id'=>$event['id'], 'role' => 'form', 'method' => 'DELETE'])  !!}
+            <a href="{{ route('events.edit', $event['id']) }}" class="col-md-2 col-lg-offset-6 btn btn-link">update this event</a>
 
-
-        {!! Form::submit('YES', ['class' => 'btn btn-link']) !!}
-
-
-        {!!Form::close() !!}
+            {!!Form::open(['route' => ['events.destroy', $event['id']], 'class' => 'form-horizontal col-md-2', 'id'=>$event['id'], 'role' => 'form', 'method' => 'DELETE'])  !!}
 
 
-    @endif
+            {!! Form::submit('delete', ['class' => 'btn btn-link']) !!}
+
+
+            {!!Form::close() !!}
+
+
+        @endif
+
+    </div>
 
 </div>

@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with('terms', Event::all());
         });
+
     }
 
     /**

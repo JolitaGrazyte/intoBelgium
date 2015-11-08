@@ -61,3 +61,5 @@ get('search-json', ['as' => 'search-json', 'uses' => 'SearchController@getAutoco
 post('events/{id}',             ['as' => 'attend',          'uses' => 'EventsController@postAttend']);
 get('image/{id}/{size}',        ['as'=>'getImage',          'uses' => 'ProfileController@getImage' ]);
 get('/events/delete-confirm',   ['as' => 'event-delete',    'uses' => 'EventsController@delete_confirm']);
+
+post('dashboard/{id}', ['as' => 'follow', 'uses' => 'DashboardController@postFollow']);

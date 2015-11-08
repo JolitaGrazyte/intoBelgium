@@ -44,6 +44,14 @@
                     @elseif(Request::is('dashboard') )
 
                         <div>
+                    <div>
+                        @if(count($i_follow))
+
+                            <h2>I'm following</h2>
+
+                            @each('partials.dashboard.following', $i_follow, 'followed', 'partials.no-events')
+
+                        @endif
 
                             @include('partials.dashboard.following')
 
