@@ -5,49 +5,54 @@
 @section('content')
 
 
-        <div class="row">
+        <div class="row dashboard">
 
-            <div class="col-md-2">
+            <div class="col-md-3 side-nav">
 
                 @include('partials.side-nav')
 
             </div>
 
-            <div class="col-md-7">
+            <div class="col-md-9">
 
                @include('partials.page-head')
 
-                @if(Request::is('dashboard/my-events') )
+                <div class="container">
+                    @include('partials.search')
 
-                    <div>
+                    @if(Request::is('dashboard/my-events') )
 
-                        <h1>My tours</h1>
+                        <div>
 
-                        @each('partials.dashboard.my_event', $my_events, 'event', 'events.no-events')
+                            <h1>My tours</h1>
 
-                    </div>
+                            @each('partials.dashboard.my_event', $my_events, 'event', 'events.no-events')
 
-                @elseif(Request::is('dashboard/my-questions') )
+                        </div>
 
-                    <div>
+                    @elseif(Request::is('dashboard/my-questions') )
 
-                        <h2>My questions</h2>
+                        <div>
 
-                        @each('partials.dashboard.my_question', $my_questions, 'question', 'partials.no-events')
+                            <h1>My questions</h1>
+
+                            @each('partials.dashboard.my_question', $my_questions, 'question', 'partials.no-events')
 
 
-                    </div>
+                        </div>
 
-                @elseif(Request::is('dashboard') )
+                    @elseif(Request::is('dashboard') )
 
-                    <div>
+                        <div>
 
-                        @include('partials.dashboard.following')
+                            @include('partials.dashboard.following')
 
-                    </div>
+                        </div>
 
-                @endif
+                    @endif
+                </div>
             </div>
+
 
         </div>
 
