@@ -48,10 +48,25 @@
 
         <div class="row">
             <div class="col-md-12">
+                @if(count($event['tags']))
+
+                    <ul>
+                    @foreach($event['tags'] as $tag)
+
+                        <li><a href="">{{ $tag->name }}</a></li>
+
+                    @endforeach
+                    </ul>
+                @endif
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
 
                 @if(count($event['attenders']))
 
-                    {{ $event['attenders'] > 1 ? $event['attenders']. ' people attending this event.' : $event['attenders'].' person attending this event.' }}
+                    {{ $event['attenders'] == 1 ? $event['attenders']. ' person is attending this event.' : $event['attenders'].' people are attending this event.' }}
 
                 @endif
             </div>

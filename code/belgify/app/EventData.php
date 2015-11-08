@@ -28,7 +28,6 @@ class EventData
         $isAuthor       = Auth::user()->isAuthor( $author);
         $author_name    = $author->first_name.' '.$author->last_name;
 
-
         return [
 
             'id'            =>  $event->id,
@@ -43,7 +42,8 @@ class EventData
             'author'        =>  $author_name,
             'attending'     =>  Auth::user()->userIsAttendingEvent($user_id, $event->id),
             'attenders'     =>  count($event->attenders),
-            'location'      =>  !is_null($event->location) ? $event->location->name.', '.$event->location->postcode : ' '
+            'location'      =>  !is_null($event->location) ? $event->location->name.', '.$event->location->postcode : ' ',
+            'tags'          =>  $event->tags
 
         ];
     }

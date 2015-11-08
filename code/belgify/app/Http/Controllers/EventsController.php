@@ -47,7 +47,7 @@ class EventsController extends Controller
     public function index()
     {
         $event      =   $this->event;
-        $events     =   $event->latest('created_at')->get();
+        $events     =   $event->oldest('date')->get();
         $user       =   $this->authUser;
         $user_id    =   !is_null($user) ? $user->id : 0;
 
@@ -130,11 +130,11 @@ class EventsController extends Controller
             $locations  = $this->location->locations();
             $location   = ['id' => $event->location->id, 'name' => $event->location->name.', '.$event->location->postcode];
             $tags       = $this->tag->lists('name', 'id');
-            $evnt_tags  = $event->tags->lists('id')->all();
+            $now        = Carbon::now();
 
             $date = $event->date->format('d/m/Y H:i');
 
-            return view('events.edit', compact('locations', 'tags', 'event', 'id', 'evnt_tags', 'location', 'date'))->withTitle('Edit event');
+            return view('events.edit', compact('locations', 'tags', 'event', 'id', 'evnt_tags', 'location', 'date', 'now'))->withTitle('Edit event');
         }
 
         else return redirect()->route('events.index')->with("message", "Can't update, not your event!");

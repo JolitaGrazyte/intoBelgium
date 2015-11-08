@@ -4,161 +4,51 @@
 
 @section('content')
 
-    <h1>{{ $title }}</h1>
+    <div class="row">
 
-    <div class="container-fluid">
+        <div class="col-md-2">
 
-        <div class="row">
+            @include('partials.side-nav')
 
-            <div class="col-md-10">
+        </div>
 
-                <div class="panel panel-default">
+        <div class="col-md-6">
 
-                    <div class="panel-heading">Ask a question</div>
+            <h1>{{ $title }}</h1>
 
-                    <div class="panel-body">
+            <div class="panel panel-default">
 
-                        @include('partials.errors')
+                <div class="panel-body">
 
-                        {!!Form::open(['route' => 'events.store', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+                    @include('partials.errors')
 
+                    {!!Form::open(['route' => 'events.store', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
-                        {{--<div class="row">--}}
-                            {{--<div class="col-md-12">--}}
-                                {{--<h6>datetimepicker1</h6>--}}
+                    @include('events.form')
 
-                                {{--<div class="form-group">--}}
-                                    {{--<div class="input-group date" id="datetimepicker1">--}}
-                                        {{--<input type="text" class="form-control" />	<span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<h6>datetimepicker2</h6>--}}
+                    <div class="form-group">
 
-                                {{--<input type="text" class="form-control" id="datetimepicker2" />--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+                        <div class="col-md-10 col-md-offset-2">
 
-                        <div class="form-group">
-
-                            {!! Form::label('title', 'Title', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-                                {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'title']) !!}
-
-                            </div>
+                            {!! Form::submit('Post', ['class' => 'btn btn-primary form-control']) !!}
 
                         </div>
-
-                        <div class="form-group">
-
-                            {!! Form::label('date', 'Date and time', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="input-group date col-md-9" id="datetimepicker">
-                                {!! Form::text('date', null, ['class' => 'form-control', 'placeholder' => $now]) !!}
-
-                                {{--{!! Form::text('date', \Carbon\Carbon::now()->format('d/m/Y'), ['class' => 'col-md-10 form-control']) !!}--}}
-                                <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
-
-                            </div>
-                        </div>
-
-                        {{--<div class="form-group">--}}
-
-                            {{--{!! Form::label('date', 'Date', ['class' => 'col-md-2 control-label']) !!}--}}
-
-                            {{--<div class="col-md-10">--}}
-
-                                {{--{!! Form::text('date', \Carbon\Carbon::now()->format('d/m/Y'), ['id' => 'datetimepicker', 'class' => 'form-control']) !!}--}}
-                                {{--<span class="glyphicon-calendar glyphicon"></span>--}}
-
-                            {{--</div>--}}
-
-                        {{--</div>--}}
-
-                        {{--<div class="form-group">--}}
-
-                            {{--{!! Form::label('start_time', 'Start time', ['class' => 'col-md-2 control-label']) !!}--}}
-
-                            {{--<div class="col-md-10">--}}
-
-                                {{--{!! Form::input('time', 'start_time',  \Carbon\Carbon::now()->format('H:m'),  ['class' => 'col-md-2 control-label']) !!}--}}
-
-                            {{--</div>--}}
-
-                        {{--</div>--}}
-
-                        <div class="form-group">
-
-                            {!! Form::label('description', 'Description', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-                                {!! Form::textarea('description', null, ['class' => 'form-control',  'placeholder' => 'type a description in here']) !!}
-
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            {!! Form::label('street_address', 'Street Address', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-                                {!! Form::text('street_address', null, ['class' => 'form-control', 'placeholder' => 'street, house / building nr., evt.: flat nr. ']) !!}
-
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-
-                            {!! Form::label('location', 'Location', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-                                {!! Form::select('location', $locations, null, ['class' => 'form-control', 'placeholder' => 'choose a location']) !!}
-
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            {!! Form::label('tags', 'Tags', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-                                {!! Form::select('tag_list[]', $tags, null, [ 'id' => 'tag_list', 'class' => 'form-control',  'multiple']) !!}
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <div class="col-md-10 col-md-offset-2">
-
-                                {!! Form::submit('Post', ['class' => 'btn btn-primary form-control']) !!}
-
-                            </div>
-
-                        </div>
-
-                        {!! Form::close() !!}
 
                     </div>
+
+                    {!! Form::close() !!}
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
     <script>
-
-        $('#tag_list').select2();
-        $('#datetimepicker').datetimepicker();
+        $('#tag_list').select2({placeholder:'please, choose some keywords'});
+        $( "#datetimepicker" ).datetimepicker();
 
     </script>
 @stop

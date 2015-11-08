@@ -52,7 +52,7 @@
 
                 <div class="">
 
-                    {{ isset($user->location)?$user->location->name:null }}
+                    {{ isset($user->location)?$user->location->name.', '.$user->location->postcode :null }}
 
                 </div>
 

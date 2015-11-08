@@ -4,149 +4,148 @@
 
 @section('content')
 
-    <h1>{{ $title }}</h1>
-
     <div class="row">
 
-        <div class="panel panel-default">
+        <div class="col-md-2">
 
-            <div class="panel-heading">
+            @include('partials.side-nav')
 
+        </div>
 
-                {{ $title }}
-            </div>
+        <div class="col-md-8">
 
-            <div class="panel-body">
+            <h1>{{ $title }}</h1>
 
-                @include('partials.errors')
+            <div class="panel panel-default">
 
+                <div class="panel-body">
 
-                <div class="col-md-7">
+                    <div class="col-md-7">
 
-                    {!!Form::open(['route' => ['profile.update', $user->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH', 'files' => true])  !!}
+                        @include('partials.errors')
 
-                    <div class="form-group">
+                        {!!Form::open(['route' => ['profile.update', $user->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH', 'files' => true])  !!}
 
-                        {!! Form::label('first_name', 'First Name', ['class' => 'col-md-2 control-label']) !!}
+                        <div class="form-group">
 
-                        <div class="col-md-10">
+                            {!! Form::label('first_name', 'First Name', ['class' => 'col-md-2 control-label']) !!}
 
-                            {!! Form::text('first_name', $user->first_name, ['class' => 'form-control', 'placeholder' => 'first name']) !!}
+                            <div class="col-md-10">
 
-                        </div>
-                    </div>
+                                {!! Form::text('first_name', $user->first_name, ['class' => 'form-control', 'placeholder' => 'first name']) !!}
 
-                    <div class="form-group">
-
-                        {!! Form::label('last_name', 'Last Name', ['class' => 'col-md-2 control-label']) !!}
-
-                        <div class="col-md-10">
-
-                            {!! Form::text('last_name',  $user->last_name, ['class' => 'form-control', 'placeholder' => 'last name']) !!}
-
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-
-                        {!! Form::label('username', 'Username', ['class' => 'col-md-2 control-label']) !!}
-
-                        <div class="col-md-10">
-
-                            {!! Form::text('username', $user->username, ['class' => 'form-control', 'placeholder' => 'username']) !!}
-
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-
-                        {!! Form::label('email', 'E-mail', ['class' => 'col-md-2 control-label']) !!}
-
-                        <div class="col-md-10">
-
-                            {!! Form::email('email', $user->email, ['class' => 'form-control', 'placeholder' => 'email']) !!}
-
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-
-                        {!! Form::label('birth_date', 'Birth date', ['class' => 'col-md-2 control-label']) !!}
-
-
-                        <div class="col-md-10">
-
-                            {!! Form::selectRange('day', 1, 31, null,['class' => 'col-md-2 control-label']) !!}
-
-                            {!! Form::selectMonth('month', null, ['class' => 'col-md-2 control-label']) !!}
-
-                            {!! Form::selectRange('year', 1900, 1997, null,['class' => 'col-md-2 control-label']) !!}
-
-
+                            </div>
                         </div>
 
-                    </div>
+                        <div class="form-group">
 
-                    <div class="form-group">
+                            {!! Form::label('last_name', 'Last Name', ['class' => 'col-md-2 control-label']) !!}
 
-                        {!! Form::label('occupation', 'Occupation', ['class' => 'col-md-2 control-label']) !!}
+                            <div class="col-md-10">
 
-                        <div class="col-md-10">
+                                {!! Form::text('last_name',  $user->last_name, ['class' => 'form-control', 'placeholder' => 'last name']) !!}
 
-                            {!! Form::text('occupation', isset($user->occupation)?$user->occupation:null, ['class' => 'form-control', 'placeholder' => 'occupation']) !!}
-
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
+                        <div class="form-group">
 
-                        {!! Form::label('origin', 'Origin', ['class' => 'col-md-2 control-label']) !!}
+                            {!! Form::label('username', 'Username', ['class' => 'col-md-2 control-label']) !!}
 
-                        <div class="col-md-10">
+                            <div class="col-md-10">
 
-                            {!! Form::text('origin', $user->origin, ['class' => 'form-control', 'placeholder' => 'origin']) !!}
+                                {!! Form::text('username', $user->username, ['class' => 'form-control', 'placeholder' => 'username']) !!}
 
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
+                        <div class="form-group">
 
-                        {!! Form::label('loaction', 'Location', ['class' => 'col-md-2 control-label']) !!}
+                            {!! Form::label('email', 'E-mail', ['class' => 'col-md-2 control-label']) !!}
 
-                        <div class="col-md-10">
+                            <div class="col-md-10">
 
-                            {!! Form::select('location', $locations, isset($user->location)?$user->location->id:null, ['class' => 'form-control', 'placeholder' => 'choose your location']) !!}
+                                {!! Form::email('email', $user->email, ['class' => 'form-control', 'placeholder' => 'email']) !!}
 
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="form-group">
+
+                            {!! Form::label('birth_date', 'Birth date', ['class' => 'col-md-2 control-label']) !!}
 
 
-                    <div class="form-group">
+                            <div class="col-md-10">
 
-                        {!! Form::label('story', 'My story', ['class' => 'col-md-2 control-label']) !!}
+                                {!! Form::selectRange('day', 1, 31, null,['class' => 'col-md-2 control-label']) !!}
 
-                        <div class="col-md-10">
+                                {!! Form::selectMonth('month', null, ['class' => 'col-md-2 control-label']) !!}
 
-                            {!! Form::textarea('story', isset($user->story)?$user->story:null, ['class' => 'form-control',  'placeholder' => 'my story']) !!}
+                                {!! Form::selectRange('year', 1900, 1997, null,['class' => 'col-md-2 control-label']) !!}
+
+
+                            </div>
 
                         </div>
 
-                    </div>
+                        <div class="form-group">
+
+                            {!! Form::label('occupation', 'Occupation', ['class' => 'col-md-2 control-label']) !!}
+
+                            <div class="col-md-10">
+
+                                {!! Form::text('occupation', isset($user->occupation)?$user->occupation:null, ['class' => 'form-control', 'placeholder' => 'occupation']) !!}
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            {!! Form::label('origin', 'Origin', ['class' => 'col-md-2 control-label']) !!}
+
+                            <div class="col-md-10">
+
+                                {!! Form::text('origin', $user->origin, ['class' => 'form-control', 'placeholder' => 'origin']) !!}
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            {!! Form::label('location', 'Location', ['class' => 'col-md-2 control-label']) !!}
+
+                            <div class="col-md-10">
+
+                                {!! Form::select('location_id', $locations, isset($user->location)?$user->location->id:null, ['class' => 'form-control', 'placeholder' => 'choose your location']) !!}
+
+                            </div>
+                        </div>
 
 
-                    <div class="form-group">
-                        <div class="col-md-10 col-md-offset-2">
+                        <div class="form-group">
 
-                            {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
+                            {!! Form::label('story', 'My story', ['class' => 'col-md-2 control-label']) !!}
+
+                            <div class="col-md-10">
+
+                                {!! Form::textarea('story', isset($user->story)?$user->story:null, ['class' => 'form-control',  'placeholder' => 'my story']) !!}
+
+                            </div>
 
                         </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-2">
+
+                                {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
+
+                            </div>
+                        </div>
+
+
                     </div>
-
-
-
-                </div>
-
-                <div class="col-md-5">
+                    <div class="col-md-5">
 
                         {{--{!! Form::label('image upload', 'Profile image',['class' => 'col-md-2 control-label']) !!}--}}
 
@@ -159,20 +158,24 @@
                             @endif
 
 
-                                <div>
-                                    <span class="help-block">{{ $errors->first('image') }}</span>
-                                    {!! Form::file('image', ['class' =>'col-md-3' ]) !!}
-                                </div>
+                            <div>
+                                <span class="help-block">{{ $errors->first('image') }}</span>
+                                {!! Form::file('image', ['class' =>'col-md-3' ]) !!}
+                            </div>
 
 
                         </div>
+                    </div>
 
-
-                        {!! Form::close() !!}
 
                 </div>
+
+
+                {!! Form::close() !!}
+
             </div>
         </div>
+
     </div>
 
     <script>

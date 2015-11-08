@@ -38,26 +38,6 @@ class ProfileController extends Controller
         return view('partials.dashboard.following');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -119,13 +99,7 @@ class ProfileController extends Controller
 
         $user = $this->user->find($id);
 
-//        dd($request->all());
-
         $user->update($request->all());
-
-        dd($request->get('locations'));
-
-        $user->location()->attach($request->get('locations'));
 
         if($request->file('image')){
 
