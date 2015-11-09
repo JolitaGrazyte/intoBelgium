@@ -47,13 +47,13 @@ class EventsController extends Controller
         $event      =   $this->event;
         $events     =   $event->oldest('date')->get();
         $user       =   $this->authUser;
-        $user_id    =   !is_null($user) ? $user->id : 0;
+//        $user_id    =   !is_null($user) ? $user->id : 0;
 
-        foreach($events as $event){
-
-            $eventsData[$event->id] = EventData::eventData($event, $user_id);
-
-        }
+//        foreach($events as $event){
+//
+//            $eventsData[$event->id] = EventData::eventData($event, $user_id);
+//
+//        }
 
         return view('events.index', compact('events', 'eventsData'))->withTitle('Events');
     }
@@ -104,7 +104,7 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        $event_obj      = $this->event->find($id);
+        $event_obj  = $this->event->find($id);
         $user       = $this->authUser;
         $user_id    = !is_null($user) ? $user->id : 0;
 

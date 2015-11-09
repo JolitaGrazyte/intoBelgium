@@ -40,6 +40,10 @@
 
                             <h1>My questions</h1>
 
+                            <div>
+                                <a href="{{ route('posts.create') }}">Ask question</a>
+                            </div>
+
                             @each('partials.dashboard.my_question', $my_questions, 'question', 'partials.no-entries')
 
 

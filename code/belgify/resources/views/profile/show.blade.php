@@ -65,6 +65,18 @@
                     {{ !empty($user->story) ? $user->story.', '.$user->story :null }}
                 </div>
 
+                    {!!Form::open(['route' => ['follow', $user->id], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+
+                    <div class="form-group">
+
+                        {!! Form::hidden('follow', Auth::user()->userIsFollowing(Auth::user()->id, $user)?0:1, ['class' => '', 'onchange' => 'this.form.submit())']) !!}
+
+                        {!! Form::submit(Auth::user()->userIsFollowing(Auth::user()->id, $user)?'Following':'Follow', ['class' => !Auth::user()->userIsFollowing(Auth::user()->id, $user)?'btn-follow btn btn-primary':'btn btn-primary ']) !!}
+
+                    </div>
+
+                    {!!Form::close() !!}
+
             </div>
 
         </div>

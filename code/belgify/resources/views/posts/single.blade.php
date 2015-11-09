@@ -47,7 +47,7 @@
 </div>
 
 
-@if(!Auth::guest())
+@if(!Auth::guest() && $auth->isLocal())
 
     <div class="row col-md-offset-2">
 
