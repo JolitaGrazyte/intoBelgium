@@ -24,7 +24,7 @@
 
                         <div>
 
-                            <h1>My tours</h1>
+                            <h1>Upcomming Events</h1>
 
                             @each('partials.dashboard.my_event', $my_events, 'event', 'events.no-events')
 
