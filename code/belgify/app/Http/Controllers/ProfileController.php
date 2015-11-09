@@ -104,6 +104,8 @@ class ProfileController extends Controller
 
         if($request->file('image')){
 
+            dd();
+
             try{
 
             $imgObj = $this->image;
@@ -119,8 +121,6 @@ class ProfileController extends Controller
         }
 
         $username = str_replace('-', ' ', $user->username);
-
-//        dd($username);
 
             return redirect()->route('profile.show', $username)->withMessage('Successfully saved!');
     }
