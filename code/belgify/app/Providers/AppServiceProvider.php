@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Event;
+use Auth;
 use Illuminate\Support\ServiceProvider;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('partials.search', function($view){
 
             $view->with('terms', Event::all());
+        });
+
+        view()->composer(['partials.nav', 'profile.show', 'partials.dashboard.*'], function($view){
+
+            $view->with('auth', Auth::user());
         });
 
     }

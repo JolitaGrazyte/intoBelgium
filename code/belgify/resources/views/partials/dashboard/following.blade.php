@@ -1,5 +1,4 @@
-
-<div class="col-md-3 following">
+<a href="{{ route('profile.show', str_replace(' ', '-', $followed->username) ) }}"><div class="col-md-3 following">
     <div class="">
         @if(count($followed->avatar))
 
@@ -13,3 +12,5 @@
         <div class="followed-username"> {{ $followed->username }} </div>
     </div>
 </div>
+
+</a>

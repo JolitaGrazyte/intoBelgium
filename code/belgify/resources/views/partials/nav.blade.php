@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="{{ route('home') }}">
-                <img class="logo" src="/img/Logo.png" alt="Logo Into Belgium"/>
+                <img lass="logo" src="/img/Logo.png" alt="Logo Into Belgium"/>
             </a>
         </div>
 
@@ -33,18 +33,18 @@
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->username }} <span class="caret"></span>
+                            {{ $auth->username }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('profile.show', Auth::user()->first_name.'-'.Auth::user()->last_name) }}">My profile</a></li>
+                            <li><a href="{{ route('profile.show', $auth->first_name.'-'.$auth->last_name) }}">My profile</a></li>
                             <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
                         </ul>
                     </li>
 
                     <li>
-                        @if( Auth::user()->avatar )
+                        @if( count($auth->avatar) )
 
-                            <img class="avatars" src="{{ route('getImage', [Auth::user()->avatar->filename, 'x-small']) }}" alt="{{  Auth::user()->avatar->name }}" width="40">
+                            <img class="avatars" src="{{ route('getImage', [$auth->avatar->filename, 'x-small']) }}" alt="{{  $auth->avatar->name }}" width="40">
 
                         @endif
                     </li>

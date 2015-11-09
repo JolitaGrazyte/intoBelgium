@@ -54,7 +54,7 @@ class ProfileController extends Controller
         $location   = $user->location;
         $avatar     = $user->avatar;
 
-        return view('profile.index', compact('user', 'location', 'avatar'))->withTitle('Your profile');
+        return view('profile.show', compact('user', 'location', 'avatar'))->withTitle('Your profile');
     }
 
     /**
@@ -104,7 +104,7 @@ class ProfileController extends Controller
 
         if($request->file('image')){
 
-            dd();
+            dd($request->file('image'));
 
             try{
 
@@ -120,7 +120,7 @@ class ProfileController extends Controller
             }
         }
 
-        $username = str_replace('-', ' ', $user->username);
+        $username = str_replace(' ', '-', $user->username);
 
             return redirect()->route('profile.show', $username)->withMessage('Successfully saved!');
     }
