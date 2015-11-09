@@ -160,7 +160,7 @@
 
                             <div>
                                 <span class="help-block">{{ $errors->first('image') }}</span>
-                                {!! Form::file('image', ['class' =>'col-md-3' ]) !!}
+                                {!! Form::file('image', ['class' =>'form-control col-md-3' ]) !!}
                             </div>
 
 
