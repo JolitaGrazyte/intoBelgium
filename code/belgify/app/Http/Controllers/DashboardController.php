@@ -27,16 +27,15 @@ class DashboardController extends Controller
         return view('dashboard', compact('my_events', 'my_questions', 'i_follow'))->withTitle('Dashboard');
     }
 
-    public function postFollow( FollowRequest $request, $id){
-
+    public function postFollow($id){
 
             $user = User::find($id);
 
             $follower = Auth::user();
 
-//            $userIsNotFollowing = $follower->userIsFollowing($user->id, $follower->id);
+            $userIsNotFollowing = $follower->isFollowing($user->id, $follower->id);
 
-            if($request->get('follow')){
+            if(!$userIsNotFollowing){
 
                 $follower->following()->attach($user->id);
 

@@ -41,7 +41,7 @@ class User extends Model implements AuthenticatableContract,
 
     public function following(){
 
-        return $this->belongsToMany('App\User', 'user_follower', 'user_id', 'follower_id')->withTimestamps();
+        return $this->belongsToMany('App\User', 'user_follower', 'follower_id', 'user_id')->withTimestamps();
 
     }
 
@@ -133,7 +133,7 @@ class User extends Model implements AuthenticatableContract,
     }
 
 
-    public function userIsFollowing($user_id, $follower_id)
+    public function isFollowing($user_id, $follower_id)
     {
         return !is_null(
 
