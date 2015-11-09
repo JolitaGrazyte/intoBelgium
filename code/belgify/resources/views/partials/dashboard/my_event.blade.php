@@ -12,7 +12,7 @@
         <h2> {{ $event->title }}</h2>
 
         <div class="place-hour">
-            <p class="city"> {{ $event->city }} </p>
+            <p class="city"> {{ $event->location->name }} </p>
             <p>&middot;</p>
             <p> starts at {{ $event->date->format('H:i') }} </p>
         </div>
