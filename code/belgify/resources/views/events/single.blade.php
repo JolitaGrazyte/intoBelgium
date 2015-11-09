@@ -1,6 +1,7 @@
 <div class="row">
 
-    <div class="col-md-3 events-dates">
+    <div class="col-md-3 {{ Request::is('events') ? 'events-dates' : '' }}">
+
         <hr>
 
         <div class="border-right">
@@ -18,9 +19,19 @@
 
         <div><a href="{{ route('events.show', $event['id']) }}">{{ $event['title'] }}</a></div>
 
-        <div><em>author: </em>{{ $event['author'] }}</div>
+        <div>
+            <em>author:</em>
 
-        <div>{{ $event['description'] }}</div>
+            <a href="{{ route('profile.show', str_replace(' ', '-', $event['author']) ) }}">
+                {{ $event['author'] }}
+            </a>
+        </div>
+
+        <div>
+
+            {{ Request::is('events') ? $event['description'] : substr($event['description'], 1, 100) }}
+
+        </div>
 
         <div><em>Location: </em>{{ $event['location'] }}</div>
 
@@ -51,11 +62,11 @@
                 @if(count($event['tags']))
 
                     <ul>
-                    @foreach($event['tags'] as $tag)
+                        @foreach($event['tags'] as $tag)
 
-                        <li><a href="">{{ $tag->name }}</a></li>
+                            <li><a href="">{{ $tag->name }}</a></li>
 
-                    @endforeach
+                        @endforeach
                     </ul>
                 @endif
             </div>

@@ -26,7 +26,7 @@ class EventData
         $author         = $event->author;
         $start_date     = $event->date;
         $isAuthor       = Auth::user()->isAuthor( $author);
-        $author_name    = $author->first_name.' '.$author->last_name;
+        $author_name    = $author->username;
 
         return [
 

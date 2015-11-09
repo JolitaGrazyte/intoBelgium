@@ -20,7 +20,11 @@
     <div>
 
         <h4><a href="{{route('posts.show', $post->id)}}"> {{ $post->title }} </a></h4>
-        <p>posted by: {{ $post->author->first_name }} {{ $post->author->last_name }}, <em> {{ $post->created_at->diffforHumans() }} </em></p>
+        <p>posted by:
+            <a href="{{ route('profile.show', str_replace(' ', '-', $post->author->username) ) }}">
+                {{ $post->author->username }}
+            </a>
+            <em>, {{ $post->created_at->diffforHumans() }} </em></p>
         <p> {{ $post->body }}</p>
 
     </div>
