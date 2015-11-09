@@ -52,6 +52,12 @@ resource('comments',    'CommentsController');
 resource('posts',       'PostsController');
 resource('profile',     'ProfileController', ['except' => ['index']]);
 
+Route::group(['middleware' => 'auth'], function(){
+
+    resource('profile',     'ProfileController', ['except' => ['index']]);
+
+});
+
 
 //SEARCH
 post('search', ['as' => 'search', 'uses' => 'SearchController@search']);

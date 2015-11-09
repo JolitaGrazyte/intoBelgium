@@ -13,44 +13,55 @@ class VotesSeeder extends Seeder
     {
         DB::table('votes')->delete();
 
-        $votes = [
-            [
+        for($i=1; $i <= 500; ++$i){
 
-                'comment_id'    =>  1,
-                'user_id'    =>  1
-            ],
+            $votes[] =
+                [
 
-            [
+                    'comment_id'    =>  rand(1, 200),
+                    'user_id'       =>  rand(1, 27)
+                ];
 
-                'user_id'    =>  2,
-                'comment_id'    =>  1
-            ],
+        }
 
-            [
-
-                'user_id'    =>  3,
-                'comment_id'    =>  1
-            ],
-
-            [
-
-                'comment_id'    =>  1,
-                'user_id'    =>  2
-            ],
-
-            [
-
-                'user_id'    =>  2,
-                'comment_id'    =>  2
-            ],
-
-            [
-
-                'user_id'    =>  3,
-                'comment_id'    =>  2
-            ],
-
-        ];
+//        $votes = [
+//            [
+//
+//                'comment_id'    =>  1,
+//                'user_id'    =>  1
+//            ],
+//
+//            [
+//
+//                'user_id'    =>  2,
+//                'comment_id'    =>  1
+//            ],
+//
+//            [
+//
+//                'user_id'    =>  3,
+//                'comment_id'    =>  1
+//            ],
+//
+//            [
+//
+//                'comment_id'    =>  1,
+//                'user_id'    =>  2
+//            ],
+//
+//            [
+//
+//                'user_id'    =>  2,
+//                'comment_id'    =>  2
+//            ],
+//
+//            [
+//
+//                'user_id'    =>  3,
+//                'comment_id'    =>  2
+//            ],
+//
+//        ];
 
         DB::table('votes')->insert($votes);
     }

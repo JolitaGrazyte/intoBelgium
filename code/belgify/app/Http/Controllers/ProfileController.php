@@ -104,14 +104,17 @@ class ProfileController extends Controller
 
         if($request->file('image')){
 
-            dd($request->file('image'));
+//            dd($request->file('image'));
 
             try{
 
-            $imgObj = $this->image;
-            $imgLib = new ImageLib();
+//            $imgObj = $this->image;
+//            $imgLib = new ImageLib();
 
-            $img = $imgLib->addImage($request->file('image'), $imgObj, $user->username, $user->id );
+            $img = ImageLib::addImage($request->file('image'), $user->username, $user->id );
+
+
+//                dd($img);
 
             }
             catch(QueryException $e){
@@ -120,7 +123,7 @@ class ProfileController extends Controller
             }
         }
 
-        $username = str_replace(' ', '-', $user->username);
+            $username = str_replace(' ', '-', $user->username);
 
             return redirect()->route('profile.show', $username)->withMessage('Successfully saved!');
     }

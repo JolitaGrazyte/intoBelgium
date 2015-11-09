@@ -18,7 +18,7 @@
        @endif
 
 
-       @include('partials.page-head')
+{{--       @include('partials.page-head')--}}
 
        @if(Auth::user()->isLocal())
 

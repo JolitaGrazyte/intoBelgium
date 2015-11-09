@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->increments('id');
 
             $table->string('title');
-            $table->string('body');
+            $table->text('body');
             $table->tinyInteger('is_active')->nullable();
             $table->tinyInteger('is_public')->nullable();
             $table->integer('user_id')->unsigned();

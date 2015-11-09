@@ -61,7 +61,8 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
         Schema::drop('user_follower');
+        Schema::drop('users');
+
     }
 }

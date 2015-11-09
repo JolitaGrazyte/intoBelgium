@@ -25,7 +25,7 @@
                 {{ $post->author->username }}
             </a>
             <em>, {{ $post->created_at->diffforHumans() }} </em></p>
-        <p> {{ $post->body }}</p>
+        <p> {{ Request::is('posts') ? $post->body : substr($post->body, 0, 100) }}</p>
 
     </div>
 

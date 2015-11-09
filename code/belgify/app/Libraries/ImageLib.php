@@ -1,11 +1,11 @@
 <?php
 namespace App\Libraries;
 
+use App\Image;
 use Auth;
 use File;
 use Config;
 use Storage;
-//use App\Image;
 use Intervention\Image\Facades\Image as InterventionImg;
 
 /**
@@ -13,33 +13,35 @@ use Intervention\Image\Facades\Image as InterventionImg;
  * @package App\Libraries
  */
 class ImageLib {
-
-    /**
-     * @var InterImage
-     */
-    protected $interImg;
-
-    /**
-     *
-     */
-    public function __construct()
-    {
-        $this->interImg = new InterventionImg();
-    }
+//
+//    /**
+//     * @var InterImage
+//     */
+//    protected $interImg;
+//
+//    /**
+//     *
+//     */
+//    public function __construct()
+//    {
+//        $this->interImg = new InterventionImg();
+//    }
 
     /**
      * @param $image
      * @return Media
      */
-    public function addImage($image, $imgObj, $toName, $user_id){
+    public static function addImage($image, $toName, $user_id){
 
+//        dd($image.' - '.$toName.' - '.$user_id);
+
+        $entry = new Image();
         $name = $toName;
 
         $filename = str_replace(' ', '-', $name);
 
         $extension = $image->getClientOriginalExtension();
         Storage::disk('local')->put($filename . '.' . $extension, File::get($image));
-        $entry = $imgObj;
         $entry->name = $name;
         $entry->imageable_id = $user_id;
 

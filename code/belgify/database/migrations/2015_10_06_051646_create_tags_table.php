@@ -36,6 +36,7 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
+        Schema::drop('taggables');
         Schema::drop('tags');
     }
 }

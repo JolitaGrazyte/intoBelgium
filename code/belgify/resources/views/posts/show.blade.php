@@ -4,30 +4,33 @@
 
 @section('content')
 
-    <div class="container">
+    {{--@include('partials.page-head')--}}
 
-        <div class="row">
+    @include('posts.single')
 
-            @include('partials.page-head')
 
-            <div class="col-md-10">
 
-                <strong><em> {{ $post->title }} </em></strong>
 
-                <p><em> posted on: {{ $post->created_at->diffforHumans() }}</em></p>
+    {{--<div class="row">--}}
 
-                <p>{{ $post->body }}</p>
+        {{--@include('partials.page-head')--}}
 
-                @foreach($answers as $answer)
+        {{--<div class="col-md-10">--}}
 
-                    <p><a href="{{ route('comments.show', [$answer->id]) }}">{{ $answer->id.'. '.$answer->body }}</a></p>
+            {{--<strong><em> {{ $post->title }} </em></strong>--}}
 
-                @endforeach
+            {{--<p><em> posted on: {{ $post->created_at->diffforHumans() }}</em></p>--}}
 
-            </div>
+            {{--<p>{{ $post->body }}</p>--}}
 
-        </div>
+            {{--@foreach($answers as $answer)--}}
 
-    </div>
+                {{--<p><a href="{{ route('comments.show', [$answer->id]) }}">{{ $answer->id.'. '.$answer->body }}</a></p>--}}
+
+            {{--@endforeach--}}
+
+        {{--</div>--}}
+
+    {{--</div>--}}
 
 @stop

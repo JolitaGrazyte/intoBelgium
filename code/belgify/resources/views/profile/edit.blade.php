@@ -139,8 +139,10 @@
 
 
                                <div>
-                                   <span class="help-block">{{ $errors->first('image') }}</span>
+
                                    {!! Form::file('image', ['class' =>'form-control col-md-3' ]) !!}
+
+                                   <span class="help-block">{{ $errors->first('image') }}</span>
                                </div>
 
 
