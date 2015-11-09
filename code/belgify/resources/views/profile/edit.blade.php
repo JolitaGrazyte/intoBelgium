@@ -4,21 +4,23 @@
 
 @section('content')
 
-    <h1>{{ $title }}</h1>
+    <div class="row">
 
-        <div class="row">
+        <div class="col-md-2">
 
-            <div class="col-md-10">
+            @include('partials.side-nav')
 
-                <div class="panel panel-default">
+        </div>
 
-                    <div class="panel-heading">
+        <div class="col-md-8">
 
-                        {{ $title }}
+            <h1>{{ $title }}</h1>
 
-                    </div>
+            <div class="panel panel-default">
 
-                    <div class="panel-body">
+                <div class="panel-body">
+
+                    <div class="col-md-7">
 
                         @include('partials.errors')
 
@@ -86,27 +88,6 @@
 
                         </div>
 
-                        <div class="row">
-                            {!! Form::label('image upload', 'Profile image',['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-
-                                {!! Form::file('image', ['class' =>'col-md-3' ]) !!}
-
-                                <span class="help-block">{{ $errors->first('image') }}</span>
-
-                                @if($avatar)
-
-                                    <img src="{{ route('getImage', [$avatar->filename,  'small']) }}" alt="{{ $avatar->name }}">
-
-                                @endif
-
-                            </div>
-
-
-                        </div>
-
                         <div class="form-group">
 
                             {!! Form::label('occupation', 'Occupation', ['class' => 'col-md-2 control-label']) !!}
@@ -131,11 +112,11 @@
 
                         <div class="form-group">
 
-                            {!! Form::label('loaction', 'Location', ['class' => 'col-md-2 control-label']) !!}
+                            {!! Form::label('location', 'Location', ['class' => 'col-md-2 control-label']) !!}
 
                             <div class="col-md-10">
 
-                                {!! Form::select('location', $locations, isset($location->name)?$location->name:null, ['class' => 'form-control', 'placeholder' => 'choose your location']) !!}
+                                {!! Form::select('location_id', $locations, isset($user->location)?$user->location->id:null, ['class' => 'form-control', 'placeholder' => 'choose your location']) !!}
 
                             </div>
                         </div>
@@ -162,12 +143,40 @@
                             </div>
                         </div>
 
-                        {!! Form::close() !!}
 
                     </div>
+                    <div class="col-md-5">
+
+                        {{--{!! Form::label('image upload', 'Profile image',['class' => 'col-md-2 control-label']) !!}--}}
+
+                        <div class="col-md-12">
+
+                            @if($avatar)
+
+                                <img src="{{ route('getImage', [$avatar->filename,  'small']) }}" alt="{{ $avatar->name }}">
+
+                            @endif
+
+
+                            <div>
+                                <span class="help-block">{{ $errors->first('image') }}</span>
+                                {!! Form::file('image', ['class' =>'col-md-3' ]) !!}
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
                 </div>
+
+
+                {!! Form::close() !!}
+
             </div>
         </div>
+
+    </div>
 
     <script>
         $('#tag_list').select2();

@@ -28,7 +28,6 @@ class EventData
         $isAuthor       = Auth::user()->isAuthor( $author);
         $author_name    = $author->first_name.' '.$author->last_name;
 
-
         return [
 
             'id'            =>  $event->id,
@@ -37,13 +36,14 @@ class EventData
             'starts_at'     =>  $start_date->format('H:i'),
             'description'   =>  str_limit($event->description, 100, ''),
             'd'             =>  $start_date->format('d'), //date in format: day
-            'fM'            =>  $start_date->format('F'), //date in format: full month
+            'M'             =>  $start_date->format('M'), //date in format: month (short)
             'Y'             =>  $start_date->format('Y'), //date in format: year
             'isAuthor'      =>  $isAuthor,
             'author'        =>  $author_name,
             'attending'     =>  Auth::user()->userIsAttendingEvent($user_id, $event->id),
             'attenders'     =>  count($event->attenders),
-            'location'      =>  !is_null($event->location) ? $event->location->name.', '.$event->location->postcode : ' '
+            'location'      =>  !is_null($event->location) ? $event->location->name.', '.$event->location->postcode : ' ',
+            'tags'          =>  $event->tags
 
         ];
     }

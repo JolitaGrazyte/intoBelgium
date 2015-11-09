@@ -6,21 +6,24 @@
 
 @section('content')
 
-    <h1>{{ $title }}</h1>
 
-    <div class="container-fluid">
+    <div class="row">
 
-        <div class="row">
+        <div class="col-md-2">
 
-            <div class="col-md-9">
+            @include('partials.side-nav')
 
-                <div class="panel panel-default">
+        </div>
 
-                    <div class="panel-heading">Answer</div>
+        <div class="col-md-6">
 
-                    <div class="panel-body">
+            <h1>{{ $title }}</h1>
 
-                        @include('partials.errors')
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+
+                    @include('partials.errors')
 
                         {!!Form::open(['route' => 'comments.store', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
@@ -72,7 +75,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+
     </div>
 
     <script>

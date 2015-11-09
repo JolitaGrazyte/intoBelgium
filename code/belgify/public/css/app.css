@@ -6117,17 +6117,18 @@ body {
     .sidebar .body a, .sidebar .body a:link, .sidebar .body a:visited {
       color: #F7F7F9; }
 
-.my-events-dates {
+.events-dates {
   text-align: center; }
-  .my-events-dates .border-right {
+  .events-dates .border-right {
     border-right: 1px solid #f2f2f2;
     min-height: 13rem;
     font-size: 2.8rem; }
-    .my-events-dates .border-right div:first-child {
+    .events-dates .border-right div:first-child {
       font-size: 5.4rem; }
-    .my-events-dates .border-right div:last-child {
+    .events-dates .border-right div:last-child {
       font-size: 2.5rem; }
 
+<<<<<<< HEAD
 /******************
     DASHBOARD
 ******************/
@@ -6339,5 +6340,11 @@ body {
 
 .d-event-date .year {
   margin-bottom: 0.2em; }
+=======
+.profile-single {
+  text-align: center; }
+  .profile-single img {
+    border-radius: 50%; }
+>>>>>>> 98eb68a0f804d4ab5810b8e084256e86b178445c
 
 /*# sourceMappingURL=app.css.map */

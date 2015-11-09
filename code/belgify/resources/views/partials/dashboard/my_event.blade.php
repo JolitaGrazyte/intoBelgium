@@ -1,15 +1,22 @@
 <div class="row d-event">
-    <div class="col-md-2 d-event-date">
-        <div>
+    <div class="col-md-3 events-dates">
+
+        <div class="border-right">
+
             <div class="day">{{ $event->date->day }}</div>
             <div class="month">{{ $event->date->format('F') }}</div>
             <div class="year">{{ $event->date->year }}</div>
+
         </div>
 
     </div>
 
     <div class="col-md-10 d-event-detail">
         <h2> {{ $event->title }}</h2>
+
+        {{--TODO: remove inline styles--}}
+        <em style="color: darkgray">{{ $event->created_at->toDayDateTimeString() }}</em>
+        <p> {{ $event->description }} </p>
 
         <div class="place-hour">
             <p class="city"> {{ $event->location->name }} </p>
@@ -28,8 +35,6 @@
             {{--TODO: Remove method to a better place--}}
 
             {!! Form::hidden('follow', Auth::user()->userIsFollowing(Auth::user()->id, $event->author->id)?0:1, ['class' => '', 'onchange' => 'this.form.submit())']) !!}
-
-            {{-- TODO: WRITE CLASSES FOR BUTTONS --}}
 
             {!! Form::submit(Auth::user()->userIsFollowing(Auth::user()->id, $event->author->id)?'Following':'Follow', ['class' => !Auth::user()->userIsFollowing(Auth::user()->id, $event->author->id)?'btn-follow btn btn-primary':'btn btn-primary ']) !!}
 

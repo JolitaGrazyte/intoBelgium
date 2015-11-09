@@ -28,6 +28,21 @@ class UsersSeeder extends Seeder
         ];
         DB::table('users')->insert($users);
 
+        $users = [
+
+            [
+                'first_name'    =>  'Vic',
+                'last_name'     =>  'Denys',
+                'username'      =>  'Vic Denys',
+                'email'         =>  'vic.denys@student.kdg.be',
+                'password'      =>  Hash::make('test'),
+                'location_id'   =>  1,
+                'role'          =>  1
+
+            ]
+        ];
+        DB::table('users')->insert($users);
+
         factory(User::class, 25)->create();
 
     }

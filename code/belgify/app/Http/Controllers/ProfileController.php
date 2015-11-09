@@ -38,26 +38,6 @@ class ProfileController extends Controller
         return view('partials.dashboard.following');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -68,7 +48,9 @@ class ProfileController extends Controller
      */
     public function show($username)
     {
-        $user       = $this->user->where('username', $username)->first();
+
+        $user_name = str_replace('-', ' ', $username);
+        $user       = $this->user->where('username', $user_name)->first();
         $location   = $user->location;
         $avatar     = $user->avatar;
 
@@ -84,7 +66,8 @@ class ProfileController extends Controller
      */
     public function edit($username)
     {
-        $user       = $this->user->where('username', $username)->first();
+        $user_name  = str_replace('-', ' ', $username);
+        $user       = $this->user->where('username', $user_name)->first();
         $locations  = $this->location->locations();
         $location   = $user->location;
         $avatar     = $user->avatar;
@@ -117,9 +100,8 @@ class ProfileController extends Controller
 
         $user = $this->user->find($id);
 
-//        dd($request->all());
-
         $user->update($request->all());
+
 
         if($request->file('image')){
 
@@ -137,7 +119,11 @@ class ProfileController extends Controller
             }
         }
 
-            return redirect()->route('profile.show', $id)->withMessage('Successfully saved!');
+        $username = str_replace('-', ' ', $user->username);
+
+//        dd($username);
+
+            return redirect()->route('profile.show', $username)->withMessage('Successfully saved!');
     }
 
 }

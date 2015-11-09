@@ -52,12 +52,7 @@
 
 <div class="container-fluid">
 
-    {{--<div class="content">--}}
-
         @yield('content')
-
-    {{--</div>--}}
-
 
     <script>
         $('div.alert').not('.alert-important').delay(4000).slideUp(400);

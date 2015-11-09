@@ -6,7 +6,6 @@
 
     <h1>{{ $title }}</h1>
 
-    <div class="container-fluid">
 
         <div class="row">
 
@@ -76,7 +75,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
     <script>
         $('#tag_list').select2();

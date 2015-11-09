@@ -4,115 +4,47 @@
 
 @section('content')
 
-    <h1>{{ $title }}</h1>
+    <div class="row">
 
-    <div class="container-fluid">
+        <div class="col-md-2">
 
-        <div class="row">
+            @include('partials.side-nav')
 
-            <div class="col-md-10">
+        </div>
 
-                <div class="panel panel-default">
+        <div class="col-md-6">
 
-                    <div class="panel-heading">Ask a question</div>
+            <h1>{{ $title }}</h1>
 
-                    <div class="panel-body">
+            <div class="panel panel-default">
 
-                        @include('partials.errors')
+                <div class="panel-body">
 
-                        {!!Form::open(['route' => ['events.update', $id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH'])  !!}
+                    @include('partials.errors')
 
-                        <div class="form-group">
+                    {!!Form::open(['route' => ['events.update', $id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH'])  !!}
 
-                            {!! Form::label('title', 'Title', ['class' => 'col-md-2 control-label']) !!}
+                    @include('events.form')
 
-                            <div class="col-md-10">
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-2">
 
-                                {!! Form::text('title', $event->title, ['class' => 'form-control', 'placeholder' => 'title']) !!}
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            {!! Form::label('date', 'Date', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="input-group date col-md-9" id="datetimepicker">
-
-                                {!! Form::text('date', $date, ['id' => 'datetimepicker', 'class' => 'form-control', 'placeholder' => $date]) !!}
-                                <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
-
-                            </div>
+                            {!! Form::submit('Post', ['class' => 'btn btn-primary form-control']) !!}
 
                         </div>
-
-
-                        <div class="form-group">
-
-                            {!! Form::label('description', 'Description', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-                                {!! Form::textarea('description', $event->description, ['class' => 'form-control',  'placeholder' => 'type a description in here']) !!}
-
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            {!! Form::label('street_address', 'Street Address', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-                                {!! Form::text('street_address', $event->street_address, ['class' => 'form-control', 'placeholder' => 'street, house / building nr., evt.: flat nr. ']) !!}
-
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-
-                            {!! Form::label('location', 'Location', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-                                {!! Form::select('location', $locations, isset($event->location)?$event->location->id:0, ['class' => 'form-control', 'placeholder' => 'choose a location']) !!}
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            {!! Form::label('tags', 'Tags', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-                                {!! Form::select('tag_list[]', $tags, $evnt_tags, [ 'id' => 'tag_list', 'class' => 'form-control',  'multiple']) !!}
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-group">
-                            <div class="col-md-10 col-md-offset-2">
-
-                                {!! Form::submit('Post', ['class' => 'btn btn-primary form-control']) !!}
-
-                            </div>
-                        </div>
-
-                        {!! Form::close() !!}
-
                     </div>
+
+                    {!! Form::close() !!}
+
                 </div>
             </div>
         </div>
+
     </div>
 
     <script>
-        $('#tag_list').select2();
+        $('#tag_list').select2({placeholder:'please, choose some keywords'});
+
         $( "#datetimepicker" ).datetimepicker();
 
     </script>

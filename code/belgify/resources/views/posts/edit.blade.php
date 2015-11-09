@@ -4,82 +4,48 @@
 
 @section('content')
 
-    <h1>{{ $title }}</h1>
+    <div class="row">
 
-    <div class="container-fluid">
+        <div class="col-md-2">
 
-        <div class="row">
+            @include('partials.side-nav')
 
-            <div class="col-md-10">
+        </div>
 
-                <div class="panel panel-default">
+        <div class="col-md-6">
 
-                    <div class="panel-heading">Ask a question</div>
+            <h1>{{ $title }}</h1>
 
-                    <div class="panel-body">
+            <div class="panel panel-default">
 
-                        @include('partials.errors')
+                <div class="panel-body">
 
-                        {!!Form::open(['route' => ['posts.update', $id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH'])  !!}
+                    @include('partials.errors')
 
-                        <div class="form-group">
+                    {!!Form::open(['route' => ['posts.update', $id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH'])  !!}
 
-                            {!! Form::label('title', 'Title', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-                                {!! Form::text('title', $post->title, ['class' => 'form-control', 'placeholder' => 'title']) !!}
-
-                            </div>
-                        </div>
+                    @include('posts.form')
 
 
-                        <div class="form-group">
+                    <div class="form-group">
 
-                            {!! Form::label('body', 'Body', ['class' => 'col-md-2 control-label']) !!}
+                        <div class="col-md-11 col-md-offset-1">
 
-                            <div class="col-md-10">
-
-                                {!! Form::textarea('body', $post->body, ['class' => 'form-control',  'placeholder' => 'ask here your question']) !!}
-
-                            </div>
+                            {!! Form::submit('Post', ['class' => 'btn btn-primary form-control']) !!}
 
                         </div>
-
-                        <div class="form-group">
-
-                            {!! Form::label('tags', 'Tags', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-                                {!! Form::select('tag_list[]', $tags , $post_tags, [ 'id' => 'tag_list', 'class' => 'form-control',  'multiple']) !!}
-
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <div class="col-md-10 col-md-offset-2">
-
-                                {!! Form::submit('Post', ['class' => 'btn btn-primary form-control']) !!}
-
-                            </div>
-
-                        </div>
-
-                        {!! Form::close() !!}
 
                     </div>
+
+                    {!! Form::close() !!}
+
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        $('#tag_list').select2();
+        $('#tag_list').select2({placeholder:'please, choose some keywords'});
 
         $(function() {
             $( "#datepicker" ).datepicker();

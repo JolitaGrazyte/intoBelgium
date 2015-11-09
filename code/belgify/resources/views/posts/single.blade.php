@@ -28,11 +28,14 @@
     <div>
         @if(count($post->tags))
 
+            <ul>
             @foreach($post->tags as $tag)
 
-                <a href="">{{ $tag->name }}</a>
+                <li><a href="">{{ $tag->name }}</a></li>
 
             @endforeach
+
+            </ul>
 
         @endif
     </div>

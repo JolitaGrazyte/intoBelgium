@@ -36,7 +36,7 @@
                             {{ Auth::user()->username }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('profile.show', Auth::user()->username ) }}">My profile</a></li>
+                            <li><a href="{{ route('profile.show', Auth::user()->first_name.'-'.Auth::user()->last_name) }}">My profile</a></li>
                             <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
                         </ul>
                     </li>
