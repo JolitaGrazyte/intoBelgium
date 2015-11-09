@@ -34,9 +34,9 @@
 
            {{--@endif--}}
 
-           @if(isset($eventsData))
+           @if(isset($events))
 
-               @each('events.single', $eventsData, 'event', 'events.no-events')
+               @each('events.single', $events, 'event', 'events.no-events')
 
            @endif
 

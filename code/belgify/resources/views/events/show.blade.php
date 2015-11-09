@@ -4,7 +4,7 @@
 
 @section('content')
 
-    @include('events.single')
+    @include('events._single')
 
 @stop
 

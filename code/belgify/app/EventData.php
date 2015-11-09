@@ -29,7 +29,7 @@ class EventData
             'start'         =>  $start_date->format('M j, Y'), //date in format
             'title'         =>  $event->title,
             'starts_at'     =>  $start_date->format('H:i'),
-            'description'   =>  str_limit($event->description, 100, ''),
+            'description'   =>  $event->description,
             'd'             =>  $start_date->format('d'), //date in format: day
             'M'             =>  $start_date->format('M'), //date in format: month (short)
             'Y'             =>  $start_date->format('Y'), //date in format: year
