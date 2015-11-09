@@ -4,7 +4,11 @@
 
 @section('content')
 
+    <div class="container">
+
     @include('events.single')
+
+    </div>
 
 @stop
 

@@ -50,7 +50,7 @@
 
 @show
 
-<div class="container-fluid">
+<div class="container-fluid content">
 
         @yield('content')
 

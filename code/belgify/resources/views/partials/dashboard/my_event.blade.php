@@ -1,3 +1,5 @@
+
+
 <div class="row d-event">
     <div class="col-md-2 background">
         <a href="{{ route('events.show', $event['id']) }}">
@@ -9,7 +11,6 @@
     </div>
 
     <div class="col-md-2 d-event-dates">
-
             <div class="day">{{ $event->date->day }}</div>
             <div class="month">{{ $event->date->format('F') }}</div>
             <div class="year">{{ $event->date->year }}</div>

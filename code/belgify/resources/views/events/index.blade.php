@@ -34,9 +34,9 @@
 
            {{--@endif--}}
 
-           @if(isset($eventsData))
+           @if(isset($events))
 
-               @each('events.single', $eventsData, 'event', 'events.no-events')
+               @each('partials.dashboard.my_event', $events, 'event', 'events.no-events')
 
            @endif
 

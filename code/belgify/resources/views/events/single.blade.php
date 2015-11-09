@@ -1,21 +1,13 @@
 <div class="row">
 
-    <div class="col-md-3 {{ Request::is('events') ? 'events-dates' : '' }}">
 
-        <hr>
+    <div class="col-md-12">
 
         <div class="border-right">
-
             <div>{{ $event['d'] }}</div>
             <div>{{ $event['M'] }}</div>
             <div>{{ $event['Y'] }}</div>
         </div>
-
-    </div>
-
-    <div class="col-md-9">
-
-        <hr>
 
         <div><a href="{{ route('events.show', $event['id']) }}">{{ $event['title'] }}</a></div>
 
