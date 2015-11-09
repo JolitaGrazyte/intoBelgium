@@ -40,14 +40,7 @@ return [
         'client_secret' =>  env('FB_SECRET'),
         'redirect'      =>  'http://intob.local.com/login/facebook',
     ],
-    'twitter' => [
-        'client_id' => env('TWITTER_CLIENT_ID'),
-        'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect' => 'http://intob.local.com/login/twitter',
-//        'client_id' => 'your-twitter-app-id',
-//        'client_secret' => 'your-twitter-app-secret',
-//        'redirect' => 'http://your-callback-url',
-    ],
+
     'google' => [
         'client_id'     => env('GOOGLE_ID'),
         'client_secret' => env('GOOGLE_SECRET'),
