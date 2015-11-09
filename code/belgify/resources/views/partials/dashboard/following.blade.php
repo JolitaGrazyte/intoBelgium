@@ -1,7 +1,7 @@
 
 <div class="col-md-3 following">
     <div class="">
-        @if(isset($followed->avatar))
+        @if(count($followed->avatar))
 
             <img class="avatars followed-avatar" src="{{ route('getImage', [$followed->avatar->filename,  'small'] ) }}" alt="{{ $followed->avatar->name }}">
 
