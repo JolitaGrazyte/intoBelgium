@@ -47,19 +47,18 @@ class AuthenticateUser {
 
         $user = $this->users->findByEmailOrCreate($this->getSocialUser($social_provider));
 
-        if(!$user == 'isDuplicate'){
+        if($user == 'isDuplicate'){
 
-            $this->auth->login($user, true);
+            Session::flash('message', "There some problems with your login! Credentials do not match. ");
+            Session::flash('alert-class', 'alert-danger');
 
-            return $listener->userHasLoggedIn($user);
+            return redirect()->back();
 
         }
 
-        Session::flash('message', "There some problems with your login! ");
-        Session::flash('alert-class', 'alert-danger');
+        $this->auth->login($user, true);
 
-       return redirect()->back();
-
+        return $listener->userHasLoggedIn($user);
 
 
     }

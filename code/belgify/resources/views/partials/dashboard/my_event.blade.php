@@ -1,5 +1,3 @@
-
-
 <div class="row d-event">
     <div class="col-md-2 background">
         <a href="{{ route('events.show', $event['id']) }}">
