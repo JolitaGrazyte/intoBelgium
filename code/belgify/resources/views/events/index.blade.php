@@ -20,7 +20,7 @@
 
 {{--       @include('partials.page-head')--}}
 
-       @if(Auth::check('auth') && $auth->isLocal())
+       @if(Auth::check('auth'))
 
            <h3><a href="{{ route('events.create') }}">Add new event</a></h3>
 
