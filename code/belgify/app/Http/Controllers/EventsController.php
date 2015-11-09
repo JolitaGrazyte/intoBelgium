@@ -24,10 +24,9 @@ class EventsController extends Controller
     private $authUser;
     private $flashMsg;
     private $location;
-    private $eventData;
 
 
-    public function __construct( Event $event, Tag $tag, FlashMessages $flashMsg, Location $location, EventData $eventData ){
+    public function __construct( Event $event, Tag $tag, FlashMessages $flashMsg, Location $location ){
 
 //        $this->middleware('auth', ['except' => 'index', 'show']);
 //        $this->middleware('local', ['only' => ['create', 'edit', 'confirm', 'destroy']]);
@@ -37,7 +36,6 @@ class EventsController extends Controller
         $this->tag      = $tag;
         $this->location = $location;
         $this->authUser = Auth::user();
-        $this->eventData = $eventData;
     }
     /**
      * Display a listing of the resource.
@@ -53,7 +51,7 @@ class EventsController extends Controller
 
         foreach($events as $event){
 
-            $eventsData[$event->id] = $this->eventData->eventData($event, $user_id);
+            $eventsData[$event->id] = EventData::eventData($event, $user_id);
 
         }
 
@@ -110,7 +108,7 @@ class EventsController extends Controller
         $user       = $this->authUser;
         $user_id    = !is_null($user) ? $user->id : 0;
 
-        $event = $this->eventData->eventData($event_obj, $user_id);
+        $event = EventData::eventData($event_obj, $user_id);
 
         return view('events.show', compact('event'));
     }

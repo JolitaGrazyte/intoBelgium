@@ -26,7 +26,7 @@
 
                             <h1>Upcomming Events</h1>
 
-                            @each('partials.dashboard.my_event', $my_events, 'event', 'events.no-events')
+                            @each('partials.dashboard.my_event', $my_events, 'event', 'partials.no-entries')
 
                         </div>
 
@@ -36,7 +36,7 @@
 
                             <h1>My questions</h1>
 
-                            @each('partials.dashboard.my_question', $my_questions, 'question', 'partials.no-events')
+                            @each('partials.dashboard.my_question', $my_questions, 'question', 'partials.no-entries')
 
 
                         </div>
@@ -49,7 +49,7 @@
 
                             <h2>I'm following</h2>
 
-                            @each('partials.dashboard.following', $i_follow, 'followed', 'partials.no-events')
+                            @each('partials.dashboard.following', $i_follow, 'followed', 'partials.no-entries')
 
                         @endif
 

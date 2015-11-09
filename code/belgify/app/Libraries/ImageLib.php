@@ -13,19 +13,6 @@ use Intervention\Image\Facades\Image as InterventionImg;
  * @package App\Libraries
  */
 class ImageLib {
-//
-//    /**
-//     * @var InterImage
-//     */
-//    protected $interImg;
-//
-//    /**
-//     *
-//     */
-//    public function __construct()
-//    {
-//        $this->interImg = new InterventionImg();
-//    }
 
     /**
      * @param $image
@@ -35,23 +22,35 @@ class ImageLib {
 
 //        dd($image.' - '.$toName.' - '.$user_id);
 
-        $entry = new Image();
+        $img = new Image();
+
         $name = $toName;
 
         $filename = str_replace(' ', '-', $name);
 
+        $hasEntry = $img->hasProfileImg($user_id);
+
         $extension = $image->getClientOriginalExtension();
-        Storage::disk('local')->put($filename . '.' . $extension, File::get($image));
-        $entry->name = $name;
-        $entry->imageable_id = $user_id;
 
-        $entry->imageable_type = 'App\User';
-//            $entry->mime = $image->getClientMimeType();
+        $file = $filename. '.' . $extension;
+
+        if($hasEntry ){
+
+//        dd(Storage::disk('local')->exists($file));
+            Storage::disk('local')->exists($file) ? Storage::delete($file): false;
+            $img->where('imageable_id', $user_id)->delete();
+
+        }
+
+        Storage::disk('local')->put($file, File::get($image));
+        $img->name = $name;
+        $img->imageable_id = $user_id;
+        $img->mime = $image->getClientMimeType();
 //            $entry->original_filename = $image->getClientOriginalName();
-        $entry->filename = $filename . '.' . $extension;
-        $entry->save();
+        $img->filename = $filename . '.' . $extension;
+        $img->save();
 
-        return $entry;
+        return $img;
 
     }
 
@@ -64,7 +63,7 @@ class ImageLib {
      * @internal param sizeString $string
      *
      */
-    public function resize_image($filename, $sizeString) {
+    public static function resize_image($filename, $sizeString) {
 
 
         // Get the output path from our configuration file.
@@ -74,9 +73,11 @@ class ImageLib {
         $outputFile = $outputDir.'/'. $sizeString . '_' . $filename;
 
         // If the resized file already return it.
-        if (File::isFile($outputFile)) {
-            return File::get($outputFile);
-        }
+//        if (File::isFile($outputFile)) {
+//            return File::get($outputFile);
+//        }
+
+        //ALWAYS REPLACE IF WITH THE SAME NAME
 
         // File doesn't exist yet - resize the original.
         $inputDir = Config::get('assets.images.paths.input');
@@ -101,6 +102,14 @@ class ImageLib {
 
         // Return the resized  file.
         return File::get($outputFile);
+
+    }
+
+    private function replace($filename){
+
+        $exists = Storage::disk('local')->exists($filename) ? Storage::delete($filename): false;
+
+
 
     }
 

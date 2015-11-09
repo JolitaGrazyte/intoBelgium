@@ -14,14 +14,7 @@ use Auth;
 class EventData
 {
 
-    private $auth;
-
-    public function __construct( Auth $auth ){
-
-        $this->auth = $auth;
-    }
-
-    public function eventData($event, $user_id){
+    public static function eventData($event, $user_id){
 
 
         $isAuth         = Auth::check('auth');

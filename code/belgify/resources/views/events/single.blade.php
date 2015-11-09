@@ -29,7 +29,7 @@
 
         <div>
 
-            {{ Request::is('events') ? $event['description'] : substr($event['description'], 1, 100) }}
+            {{ Request::is('events') ? substr($event['description'], 1, 100) : $event['description'] }}
 
         </div>
 
