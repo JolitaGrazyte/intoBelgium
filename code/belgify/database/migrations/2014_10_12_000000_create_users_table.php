@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
 
             //Sign up fields
             $table->increments('id');
-            $table->string('username');
+            $table->string('username')->unique();
             $table->tinyInteger('role')->default(2); // 0 = admin; 1 = local; 2 = newcomer
             $table->string('email')->unique();
             $table->string('password', 60);
@@ -29,9 +29,6 @@ class CreateUsersTable extends Migration
             $table->string('origin')->nullable();
             $table->smallInteger('location_id')->nullable();
             $table->text('story')->nullable();
-
-            //Todo: FOLLOWERS INTEGRATION => many to many relation ??
-//            $table->integer('user_id');
 
             $table->rememberToken();
             $table->timestamps();

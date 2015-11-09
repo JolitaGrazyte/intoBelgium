@@ -80,13 +80,11 @@ class ProfileController extends Controller
         $entry = $this->image->where('filename', '=', $filename)->firstOrFail();
 
         $file = Storage::disk('local')->get($entry->filename);
-        $imgObj = new ImageLib();
-        $file = $imgObj->resize_image($filename, $size);
+        $file = ImageLib::resize_image($filename, $size);
 
         return (new Response($file, 200))
             ->header('Content-Type', $entry->mime);
     }
-
 
 
 
@@ -102,19 +100,18 @@ class ProfileController extends Controller
 
         $user->update($request->all());
 
+        $username = str_replace(' ', '-', $user->username);
+
         if($request->file('image')){
 
-//            dd($request->file('image'));
 
             try{
 
-//            $imgObj = $this->image;
-//            $imgLib = new ImageLib();
-
-            $img = ImageLib::addImage($request->file('image'), $user->username, $user->id );
+            $img = ImageLib::addImage($request->file('image'), $username, $user->id );
 
 
-//                dd($img);
+
+                return redirect()->route('profile.show', $username)->withMessage('Successfully saved!');
 
             }
             catch(QueryException $e){
@@ -123,9 +120,7 @@ class ProfileController extends Controller
             }
         }
 
-            $username = str_replace(' ', '-', $user->username);
 
-            return redirect()->route('profile.show', $username)->withMessage('Successfully saved!');
     }
 
 }

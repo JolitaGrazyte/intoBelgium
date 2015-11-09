@@ -5,6 +5,7 @@ use Laravel\Socialite\Contracts\Factory as Socialite;
 use Illuminate\Contracts\Auth\Guard;
 use App\Repositories\UserRepository;
 use Request;
+use Session;
 
 
 class AuthenticateUser {
@@ -46,9 +47,20 @@ class AuthenticateUser {
 
         $user = $this->users->findByEmailOrCreate($this->getSocialUser($social_provider));
 
-        $this->auth->login($user, true);
+        if(!$user == 'isDuplicate'){
 
-        return $listener->userHasLoggedIn($user);
+            $this->auth->login($user, true);
+
+            return $listener->userHasLoggedIn($user);
+
+        }
+
+        Session::flash('message', "There some problems with your login! ");
+        Session::flash('alert-class', 'alert-danger');
+
+       return redirect()->back();
+
+
 
     }
 

@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('terms', Event::all());
         });
 
-        view()->composer(['partials.nav', 'profile.show', 'partials.dashboard.*'], function($view){
+        view()->composer(['partials.nav', 'profile.show', 'partials.dashboard.*', 'events.*'], function($view){
 
             $view->with('auth', Auth::user());
         });

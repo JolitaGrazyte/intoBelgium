@@ -127,7 +127,7 @@
 
                        <div class="col-md-5">
 
-                           {{--{!! Form::label('image upload', 'Profile image',['class' => 'col-md-2 control-label']) !!}--}}
+                           {!! Form::label('image upload', 'Profile image',['class' => 'col-md-12 control-label']) !!}
 
                            <div class="col-md-12">
 

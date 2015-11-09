@@ -18,8 +18,7 @@
 
             <p class="attenders"> {{ $event->attenders->count()}} participants</p>
 
-            <p> Posted by: {{ $event->author->username }}, <em>{{ $event->created_at->diffforHumans() }}</em> </p>
-
+            <p> Posted by: <a href="{{ route('profile.show', str_replace(' ', '-', $event->author->username ) ) }}">{{ $event->author->username }}</a>, <em>{{ $event->created_at->diffforHumans() }}</em> </p>
 
         </div>
 </div>

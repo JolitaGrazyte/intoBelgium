@@ -6,11 +6,6 @@
 
     <h1>{{ $title }}</h1>
 
-    @include('partials.errors')
-
-    @include('partials.message')
-
-
     <div class="row">
 
         <div class="col-md-2">
@@ -20,6 +15,11 @@
         </div>
 
         <div class="col-md-7  profile-single">
+
+            @include('partials.errors')
+
+            @include('partials.message')
+
 
             <div class="header">
 
@@ -59,6 +59,10 @@
 
                     {{ isset($user->location)?$user->location->name.', '.$user->location->postcode :null }}
 
+                </div>
+
+                <div>
+                    {{ !empty($user->story) ? $user->story.', '.$user->story :null }}
                 </div>
 
             </div>

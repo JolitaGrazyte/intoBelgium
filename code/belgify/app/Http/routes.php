@@ -16,6 +16,10 @@ get('/', ['as' => 'home', function(){
     return view('home');
 }]);
 
+get('/home', function(){
+    return redirect()->to('/');
+});
+
 Route::group(['middleware' => 'auth'], function(){
 
     get('dashboard',                ['as' => 'dashboard',       'uses' => 'DashboardController@index']);

@@ -3,15 +3,15 @@
 namespace App\Repositories;
 
 use App\User;
+use Illuminate\Database\QueryException;
 
 class UserRepository {
 
     public function findByEmailOrCreate($userData){
 
-//        dd($userData);
-
-        $name = explode(' ', $userData->name);
-        $role = 1;
+        try{
+            $name = explode(' ', $userData->name);
+            $role = 1;
 
             return User::firstOrCreate([
 
@@ -24,6 +24,14 @@ class UserRepository {
 
             ]);
 
-    }
+        }catch (QueryException $e){
 
+
+            if (strpos($e->getMessage(),'Duplicate') !== false) {
+
+                return 'isDuplicate';
+            }
+
+        }
+    }
 }
