@@ -27,7 +27,6 @@
 
        <div class="row">
 
-           @if(isset($events))
 
                {{--@each('partials.dashboard.my_event', $events, 'event')--}}
 
