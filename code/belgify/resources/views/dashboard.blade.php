@@ -7,13 +7,13 @@
 
         <div class="row dashboard">
 
-            <div class="col-md-3 side-nav">
+            <div class="col-md-2 side-nav">
 
                 @include('partials.side-nav')
 
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-10">
 
                @include('partials.page-head')
 
@@ -24,7 +24,7 @@
 
                         <div>
 
-                            <h1>My tours</h1>
+                            <h1>Upcomming Events</h1>
 
                             @if(isset($my_events))
 

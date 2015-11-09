@@ -17,7 +17,6 @@
 
        @endif
 
-
 {{--       @include('partials.page-head')--}}
 
        @if(Auth::check() && $auth->isLocal())
@@ -28,9 +27,14 @@
 
        <div class="row">
 
+
+               {{--@each('partials.dashboard.my_event', $events, 'event')--}}
+
+           {{--@endif--}}
+
            @if(isset($events))
 
-               @each('events.single', $events, 'event', 'events.no-events')
+               @each('partials.dashboard.my_event', $events, 'event', 'events.no-events')
 
            @endif
 

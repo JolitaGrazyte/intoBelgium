@@ -6117,23 +6117,25 @@ body {
     .sidebar .body a, .sidebar .body a:link, .sidebar .body a:visited {
       color: #F7F7F9; }
 
+.content {
+  margin-top: 60px; }
+
 /******************
     DASHBOARD
 ******************/
-.dashboard .col-md-9, .dashboard .col-md-3 {
+.dashboard .col-md-10, .dashboard .col-md-2 {
   padding: 0; }
 
-.dashboard .col-md-9 {
-  margin-left: 25%; }
+.dashboard .col-md-10 {
+  margin-left: 16.6666%; }
 
 .dashboard {
   position: relative;
-  overflow: hidden;
-  margin-top: 60px; }
+  overflow: hidden; }
 
 .dashboard-header {
   position: fixed;
-  width: 75%;
+  width: 83.334%;
   height: 11em;
   background: url("/img/Dashboard_Banner.jpg");
   background-size: 100% auto;
@@ -6211,8 +6213,8 @@ body {
   position: relative;
   float: left;
   display: inline-block;
-  height: 60%;
-  margin-left: 2em;
+  height: 50%;
+  margin-left: 1em;
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%); }
@@ -6230,14 +6232,14 @@ body {
 .dashboard-nav-menu li p {
   position: relative;
   float: left;
-  margin-left: 3em;
+  margin-left: 2em;
   display: inline-block;
   top: 50%;
   letter-spacing: 0.05em;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   color: #FFF;
-  font-size: 1.1em;
+  font-size: 0.9em;
   font-weight: 500; }
 
 .dashboard-nav-menu li:hover {
@@ -6336,6 +6338,8 @@ body {
   opacity: 1;
   -webkit-transform: translateY(-50%) rotateY(0deg);
   transform: translateY(-50%) rotateY(0deg);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   transition: -webkit-transform 0.4s, opacity 0.1s;
   transition: transform 0.4s, opacity 0.1s; }
 

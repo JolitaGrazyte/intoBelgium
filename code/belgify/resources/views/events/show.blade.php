@@ -4,7 +4,11 @@
 
 @section('content')
 
-    @include('events._single')
+    <div class="container">
+
+    @include('events.single')
+
+    </div>
 
 @stop
 

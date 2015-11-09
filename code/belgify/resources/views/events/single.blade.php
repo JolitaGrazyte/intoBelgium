@@ -1,36 +1,53 @@
-<div class="row d-event">
-    <div class="col-md-2 background">
-        <a href="{{ route('events.show', $event['id']) }}">
-            <div class="wrapper">
-                <img src="/img/More_info.png" alt="more info icon"/>
-                <p>Details</p>
-            </div>
-        </a>
-    </div>
-
-    <div class="col-md-2 d-event-dates">
-
-        <div class="day">{{ $event->date->day }}</div>
-        <div class="month">{{ $event->date->format('F') }}</div>
-        <div class="year">{{ $event->date->year }}</div>
-
-    </div>
-
-    <div class="col-md-8 d-event-detail">
+<div class="row">
 
 
+    <div class="col-md-12">
 
-        <a class="title" href="{{ route('events.show', $event['id']) }}"> {{ $event->title }}</a>
-
-        <div class="place-hour">
-            <p class="city"> {{ $event->location->name }} </p>
-            <p>&middot;</p>
-            <p> starts at {{ $event->date->format('H:i') }} </p>
+        <div class="border-right">
+            <div>{{ $event['d'] }}</div>
+            <div>{{ $event['M'] }}</div>
+            <div>{{ $event['Y'] }}</div>
         </div>
 
-        <p class="attenders"> {{ $event->attenders->count() == 1 ? $event->attenders->count(). ' participant': $event->attenders->count(). ' participants' }} </p>
+        <div><a href="{{ route('events.show', $event['id']) }}">{{ $event['title'] }}</a></div>
 
-        <p> Posted by: <a href="{{ route('profile.show', str_replace(' ', '-', $event->author->username ) ) }}">{{ $event->author->username }}</a>, <em>{{ $event->created_at->diffforHumans() }}</em> </p>
+        <div>
+            <em>author:</em>
 
+            <a href="{{ route('profile.show', str_replace(' ', '-', $event['author']) ) }}">
+                {{ $event['author'] }}
+            </a>
+        </div>
+
+        <div>
+
+            {{ Request::is('events') ? substr($event['description'], 1, 100) : $event['description'] }}
+
+        </div>
+
+        <div><em>Location: </em>{{ $event['location'] }}</div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+                @if(!$event['isAuthor'])
+
+                    {!!Form::open(['route' => ['attend', $event['id']], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+
+
+                    <div class="form-group">
+
+                        {!! Form::hidden('going', $event['attending'], ['class' => '', 'onchange' => 'this.form.submit())']) !!}
+
+                        {!! Form::submit(($event['attending'])?'Attending':'Attend', ['class' => $event['attending']? 'btn' : 'btn  btn-primary btn-attend']) !!}
+
+                    </div>
+
+                    {!!Form::close() !!}
+
+                @endif
+
+            </div>
+        </div>
     </div>
 </div>
