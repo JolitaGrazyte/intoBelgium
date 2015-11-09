@@ -26,7 +26,11 @@
 
                             <h1>My tours</h1>
 
-                            @each('partials.dashboard.my_event', $my_events, 'event', 'partials.no-entries')
+                            @if(isset($my_events))
+
+                                @each('events.single', $my_events, 'event', 'events.no-events')
+
+                            @endif
 
                         </div>
 

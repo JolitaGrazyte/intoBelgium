@@ -44,7 +44,6 @@ class CreateUsersTable extends Migration
             $table->foreign('follower_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
 
 
-
             $table->timestamps();
         });
 

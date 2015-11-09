@@ -20,19 +20,13 @@
 
 {{--       @include('partials.page-head')--}}
 
-       @if(Auth::check('auth'))
+       @if(Auth::check() && $auth->isLocal())
 
            <h3><a href="{{ route('events.create') }}">Add new event</a></h3>
 
        @endif
 
        <div class="row">
-
-           {{--@if(isset($events))--}}
-
-               {{--@each('partials.dashboard.my_event', $events, 'event')--}}
-
-           {{--@endif--}}
 
            @if(isset($events))
 
