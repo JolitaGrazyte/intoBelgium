@@ -102,7 +102,6 @@ class ProfileController extends Controller
 
         $user->update($request->all());
 
-
         if($request->file('image')){
 
             try{

@@ -33,7 +33,7 @@ class UpdateProfileRequest extends Request
 
             'username'  => 'required|max:255',
             'email'     => 'required|email|max:255|unique:users' . ($id ? ",id,$id" : ''),
-
+            'image'     => 'max:1000|image'
         ];
     }
 }
