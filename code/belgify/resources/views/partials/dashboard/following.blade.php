@@ -1,7 +1,7 @@
 
 <div class="col-md-3 following">
     <div class="">
-        @if($followed->avatar)
+        @if(isset($followed->avatar))
 
             <img class="avatars followed-avatar" src="{{ route('getImage', [$followed->avatar->filename,  'small'] ) }}" alt="{{ $followed->avatar->name }}">
 
@@ -9,6 +9,7 @@
     </div>
 
     <div>
+
         <div class="followed-username"> {{ $followed->username }} </div>
     </div>
 </div>

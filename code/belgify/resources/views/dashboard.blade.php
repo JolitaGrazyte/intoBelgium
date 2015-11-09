@@ -53,8 +53,6 @@
 
                         @endif
 
-                            @include('partials.dashboard.following')
-
                         </div>
 
                     @endif
