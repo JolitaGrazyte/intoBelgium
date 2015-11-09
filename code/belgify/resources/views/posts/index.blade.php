@@ -14,8 +14,7 @@
 
         <div class="row">
 
-            @if(isset($posts))
-
+            @if(count($posts))
 
                 @each('posts.single', $posts, 'post', 'posts.no-posts')
 

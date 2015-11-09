@@ -29,8 +29,8 @@ class EventsController extends Controller
 
     public function __construct( Event $event, Tag $tag, FlashMessages $flashMsg, Location $location, EventData $eventData ){
 
-        $this->middleware('auth', ['except' => 'index', 'show']);
-        $this->middleware('local', ['only' => ['create', 'edit', 'confirm', 'destroy']]);
+//        $this->middleware('auth', ['except' => 'index', 'show']);
+//        $this->middleware('local', ['only' => ['create', 'edit', 'confirm', 'destroy']]);
 
         $this->event    = $event;
         $this->flashMsg = $flashMsg;

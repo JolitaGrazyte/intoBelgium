@@ -29,7 +29,6 @@ Route::controllers([
 
 
 //get('/{page}',         ['as' => 'pages',       'uses' => 'PagesController@index']);
-
 //get('auth/reset', ['as'=>'reset', 'uses' => 'Auth\PasswordController']);
 
 // Authentication routes...
@@ -45,8 +44,6 @@ get('auth/register',     ['as'   =>  'getRegister', 'uses' =>   'Auth\AuthContro
 post('auth/register',    ['as'   =>  'postRegister', 'uses' =>   'Auth\AuthController@postRegister']);
 
 
-
-
 resource('events',      'EventsController');
 resource('comments',    'CommentsController');
 resource('posts',       'PostsController');
@@ -55,6 +52,11 @@ resource('profile',     'ProfileController', ['except' => ['index']]);
 Route::group(['middleware' => 'auth'], function(){
 
     resource('profile',     'ProfileController', ['except' => ['index']]);
+    resource('events',      'EventsController', ['only' => ['edit', 'create'], 'except' => ['index', 'show']]);
+    resource('posts',       'EventsController', ['only' => ['edit', 'create']]);
+    post('events/{id}',             ['as' => 'attend',          'uses' => 'EventsController@postAttend']);
+    get('/events/delete-confirm',   ['as' => 'event-delete',    'uses' => 'EventsController@delete_confirm']);
+    post('dashboard/{id}', ['as' => 'follow', 'uses' => 'DashboardController@postFollow']);
 
 });
 
@@ -64,8 +66,4 @@ post('search', ['as' => 'search', 'uses' => 'SearchController@search']);
 get('search-json', ['as' => 'search-json', 'uses' => 'SearchController@getAutocomplete']);
 
 //Extra routes
-post('events/{id}',             ['as' => 'attend',          'uses' => 'EventsController@postAttend']);
 get('image/{id}/{size}',        ['as'=>'getImage',          'uses' => 'ProfileController@getImage' ]);
-get('/events/delete-confirm',   ['as' => 'event-delete',    'uses' => 'EventsController@delete_confirm']);
-
-post('dashboard/{id}', ['as' => 'follow', 'uses' => 'DashboardController@postFollow']);

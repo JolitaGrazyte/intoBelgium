@@ -23,9 +23,11 @@ class EventData
 
     public function eventData($event, $user_id){
 
+
+        $isAuth         = Auth::check('auth');
         $author         = $event->author;
         $start_date     = $event->date;
-        $isAuthor       = Auth::user()->isAuthor( $author);
+        $isAuthor       = $isAuth ? Auth::user()->isAuthor( $author) : false;
         $author_name    = $author->username;
 
         return [
@@ -40,7 +42,7 @@ class EventData
             'Y'             =>  $start_date->format('Y'), //date in format: year
             'isAuthor'      =>  $isAuthor,
             'author'        =>  $author_name,
-            'attending'     =>  Auth::user()->userIsAttendingEvent($user_id, $event->id),
+            'attending'     =>  $isAuth ? Auth::user()->userIsAttendingEvent($user_id, $event->id) : false,
             'attenders'     =>  count($event->attenders),
             'location'      =>  !is_null($event->location) ? $event->location->name.', '.$event->location->postcode : ' ',
             'tags'          =>  $event->tags
