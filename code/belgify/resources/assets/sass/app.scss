@@ -177,28 +177,6 @@ body{
 
 }
 
-.events-dates{
-
-  text-align: center;
-
-  .border-right{
-    border-right: 1px solid #f2f2f2;
-    min-height:13rem;
-    font-size: 2.8rem;
-
-    div:first-child{
-      font-size: 5.4rem;
-    }
-    div:last-child{
-      font-size: 2.5rem;
-    }
-
-  }
-
-}
-
-
-<<<<<<< HEAD
 /******************
     DASHBOARD
 ******************/
@@ -383,13 +361,13 @@ body{
   margin-top: 2.6em;
 }
 
-.d-event-date{
-  padding-right: 2em;
+.d-event-dates{
+  padding-right: 2em !important;
   text-align: right;
   border-right: 1px solid #EEE;
 }
 
-.d-event-detail, .d-event-date{
+.d-event-detail, .d-event-dates{
   position: relative;
   top: 50%;
 
@@ -400,7 +378,7 @@ body{
 }
 
 .d-event-detail{
-  padding-left: 2em;
+  padding-left: 2em !important;
 }
 
 .d-event-detail h2{
@@ -447,7 +425,7 @@ body{
   border: none;
 }
 
-.d-event-date .day{
+.d-event-dates .day{
   font-size: 5em;
   font-weight: bolder;
   line-height: 0.7em;
@@ -455,15 +433,14 @@ body{
   color: #000000;
 }
 
-.d-event-date .month{
+.d-event-dates .month{
   font-size: 1.2em;
 }
 
-.d-event-date .year{
+.d-event-dates .year{
   margin-bottom: 0.2em;
 }
 
-=======
 .profile-single{
 
   text-align: center;
@@ -472,4 +449,3 @@ body{
     border-radius: 50%;
   }
 }
->>>>>>> 98eb68a0f804d4ab5810b8e084256e86b178445c
