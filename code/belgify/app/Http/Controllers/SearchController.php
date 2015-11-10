@@ -12,14 +12,75 @@ use Illuminate\Support\Facades\Response;
 class SearchController extends Controller
 {
 
+    public function index($term){
+
+        $search_results  = [];
+        $tours      = $this->searchTours($term);
+        $questions  = $this->searchQuestions($term);
+
+        foreach($tours as $result){
+
+            $search_results[] = [
+
+                'id'            => $result->id,
+                'model'         => 'events',
+                'title'         => $result->title,
+                'body'          => $result->description,
+                'created_at'    => $result->created_at,
+
+            ];
+
+        }
+
+        foreach($questions as $result){
+
+            $search_results[] = [
+
+                'id'            => $result->id,
+                'model'         => 'posts',
+                'title'         => $result->title,
+                'body'          => $result->body,
+                'created_at'    => $result->created_at,
+
+            ];
+
+        }
+
+
+        return view('search.index', compact('search_results'))->withTitle('Search Results');
+    }
+
+
+    function searchResultData($results, $model){
+
+        $search_results = [];
+
+            foreach($results as $result){
+
+                $search_results = [
+
+                    'id'            => $result->id,
+                    'model'         => $model,
+                    'title'         => $result->title,
+                    'body'          => $result->description ? $result->description : $result->body,
+                    'created_at'    => $result->created_at,
+
+                ];
+
+            }
+
+
+        return $search_results;
+
+    }
 
     public function getAutocomplete( SearchJsonRequest $request ){
 
         $term = $request->get('term');
 
-        $tours = Event::all();
-        $posts = Post::all();
-        $tags = Tag::all();
+        $tours  = Event::all();
+        $posts  = Post::all();
+        $tags   = Tag::all();
 
         $results = [];
 
@@ -43,21 +104,14 @@ class SearchController extends Controller
     }
 
 
-
-
     public function search( SearchJsonRequest $request ){
 
         $keyword = $request->get('keyword');
-
-//        dd($keyword);
 
         $tours      = $this->searchTours($keyword);
         $questions  = $this->searchQuestions($keyword);
 
         $search_results = $this->searchTours($keyword);
-//        dd($questions);
-
-//        return [$tours, $questions];
 
         return view('search.index', compact('search_results'))->withTitle('Search result');
     }
@@ -66,12 +120,11 @@ class SearchController extends Controller
 
         $events  = Event::whereHas('tags', function($query) use ($keyword){
 
-            $query->where('title','LIKE', '%'.$keyword.'%');
+            $query->where('name','LIKE', '%'.$keyword.'%');
 
         })
-//            ->where('is_active', 1)->where('is_public', 1)
+            ->orWhere('title', 'LIKE', '%'.$keyword.'%')
             ->orWhere('description', 'LIKE', '%'.$keyword.'%')
-
             ->get();
 
         return $events;
@@ -81,12 +134,11 @@ class SearchController extends Controller
 
         $posts  = Post::whereHas('tags', function($query) use ($keyword){
 
-            $query->where('title','LIKE', '%'.$keyword.'%');
+            $query->where('name','LIKE', '%'.$keyword.'%');
 
         })
-//            ->where('is_active', 1)->where('is_public', 1)
+            ->orWhere('title', 'LIKE', '%'.$keyword.'%')
             ->orWhere('body', 'LIKE', '%'.$keyword.'%')
-
             ->get();
 
         return $posts;

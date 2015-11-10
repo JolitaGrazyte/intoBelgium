@@ -36,55 +36,65 @@
 
     </div>
 
+
+    @if(!Auth::guest())
+
+        <div class="row">
+
+            @if($auth->isLocal() && !$auth->isAuthor($post->author))
+
+                <div class="col-md-2"><a href="{{ route('comments.create') }}" class="btn btn-link"> {{ !count($post->comments) ? 'be the first!! ' : '' }} answer this question</a></div>
+
+            @elseif($auth->isAuthor($post->author))
+
+                <div class="col-md-2"><a href="{{ route('posts.edit', $post->id) }}" class="btn btn-link">update this question</a></div>
+
+                <div class="col-md-2">
+
+                    {!!Form::open(['route' => ['posts.destroy', $post->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
+
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+
+                            {!! Form::submit('delete', ['class' => 'btn btn-link']) !!}
+
+                        </div>
+
+                    </div>
+
+                    {!!Form::close() !!}
+
+                </div>
+
+            @endif
+
+        </div>
+
+    @endif
+
+
     <div>
-        @if(count($post->tags))
+        @if(Request::is('posts/*') && count($post->comments))
 
             <ul>
-                @foreach($post->tags as $tag)
 
-                    <li><a href="">{{ $tag->name }}</a></li>
-
-                @endforeach
+                @each('partials.answers', $post->comments, 'comment')
 
             </ul>
 
         @endif
     </div>
 
-</div>
+    <div>
+        <ul>
 
+            <a href="">@each('partials.tags', $post->tags, 'tag' )</a>
 
-@if(!Auth::guest())
-
-    <div class="row col-md-offset-2">
-
-        @if($auth->isLocal() && !$auth->isAuthor($post->author))
-
-            <div class="col-md-2"><a href="{{ route('comments.create') }}" class="btn btn-link">answer this question</a></div>
-
-        @elseif($auth->isAuthor($post->author))
-
-            <div class="col-md-2"><a href="{{ route('posts.edit', $post->id) }}" class="btn btn-link">update this question</a></div>
-
-            <div class="col-md-2">
-                {!!Form::open(['route' => ['posts.destroy', $post->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
-
-                <div class="form-group">
-
-                    <div class="col-md-12">
-
-                        {!! Form::submit('delete', ['class' => 'btn btn-link']) !!}
-
-                    </div>
-
-                </div>
-
-                {!!Form::close() !!}
-
-            </div>
-
-        @endif
+        </ul>
 
     </div>
 
-@endif
+</div>
+
+
