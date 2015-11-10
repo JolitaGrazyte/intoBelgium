@@ -27,7 +27,7 @@
 
                     <li><a href="{{ url('/auth/login') }}" data-toggle="modal" data-target="#myModal">Login</a></li>
 
-                    <li><a href="{{ url('/auth/register') }}">Register</a></li>
+                    <li><a href="{{ url('/auth/register') }} " data-toggle="modal" data-target="#myModal">Register</a></li>
                 @else
 
                     <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
@@ -55,3 +55,9 @@
         </div>
     </div>
 </nav>
+
+<script>
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $(this).removeData('bs.modal');
+    });
+</script>

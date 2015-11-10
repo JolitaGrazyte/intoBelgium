@@ -6029,7 +6029,7 @@ body {
   background-position: 3% center;
   background-repeat: no-repeat;
   padding: 1em;
-  padding-left: 10%; }
+  padding-left: 20%; }
 
 .modal-content .f-login {
   background-color: #3B5998;
@@ -6047,6 +6047,10 @@ body {
   text-align: center; }
 
 .modal-content input {
+  border-radius: 0;
+  margin-top: 1em; }
+
+.modal-content button {
   border-radius: 0; }
 
 .modal-content .h-input {
