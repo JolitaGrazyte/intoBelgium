@@ -103,6 +103,22 @@
 
         </div>
 
+
+        @if(Request::is('events/*') && !$auth->isAuthor($event->author))
+
+            {!!Form::open(['route' => ['attend', $event->id], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+
+
+            <div class="form-group">
+
+                {!! Form::submit(($isAttending)?'Attending':'Attend', ['class' => $isAttending? 'btn' : 'btn  btn-primary btn-attend']) !!}
+
+            </div>
+
+            {!!Form::close() !!}
+
+        @endif
+
     </div>
 
 </div>
