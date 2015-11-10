@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Location;
 use App\User;
-use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\UpdateProfileRequest;
 use Storage;
@@ -83,13 +82,12 @@ class ProfileController extends Controller
 
         $entry = $this->image->where('filename', '=', $filename)->firstOrFail();
 
-        $file = Storage::disk('local')->get($entry->filename);
+//        $file = Storage::disk('local')->get('/uploads/'.$entry->filename);
         $file = ImageLib::resize_image($filename, $size);
 
         return (new Response($file, 200))
             ->header('Content-Type', $entry->mime);
     }
-
 
 
     /**
@@ -112,8 +110,6 @@ class ProfileController extends Controller
             try{
 
             $img = ImageLib::addImage($request->file('image'), $username, $user->id );
-
-
 
                 return redirect()->route('profile.show', $username)->withMessage('Successfully saved!');
 

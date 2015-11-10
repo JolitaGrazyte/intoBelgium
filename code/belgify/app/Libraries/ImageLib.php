@@ -42,7 +42,7 @@ class ImageLib {
 
         }
 
-        Storage::disk('local')->put($file, File::get($image));
+        Storage::disk('local')->put('/uploads/'.$file, File::get($image));
         $img->name = $name;
         $img->imageable_id = $user_id;
         $img->mime = $image->getClientMimeType();
