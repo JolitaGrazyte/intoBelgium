@@ -12,29 +12,25 @@
 
         <div class="container">
 
-           @if (Session::has('confirmDelete'))
+            <div class="row">
+
+            @if (Session::has('confirmDelete'))
 
                <div class="alert alert-danger">
 
                    <a href="{{ route('events.destroy', [Session::get('eventDelete')]) }}">Yes</a> || <a href="{{ route('events.index') }}">Cancel</a>
                </div>
 
-           @endif
+            @endif
 
     {{--       @include('partials.page-head')--}}
 
-           @if(Auth::check() && $auth->isLocal())
+            @if(Auth::check() && $auth->isLocal())
 
                <h3 class="add"><a href="{{ route('events.create') }}">Add new event</a></h3>
 
-           @endif
+            @endif
 
-           <div class="row">
-
-
-                   {{--@each('partials.dashboard.my_event', $events, 'event')--}}
-
-               {{--@endif--}}
 
                @if(isset($events))
 

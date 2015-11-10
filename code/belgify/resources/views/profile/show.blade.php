@@ -65,19 +65,21 @@
                     {{ !empty($user->story) ? $user->story.', '.$user->story :null }}
                 </div>
 
-                    {!!Form::open(['route' => ['follow', $user->id], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+                @if($auth->id != $user->id)
+                    <div>
+                        {!!Form::open(['route' => ['follow', $user->id], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
-                    <div class="form-group">
+                        <div class="form-group">
 
+                            {!! Form::submit( $isFollowed ?'Following':'Follow', ['class' =>  $isFollowed ? 'btn btn-primary' :'btn-follow btn btn-primary']) !!}
 
-{{--                        {!! Form::hidden('follow', $isFollowed, ['class' => '', 'onchange' => 'this.form.submit())']) !!}--}}
+                        </div>
 
-                        {!! Form::submit( $isFollowed ?'Following':'Follow', ['class' =>  $isFollowed ? 'btn btn-primary' :'btn-follow btn btn-primary']) !!}
+                        {!!Form::close() !!}
 
                     </div>
 
-                    {!!Form::close() !!}
-
+                @endif
             </div>
 
         </div>

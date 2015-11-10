@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\FollowRequest;
 use App\User;
 use Auth;
 use Session;
@@ -33,20 +32,19 @@ class DashboardController extends Controller
 
             $follower = Auth::user();
 
-            $userIsNotFollowing = $follower->isFollowing($user->id, $follower->id);
+            $userIsFollowed = $follower->isFollowing($user->id, $follower->id);
 
-            if(!$userIsNotFollowing){
-
-                $follower->following()->attach($user->id);
-
-                Session::flash('message', 'Now you are following:  '.$user->username.'.');
-
-            }
-            else{
+            if($userIsFollowed){
 
                 $follower->following()->detach($user->id);
 
                 Session::flash('message', 'You are not anymore following:  '.$user->username.'.');
+            }
+            else{
+
+                $follower->following()->attach($user->id);
+
+                Session::flash('message', 'Now you are following:  '.$user->username.'.');
 
             }
 

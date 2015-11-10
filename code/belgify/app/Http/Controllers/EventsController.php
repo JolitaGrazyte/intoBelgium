@@ -104,11 +104,12 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        $event_obj  = $this->event->find($id);
-        $user       = $this->authUser;
-        $user_id    = !is_null($user) ? $user->id : 0;
+        $event  = $this->event->find($id);
+//        $user       = $this->authUser;
 
-        $event = EventData::eventData($event_obj, $user_id);
+//        $user_id    = !is_null($user) ? $user->id : 0;
+
+//        $event = EventData::eventData($event_obj, $user_id);
 
         return view('events.show', compact('event'));
     }

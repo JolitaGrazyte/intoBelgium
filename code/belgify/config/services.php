@@ -38,13 +38,13 @@ return [
     'facebook' => [
         'client_id'     =>  env('FB_ID'),
         'client_secret' =>  env('FB_SECRET'),
-        'redirect'      =>  'http://intob.local.com/login/facebook',
+        'redirect'      =>  'http://intobelgium.jolitagrazyte.com/login/facebook',
     ],
 
     'google' => [
         'client_id'     => env('GOOGLE_ID'),
         'client_secret' => env('GOOGLE_SECRET'),
-        'redirect'      => 'http://intob.local.com/login/google'
+        'redirect'      => 'http://intobelgium.jolitagrazyte.com/login/google'
     ],
 
 ];
