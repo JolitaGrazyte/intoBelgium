@@ -4,37 +4,31 @@
 
 @section('content')
 
-    {{--{{ session('eventDelete') }}--}}
-
    <div class="container">
 
-       @if (Session::has('confirmDelete'))
-
-           <div class="alert alert-danger">
-
-               <a href="{{ route('events.destroy', [Session::get('eventDelete')]) }}">Yes</a> || <a href="{{ route('events.index') }}">Cancel</a>
-           </div>
-
-       @endif
-
-{{--       @include('partials.page-head')--}}
-
-       @if(Auth::check() && $auth->isLocal())
-
-           <h3><a href="{{ route('events.create') }}">Add new event</a></h3>
-
-       @endif
+       {{--@include('partials.page-head')--}}
 
        <div class="row">
 
+           @if(Auth::check() && $auth->isLocal())
 
-               {{--@each('partials.dashboard.my_event', $events, 'event')--}}
+               <h3><a href="{{ route('events.create') }}">Add new event</a></h3>
 
-           {{--@endif--}}
+           @endif
+
+
+           @if (Session::has('confirmDelete'))
+
+               <div class="alert alert-danger">
+
+                   <a href="{{ route('events.destroy', [Session::get('eventDelete')]) }}">Yes</a> || <a href="{{ route('events.index') }}">Cancel</a>
+               </div>
+
+           @endif
 
            @if(isset($events))
 
-               @each('partials.dashboard.my_event', $events, 'event', 'events.no-events')
+               @each('events.single', $events, 'event', 'events.no-events')
 
            @endif
 
