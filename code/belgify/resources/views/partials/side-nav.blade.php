@@ -6,7 +6,7 @@
 
             @else
 
-                <img class="dashboard-profile-img" src="/img/Profile_Dummy.png" alt="profile dummy">
+                <img class="dashboard-profile-img" src="{{ url('/img/Profile_Dummy.png') }}" alt="profile dummy">
 
             @endif
         </div>
@@ -18,20 +18,20 @@
     <div class="dashboard-nav-menu">
         <ul>
             <li>
-                <a href="{{ route('dashboard') }}" class="active">
-                    <img src="/img/Follow_pic.png" alt="pictogram Follow"/>
+                <a href="{{ route('dashboard') }}" class="{{ Request::is('dashboard') ? 'active' : ''}}">
+                    <img src="{{ url('img/Follow_pic.png') }}" alt="pictogram Follow"/>
                     <p>Follow</p>
                 </a>
             </li>
             <li>
-                <a href="{{ route('my-events') }}">
-                    <img src="/img/Tours_pic.png" alt="pictogram Tours"/>
+                <a href="{{ route('my-events') }}" class="{{ Request::is('dashboard/my-events') ? 'active' : ''}}">
+                    <img src="{{ url('img/Tours_pic.png') }}" alt="pictogram Tours"/>
                     <p>My Events</p>
                 </a>
             </li>
             <li>
-                <a href="{{ route('my-questions') }}">
-                    <img src="/img/Questions_pic.png" alt="pictogram Questions"/>
+                <a href="{{ route('my-questions') }}" class="{{ Request::is('dashboard/my-questions') ? 'active' : ''}}">
+                    <img src="{{ url('img/Questions_pic.png') }}" alt="pictogram Questions"/>
                     <p>Questions</p>
                 </a>
             </li>
