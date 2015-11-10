@@ -5,10 +5,12 @@
 @section('content')
 
 
+    <div class="event-d">
+        <div class="container show-event">
 
-    <div class="container show-event">
+            @include('events.single')
 
-    @include('events.single')
+        </div>
 
     </div>
 

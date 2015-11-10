@@ -5994,6 +5994,12 @@ button.close {
 body {
   font-family: "Avenir", sans-serif; }
 
+.form-horizontal {
+  height: auto;
+  position: relative;
+  display: inline-block;
+  width: 100%; }
+
 .navbar {
   background-color: #FFF;
   border-radius: 0;
@@ -6158,8 +6164,7 @@ body {
 
 .events-wrapper .container .add {
   border: 1px solid #EEE;
-  padding: 1em;
-  margin-top: 5em; }
+  padding: 1em; }
 
 .events-wrapper .container .add a {
   padding: 5px 10px;
@@ -6204,14 +6209,38 @@ body {
 /******************
     EVENTS DETAIL
 ******************/
+.event-d {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  background-color: #eeeeee;
+  padding-top: 3em; }
+
+.event-d .date {
+  min-height: 14em; }
+
 .show-event {
-  margin-top: 3em; }
+  padding-top: 3em;
+  position: relative; }
+
+.show-event .d-event {
+  height: auto; }
+
+.show-event .row {
+  margin: 0;
+  margin-bottom: 2em;
+  padding-top: 3em;
+  padding-bottom: 3em;
+  border: none;
+  background-color: #FFF; }
 
 .show-event .event-dates {
   border: 3px solid #333;
   width: auto;
   display: inline-block;
-  padding: 10px 20px; }
+  padding: 10px 20px;
+  position: absolute;
+  right: 1em; }
 
 .show-event .event-dates > * {
   text-align: right; }
@@ -6226,9 +6255,70 @@ body {
 .show-event .event-dates .month {
   font-size: 1.2em; }
 
+.show-event .event-dates .hour {
+  letter-spacing: 0.1em;
+  font-weight: bolder;
+  font-size: 1.3em; }
+
 .show-event .title {
   color: #c1272d;
-  font-size: 4em; }
+  font-size: 4em;
+  margin: 0;
+  font-weight: bolder; }
+
+.show-event .btn-going {
+  color: #FFF;
+  background-color: #333;
+  border: 3px solid #333; }
+
+.show-event .btn-attend, .show-event .btn-going {
+  margin-left: 15px;
+  margin-top: 1.8em;
+  border-radius: 0;
+  font-size: 1.2em;
+  font-weight: bolder;
+  transition: background 0.3s, color 0.3s; }
+
+.show-event .btn-attend {
+  color: #333;
+  background-color: #FFF;
+  border: 3px solid #333; }
+
+.show-event .btn-going:hover {
+  background-color: #FFF;
+  color: #333; }
+
+.show-event .btn-attend:hover {
+  background-color: #333;
+  color: #FFF; }
+
+.show-event .events-profile-img {
+  border-radius: 1000px;
+  width: 4em; }
+
+.show-event .img-wrapper a {
+  font-weight: 600;
+  font-size: 1.2em;
+  text-decoration: none;
+  margin-left: 1.5em; }
+
+.show-event .subtitle {
+  position: absolute;
+  right: 2em;
+  font-weight: bolder; }
+
+.show-event .attenders {
+  font-style: italic;
+  color: #666; }
+
+.show-event .map-row {
+  padding: 0; }
+
+#map {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  bottom: 0; }
 
 /******************
     DASHBOARD

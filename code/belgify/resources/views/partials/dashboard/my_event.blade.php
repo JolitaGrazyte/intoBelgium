@@ -60,7 +60,7 @@
             <div class="img-wrapper">
                 @if( Auth::user()->avatar )
 
-                    <img src="{{ route('getImage', [Auth::user()->avatar->filename, 'small']) }}" alt="{{  Auth::user()->avatar->name }}" width="50">
+                    <img src="{{ route('getImage', [$user->avatar->filename, 'small']) }}" alt="{{  Auth::user()->avatar->name }}" width="50">
 
                 @else
 
