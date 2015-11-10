@@ -6023,13 +6023,28 @@ body {
   text-transform: uppercase; }
 
 .home_header {
-  background-image: url("/img/Home_Banner.jpg");
+  background-image: url("/img/img_7347.jpg");
+  background-size: 100% auto;
+  background-position: center bottom;
   width: 100vw;
   height: 65vh;
   position: absolute;
   left: 0; }
 
+.home_header::after {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  background-color: #000;
+  opacity: 0.5;
+  z-index: 1; }
+
 .quote {
+  z-index: 10;
   position: relative;
   width: 70%;
   color: #FFF;
@@ -6040,6 +6055,7 @@ body {
   position: relative; }
 
 .search-form {
+  z-index: 10;
   position: absolute;
   display: inline-block;
   top: 55%;
@@ -6118,7 +6134,56 @@ body {
       color: #F7F7F9; }
 
 .content {
+  padding: 0;
   margin-top: 60px; }
+
+/******************
+    EVENTS
+******************/
+.events-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0; }
+
+.events-wrapper .header .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.6; }
+
+.events-wrapper .header h1 {
+  font-size: 5em; }
+
+.events-wrapper .header {
+  position: relative;
+  width: 100%;
+  height: 20em;
+  background-image: url("/img/rommelmarkt.jpg");
+  background-position: center center; }
+
+.events-wrapper .container .add {
+  border: 1px solid #EEE;
+  padding: 1em; }
+
+.events-wrapper .container .add a {
+  padding: 5px 10px;
+  color: #333;
+  border: 4px solid #333;
+  font-weight: 600;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  text-decoration: none;
+  -webkit-transition: background 0.3s, color 0.3s; }
+
+.events-wrapper .container .add a:hover {
+  background-color: #333;
+  color: #EEE; }
+
+.events-wrapper .container .row {
+  margin: 0; }
 
 /******************
     DASHBOARD
@@ -6131,7 +6196,8 @@ body {
 
 .dashboard {
   position: relative;
-  overflow: hidden; }
+  overflow: hidden;
+  margin: 0; }
 
 .dashboard-header {
   position: fixed;

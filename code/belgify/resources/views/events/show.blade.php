@@ -4,6 +4,8 @@
 
 @section('content')
 
+
+
     <div class="container">
 
     @include('events.single')
