@@ -39,8 +39,6 @@
 
     <div class="col-md-8 d-event-detail">
 
-
-
             <a class="title" href="{{ route('events.show', $event['id']) }}"> {{ $event->title }}</a>
 
             <div class="place-hour">

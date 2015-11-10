@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Response;
 class SearchController extends Controller
 {
 
+    public function index(){
+
+        return 'hello at search index!!';
+    }
+
 
     public function getAutocomplete( SearchJsonRequest $request ){
 
