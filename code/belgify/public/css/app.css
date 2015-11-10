@@ -6185,6 +6185,25 @@ body {
 .events-wrapper .container .row {
   margin: 0; }
 
+.events-wrapper .img-wrapper {
+  width: 4em;
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 1em; }
+
+.events-wrapper .img-wrapper p {
+  font-size: 0.8em;
+  color: #333;
+  font-style: italic;
+  text-align: center; }
+
+.events-wrapper .events-profile-img {
+  width: 100%;
+  border-radius: 1000px; }
+
 /******************
     DASHBOARD
 ******************/
@@ -6393,7 +6412,6 @@ body {
   top: 50%;
   -webkit-transform: translateY(-50%) rotateY(-75deg);
   transform: translateY(-50%) rotateY(-75deg);
-  background-color: #c1272d;
   opacity: 0;
   transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
   transition: transform 0.4s, opacity 0.1s 0.3s;
@@ -6418,10 +6436,26 @@ body {
   transform: translate(-50%, -50%); }
 
 .d-event .background a {
+  background-color: #333;
   position: relative;
   display: inline-block;
   width: 100%;
   height: 100%; }
+
+.d-event .background .y-more-info, .d-event .background .y-edit, .d-event .background .y-delete {
+  height: 33.33332%; }
+
+.d-event .background .y-more-info img, .d-event .background .y-edit img, .d-event .background .y-delete img {
+  display: inline-block !important;
+  width: 20% !important;
+  -webkit-transform: translateX(-50%) !important;
+  transform: translateX(-50%) !important; }
+
+.d-event .background .y-edit {
+  background-color: #ffaf00; }
+
+.d-event .background .y-delete {
+  background-color: #c1272d; }
 
 .d-event .background .wrapper img, .d-event .background .wrapper p {
   position: relative;
