@@ -3,7 +3,14 @@
 
     <div class="col-md-6">
         <div> {{ $post->comments->count() }}</div>
-        <div><a href="{{ route('posts.show', $post->id) }}">answers </a> </div>
+        <div>
+
+            @if(Request::is('posts'))
+                <a href="{{route('posts.show', $post->id) }}">answers </a>
+            @else
+                answers
+            @endif
+        </div>
     </div>
 
     <div class="col-md-6">
@@ -33,11 +40,11 @@
         @if(count($post->tags))
 
             <ul>
-            @foreach($post->tags as $tag)
+                @foreach($post->tags as $tag)
 
-                <li><a href="">{{ $tag->name }}</a></li>
+                    <li><a href="">{{ $tag->name }}</a></li>
 
-            @endforeach
+                @endforeach
 
             </ul>
 
@@ -47,15 +54,15 @@
 </div>
 
 
-@if(!Auth::guest() && $auth->isLocal())
+@if(!Auth::guest())
 
     <div class="row col-md-offset-2">
 
-        @if( !Auth::user()->isAuthor($post->author) )
+        @if($auth->isLocal() && !$auth->isAuthor($post->author))
 
             <div class="col-md-2"><a href="{{ route('comments.create') }}" class="btn btn-link">answer this question</a></div>
 
-        @else
+        @elseif($auth->isAuthor($post->author))
 
             <div class="col-md-2"><a href="{{ route('posts.edit', $post->id) }}" class="btn btn-link">update this question</a></div>
 

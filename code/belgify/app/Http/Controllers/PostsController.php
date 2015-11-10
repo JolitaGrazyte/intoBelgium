@@ -105,10 +105,9 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = $this->post->find($id);
-        if ( Auth::user()->id == $post->author->id) {
+        if (Auth::user()->isAuthor($post->author)) {
 
             $tags       = $this->tag->lists('name', 'id');
-            $post_tags  = $post->tags->lists('id')->all();
             $title      = 'Update your question';
 
             return view('posts.edit', compact('tags', 'id', 'post', 'post_tags'))->withTitle($title);
@@ -127,6 +126,7 @@ class PostsController extends Controller
      */
     public function update( PostRequest $request , $id)
     {
+
         try{
 
             $post = $this->post->find($id);
@@ -172,7 +172,6 @@ class PostsController extends Controller
         }
 
     }
-
 
 
     public function postFill($post, $request, $msg){

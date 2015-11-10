@@ -52,10 +52,7 @@ class ProfileController extends Controller
         $user       = $this->user->where('username', $user_name)->first();
         $location   = $user->location;
         $avatar     = $user->avatar;
-//        dd($user->id);
-//        dd(Auth::user()->id);
         $isFollowed = Auth::user()->isFollowing($user->id, Auth::user()->id);
-//        dd($isFollowed);
 
         return view('profile.show', compact('user', 'location', 'avatar', 'isFollowed'))->withTitle('Your profile');
     }

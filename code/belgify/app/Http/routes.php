@@ -15,10 +15,10 @@
 get('/', ['as' => 'home', function(){
     return view('home');
 }]);
-
-get('/home', function(){
-    return redirect()->to('/');
-});
+//
+//get('/home', function(){
+//    return redirect()->to('/');
+//});
 
 Route::group(['middleware' => 'auth'], function(){
 
@@ -55,9 +55,9 @@ resource('profile',     'ProfileController', ['except' => ['index']]);
 
 Route::group(['middleware' => 'auth'], function(){
 
-    resource('profile',     'ProfileController', ['except' => ['index']]);
-    resource('events',      'EventsController', ['only' => ['edit', 'create'], 'except' => ['index', 'show']]);
-    resource('posts',       'EventsController', ['only' => ['edit', 'create']]);
+    resource('profile',     'ProfileController',    ['except' => ['index']]);
+    resource('events',      'EventsController',     ['except' => ['index', 'show']]);
+    resource('posts',       'PostsController',      ['except' => ['index', 'show']]);
     post('events/{id}',             ['as' => 'attend',          'uses' => 'EventsController@postAttend']);
     get('/events/delete-confirm',   ['as' => 'event-delete',    'uses' => 'EventsController@delete_confirm']);
     post('dashboard/{id}', ['as' => 'follow', 'uses' => 'DashboardController@postFollow']);

@@ -36,7 +36,6 @@ class ImageLib {
 
         if($hasEntry ){
 
-//        dd(Storage::disk('local')->exists($file));
             Storage::disk('local')->exists($file) ? Storage::delete($file): false;
             $img->where('imageable_id', $user_id)->delete();
 
@@ -46,7 +45,7 @@ class ImageLib {
         $img->name = $name;
         $img->imageable_id = $user_id;
         $img->mime = $image->getClientMimeType();
-//            $entry->original_filename = $image->getClientOriginalName();
+//      $entry->original_filename = $image->getClientOriginalName();
         $img->filename = $filename . '.' . $extension;
         $img->save();
 

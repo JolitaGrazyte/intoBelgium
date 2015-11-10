@@ -1,19 +1,39 @@
 
 
-        <div>Question: <em>{{ $question->title }}</em></div>
+<div>Question: <em><a href="{{ route('posts.edit', $question->id) }}"> {{ $question->title }} </a></em></div>
 
-        <div> Tags: @foreach( $question->tags as $tag )
+<div>
+    @if(count($question->tags))
 
-                {{ $tag->name }}
+        Tags:
+        @foreach( $question->tags as $tag )
+
+            {{ $tag->name }}
+
+        @endforeach
+
+    @endif
+
+</div>
+
+<div>
+
+    @if(count($question->comments))
+
+        <ul>
+            Answers:
+            @foreach( $question->comments as $comment )
+
+                <li>
+                    <a href="{{ route('comments.show', $comment->id) }}">{{ Request::is('dashboard/my-questions')?substr($comment->body, 0, 50):$comment->body }}</a>
+                </li>
 
             @endforeach
 
-        </div>
+        </ul>
 
-        <div> Answers: @foreach( $question->comments as $comment )
+    @endif
 
-                <p><a href="">{{ $comment->body }}</a></p>
+</div>
 
-            @endforeach
 
-        </div>
