@@ -12,7 +12,7 @@
                     <img src="{{ url('/img/Edit.png') }}" alt="Edit icon"/>
                 </div>
             </a>
-            <a class="y-delete" href="{{ route('events.show', $event['id']) }}">
+            <a class="y-delete" href="{{ route('events.index' ) }}">
                 <div class="wrapper">
                     <img src="{{ url('/img/Delete.png') }}" alt="Delete icon"/>
                 </div>

@@ -88,7 +88,6 @@ body{
   height:             70px;
   padding:            20px 30px;
   background-color:   rgba(0,0,0,0.8);
-  border-radius:      0.7em;
 }
 
 .search-form > *{
@@ -100,19 +99,11 @@ body{
   border:                 none;
   font-weight:            800;
   letter-spacing:         0.1em;
-
-  border-top-right-radius:    0.3em;
-  border-bottom-right-radius: 0.3em;
-  border-top-left-radius:     0em;
-  border-bottom-left-radius:   0em;
+  border-radius: 0;
 }
 
 .text-search{
   border: none;
-  border-top-right-radius:    0em;
-  border-bottom-right-radius: 0em;
-  border-top-left-radius:     0.3em;
-  border-bottom-left-radius:  0.3em;
 }
 
 .btn-search:hover{
@@ -236,6 +227,7 @@ body{
 
   border: 1px solid #EEE;
   padding: 1em;
+  margin-top: 5em;
 }
 
 .events-wrapper .container .add a{
@@ -282,6 +274,48 @@ body{
 .events-wrapper .events-profile-img {
   width: 100%;
   border-radius: 1000px;
+}
+
+.events-wrapper .text-search, .events-wrapper .btn-search{
+  margin-top: 3em;
+  border-radius: 0;
+}
+
+
+/******************
+    EVENTS DETAIL
+******************/
+
+.show-event{
+  margin-top: 3em;
+}
+
+.show-event .event-dates{
+  border: 3px solid #333;
+  width: auto;
+  display: inline-block;
+  padding: 10px 20px;
+}
+
+.show-event .event-dates > *{
+  text-align: right;
+}
+
+.show-event .event-dates .day{
+  font-size: 5em;
+  font-weight: bolder;
+  line-height: 0.7em;
+  margin-top: 0.2em;
+  color: #000000;
+}
+
+.show-event .event-dates .month{
+  font-size: 1.2em;
+}
+
+.show-event .title{
+  color: #c1272d;
+  font-size: 4em;
 }
 
 /******************
@@ -441,11 +475,11 @@ body{
   background-color: #363636;
 }
 
-.dashboard .text-search, .dashboard .btn-search{
+.dashboard .text-search, .events-wrapper .text-search, .events-wrapper .btn-search,  .dashboard .btn-search{
   margin-left: 0;
   height: 2.5em;
 }
-.dashboard .text-search{
+.events-wrapper .text-search, .dashboard .text-search{
   padding-left: 5px;
   border: 1px solid #DDD;
   border-right: none;

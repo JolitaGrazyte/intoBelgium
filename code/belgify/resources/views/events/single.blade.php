@@ -1,26 +1,16 @@
 <div class="row d-event">
-    <div class="col-md-2 background">
 
-        <a href="{{ route('events.show', $event['id']) }}">
-            <div class="wrapper">
-                <img src="{{ url('/img/More_info.png') }}" alt="more info icon"/>
-                <p>Details</p>
-            </div>
-        </a>
+    <div class="col-md-2">
+        <div class="event-dates">
+            <div class="day">{{ $event->date->day }}</div>
+            <div class="month">{{ $event->date->format('F') }}</div>
+            <div class="year">{{ $event->date->year }}</div>
+        </div>
     </div>
 
-    <div class="col-md-2 d-event-dates">
-        <div class="day">{{ $event->date->day }}</div>
-        <div class="month">{{ $event->date->format('F') }}</div>
-        <div class="year">{{ $event->date->year }}</div>
+    <div class="col-md-10 event-detail">
 
-    </div>
-
-    <div class="col-md-8 d-event-detail">
-
-
-
-        <a class="title" href="{{ route('events.show', $event['id']) }}"> {{ $event->title }}</a>
+        <h1 class="title">{{ $event->title }}</h1>
 
         <div class="place-hour">
             <p class="city"> {{ $event->location->name }} </p>
