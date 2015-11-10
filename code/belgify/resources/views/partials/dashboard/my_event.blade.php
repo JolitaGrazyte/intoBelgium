@@ -1,19 +1,20 @@
 <div class="row d-event">
     <div class="col-md-2 background">
-        @if (Auth::user()->username == $event->author->username)
+        @if ($auth->isAuthor($event->author))
+
             <a class="y-more-info" href="{{ route('events.show', $event['id']) }}">
                 <div class="wrapper">
-                    <img src="/img/More_info.png" alt="more info icon"/>
+                    <img src="{{ url('/img/More_info.png') }}" alt="more info icon"/>
                 </div>
             </a>
             <a class="y-edit" href="{{ route('events.edit', $event['id']) }}">
                 <div class="wrapper">
-                    <img src="/img/Edit.png" alt="Edit icon"/>
+                    <img src="{{ url('/img/Edit.png') }}" alt="Edit icon"/>
                 </div>
             </a>
             <a class="y-delete" href="{{ route('events.show', $event['id']) }}">
                 <div class="wrapper">
-                    <img src="/img/Delete.png" alt="Delete icon"/>
+                    <img src="{{ url('/img/Delete.png') }}" alt="Delete icon"/>
                 </div>
             </a>
 
@@ -21,7 +22,7 @@
 
             <a href="{{ route('events.show', $event['id']) }}">
                 <div class="wrapper">
-                    <img src="/img/More_info.png" alt="more info icon"/>
+                    <img src="{{ url('/img/More_info.png') }}" alt="more info icon"/>
                     <p>Details</p>
                 </div>
             </a>
@@ -54,7 +55,7 @@
 
     </div>
 
-    @if (Auth::user()->username == $event->author->username)
+    @if ($auth->isAuthor($event->author))
         <a href="{{ route('profile.show', str_replace(' ', '-', $event->author->username ))  }}">
             <div class="img-wrapper">
                 @if( Auth::user()->avatar )
@@ -63,7 +64,7 @@
 
                 @else
 
-                    <img class="events-profile-img" src="/img/Profile_Dummy.png" alt="profile dummy">
+                    <img class="events-profile-img" src="{{ url('/img/Profile_Dummy.png') }}" alt="profile dummy">
 
                 @endif
 
