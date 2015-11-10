@@ -174,7 +174,8 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-
+        Session::delete('confirmDelete');
+        Session::delete('eventDelete');
         $this->event->destroy($id);
 
         return redirect()->route('events.index');

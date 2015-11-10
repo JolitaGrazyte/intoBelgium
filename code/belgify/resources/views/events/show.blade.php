@@ -6,7 +6,7 @@
 
 
 
-    <div class="container">
+    <div class="container show-event">
 
     @include('events.single')
 

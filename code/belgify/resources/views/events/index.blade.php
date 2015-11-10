@@ -16,14 +16,15 @@
 
             @if (Session::has('confirmDelete'))
 
-               <div class="alert alert-danger">
+               <div class="">
 
-                   <a href="{{ route('events.destroy', [Session::get('eventDelete')]) }}">Yes</a> || <a href="{{ route('events.index') }}">Cancel</a>
+                   <a href="{{ action('EventsController@destroy', Session::get('eventDelete')) }}">Yes</a> || <a href="{{ route('events.index') }}">Cancel</a>
+
                </div>
 
             @endif
 
-    {{--       @include('partials.page-head')--}}
+                @include('partials.search')
 
             @if(Auth::check() && $auth->isLocal())
 

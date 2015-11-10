@@ -28,6 +28,12 @@
 
                             @if(isset($my_events))
 
+                                @if(Auth::check() && Auth::user()->isLocal())
+
+                                    <h3 class="add"><a href="{{ route('events.create') }}">Add new event</a></h3>
+
+                                @endif
+
                                 @each('partials.dashboard.my_event', $my_events, 'event', 'events.no-events')
 
                             @endif
