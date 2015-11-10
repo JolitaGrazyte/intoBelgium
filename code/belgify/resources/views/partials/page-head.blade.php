@@ -4,6 +4,7 @@
 
 @include('partials.errors')
 
-<div class="dashboard-header">
+<div class="dashboard-header header">
+    <div class="background"></div>
     <h1>{{ $title }}</h1>
 </div>

@@ -4,43 +4,50 @@
 
 @section('content')
 
-   <div class="container">
+    {{--{{ session('eventDelete') }}--}}
 
-       {{--@include('partials.page-head')--}}
+    <div class="events-wrapper">
 
-       <div class="row">
+        @include('partials.page-head')
 
-           @if(Auth::check() && $auth->isLocal())
+        <div class="container">
 
-               <h3><a href="{{ route('events.create') }}">Add new event</a></h3>
+            <div class="row">
 
-           @endif
-
-
-           @if (Session::has('confirmDelete'))
+            @if (Session::has('confirmDelete'))
 
                <div class="alert alert-danger">
 
                    <a href="{{ route('events.destroy', [Session::get('eventDelete')]) }}">Yes</a> || <a href="{{ route('events.index') }}">Cancel</a>
                </div>
 
-           @endif
+            @endif
 
-           @if(isset($events))
+    {{--       @include('partials.page-head')--}}
 
-               @each('events.single', $events, 'event', 'events.no-events')
+            @if(Auth::check() && $auth->isLocal())
 
-           @endif
+               <h3 class="add"><a href="{{ route('events.create') }}">Add new event</a></h3>
 
-       </div>
+            @endif
 
-   </div>
+
+               @if(isset($events))
+
+                   @each('partials.dashboard.my_event', $events, 'event', 'events.no-events')
+
+               @endif
+
+           </div>
+
+        </div>
+    </div>
 
 
    <style>
 
        #map {
-           width: 105%;
+           width: 100%;
            height: 300px;
            position: relative;
            bottom: 0;

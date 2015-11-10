@@ -26,7 +26,7 @@
             <li>
                 <a href="{{ route('my-events') }}">
                     <img src="/img/Tours_pic.png" alt="pictogram Tours"/>
-                    <p>My Tours  </p>
+                    <p>My Events</p>
                 </a>
             </li>
             <li>
