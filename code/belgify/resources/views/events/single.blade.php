@@ -30,6 +30,7 @@
 
         <p class="attenders"> {{ $event->attenders->count()}} participants</p>
 
+        {{--{{ dd(count($event->author->avatar)) }}--}}
         <p> Posted by: <a href="{{ route('profile.show', str_replace(' ', '-', $event->author->username ) ) }}">{{ $event->author->username }}</a>, <em>{{ $event->created_at->diffforHumans() }}</em> </p>
 
     </div>
