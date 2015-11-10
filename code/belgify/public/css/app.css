@@ -6000,6 +6000,88 @@ body {
   display: inline-block;
   width: 100%; }
 
+.modal-dialog {
+  z-index: 1000; }
+
+.modal-backdrop {
+  z-index: 1; }
+
+.modal-content {
+  border-radius: 0;
+  border: none;
+  padding: 2em; }
+
+.modal-content .form-group {
+  margin: 0; }
+
+.modal-content h1 {
+  text-align: center;
+  font-weight: 800; }
+
+.modal-content .fg-login {
+  width: 100%;
+  margin-top: 0.5em;
+  border-radius: 0;
+  font-weight: 800;
+  border: none;
+  background-size: auto 60%;
+  text-align: left;
+  background-position: 3% center;
+  background-repeat: no-repeat;
+  padding: 1em;
+  padding-left: 10%; }
+
+.modal-content .f-login {
+  background-color: #3B5998;
+  border: solid 1px #EEE;
+  background-image: url("/img/Facebook.png"); }
+
+.modal-content .g-login {
+  margin-bottom: 1em;
+  background-color: #FFF;
+  border: solid 1px #EEE;
+  color: #333;
+  background-image: url("/img/Google.png"); }
+
+.modal-content .or {
+  text-align: center; }
+
+.modal-content input {
+  border-radius: 0; }
+
+.modal-content .h-input {
+  margin-top: 1em; }
+
+.modal-content .btn-login {
+  width: 100%;
+  background-color: #c1272d;
+  border: none;
+  margin-top: 2em; }
+
+.modal-dialog {
+  width: 30em;
+  margin: 30px auto; }
+
+.modal-content .forgot-wrapper {
+  margin-top: 2em;
+  width: 100%;
+  position: relative; }
+
+.modal-content .forgot-wrapper a {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  border: 0; }
+
+.modal-content .forgot-wrapper input {
+  margin: 0;
+  left: 0;
+  top: 0; }
+
+.row {
+  margin: 0; }
+
 .navbar {
   background-color: #FFF;
   border-radius: 0;
@@ -6162,11 +6244,11 @@ body {
   background-image: url("/img/rommelmarkt.jpg");
   background-position: center center; }
 
-.events-wrapper .container .add {
+.events-wrapper .container .add, .dashboard .container .add {
   border: 1px solid #EEE;
   padding: 1em; }
 
-.events-wrapper .container .add a {
+.events-wrapper .container .add a, .dashboard .container .add a {
   padding: 5px 10px;
   color: #333;
   border: 4px solid #333;
@@ -6354,8 +6436,11 @@ body {
   color: #FFF;
   font-size: 4em; }
 
-.dashboard .side-nav {
-  position: fixed; }
+.side-nav {
+  position: fixed;
+  padding: 0;
+  width: 16.6666%;
+  left: 0; }
 
 .dashboard-nav-header {
   position: relative;

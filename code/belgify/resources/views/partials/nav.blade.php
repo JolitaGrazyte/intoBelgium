@@ -25,7 +25,8 @@
 
                 @if ( Auth::guest() )
 
-                    <li><a href="{{ url('/auth/login') }}">Login</a></li>
+                    <li><a href="{{ url('/auth/login') }}" data-toggle="modal" data-target="#myModal">Login</a></li>
+
                     <li><a href="{{ url('/auth/register') }}">Register</a></li>
                 @else
 

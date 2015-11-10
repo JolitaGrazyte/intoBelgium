@@ -1,4 +1,5 @@
-<div class="dashboard-nav-header">
+<div class="side-nav">
+    <div class="dashboard-nav-header">
         <div class="profile-img-wrapper">
             @if( Auth::user()->avatar )
 
@@ -37,3 +38,4 @@
             </li>
         </ul>
     </div>
+</div>

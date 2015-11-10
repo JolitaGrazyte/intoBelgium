@@ -7,7 +7,7 @@
 
         <div class="row dashboard">
 
-            <div class="col-md-2 side-nav">
+            <div class="col-md-2">
 
                 @include('partials.side-nav')
 
