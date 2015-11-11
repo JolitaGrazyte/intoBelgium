@@ -36,7 +36,7 @@
         </div>
         <div class="col-md-2 d-votes">
                 <p class="v">{{ $post->votes->count() }}</p>
-                <p>votes</p>
+                <p>{{ $post->votes->count() == 1 ?'vote':'votes'}}</p>
         </div>
     </div>
 

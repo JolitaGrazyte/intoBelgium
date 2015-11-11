@@ -37,23 +37,23 @@
             <div>
 
                 @if(Request::is('posts'))
-                    <a href="{{route('posts.show', $post->id) }}">answers </a>
+                    <a href="{{route('posts.show', $post->id) }}">{{  $post->comments->count() == 1 ? 'answer' : 'answers' }} </a>
                 @else
-                    answers
+                    {{  $post->comments->count() == 1 ? 'answer' : 'answers' }}
                 @endif
             </div>
         </div>
 
         <div class="col-md-6 votes">
             <div class="number">{{ $post->votes->count() }}</div>
-            <div>votes</div>
+            <div>{{ $post->votes->count() == 1 ?'vote':'votes'}}</div>
         </div>
 
     </div>
 
     <div class="col-md-8 d-post-details">
 
-        <a class="title" href="{{route('posts.show', $post->id)}}"> {{ $post->title }} </a>
+        <a class="title" href="{{ route('posts.show', $post->id) }}"> {{ $post->title }} </a>
 
         <div>
             @if(count($post->tags))
@@ -72,8 +72,11 @@
     </div>
 
     @if ($auth && $auth->isAuthor($post->author))
+
         <a href="{{ route('profile.show', str_replace(' ', '-', $post->author->username ))  }}">
+
             <div class="img-wrapper">
+
                 @if( $auth->avatar )
 
                     <img class="posts-profile-img" src="{{ route('getImage', [$auth->avatar->filename, 'small']) }}" alt="{{  $auth->avatar->name }}" width="50">
