@@ -6,6 +6,7 @@ use App\User;
 use App\AuthenticateUser;
 use App\AuthenticateUserListener;
 use Illuminate\Auth\Guard;
+use Illuminate\Http\Response;
 use Session;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -50,10 +51,18 @@ class AuthController extends Controller implements AuthenticateUserListener
 
         $credentials = $request->only('email', 'password');
 
+        if ($request->ajax()) {
+            if($this->auth->attempt($credentials, $request->has('remember'))){
+                return response()->json([redirect()->intended($this->redirectPath())->getTargetUrl()]);
+            }
+        }
+
         if ($this->auth->attempt($credentials, $request->has('remember')))
         {
             return redirect()->intended($this->redirectPath());
         }
+
+
 
         return redirect($this->loginPath())
 

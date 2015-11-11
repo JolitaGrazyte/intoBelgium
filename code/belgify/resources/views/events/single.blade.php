@@ -17,21 +17,24 @@
 
 
             {{--ATTEND BTN--}}
+            @if(Auth::check())
 
-            @if(Request::is('events/*') && !$auth->isAuthor($event->author))
+                @if(Request::is('events/*') && !$auth->isAuthor($event->author))
 
-                {!! Form::open(['route' => ['attend', $event->id], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+                    {!! Form::open(['route' => ['attend', $event->id], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
 
-                <div class="form-group">
+                        {!! Form::hidden('going', $event['attending'], ['class' => '', 'onchange' => 'this.form.submit())']) !!}
 
-                    {!! Form::hidden('going', $event['attending'], ['class' => '', 'onchange' => 'this.form.submit())']) !!}
+                        {!! Form::submit(($isAttending)?' Going':'+ Check in', ['class' => $isAttending? 'btn btn-going' : 'btn  btn-primary btn-attend']) !!}
 
-                    {!! Form::submit(($isAttending)?' Going':'+ Check in', ['class' => $isAttending? 'btn btn-going' : 'btn  btn-primary btn-attend']) !!}
+                    {!!Form::close() !!}
 
-                </div>
+                @endif
 
-                {!!Form::close() !!}
+            @else
+
+                <a href="{{ url('/auth/login') }}" class="btn btn-attend" data-toggle="modal" data-target="#myModal">Login to join this event</a>
 
             @endif
 
@@ -45,9 +48,9 @@
 
         <div class="col-md-8 author">
             <div class="img-wrapper">
-                @if( Auth::user()->avatar )
+                @if( $event->author->avatar )
 
-                    <img class="events-profile-img" src="{{ route('getImage', [Auth::user()->avatar->filename, 'small']) }}" alt="{{  Auth::user()->avatar->name }}" width="50">
+                    <img class="events-profile-img" src="{{ route('getImage', [$event->author->avatar->filename, 'small']) }}" alt="{{  $event->author->avatar->name }}" width="50">
 
                 @else
 

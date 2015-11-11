@@ -15,10 +15,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="{{ route('home') }}">Into Belgium</a></li>
-                @if(!Request::is('/') )
                     <li><a href="{{ route('posts.index') }}">Questions</a></li>
                     <li><a href="{{ route('events.index') }}">Events</a></li>
-                @endif
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

@@ -3,9 +3,9 @@
     <div class="row header">
         <div class="col-md-2">
             <div class="img-wrapper">
-                @if( Auth::user()->avatar )
+                @if( $post->author->avatar )
 
-                    <img class="events-profile-img" src="{{ route('getImage', [Auth::user()->avatar->filename, 'small']) }}" alt="{{  Auth::user()->avatar->name }}" width="50">
+                    <img class="events-profile-img" src="{{ route('getImage', [$post->author->avatar->filename, 'small']) }}" alt="{{ $post->author->avatar->name }}" width="50">
 
                 @else
 
@@ -85,10 +85,18 @@
 
                 @endif
 
+                @if(Auth::check())
                 <div class="row answer-btn single-answer">
                     <div class="col-md-12"><a href="{{ route('comments.create') }}" class="btn btn-link"> {{ !count($post->comments) ? 'Be the first!! ' : '' }} answer this question</a></div>
                 </div>
 
+                    @else
+
+                        <div class="row answer-btn single-answer">
+                            <div class="col-md-12"><a href="{{ url('/auth/login') }}" data-toggle="modal" data-target="#myModal" class="btn btn-link"> {{ !count($post->comments) ? 'Be the first!! ' : '' }} Login and answer this question</a></div>
+                        </div>
+
+                @endif
 
             </div>
 
