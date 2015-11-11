@@ -22,7 +22,7 @@
 
                     @if(Request::is('dashboard/my-events') )
 
-                        <div>
+                        <div class="content-wrapper">
 
                             <h1>Upcomming Events</h1>
 
@@ -42,15 +42,15 @@
 
                     @elseif(Request::is('dashboard/my-questions') )
 
-                        <div>
+                        <div class="content-wrapper">
 
                             <h1>My questions</h1>
 
-                            <div>
+                            <h3 class="add">
                                 <a href="{{ route('posts.create') }}">Ask question</a>
-                            </div>
+                            </h3>
 
-                            @each('partials.dashboard.my_question', $my_questions, 'question', 'partials.no-entries')
+                            @each('partials.dashboard.my_question', $my_questions, 'post', 'partials.no-entries')
 
 
                         </div>
