@@ -6,7 +6,7 @@
 
     {{--@include('partials.page-head')--}}
 
-    <div class="event-d">
+    <div class="post-d">
         <div class="container show-event">
             @include('posts.single')
         </div>

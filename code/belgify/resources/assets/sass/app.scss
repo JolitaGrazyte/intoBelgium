@@ -668,7 +668,7 @@ body{
     POST DETAIL
 ******************/
 
-.event-d .i-name{
+.post-d .i-name{
   text-align: center;
   margin: 0 !important;
   display: inline-block;
@@ -680,7 +680,12 @@ body{
   transform: translateX(-50%);
 }
 
-.event-d .header{
+.post-d{
+  padding: 0;
+  background-color: #EEE;
+}
+
+.post-d .header{
   min-height: 16em;
   position: relative;
   display: inline-block;
@@ -689,16 +694,16 @@ body{
   z-index: 1;
 }
 
-.event-d .single-answer:first-child{
+.post-d .single-answer:first-child{
   margin-top: 3em;
 }
 
-.event-d .single-answer{
+.post-d .single-answer{
   position: relative;
 }
 
 
-.event-d .single-answer::before{
+.post-d .single-answer::before{
   content: '';
   position: absolute;
   left: -9.99999%;
@@ -724,11 +729,11 @@ body{
   padding-bottom: 2em;
 }
 
-.event-d .img-wrapper{
+.post-d .img-wrapper{
   position: relative;
 }
 
-.event-d .img-wrapper a{
+.post-d .img-wrapper a{
   text-align: center;
   margin: 0 !important;
   display: inline-block;
@@ -741,44 +746,80 @@ body{
   transform: translateX(-50%);
 }
 
-.event-d .single-answer .col-md-10{
+.post-d .single-answer .col-md-10{
   position: relative;
   height: auto !important;
 }
 
-.event-d .answer-wrapper{
+.post-d .answer-wrapper{
   margin-top: -0.4em;
   background-color: transparent;
+  position: relative;
   padding-top: 0;
   padding-bottom: 0;
   z-index: 10;
-  height: 10em;
-  min-height: 80vh;
 }
 
-.event-d .answer-wrapper .col-md-10{
+.post-d .answer-wrapper .col-md-10{
   padding: 0;
 }
 
-.event-d .single-answer .col-md-10{
+.post-d .single-answer .col-md-10{
   padding: 0 2em !important;
 }
 
-.event-d .answer-wrapper .col-md-2{
+.post-d .answer-wrapper .col-md-2{
   height: 100%;
 }
 
-.event-d .d-votes > *{
+.answers-wrapper{
+  margin-left: 16.6666%;
+}
+
+.post-d .answer-btn{
+  background-color: transparent;
+}
+
+.post-d .answer-btn .col-md-12{
+  padding: 0;
+}
+
+.post-d .answer-btn a{
+  border: 3px solid #333;
+  font-weight: bolder;
+  letter-spacing: 0.1em;
+  color: #333;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-transition: background 0.3s, color 0.3s;
+  -moz-transition: background 0.3s, color 0.3s;
+  -o-transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s;
+}
+
+.post-d .answer-btn a:hover{
+  color: #FFF;
+  background-color: #333;
+}
+
+.post-d .d-votes > *{
   text-align: center;
   font-weight: bolder;
   margin-bottom: 0;
 }
 
-.event-d{
+.post-d{
   min-height: 100vh;
 }
 
-.event-d .line{
+.d-post .answer-wrapper .line-wrapper{
+  height: 100%;
+  width: 16.666%;
+  display: inline-block;
+  position: absolute;
+}
+
+.post-d .line{
   background-color: #999;
   position: relative;
   width: 1px;
@@ -790,27 +831,39 @@ body{
   transform: translateX(-50%);
 }
 
-.event-d .d-votes .v{
+.post-d .line::after{
+  content: '';
+  position: absolute;
+  display: inline-block;
+  background-color: #999;
+  bottom: 0;
+  transform: translateX(-0.25em);
+  border-radius: 100px;
+  width: 0.5em;
+  height: 0.5em;
+}
+
+.post-d .d-votes .v{
   font-size: 3em;
 }
 
-.event-d .title{
+.post-d .title{
   color: #c1272d;
 }
 
-.event-d .posted{
+.post-d .posted{
   font-style: italic;
   font-weight: 100;
   margin-top: 1em;
   color: #999;
 }
 
-.event-d .body-question{
+.post-d .body-question{
   font-weight: 500;
   font-size: 1.1em;
 }
 
-.event-d .img-wrapper{
+.post-d .img-wrapper{
   left: 50%;top: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
