@@ -56,6 +56,7 @@ class AuthController extends Controller implements AuthenticateUserListener
         }
 
         return redirect($this->loginPath())
+
             ->withInput($request->only('email', 'remember'))
             ->withErrors([
                 'email' => $this->getFailedLoginMessage(),

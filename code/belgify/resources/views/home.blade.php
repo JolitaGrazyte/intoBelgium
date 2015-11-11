@@ -4,11 +4,9 @@
 
 @section('content')
 
-    @include('partials.modal')
-
     @include('partials.message')
 
-    @include('partials.errors')
+
 
 
 

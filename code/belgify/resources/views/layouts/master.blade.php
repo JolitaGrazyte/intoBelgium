@@ -50,12 +50,22 @@
 
 @show
 
+@include('partials.modal')
+
 <div class="container-fluid content">
 
         @yield('content')
 
     <script>
         $('div.alert').not('.alert-important').delay(4000).slideUp(400);
+
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+
+        @if ($errors->all())
+            $('#login').click();
+        @endif
     </script>
 </div>
 </body>

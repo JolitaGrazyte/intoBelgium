@@ -5,6 +5,7 @@
 
                         <h1>Login</h1>
 
+
                         <hr/>
 
                         <div class="form-group">
@@ -32,7 +33,7 @@
                         <div class="form-group forgot-wrapper">
 
                             <input type="checkbox" name="remember"> Remember me
-                            <a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
+                            <a class="btn btn-link" href="{{ url('/password/email') }}" >Forgot Your Password?</a>
 
                         </div>
 

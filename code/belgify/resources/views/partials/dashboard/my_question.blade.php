@@ -1,38 +1,43 @@
+<div class="row d-post">
 
+    <div class="col-md-2 answer-votes">
+        <div class="col-md-6 answers">
+            <div class="number"> {{ $post->comments->count() }}</div>
+            <div>
 
-<div>Question: <em><a href="{{ route('posts.edit', $question->id) }}"> {{ $question->title }} </a></em></div>
+                @if(Request::is('posts'))
+                    <a href="{{route('posts.show', $post->id) }}">answers </a>
+                @else
+                    answers
+                @endif
+            </div>
+        </div>
 
-<div>
-    @if(count($question->tags))
+        <div class="col-md-6 votes">
+            <div class="number">{{ $post->votes->count() }}</div>
+            <div>votes</div>
+        </div>
 
-        Tags:
-        @foreach( $question->tags as $tag )
+    </div>
 
-            {{ $tag->name }}
+    <div class="col-md-10 d-post-details">
 
-        @endforeach
+        <a class="title" href="{{route('posts.show', $post->id)}}"> {{ $post->title }} </a>
 
-    @endif
+        <div>
+            @if(count($post->tags))
 
-</div>
+                @foreach( $post->tags as $tag )
 
-<div>
+                    <p class="tag">{{ $tag->name }}</p>
 
-    @if(count($question->comments))
+                @endforeach
 
-        <ul>
-            Answers:
-            @foreach( $question->comments as $comment )
+            @endif
 
-                <li>
-                    <a href="{{ route('comments.show', $comment->id) }}">{{ Request::is('dashboard/my-questions')?substr($comment->body, 0, 50):$comment->body }}</a>
-                </li>
+        </div>
 
-            @endforeach
-
-        </ul>
-
-    @endif
+        <p> Posted by: <a href="{{ route('profile.show', str_replace(' ', '-', $post->author->username ) ) }}">{{ $post->author->username }}</a>, <em>{{ $post->created_at->diffforHumans() }}</em> </p>    </div>
 
 </div>
 
