@@ -49,7 +49,7 @@ post('auth/register',    ['as'   =>  'postRegister', 'uses' =>   'Auth\AuthContr
 
 
 resource('events',      'EventsController');
-resource('comments',    'CommentsController');
+resource('comments',    'CommentsController', ['except' => ['create']]);
 resource('posts',       'PostsController');
 resource('profile',     'ProfileController', ['except' => ['index']]);
 
@@ -61,11 +61,13 @@ Route::group(['middleware' => 'auth'], function(){
     post('events/{id}',             ['as' => 'attend',          'uses' => 'EventsController@postAttend']);
     get('/events/delete-confirm',   ['as' => 'event-delete',    'uses' => 'EventsController@delete_confirm']);
     post('dashboard/{id}', ['as' => 'follow', 'uses' => 'DashboardController@postFollow']);
+    get('/comments/create/{id}',  [ 'as' => 'answer', 'uses' => 'CommentsController@create']);
 
 });
 
 
 //SEARCH
+
 get('/{tag}', ['as' => 'tag-search', 'uses' => 'SearchController@index']);
 post('search', ['as' => 'search', 'uses' => 'SearchController@search']);
 get('search-json', ['as' => 'search-json', 'uses' => 'SearchController@getAutocomplete']);

@@ -74,9 +74,9 @@
     @if ($auth && $auth->isAuthor($post->author))
         <a href="{{ route('profile.show', str_replace(' ', '-', $post->author->username ))  }}">
             <div class="img-wrapper">
-                @if( Auth::user()->avatar )
+                @if( $auth->avatar )
 
-                    <img class="posts-profile-img" src="{{ route('getImage', [$user->avatar->filename, 'small']) }}" alt="{{  Auth::user()->avatar->name }}" width="50">
+                    <img class="posts-profile-img" src="{{ route('getImage', [$auth->avatar->filename, 'small']) }}" alt="{{  $auth->avatar->name }}" width="50">
 
                 @else
 

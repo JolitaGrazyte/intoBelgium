@@ -86,7 +86,12 @@
                 @endif
 
                 <div class="row answer-btn single-answer">
-                    <div class="col-md-12"><a href="{{ route('comments.create') }}" class="btn btn-link"> {{ !count($post->comments) ? 'Be the first!! ' : '' }} answer this question</a></div>
+                    {{--<div class="col-md-12"><a href="{{ route('comments.create') }}" class="btn btn-link"> {{ !count($post->comments) ? 'Be the first!! ' : '' }} answer this question</a></div>--}}
+                    <div class="col-md-12">
+                        <a href="{{ route('answer', $post->id) }}" class="btn btn-link">
+                            {{ !count($post->comments) ? 'Be the first!! ' : '' }} answer this question
+                        </a>
+                    </div>
                 </div>
 
 
