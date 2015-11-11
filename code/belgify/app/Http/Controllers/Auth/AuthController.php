@@ -80,6 +80,10 @@ class AuthController extends Controller implements AuthenticateUserListener
 
         if($user) $this->auth->login($user);
 
+        if ($request->ajax()) {
+            return response()->json(['http://intob.local.be/dashboard']);
+        }
+
         return redirect()->route('dashboard');
 
     }

@@ -5,17 +5,19 @@ $(document).ready(function(){
         $(this).removeData('bs.modal');
     });
 
-    $('#loginForm').submit(postAjaxForm);
+    $('#Form').submit(postAjaxForm);
 
     function postAjaxForm(e) {
         e.preventDefault()
-        console.log('dd');
         $('.error-message').hide();
         var $form = $(this);
         $form.find('.form-group').removeClass('has-errors').find('.help-text').text('');
         var url = $form.attr('action');
         var formData = {};
-        $form.find('input', 'select').each(function () {
+        $form.find('input').each(function () {
+            formData[$(this).attr('name')] = $(this).val();
+        });
+        $form.find('select').each(function () {
             formData[$(this).attr('name')] = $(this).val();
         });
 
@@ -25,6 +27,7 @@ $(document).ready(function(){
             data: formData,
             success: function (data) {
                 console.log(data);
+
                 if ($.isArray(data)) {
                     window.location.replace(data[0])
                 }

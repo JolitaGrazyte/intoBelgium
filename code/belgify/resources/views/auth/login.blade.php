@@ -15,7 +15,7 @@
     <p>these credentials do not match our records</p>
 </div>
 
-{!!Form::open(['route' => 'postLogin', 'class' => 'form-horizontal', 'id' => 'loginForm', 'role' => 'form'])  !!}
+{!!Form::open(['route' => 'postLogin', 'class' => 'form-horizontal', 'id' => 'Form', 'role' => 'form'])  !!}
 
 <div class="form-group">
     <div id="email-group">
