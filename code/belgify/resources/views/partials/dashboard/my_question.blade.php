@@ -21,7 +21,7 @@
 
         @else
 
-            <a href="{{ route('events.show', $post['id']) }}">
+            <a href="{{ route('posts.show', $post['id']) }}">
                 <div class="wrapper">
                     <img src="{{ url('img/More_info.png') }}" alt="more info icon"/>
                     <p>Details</p>

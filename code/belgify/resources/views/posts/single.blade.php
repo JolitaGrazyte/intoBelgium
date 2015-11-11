@@ -1,100 +1,95 @@
-<div class="col-md-2">
-    <hr>
+<div class="d-post">
 
-    <div class="col-md-6">
-        <div> {{ $post->comments->count() }}</div>
-        <div>
+    <div class="row header">
+        <div class="col-md-2">
+            <div class="img-wrapper">
+                @if( Auth::user()->avatar )
 
-            @if(Request::is('posts'))
-                <a href="{{route('posts.show', $post->id) }}">answers </a>
-            @else
-                answers
-            @endif
+                    <img class="events-profile-img" src="{{ route('getImage', [Auth::user()->avatar->filename, 'small']) }}" alt="{{  Auth::user()->avatar->name }}" width="50">
+
+                @else
+
+                    <img class="events-profile-img" src="{{ url('/img/Profile_Dummy.png') }}" alt="profile dummy">
+
+                @endif
+
+                <a class="i-name" href="{{ route('profile.show', str_replace(' ', '-', $post->author->username ) ) }}">{{ $post->author->username }}</a>
+            </div>
+        </div>
+        <div class="col-md-8">
+
+            <div>
+
+                <h4 class="title">{{ $post->title }}</h4>
+                <p class="posted">Asked {{ $post->created_at->diffforHumans() }}</p>
+                <p class="body-question"> {{ Request::is('posts') ? $post->body : substr($post->body, 0, 100) }}</p>
+                @if(count($post->tags))
+
+                    @foreach( $post->tags as $tag )
+
+                        <p class="tag">{{ $tag->name }}</p>
+
+                    @endforeach
+
+                @endif
+            </div>
+        </div>
+        <div class="col-md-2 d-votes">
+                <p class="v">{{ $post->votes->count() }}</p>
+                <p>votes</p>
         </div>
     </div>
 
-    <div class="col-md-6">
-        <div>{{ $post->votes->count() }}</div>
-        <div>votes</div>
-    </div>
+    <div class="row answer-wrapper">
+            <div class="col-md-2">
+                <div class="line"></div>
+            </div>
+            <div class="col-md-10">
+                @if($post->comments->count())
+                    @foreach($post->comments as $com)
+                        <div class="row single-answer">
+                            <div class="col-md-2">
+                                <div class="img-wrapper">
+                                    @if( $com->author->avatar)
 
-</div>
+                                        <img class="events-profile-img" src="{{ route('getImage', [$com->author->avatar, 'small']) }}" alt="{{  $com->author->avatar }}" width="50">
 
-<div class="col-md-10">
+                                    @else
 
-    <hr>
+                                        <img class="events-profile-img" src="{{ url('/img/Profile_Dummy.png') }}" alt="profile dummy">
 
-    <div>
-
-        <h4><a href="{{route('posts.show', $post->id)}}"> {{ $post->title }} </a></h4>
-        <p>posted by:
-            <a href="{{ route('profile.show', str_replace(' ', '-', $post->author->username) ) }}">
-                {{ $post->author->username }}
-            </a>
-            <em>, {{ $post->created_at->diffforHumans() }} </em></p>
-        <p> {{ Request::is('posts') ? $post->body : substr($post->body, 0, 100) }}</p>
-
-    </div>
+                                    @endif
 
 
-    @if(!Auth::guest())
+                                        <a href="{{ route('profile.show', str_replace(' ', '-', $com->author->username ) ) }}">{{ $com->author->username }}</a>
 
-        <div class="row">
+                                </div>
 
-            @if($auth->isLocal() && !$auth->isAuthor($post->author))
-
-                <div class="col-md-2"><a href="{{ route('comments.create') }}" class="btn btn-link"> {{ !count($post->comments) ? 'be the first!! ' : '' }} answer this question</a></div>
-
-            @elseif($auth->isAuthor($post->author))
-
-                <div class="col-md-2"><a href="{{ route('posts.edit', $post->id) }}" class="btn btn-link">update this question</a></div>
-
-                <div class="col-md-2">
-
-                    {!!Form::open(['route' => ['posts.destroy', $post->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'DELETE'])  !!}
-
-                    <div class="form-group">
-
-                        <div class="col-md-12">
-
-                            {!! Form::submit('delete', ['class' => 'btn btn-link']) !!}
-
+                                </div>
+                            <div class="col-md-10">
+                                <div>
+                                    <p class="answer-body">{{ $com->body }}</p>
+                                </div>
+                            </div>
                         </div>
+                        @endforeach
 
+                @else
+
+
+                    <div class="row single-answer">
+                        <div class="col-md-12">
+                            <h1 class="no-answers">No Answers</h1>
+                        </div>
                     </div>
 
-                    {!!Form::close() !!}
-
-                </div>
-
-            @endif
-
-        </div>
-
-    @endif
+                @endif
 
 
-    <div>
-        @if(Request::is('posts/*') && count($post->comments))
-
-            <ul>
-
-                @each('partials.answers', $post->comments, 'comment')
-
-            </ul>
-
-        @endif
-    </div>
-
-    <div>
-        <ul>
-
-            <a href="">@each('partials.tags', $post->tags, 'tag' )</a>
-
-        </ul>
+            </div>
 
     </div>
+
+
 
 </div>
-
-
