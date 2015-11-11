@@ -41,10 +41,10 @@
     </div>
 
     <div class="row answer-wrapper">
-            <div class="col-md-2">
+            <div class="col-md-2 line-wrapper">
                 <div class="line"></div>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10 answers-wrapper">
                 @if($post->comments->count())
                     @foreach($post->comments as $com)
                         <div class="row single-answer">
@@ -84,6 +84,10 @@
                     </div>
 
                 @endif
+
+                <div class="row answer-btn single-answer">
+                    <div class="col-md-12"><a href="{{ route('comments.create') }}" class="btn btn-link"> {{ !count($post->comments) ? 'Be the first!! ' : '' }} answer this question</a></div>
+                </div>
 
 
             </div>
