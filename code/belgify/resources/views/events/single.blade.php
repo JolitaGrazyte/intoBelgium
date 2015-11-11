@@ -14,7 +14,6 @@
 
             <h1 class="title">{{ $event->title }}</h1>
 
-            ATTEND BTN
 
             @if(Request::is('events/*') && !$auth->isAuthor($event->author))
 
@@ -43,9 +42,9 @@
 
         <div class="col-md-8 author">
             <div class="img-wrapper">
-                @if( Auth::user()->avatar )
+                @if( count($event->author->avatar) )
 
-                    <img class="events-profile-img" src="{{ route('getImage', [Auth::user()->avatar->filename, 'small']) }}" alt="{{  Auth::user()->avatar->name }}" width="50">
+                    <img class="events-profile-img" src="{{ route('getImage', [$event->author->avatar->filename, 'small']) }}" alt="{{ $event->author->avatar->name }}" width="50">
 
                 @else
 
