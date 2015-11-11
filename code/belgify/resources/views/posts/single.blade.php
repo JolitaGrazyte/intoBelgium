@@ -73,6 +73,22 @@
                                     <p class="answer-body">{{ $com->body }}</p>
                                 </div>
                             </div>
+
+                            <div class="row">
+                            @if($auth->isAuthor($com->author))
+
+                                    <a href="{{ route('comments.edit', $com->id) }}">update</a>
+                                    <a href="{{ route('comments.destroy', $com->id) }}">delete</a>
+
+                            @else
+
+                                {{-- TODO: voting implementeren  --}}
+
+                                    <a href="">VOTE !!!!</a>
+
+                            @endif
+                            </div>
+
                         </div>
                         @endforeach
 

@@ -32,6 +32,21 @@
 
             @endif
 
+            @if( $auth->isAuthor($event->author) )
+
+                <a href="{{ route('events.edit', $event->id) }}" class="">update this event</a>
+
+                {!!Form::open(['route' => ['events.destroy', $event->id], 'class' => 'form-horizontal', 'id'=>$event->id, 'role' => 'form', 'method' => 'DELETE'])  !!}
+
+
+                {!! Form::submit('delete', ['class' => 'btn btn-link']) !!}
+
+
+                {!!Form::close() !!}
+
+
+            @endif
+
         </div>
     </div>
 
@@ -85,6 +100,8 @@
             <p class="city"> {{ $event->location->name }} </p>
         </div>
     </div>
+
+
 
     <div class="row map-row">
         <div id="map"></div>
