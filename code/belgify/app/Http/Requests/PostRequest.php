@@ -26,7 +26,6 @@ class PostRequest extends Request
         return [
             'title'  => 'required|max:255',
             'body'   => 'required',
-            'image'  => 'max:1000|image', // SIZE LIMIT !!!!
         ];
     }
 }

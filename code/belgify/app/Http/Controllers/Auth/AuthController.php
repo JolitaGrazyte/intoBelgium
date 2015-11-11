@@ -115,14 +115,8 @@ class AuthController extends Controller implements AuthenticateUserListener
      * @param null $provider
      * @return mixed
      */
-    public function login( AuthenticateUser $authenticateUser, Request $request, $provider = null) {
-
-
-        if($provider == 'twitter'){
-
-            return $authenticateUser->execute($request->has('oauth_token'), $this, $provider);
-
-        }
+    public function login( AuthenticateUser $authenticateUser, Request $request, $provider = null)
+    {
 
         return $authenticateUser->execute($request->has('code'), $this, $provider);
 
@@ -132,7 +126,8 @@ class AuthController extends Controller implements AuthenticateUserListener
      * @param $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function userHasLoggedIn($user) {
+    public function userHasLoggedIn($user)
+    {
 
         Session::flash('message', 'Welcome, ' . $user->first_name.' '. $user->last_name);
 
