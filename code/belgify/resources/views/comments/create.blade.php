@@ -27,16 +27,18 @@
 
                         {!!Form::open(['route' => 'comments.store', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
-                        <div class="form-group">
+                        {!! Form::hidden('post_id', $post_id) !!}
 
-                            {!! Form::label('title', 'Title', ['class' => 'col-md-1 control-label']) !!}
+                        {{--<div class="form-group">--}}
 
-                            <div class="col-md-11">
+                            {{--{!! Form::label('title', 'Title', ['class' => 'col-md-1 control-label']) !!}--}}
 
-                                {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'title']) !!}
+                            {{--<div class="col-md-11">--}}
 
-                            </div>
-                        </div>
+                                {{--{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'title']) !!}--}}
+
+                            {{--</div>--}}
+                        {{--</div>--}}
 
                         <div class="form-group">
 

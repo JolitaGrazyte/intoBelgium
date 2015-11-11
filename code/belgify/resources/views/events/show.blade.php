@@ -5,7 +5,10 @@
 @section('content')
 
 
+
+    {{--<div class="post-d">--}}
     <div class="event-d">
+
         <div class="container show-event">
 
             @include('events.single')

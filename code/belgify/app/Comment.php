@@ -8,7 +8,7 @@ class Comment extends Model
 {
     protected $table = 'comments';
 
-    protected $fillable = ['body'];
+    protected $fillable = ['body', 'post_id'];
 
     protected $primaryKey = "id";
 

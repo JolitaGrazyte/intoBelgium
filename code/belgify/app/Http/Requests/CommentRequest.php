@@ -13,7 +13,9 @@ class CommentRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        if ( \Auth::check('auth')) {
+            return true;
+        }
     }
 
     /**
@@ -24,7 +26,8 @@ class CommentRequest extends Request
     public function rules()
     {
         return [
-            //
+
+            'body'   => 'required',
         ];
     }
 }

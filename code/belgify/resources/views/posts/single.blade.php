@@ -9,7 +9,7 @@
 
                 @else
 
-                    <img class="events-profile-img" src="{{ url('/img/Profile_Dummy.png') }}" alt="profile dummy">
+                    <img class="events-profile-img" src="{{ url('/img/Profile_Dummy1.png') }}" alt="profile dummy">
 
                 @endif
 
@@ -36,7 +36,7 @@
         </div>
         <div class="col-md-2 d-votes">
                 <p class="v">{{ $post->votes->count() }}</p>
-                <p>votes</p>
+                <p>{{ $post->votes->count() == 1 ?'vote':'votes'}}</p>
         </div>
     </div>
 
@@ -46,17 +46,19 @@
             </div>
             <div class="col-md-10 answers-wrapper">
                 @if($post->comments->count())
+
                     @foreach($post->comments as $com)
+
                         <div class="row single-answer">
                             <div class="col-md-2">
                                 <div class="img-wrapper">
-                                    @if( $com->author->avatar)
+                                    @if( count($com->author->avatar) )
 
-                                        <img class="events-profile-img" src="{{ route('getImage', [$com->author->avatar, 'small']) }}" alt="{{  $com->author->avatar }}" width="50">
+                                        <img class="events-profile-img" src="{{ route('getImage', [$com->author->avatar->filename, 'small']) }}" alt="{{  $com->author->avatar->filename }}" width="50">
 
                                     @else
 
-                                        <img class="events-profile-img" src="{{ url('/img/Profile_Dummy.png') }}" alt="profile dummy">
+                                        <img class="events-profile-img" src="{{ url('/img/Profile_Dummy1.png') }}" alt="profile dummy">
 
                                     @endif
 
@@ -71,6 +73,22 @@
                                     <p class="answer-body">{{ $com->body }}</p>
                                 </div>
                             </div>
+
+                            <div class="row">
+                            @if($auth->isAuthor($com->author))
+
+                                    <a href="{{ route('comments.edit', $com->id) }}">update</a>
+                                    <a href="{{ route('comments.destroy', $com->id) }}">delete</a>
+
+                            @else
+
+                                {{-- TODO: voting implementeren  --}}
+
+                                    <a href="">VOTE !!!!</a>
+
+                            @endif
+                            </div>
+
                         </div>
                         @endforeach
 
@@ -87,7 +105,12 @@
 
                 @if(Auth::check())
                 <div class="row answer-btn single-answer">
-                    <div class="col-md-12"><a href="{{ route('comments.create') }}" class="btn btn-link"> {{ !count($post->comments) ? 'Be the first!! ' : '' }} answer this question</a></div>
+                    {{--<div class="col-md-12"><a href="{{ route('comments.create') }}" class="btn btn-link"> {{ !count($post->comments) ? 'Be the first!! ' : '' }} answer this question</a></div>--}}
+                    <div class="col-md-12">
+                        <a href="{{ route('answer', $post->id) }}" class="btn btn-link">
+                            {{ !count($post->comments) ? 'Be the first!! ' : '' }} answer this question
+                        </a>
+                    </div>
                 </div>
 
                     @else
@@ -101,7 +124,5 @@
             </div>
 
     </div>
-
-
 
 </div>

@@ -33,7 +33,7 @@
             @endif
 
 
-               @if(isset($events))
+               @if(count($events))
 
                    @each('partials.dashboard.my_event', $events, 'event', 'events.no-events')
 

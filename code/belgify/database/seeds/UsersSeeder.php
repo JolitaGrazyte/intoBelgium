@@ -18,7 +18,7 @@ class UsersSeeder extends Seeder
             [
                 'first_name'    =>  'Jolita',
                 'last_name'     =>  'Grazyte',
-                'username'      =>  'Jolita Grazyte',
+                'username'      =>  'Jolita',
                 'email'         =>  'jolita.grazyte@student.kdg.be',
                 'password'      =>  Hash::make('testing'),
                 'location_id'   =>  1,

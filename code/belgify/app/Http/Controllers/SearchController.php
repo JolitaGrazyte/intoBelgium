@@ -63,7 +63,10 @@ class SearchController extends Controller
                     'model'         => $model,
                     'title'         => $result->title,
                     'body'          => $result->description ? $result->description : $result->body,
+                    'tags'          => $result->tags,
+
                     'created_at'    => $result->created_at,
+
 
                 ];
 

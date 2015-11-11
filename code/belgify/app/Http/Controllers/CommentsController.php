@@ -7,17 +7,20 @@ use App\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
 
     private $comment;
     private $tag;
+    private $authUser;
 
     public function __construct( Comment $comment, Tag $tag ){
 
         $this->comment  =   $comment;
         $this->tag      =   $tag;
+        $this->authUser =   Auth::user();
 
     }
     /**
@@ -27,9 +30,8 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        $comment = $this->comment;
-
-        $comments = $comment->latest('created_at')->get();
+        $comment    =   $this->comment;
+        $comments   =   $comment->latest('created_at')->get();
 
         return view('comments.index', compact('comments'))->withTitle('Comments');
     }
@@ -39,11 +41,12 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($question_id)
     {
-        $tags = $this->tag->lists('name', 'id');
+        $post_id    =   $question_id;
+        $tags       =   $this->tag->lists('name', 'id');
 
-        return view('comments.create', compact('tags'))->withTitle('Answer');
+        return view('comments.create', compact('tags', 'post_id'))->withTitle('Answer');
     }
 
     /**
@@ -54,7 +57,12 @@ class CommentsController extends Controller
      */
     public function store( Request $request )
     {
-        $this->comment->create($request->all());
+        $question_id    =   $request->get('post_id');
+        $comment        =   $this->comment->create($request->all());
+        $this->authUser->comments()->save($comment);
+
+        return redirect()->route('posts.show', $question_id);
+
     }
 
     /**

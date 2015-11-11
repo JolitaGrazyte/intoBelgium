@@ -1,1 +1,2 @@
-<h2>No results found!</h2>
+<h2>No results found!</h2>`
+

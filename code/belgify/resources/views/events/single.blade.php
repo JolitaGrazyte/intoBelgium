@@ -15,11 +15,10 @@
             <h1 class="title">{{ $event->title }}</h1>
 
 
-
             {{--ATTEND BTN--}}
             @if(Auth::check())
 
-                @if(Request::is('events/*') && !$auth->isAuthor($event->author))
+            @if(Request::is('events/*') && !$auth->isAuthor($event->author))
 
                     {!! Form::open(['route' => ['attend', $event->id], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
@@ -38,6 +37,21 @@
 
             @endif
 
+            @if( $auth->isAuthor($event->author) )
+
+                <a href="{{ route('events.edit', $event->id) }}" class="">update this event</a>
+
+                {!!Form::open(['route' => ['events.destroy', $event->id], 'class' => 'form-horizontal', 'id'=>$event->id, 'role' => 'form', 'method' => 'DELETE'])  !!}
+
+
+                {!! Form::submit('delete', ['class' => 'btn btn-link']) !!}
+
+
+                {!!Form::close() !!}
+
+
+            @endif
+
         </div>
     </div>
 
@@ -48,10 +62,11 @@
 
         <div class="col-md-8 author">
             <div class="img-wrapper">
+
                 @if( $event->author->avatar )
 
                     <img class="events-profile-img" src="{{ route('getImage', [$event->author->avatar->filename, 'small']) }}" alt="{{  $event->author->avatar->name }}" width="50">
-
+                    
                 @else
 
                     <img class="events-profile-img" src="{{ url('/img/Profile_Dummy.png') }}" alt="profile dummy">
@@ -91,6 +106,8 @@
             <p class="city"> {{ $event->location->name }} </p>
         </div>
     </div>
+
+
 
     <div class="row map-row">
         <div id="map"></div>
