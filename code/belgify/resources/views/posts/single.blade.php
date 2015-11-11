@@ -3,13 +3,13 @@
     <div class="row header">
         <div class="col-md-2">
             <div class="img-wrapper">
-                @if( Auth::user()->avatar )
+                @if( $post->author->avatar )
 
-                    <img class="events-profile-img" src="{{ route('getImage', [Auth::user()->avatar->filename, 'small']) }}" alt="{{  Auth::user()->avatar->name }}" width="50">
+                    <img class="events-profile-img" src="{{ route('getImage', [$post->author->avatar->filename, 'small']) }}" alt="{{ $post->author->avatar->name }}" width="50">
 
                 @else
 
-                    <img class="events-profile-img" src="{{ url('/img/Profile_Dummy.png') }}" alt="profile dummy">
+                    <img class="events-profile-img" src="{{ url('/img/Profile_Dummy1.png') }}" alt="profile dummy">
 
                 @endif
 
@@ -46,17 +46,19 @@
             </div>
             <div class="col-md-10 answers-wrapper">
                 @if($post->comments->count())
+
                     @foreach($post->comments as $com)
+
                         <div class="row single-answer">
                             <div class="col-md-2">
                                 <div class="img-wrapper">
-                                    @if( $com->author->avatar)
+                                    @if( count($com->author->avatar) )
 
-                                        <img class="events-profile-img" src="{{ route('getImage', [$com->author->avatar, 'small']) }}" alt="{{  $com->author->avatar }}" width="50">
+                                        <img class="events-profile-img" src="{{ route('getImage', [$com->author->avatar->filename, 'small']) }}" alt="{{  $com->author->avatar->filename }}" width="50">
 
                                     @else
 
-                                        <img class="events-profile-img" src="{{ url('/img/Profile_Dummy.png') }}" alt="profile dummy">
+                                        <img class="events-profile-img" src="{{ url('/img/Profile_Dummy1.png') }}" alt="profile dummy">
 
                                     @endif
 
@@ -98,7 +100,5 @@
             </div>
 
     </div>
-
-
 
 </div>
