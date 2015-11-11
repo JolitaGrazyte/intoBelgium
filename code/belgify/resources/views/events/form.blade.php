@@ -17,7 +17,7 @@
 
     <div class="input-group date col-md-9" id="datetimepicker">
 
-        {!! Form::text('date', isset($event->date) ? $event->date->format('d/m/Y H:i') :null, ['class' => 'form-control', 'placeholder' => $now]) !!}
+        {!! Form::text('date', isset($event->date) ? $event->date->format('d/m/Y H:i') :null, ['class' => 'form-control']) !!}
 
         <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
 
