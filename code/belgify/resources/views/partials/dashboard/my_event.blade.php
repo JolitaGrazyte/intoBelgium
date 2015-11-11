@@ -58,7 +58,7 @@
             <div class="img-wrapper">
                 @if( $auth->avatar )
 
-                    <img src="{{ route('getImage', [$auth->avatar->filename, 'small']) }}" alt="{{  $auth->avatar->name }}" width="50">
+                    <img class="events-profile-img" src="{{ route('getImage', [$auth->avatar->filename, 'small']) }}" alt="{{  $auth->avatar->name }}" width="50">
 
                 @else
 

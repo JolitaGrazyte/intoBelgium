@@ -18,7 +18,7 @@
             {{--ATTEND BTN--}}
             @if(Auth::check())
 
-            @if(Request::is('events/*') && !$auth->isAuthor($event->author))
+                @if(Request::is('events/*') && !$auth->isAuthor($event->author))
 
                     {!! Form::open(['route' => ['attend', $event->id], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
@@ -37,19 +37,22 @@
 
             @endif
 
-            @if( $auth->isAuthor($event->author) )
+            @if(Auth::check())
 
-                <a href="{{ route('events.edit', $event->id) }}" class="">update this event</a>
+                @if( $auth->isAuthor($event->author) )
 
-                {!!Form::open(['route' => ['events.destroy', $event->id], 'class' => 'form-horizontal', 'id'=>$event->id, 'role' => 'form', 'method' => 'DELETE'])  !!}
+                    <a href="{{ route('events.edit', $event->id) }}" class="">update this event</a>
 
-
-                {!! Form::submit('delete', ['class' => 'btn btn-link']) !!}
-
-
-                {!!Form::close() !!}
+                    {!!Form::open(['route' => ['events.destroy', $event->id], 'class' => 'form-horizontal', 'id'=>$event->id, 'role' => 'form', 'method' => 'DELETE'])  !!}
 
 
+                    {!! Form::submit('delete', ['class' => 'btn btn-link']) !!}
+
+
+                    {!!Form::close() !!}
+
+
+                @endif
             @endif
 
         </div>
@@ -66,7 +69,7 @@
                 @if( $event->author->avatar )
 
                     <img class="events-profile-img" src="{{ route('getImage', [$event->author->avatar->filename, 'small']) }}" alt="{{  $event->author->avatar->name }}" width="50">
-                    
+
                 @else
 
                     <img class="events-profile-img" src="{{ url('/img/Profile_Dummy.png') }}" alt="profile dummy">

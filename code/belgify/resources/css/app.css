@@ -6020,6 +6020,9 @@ body {
   text-align: center;
   margin: 0; }
 
+/******************
+    MODAL
+******************/
 .modal-dialog {
   z-index: 1000; }
 

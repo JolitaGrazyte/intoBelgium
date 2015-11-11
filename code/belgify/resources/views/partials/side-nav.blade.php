@@ -3,7 +3,7 @@
         <div class="profile-img-wrapper">
             @if( Auth::user()->avatar )
 
-                <img src="{{ route('getImage', [Auth::user()->avatar->filename, 'small']) }}" alt="{{  Auth::user()->avatar->name }}" width="50">
+                <img class="dashboard-profile-img" src="{{ route('getImage', [Auth::user()->avatar->filename, 'small']) }}" alt="{{  Auth::user()->avatar->name }}" width="50">
 
             @else
 

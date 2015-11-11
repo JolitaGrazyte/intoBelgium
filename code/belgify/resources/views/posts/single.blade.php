@@ -75,18 +75,24 @@
                             </div>
 
                             <div class="row">
-                            @if($auth->isAuthor($com->author))
 
-                                    <a href="{{ route('comments.edit', $com->id) }}">update</a>
-                                    <a href="{{ route('comments.destroy', $com->id) }}">delete</a>
+                                @if(Auth::check())
 
-                            @else
+                                    @if($auth->isAuthor($com->author))
 
-                                {{-- TODO: voting implementeren  --}}
+                                            <a href="{{ route('comments.edit', $com->id) }}">update</a>
+                                            <a href="{{ route('comments.destroy', $com->id) }}">delete</a>
 
-                                    <a href="">VOTE !!!!</a>
+                                    @else
 
-                            @endif
+                                        {{-- TODO: voting implementeren  --}}
+
+                                            <a href="">VOTE !!!!</a>
+
+                                    @endif
+
+                                @endif
+
                             </div>
 
                         </div>
