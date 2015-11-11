@@ -25,7 +25,7 @@
 
                     <li><a href="{{ url('/auth/login') }}" id="login" data-toggle="modal" data-target="#myModal">Login</a></li>
 
-                    <li><a href="{{ url('/auth/register') }} " data-toggle="modal" data-target="#myModal">Register</a></li>
+                    <li><a href="{{ url('/auth/register') }}" data-toggle="modal" data-target="#myModal">Register</a></li>
                 @else
 
                     <li><a href="{{ route('dashboard') }}">Dashboard</a></li>

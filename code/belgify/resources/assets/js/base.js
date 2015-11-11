@@ -5,14 +5,29 @@ $(document).ready(function(){
         $(this).removeData('bs.modal');
     });
 
-    $('#Form').submit(postAjaxForm);
+    $('body').on('shown.bs.modal', '.modal', function (e) {
+        var targetUrl;
 
-    function postAjaxForm(e) {
-        e.preventDefault()
+        if($(e.relatedTarget).attr('data-url')){
+            targetUrl = $(e.relatedTarget).attr('data-url');
+        }
+        else{
+            targetUrl  = 0;
+        }
+        $('#Form').submit(function(e){
+            postAjaxForm(e, $(this),  targetUrl);
+        });
+    });
+
+
+
+    function postAjaxForm(e, element, targetUrl) {
+        e.preventDefault();
         $('.error-message').hide();
-        var $form = $(this);
+        var $form = element;
         $form.find('.form-group').removeClass('has-errors').find('.help-text').text('');
         var url = $form.attr('action');
+
         var formData = {};
         $form.find('input').each(function () {
             formData[$(this).attr('name')] = $(this).val();
@@ -26,10 +41,15 @@ $(document).ready(function(){
             url: url,
             data: formData,
             success: function (data) {
-                console.log(data);
-
                 if ($.isArray(data)) {
-                    window.location.replace(data[0])
+                    if(targetUrl){
+                        console.log("test");
+                        window.location.replace(targetUrl)
+                    }
+                    else{
+                        console.log("0");
+                        window.location.replace(data[0])
+                    }
                 }
                 else {
                     $('.error-message').slideDown('fast');

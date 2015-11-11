@@ -6024,10 +6024,10 @@ body {
     MODAL
 ******************/
 .modal-dialog {
-  z-index: 1000; }
+  z-index: 100000; }
 
 .modal-backdrop {
-  z-index: 1; }
+  z-index: 10000; }
 
 .modal-content {
   border-radius: 0;

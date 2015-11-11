@@ -14,11 +14,20 @@
 
             @if(!Auth::check())
                 <h3 class="dont-answer">Didn't find your answer? Login or sign up to start a new conversation</h3>
+
+                <h3 class="add">
+                    <a href="{{ url('/auth/login') }}" data-url="{{ route('posts.create') }}" data-toggle="modal" data-target="#myModal">Ask question</a>
+                </h3>
+
+            @else
+
+                <h3 class="add">
+                    <a href="{{ route('posts.create') }}">Ask question</a>
+                </h3>
+
             @endif
 
-            <h3 class="add">
-                <a href="{{ route('posts.create') }}">Ask question</a>
-            </h3>
+
 
             <div class="row">
 

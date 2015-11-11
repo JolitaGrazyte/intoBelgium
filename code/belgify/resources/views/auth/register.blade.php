@@ -48,6 +48,4 @@
 
 {!! Form::close() !!}
 
-<script src="/js/app.js"></script>
-
 

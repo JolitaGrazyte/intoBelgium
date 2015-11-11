@@ -68,7 +68,12 @@
 
         </div>
 
-        <p> Posted by: <a href="{{ route('profile.show', str_replace(' ', '-', $post->author->username ) ) }}">{{ $post->author->username }}</a>, <em>{{ $post->created_at->diffforHumans() }}</em> </p>
+        @if(!Auth::check())
+            <p> Posted by: <a href="{{ url('/auth/login' ) }}" data-url="{{route('profile.show' , str_replace(' ', '-', $post->author->username ))}}" data-toggle="modal" data-target="#myModal">{{ $post->author->username }}</a>, <em>{{ $post->created_at->diffforHumans() }}</em> </p>
+        @else
+            <p> Posted by: <a href="{{ route('profile.show' , str_replace(' ', '-', $post->author->username ))}}">{{ $post->author->username }}</a>, <em>{{ $post->created_at->diffforHumans() }}</em> </p>
+
+        @endif
     </div>
 
     @if ($auth && $auth->isAuthor($post->author))
