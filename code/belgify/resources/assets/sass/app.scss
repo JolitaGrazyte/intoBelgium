@@ -52,19 +52,38 @@ body{
 .modal-content{
   border-radius:0;
   border: none;
-  padding: 2em;
 }
 
-.modal-content .form-group{
+.modal-content .container-fluid{
+  margin-top: 0;
+}
+
+.auth-form, .post-form{
+  width: 30em;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  padding: 1em;
+}
+
+.post-form{
+  width: 100%;
+}
+
+.auth-form .form-group, .post-form .form-group{
   margin: 0;
 }
 
-.modal-content h1{
+.auth-form  h1{
   text-align: center;
   font-weight: 800;
 }
 
-.modal-content .fg-login{
+.post-form h1{
+  font-weight: 800;
+}
+
+.auth-form .fg-login{
   width: 100%;
   margin-top: 0.5em;
   border-radius: 0;
@@ -78,14 +97,14 @@ body{
   padding-left: 20%;
 }
 
-.modal-content .f-login{
+.auth-form .f-login{
   background-color: #3B5998;
   border: solid 1px #EEE;
   background-image: url('/img/Facebook.png');
 
 }
 
-.modal-content .g-login{
+.auth-form .g-login{
   margin-bottom: 1em;
   background-color: #FFF;
   border: solid 1px #EEE;
@@ -93,23 +112,29 @@ body{
   background-image: url('/img/Google.png');
 }
 
-.modal-content .or{
+.auth-form .or{
   text-align: center;
 }
 
-.modal-content input{
+.auth-form input, .post-form input, .post-form textarea, .post-form .select2-selection{
+  border-radius: 0;
+  border: solid 1px #999;
+}
+
+.post-form input, .post-form textarea, .post-form .select2-selection{
+  margin-top: 1em;
+}
+
+
+.auth-form button, .post-form button{
   border-radius: 0;
 }
 
-.modal-content button{
-  border-radius: 0;
-}
-
-.modal-content .h-input{
+.auth-form .h-input{
 
 }
 
-.modal-content .btn-login{
+.auth-form .btn-login, .post-form .btn-add{
   width: 100%;
   background-color: #c1272d;
   border: none;
@@ -121,13 +146,13 @@ body{
   margin: 30px auto;
 }
 
-.modal-content .forgot-wrapper{
+.auth-form .forgot-wrapper, .post-form .forgot-wrapper{
   margin-top: 2em;
   width: 100%;
   position: relative;
 }
 
-.modal-content .forgot-wrapper a{
+.auth-form .forgot-wrapper a, .post-form .forgot-wrapper a{
   position: absolute;
   top: 0;
   right: 0;
@@ -135,7 +160,7 @@ body{
   border: 0;
 }
 
-.modal-content .forgot-wrapper input{
+.auth-form .forgot-wrapper input, .post-form .forgot-wrapper input{
   margin: 0;
   left: 0;
   top: 0;
@@ -175,6 +200,9 @@ body{
   -ms-transform:      translateY(-50%);
   -o-transform:       translateY(-50%);
   transform:          translateY(-50%);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
 
 }
 
@@ -393,6 +421,11 @@ body{
   text-decoration: none;
 
   -webkit-transition: background 0.3s, color 0.3s;
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 }
 
 .dashboard .container .add a:hover{
@@ -424,6 +457,11 @@ body{
   -ms-transform:      translateY(-50%);
   -o-transform:       translateY(-50%);
   transform:          translateY(-50%);
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
   right: 1em;
 }
 
@@ -535,6 +573,11 @@ body{
   -moz-transition: background 0.3s, color 0.3s;
   -o-transition: background 0.3s, color 0.3s;
   transition: background 0.3s, color 0.3s;
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 }
 
 .show-event .btn-attend {
@@ -631,6 +674,11 @@ body{
   -webkit-perspective: 1700px;
 
   -webkit-transition: background 0.2s;
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 }
 
 .d-post .background{
@@ -656,6 +704,11 @@ body{
   -moz-transition: left 0.3s;
   -o-transition: left 0.3s;
   transition: left 0.3s;
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 }
 
 .dont-answer{
@@ -745,6 +798,11 @@ body{
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
 
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+
 }
 
 .single-answer .no-answers{
@@ -771,6 +829,11 @@ body{
   position: relative;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 }
 
 .post-d .single-answer .col-md-10{
@@ -822,6 +885,11 @@ body{
   -moz-transition: background 0.3s, color 0.3s;
   -o-transition: background 0.3s, color 0.3s;
   transition: background 0.3s, color 0.3s;
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 }
 
 .post-d .answer-btn a:hover{
@@ -856,6 +924,11 @@ body{
   -moz-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 }
 
 .post-d .line::after{
@@ -895,6 +968,11 @@ body{
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   right: auto;
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 }
 
 
@@ -973,6 +1051,11 @@ body{
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
   border-radius: 1000px;
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 }
 
 .dashboard-profile-img{
@@ -1017,6 +1100,11 @@ body{
   width: 100%;
 
   -webkit-transition: background 0.3s;
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 }
 
 .dashboard-nav-menu li img{
@@ -1030,6 +1118,11 @@ body{
   -moz-transform: translateY(-50%);
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 }
 .dashboard-nav-menu li a{
   position: relative;
@@ -1054,6 +1147,11 @@ body{
   -moz-transform: translateY(-50%);
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 
   color: #FFF;
   font-size: 0.9em;
@@ -1108,6 +1206,11 @@ body{
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
 
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+
   -webkit-transition: left 0.4s;
   -moz-transition: left 0.4s;
   -o-transition: left 0.4s;
@@ -1155,6 +1258,11 @@ body{
   -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
 
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+
   perspective: 1700px;
   -webkit-perspective: 1700px;
 
@@ -1172,6 +1280,11 @@ body{
   -moz-transform: translateY(-50%) rotateY(-75deg);
   -o-transform: translateY(-50%) rotateY(-75deg);
   transform: translateY(-50%) rotateY(-75deg);
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 
   opacity: 0;
 
@@ -1214,6 +1327,11 @@ body{
   -moz-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 }
 
 .d-event .background a, .d-post .background a{
@@ -1237,6 +1355,11 @@ body{
   -o-transform: translateX(-50%) !important;
   transform: translateX(-50%) !important;
 
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+
 }
 
 .d-event .background .y-edit, .d-post .background .y-edit{
@@ -1256,6 +1379,11 @@ body{
   -moz-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
 }
 
 .d-event  .background .wrapper img, .d-post  .background .wrapper img{

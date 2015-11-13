@@ -50,7 +50,7 @@
             <p class="attenders"> {{ $event->attenders->count()}} participants</p>
 
             @if(!Auth::check())
-                <p> Posted by: <a href="{{ url('/auth/login' ) }}" data-url="{{route('profile.show' , str_replace(' ', '-', $event->author->username ))}}" data-toggle="modal" data-target="#myModal">{{ $event->author->username }}</a>, <em>{{ $event->created_at->diffforHumans() }}</em> </p>
+                <p> Posted by: <a href="{{ url('/auth/login .content' ) }}" data-url="{{route('profile.show' , str_replace(' ', '-', $event->author->username ))}}" data-toggle="modal" data-target="#myModal">{{ $event->author->username }}</a>, <em>{{ $event->created_at->diffforHumans() }}</em> </p>
             @else
                 <p> Posted by: <a href="{{ route('profile.show', str_replace(' ', '-', $event->author->username ) ) }}">{{ $event->author->username }}</a>, <em>{{ $event->created_at->diffforHumans() }}</em> </p>
             @endif

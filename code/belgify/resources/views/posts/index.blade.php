@@ -16,13 +16,13 @@
                 <h3 class="dont-answer">Didn't find your answer? Login or sign up to start a new conversation</h3>
 
                 <h3 class="add">
-                    <a href="{{ url('/auth/login') }}" data-url="{{ route('posts.create') }}" data-toggle="modal" data-target="#myModal">Ask question</a>
+                    <a href="{{ url('/auth/login .content') }}" data-url="{{ route('posts.create') }}" data-toggle="modal" data-target="#myModal">Ask question</a>
                 </h3>
 
             @else
 
                 <h3 class="add">
-                    <a href="{{ route('posts.create') }}">Ask question</a>
+                    <a href="{{ url('/posts/create .post') }}" data-toggle="modal" data-target="#myModal">Ask question</a>
                 </h3>
 
             @endif

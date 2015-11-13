@@ -33,7 +33,7 @@
 
             @else
 
-                <a href="{{ url('/auth/login') }}" data-url="{{ route('events.show', $event['id']) }}" class="btn btn-attend" data-toggle="modal" data-target="#myModal">Login to join this event</a>
+                <a href="{{ url('/auth/login .content') }}" data-url="{{ route('events.show', $event['id']) }}" class="btn btn-attend" data-toggle="modal" data-target="#myModal">Login to join this event</a>
 
             @endif
 
@@ -77,7 +77,7 @@
                 @endif
 
                     @if(!Auth::check())
-                        <a href="{{ url('/auth/login' ) }}" data-url="{{route('profile.show' , str_replace(' ', '-', $event->author->username ))}}" data-toggle="modal" data-target="#myModal">{{ $event->author->username }}</a>
+                        <a href="{{ url('/auth/login .content' ) }}" data-url="{{route('profile.show' , str_replace(' ', '-', $event->author->username ))}}" data-toggle="modal" data-target="#myModal">{{ $event->author->username }}</a>
                     @else
                         <a href="{{ route('profile.show', str_replace(' ', '-', $event->author->username ) ) }}">{{ $event->author->username }}</a>
                     @endif

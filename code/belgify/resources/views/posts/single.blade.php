@@ -14,7 +14,7 @@
                 @endif
 
                     @if(!Auth::check())
-                        <a class="i-name"  href="{{ url('/auth/login' ) }}" data-url="{{route('profile.show' , str_replace(' ', '-', $post->author->username ))}}" data-toggle="modal" data-target="#myModal">{{ $post->author->username }}</a>
+                        <a class="i-name"  href="{{ url('/auth/login .content' ) }}" data-url="{{route('profile.show' , str_replace(' ', '-', $post->author->username ))}}" data-toggle="modal" data-target="#myModal">{{ $post->author->username }}</a>
                     @else
                         <a class="i-name" href="{{ route('profile.show', str_replace(' ', '-', $post->author->username ) ) }}">{{ $post->author->username }}</a>
                     @endif
@@ -68,7 +68,7 @@
 
 
                                         @if(!Auth::check())
-                                            <a href="{{ url('/auth/login' ) }}" data-url="{{route('profile.show' , str_replace(' ', '-', $com->author->username ))}}" data-toggle="modal" data-target="#myModal">{{ $com->author->username }}</a>
+                                            <a href="{{ url('/auth/login .content' ) }}" data-url="{{route('profile.show' , str_replace(' ', '-', $com->author->username ))}}" data-toggle="modal" data-target="#myModal">{{ $com->author->username }}</a>
                                         @else
                                             <a href="{{ route('profile.show', str_replace(' ', '-', $com->author->username ) ) }}">{{ $com->author->username }}</a>
                                         @endif
@@ -129,7 +129,7 @@
                     @else
 
                         <div class="row answer-btn single-answer">
-                            <div class="col-md-12"><a href="{{ url('/auth/login') }}" data-url="{{ route('answer', $post->id) }}" data-toggle="modal" data-target="#myModal" class="btn btn-link"> {{ !count($post->comments) ? 'Be the first!! ' : '' }} Login and answer this question</a></div>
+                            <div class="col-md-12"><a href="{{ url('/auth/login .content') }}" data-url="{{ route('answer', $post->id) }}" data-toggle="modal" data-target="#myModal" class="btn btn-link"> {{ !count($post->comments) ? 'Be the first!! ' : '' }} Login and answer this question</a></div>
                         </div>
 
                 @endif
