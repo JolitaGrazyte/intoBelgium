@@ -58,8 +58,9 @@ Route::group(['middleware' => 'auth'], function(){
     resource('posts',       'PostsController',      ['except' => ['index', 'show']]);
     post('events/{id}',             ['as' => 'attend',          'uses' => 'EventsController@postAttend']);
     get('/events/delete-confirm',   ['as' => 'event-delete',    'uses' => 'EventsController@delete_confirm']);
-    post('dashboard/{id}', ['as' => 'follow', 'uses' => 'DashboardController@postFollow']);
-    get('/comments/create/{id}',  [ 'as' => 'answer', 'uses' => 'CommentsController@create']);
+    post('dashboard/{id}',          ['as' => 'follow',          'uses' => 'DashboardController@postFollow']);
+    get('/comments/create/{id}',    [ 'as' => 'answer',         'uses' => 'CommentsController@create']);
+    post('comments/post-vote',      ['as' => 'postVote',        'uses' =>  'CommentsController@postVote']);
 
 });
 

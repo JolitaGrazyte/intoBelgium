@@ -80,6 +80,15 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function votes(){
+
+        return $this->hasMany('App\Event');
+    }
+
+
+    /**
      * Get all of the users images.
      */
     public function avatar()

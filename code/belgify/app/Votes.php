@@ -8,7 +8,7 @@ class Votes extends Model
 {
     protected $table = 'votes';
 
-//    protected $fillable = ['body', 'votes'];
+    protected $fillable = ['user_id', 'comment_id'];
 
     protected $primaryKey = "id";
 

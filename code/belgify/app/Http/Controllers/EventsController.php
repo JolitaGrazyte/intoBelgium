@@ -240,13 +240,13 @@ class EventsController extends Controller
 
             $user->events_attending()->attach($event->id);
 
-            Session::flash('message', 'You are going to event:  '.$id.'.');
+            Session::flash('message', 'You are going to event:  '.$event->title.'.');
         }
         else{
 
             $user->events_attending()->detach($event->id);
 
-            Session::flash('message', 'You are not going to event:  '.$id.'.');
+            Session::flash('message', 'You are not going to event:  '.$event->title.'.');
 
         }
 

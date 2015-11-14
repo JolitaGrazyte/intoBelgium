@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Votes;
+use Session;
 
 class CommentsController extends Controller
 {
@@ -115,6 +117,31 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
+
+    }
+
+    public function postVote( Request $request ){
+
+        $user = Auth::user();
+
+        $ip     = $request->getClientIp();
+        $exist  = Votes::where('ip', $ip)->exists();
+
+        if(!$exist){
+
+            $vote = new Votes($request->all());
+            $vote->ip = $ip;
+            $user->votes()->save($vote);
+
+            Session::flash('message', "Thank you for voting!");
+            Session::flash('alert-class', 'alert-success');
+        }
+        else {
+            Session::flash('message', "Maybe you have forgotten, but you already have voted for this answer.");
+            Session::flash('alert-class', 'alert-warning');
+        }
+
+        return redirect()->route('home');
 
     }
 }

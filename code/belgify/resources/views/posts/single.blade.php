@@ -7,7 +7,6 @@
             <div class="line"></div>
         </div>
 
-
         <div class="col-md-10 answers-wrapper">
 
                 @each('comments.single', $post->comments, 'com', 'comments.no-answers')

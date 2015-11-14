@@ -47,9 +47,12 @@
 
             @else
 
-                {{-- TODO: voting (if still possible)  --}}
-
-                <a href="">VOTE !!!!</a>
+                <div class="pull-right">
+                    {!! Form::open(['route' =>  ['postVote'], 'class' => '', 'role' => 'form']) !!}
+                    {!! Form::hidden('comment_id', $com->id) !!}
+                    {!! Form::submit('Place your vote !!!', ['class' => 'btn']) !!}
+                    {!! Form::close() !!}
+                </div>
 
             @endif
 
