@@ -23,7 +23,7 @@ class PostsController extends Controller
 
     public function __construct( Post $post, Tag $tag, FlashMessages $flashMsg ){
 
-        $this->middleware('auth', ['except' => 'index', 'show']);
+        //$this->middleware('auth', ['except' => 'index', 'show']);
 
         $this->post     = $post;
         $this->tag      = $tag;

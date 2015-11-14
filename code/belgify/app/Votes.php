@@ -15,7 +15,7 @@ class Votes extends Model
 
     public function comments()
     {
-        return $this->hasMany('App\Comment', 'comment_id');
+        return $this->belongsTo('App\Comment', 'comment_id');
     }
 
     /**

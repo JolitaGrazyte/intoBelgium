@@ -34,7 +34,7 @@
 
                                 @endif
 
-                                @each('partials.dashboard.my_event', $my_events, 'event', 'events.no-events')
+                                @each('dashboard.my_event', $my_events, 'event', 'events.no-events')
 
                             @endif
 
@@ -50,7 +50,7 @@
                                 <a href="{{ route('posts.create') }}">Ask question</a>
                             </h3>
 
-                            @each('partials.dashboard.my_question', $my_questions, 'post', 'partials.no-entries')
+                            @each('dashboard.my_question', $my_questions, 'post', 'partials.no-entries')
 
 
                         </div>
@@ -63,7 +63,7 @@
 
                             <h2>I'm following</h2>
 
-                            @each('partials.dashboard.following', $i_follow, 'followed', 'partials.no-entries')
+                            @each('dashboard.following', $i_follow, 'followed', 'partials.no-entries')
 
                         @endif
 

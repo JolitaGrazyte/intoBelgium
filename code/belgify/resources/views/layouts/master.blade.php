@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://raw.githubusercontent.com/Eonasdan/bootstrap-datetimepicker/master/build/css/bootstrap-datetimepicker.min.css">
-        <link rel="stylesheet" href="{{ url('css/app.css') }}">
+        <link rel="stylesheet" href="/css/app.css">
 
 
     @show
@@ -26,6 +26,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="https://raw.githubusercontent.com/Eonasdan/bootstrap-datetimepicker/master/build/js/bootstrap-datetimepicker.min.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="/js/app.js"></script>
 
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -56,17 +57,6 @@
 
         @yield('content')
 
-    <script>
-        $('div.alert').not('.alert-important').delay(4000).slideUp(400);
-
-        $('body').on('hidden.bs.modal', '.modal', function () {
-            $(this).removeData('bs.modal');
-        });
-
-        @if ($errors->all())
-            $('#login').click();
-        @endif
-    </script>
 </div>
 </body>
 </html>

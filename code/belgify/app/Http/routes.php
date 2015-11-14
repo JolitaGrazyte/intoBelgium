@@ -20,12 +20,6 @@ get('/', ['as' => 'home', function(){
 //    return redirect()->to('/');
 //});
 
-Route::group(['middleware' => 'auth'], function(){
-
-    get('dashboard',                ['as' => 'dashboard',       'uses' => 'DashboardController@index']);
-    get('dashboard/my-events',      ['as' => 'my-events',       'uses' => 'DashboardController@index']);
-    get('dashboard/my-questions',   ['as' => 'my-questions',    'uses' => 'DashboardController@index']);
-});
 
 Route::controllers([
     'password' => 'Auth\PasswordController',
@@ -55,6 +49,10 @@ resource('profile',     'ProfileController', ['except' => ['index']]);
 
 Route::group(['middleware' => 'auth'], function(){
 
+    get('dashboard',                ['as' => 'dashboard',       'uses' => 'DashboardController@index']);
+    get('dashboard/my-events',      ['as' => 'my-events',       'uses' => 'DashboardController@index']);
+    get('dashboard/my-questions',   ['as' => 'my-questions',    'uses' => 'DashboardController@index']);
+
     resource('profile',     'ProfileController',    ['except' => ['index']]);
     resource('events',      'EventsController',     ['except' => ['index', 'show']]);
     resource('posts',       'PostsController',      ['except' => ['index', 'show']]);
@@ -68,9 +66,9 @@ Route::group(['middleware' => 'auth'], function(){
 
 //SEARCH
 
-get('/{tag}', ['as' => 'tag-search', 'uses' => 'SearchController@index']);
-post('search', ['as' => 'search', 'uses' => 'SearchController@search']);
-get('search-json', ['as' => 'search-json', 'uses' => 'SearchController@getAutocomplete']);
+get('/{tag}',       ['as' => 'tag-search',  'uses' => 'SearchController@index']);
+post('search',      ['as' => 'search',      'uses' => 'SearchController@search']);
+get('search-json',  ['as' => 'search-json', 'uses' => 'SearchController@getAutocomplete']);
 
 //Extra routes
-get('image/{id}/{size}',        ['as'=>'getImage',          'uses' => 'ProfileController@getImage' ]);
+get('image/{id}/{size}',        ['as'=>'getImage', 'uses' => 'ProfileController@getImage' ]);

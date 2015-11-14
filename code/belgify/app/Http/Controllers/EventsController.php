@@ -106,7 +106,9 @@ class EventsController extends Controller
     {
         $event          = $this->event->find($id);
         $authUser       = Auth::user();
-        $isAttending    = $authUser->userIsAttendingEvent($authUser->id, $event->id);
+        if( $authUser){
+            $isAttending    = $authUser->userIsAttendingEvent($authUser->id, $event->id);
+        }
 
         return view('events.show', compact('event', 'isAttending'));
     }

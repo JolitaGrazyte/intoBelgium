@@ -15,36 +15,44 @@
             <h1 class="title">{{ $event->title }}</h1>
 
 
-            @if(Request::is('events/*') && !$auth->isAuthor($event->author))
+            {{--ATTEND BTN--}}
+            @if(Auth::check())
 
-                {!! Form::open(['route' => ['attend', $event->id], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+                @if(Request::is('events/*') && !$auth->isAuthor($event->author))
+
+                    {!! Form::open(['route' => ['attend', $event->id], 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
 
-                <div class="form-group">
+                        {!! Form::hidden('going', $event['attending'], ['class' => '', 'onchange' => 'this.form.submit())']) !!}
 
-                    {!! Form::hidden('going', $event['attending'], ['class' => '', 'onchange' => 'this.form.submit())']) !!}
+                        {!! Form::submit(($isAttending)?' Going':'+ Check in', ['class' => $isAttending? 'btn btn-going' : 'btn  btn-primary btn-attend']) !!}
 
-                    {!! Form::submit(($isAttending)?' Going':'+ Check in', ['class' => $isAttending? 'btn btn-going' : 'btn  btn-primary btn-attend']) !!}
+                    {!!Form::close() !!}
 
-                </div>
+                @endif
 
-                {!!Form::close() !!}
+            @else
+
+                <a href="{{ url('/auth/login .content') }}" data-url="{{ route('events.show', $event['id']) }}" class="btn btn-attend" data-toggle="modal" data-target="#myModal">Login to join this event</a>
 
             @endif
 
-            @if( $auth->isAuthor($event->author) )
+            @if(Auth::check())
 
-                <a href="{{ route('events.edit', $event->id) }}" class="">update this event</a>
+                @if( $auth->isAuthor($event->author) )
 
-                {!!Form::open(['route' => ['events.destroy', $event->id], 'class' => 'form-horizontal', 'id'=>$event->id, 'role' => 'form', 'method' => 'DELETE'])  !!}
+                    <a href="{{ route('events.edit', $event->id) }}" class="">update this event</a>
 
-
-                {!! Form::submit('delete', ['class' => 'btn btn-link']) !!}
-
-
-                {!!Form::close() !!}
+                    {!!Form::open(['route' => ['events.destroy', $event->id], 'class' => 'form-horizontal', 'id'=>$event->id, 'role' => 'form', 'method' => 'DELETE'])  !!}
 
 
+                    {!! Form::submit('delete', ['class' => 'btn btn-link']) !!}
+
+
+                    {!!Form::close() !!}
+
+
+                @endif
             @endif
 
         </div>
@@ -57,9 +65,10 @@
 
         <div class="col-md-8 author">
             <div class="img-wrapper">
-                @if( count($event->author->avatar) )
 
-                    <img class="events-profile-img" src="{{ route('getImage', [$event->author->avatar->filename, 'small']) }}" alt="{{ $event->author->avatar->name }}" width="50">
+                @if( $event->author->avatar )
+
+                    <img class="events-profile-img" src="{{ route('getImage', [$event->author->avatar->filename, 'small']) }}" alt="{{  $event->author->avatar->name }}" width="50">
 
                 @else
 
@@ -67,7 +76,11 @@
 
                 @endif
 
-                <a href="{{ route('profile.show', str_replace(' ', '-', $event->author->username ) ) }}">{{ $event->author->username }}</a>
+                    @if(!Auth::check())
+                        <a href="{{ url('/auth/login .content' ) }}" data-url="{{route('profile.show' , str_replace(' ', '-', $event->author->username ))}}" data-toggle="modal" data-target="#myModal">{{ $event->author->username }}</a>
+                    @else
+                        <a href="{{ route('profile.show', str_replace(' ', '-', $event->author->username ) ) }}">{{ $event->author->username }}</a>
+                    @endif
             </div>
         </div>
 
