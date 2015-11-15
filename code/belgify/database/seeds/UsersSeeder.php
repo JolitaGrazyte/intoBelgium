@@ -14,7 +14,7 @@ class UsersSeeder extends Seeder
     {
         DB::table('users')->delete();
         $users = [
-
+            //1
             [
                 'first_name'    =>  'Jolita',
                 'last_name'     =>  'Grazyte',
@@ -26,6 +26,7 @@ class UsersSeeder extends Seeder
 
             ],
 
+            //2
             [
                 'first_name'    =>  'Vic',
                 'last_name'     =>  'Denys',
@@ -37,6 +38,7 @@ class UsersSeeder extends Seeder
 
             ],
 
+            //3
             [
                 'first_name'    =>  'Lis',
                 'last_name'     =>  'Janssens',
@@ -48,6 +50,34 @@ class UsersSeeder extends Seeder
                 'occupation'    =>  'Teacher',
                 'role'          =>  1
             ],
+
+            //4
+            [
+                'first_name'    =>  'Els',
+                'last_name'     =>  'De Wachter',
+                'username'      =>  'Els De Wachter',
+                'email'         =>  'els.dewachter@telenet.be',
+                'password'      =>  Hash::make('test'),
+                'location_id'   =>  3,
+                'origin'        => 'Belgium',
+                'occupation'    =>  'Social worker',
+                'role'          =>  1
+            ],
+
+            //5
+            [
+                'first_name'    =>  'Marijke',
+                'last_name'     =>  'De Busser',
+                'username'      =>  'Marijke De Busser',
+                'email'         =>  'marijke.debusser@telenet.be',
+                'password'      =>  Hash::make('test'),
+                'location_id'   =>  3,
+                'origin'        => 'Netherlands',
+                'occupation'    =>  '',
+                'role'          =>  1
+            ],
+
+            //6
             [
                 'first_name'    =>  'Jan',
                 'last_name'     =>  'Janssens',
@@ -60,6 +90,8 @@ class UsersSeeder extends Seeder
                 'role'          =>  1
             ],
 
+
+            //7
             [
                 'first_name'    =>  'Wout',
                 'last_name'     =>  'Peters',
@@ -72,6 +104,7 @@ class UsersSeeder extends Seeder
                 'role'          =>  1
             ],
 
+            //8
             [
                 'first_name'    =>  'Jakob',
                 'last_name'     =>  'Baum',
@@ -84,6 +117,8 @@ class UsersSeeder extends Seeder
                 'role'          =>  2
             ],
 
+
+            //9
             [
                 'first_name'    =>  'Antonella',
                 'last_name'     =>  'Alvarez',
@@ -96,6 +131,7 @@ class UsersSeeder extends Seeder
                 'role'          =>  2
             ],
 
+            //10
             [
                 'first_name'    =>  'Anna',
                 'last_name'     =>  'Kovalski',
@@ -106,6 +142,8 @@ class UsersSeeder extends Seeder
                 'origin'        => 'Polen',
                 'role'          =>  2
             ],
+
+            //11
             [
                 'first_name'    =>  'Alina',
                 'last_name'     =>  'Kabaeva',
@@ -116,16 +154,8 @@ class UsersSeeder extends Seeder
                 'origin'        => 'Russia',
                 'role'          =>  2
             ],
-            [
-                'first_name'    =>  'Halil',
-                'last_name'     =>  'Karan',
-                'username'      =>  'Halil Karan',
-                'email'         =>  'halil.karan@telenet.be',
-                'password'      =>  Hash::make('test'),
-                'location_id'   =>  3,
-                'origin'        => 'Turkey',
-                'role'          =>  2
-            ],
+
+            //12
             [
                 'first_name'    =>  'Halil',
                 'last_name'     =>  'Karan',
@@ -137,7 +167,67 @@ class UsersSeeder extends Seeder
                 'role'          =>  2
             ],
 
-//            Ömer Faruk Sorak
+            //13
+            [
+                'first_name'    =>  'Abdel',
+                'last_name'     =>  'Hanine',
+                'username'      =>  'Abdel Hanine',
+                'email'         =>  'abdel.hanine@telenet.be',
+                'password'      =>  Hash::make('test'),
+                'location_id'   =>  3,
+                'origin'        => 'Morocco',
+                'role'          =>  2
+            ],
+
+            //14
+            [
+                'first_name'    =>  'Halil',
+                'last_name'     =>  'Karan',
+                'username'      =>  'Halil Karan',
+                'email'         =>  'halil.karan@telenet.be',
+                'password'      =>  Hash::make('test'),
+                'location_id'   =>  3,
+                'origin'        => 'Turkey',
+                'role'          =>  2
+            ],
+
+            //15
+            [
+                'first_name'    =>  'Ömer',
+                'last_name'     =>  'Faruk Sorak',
+                'username'      =>  'Ömer Faruk Sorak',
+                'email'         =>  'omer.faruk.sorak@telenet.be',
+                'password'      =>  Hash::make('test'),
+                'location_id'   =>  3,
+                'origin'        => 'Turkey',
+                'role'          =>  2
+            ],
+
+            //16
+            [
+                'first_name'    =>  'Salma',
+                'last_name'     =>  'Faruk',
+                'username'      =>  'Salma Faruk',
+                'email'         =>  'salma.faruk@telenet.be',
+                'password'      =>  Hash::make('test'),
+                'location_id'   =>  3,
+                'origin'        => 'Morocco',
+                'role'          =>  2
+            ],
+
+
+            //17
+            [
+                'first_name'    =>  'Karima',
+                'last_name'     =>  'Sorak',
+                'username'      =>  'Karima Sorak',
+                'email'         =>  'karima.sorak@telenet.be',
+                'password'      =>  Hash::make('test'),
+                'location_id'   =>  3,
+                'origin'        => 'Morocco',
+                'role'          =>  2
+            ],
+
 
             ];
         DB::table('users')->insert($users);
