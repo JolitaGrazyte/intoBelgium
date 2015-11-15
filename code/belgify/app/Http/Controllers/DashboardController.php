@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use App\User;
 use Auth;
 use Session;
@@ -18,12 +19,14 @@ class DashboardController extends Controller
     public function index()
     {
         $user           =   Auth::user();
-        $my_events      =   $user->events_attending;
+        $my_events      =   Event::myevent($user->id)->get();
         $my_questions   =   $user->posts;
         $i_follow       =   $user->following;
 
+        $events_attending = $user->events_attending;
 
-        return view('dashboard', compact('my_events', 'my_questions', 'i_follow'))->withTitle('Dashboard');
+
+        return view('dashboard', compact('my_events', 'my_questions', 'i_follow', 'events_attending'))->withTitle('Dashboard');
     }
 
     public function postFollow($id){

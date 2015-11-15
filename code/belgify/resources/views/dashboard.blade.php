@@ -26,15 +26,21 @@
 
                             <h1>Upcomming Events</h1>
 
+                            @if(Auth::check() && Auth::user()->isLocal())
+
+                                <h3 class="add"><a href="{{ route('events.create') }}">Add new event</a></h3>
+
+                            @endif
+
                             @if(isset($my_events))
 
-                                @if(Auth::check() && Auth::user()->isLocal())
+                                @each('dashboard.my_event', $my_events, 'event', 'events.partials.no-events')
 
-                                    <h3 class="add"><a href="{{ route('events.create') }}">Add new event</a></h3>
+                            @endif
 
-                                @endif
+                            @if(isset($events_attending))
 
-                                @each('dashboard.my_event', $my_events, 'event', 'events.no-events')
+                                @each('dashboard.my_event', $events_attending, 'event', 'events.partials.no-events')
 
                             @endif
 
