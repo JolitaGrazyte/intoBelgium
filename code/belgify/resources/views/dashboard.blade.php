@@ -76,13 +76,18 @@
                             <hr/>
 
                             <div class="row">
-                                @foreach(array_chunk($followed, $followsplitter, true) as $column)
-                                    <div class="col-md-4">
-                                        @foreach($column as $follwd)
-                                                @include('dashboard.following', $follwd)
-                                        @endforeach
-                                    </div>
-                                @endforeach
+
+                                @if(count($followed))
+                                    @foreach(array_chunk($followed, $followsplitter, true) as $column)
+                                        <div class="col-md-4">
+                                            @foreach($column as $follwd)
+                                                    @include('dashboard.following', $follwd)
+                                            @endforeach
+                                        </div>
+                                    @endforeach
+                                @else
+                                    @include('dashboard.no-content')
+                                @endif
                             </div>
 
 
