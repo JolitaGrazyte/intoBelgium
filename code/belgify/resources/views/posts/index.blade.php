@@ -12,7 +12,19 @@
 
             @include('partials.search')
 
-            @if(!Auth::check())
+            @if (Session::has('confirmDelete'))
+
+                <div class="alert alert-danger ">
+
+                    <span>Are you sure you want to remove your post ? </span>
+
+                    <a href="{{ route('post-delete', session('confirmDelete')) }}">Yes</a> || <a href="">Cancel</a>
+
+                </div>
+
+            @endif
+
+        @if(!Auth::check())
                 <h3 class="dont-answer">Didn't find your answer? Login or sign up to start a new conversation</h3>
 
                 <h3 class="add">
@@ -31,7 +43,7 @@
 
             <div class="row">
 
-                @if(count($posts))
+                @if(isset($posts))
 
                     @each('dashboard.my_question', $posts, 'post', 'posts.no-posts')
 

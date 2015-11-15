@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\FlashMessages;
 use App\Tag;
 use App\Comment;
 use Illuminate\Http\Request;
@@ -17,12 +18,14 @@ class CommentsController extends Controller
     private $comment;
     private $tag;
     private $authUser;
+    private $flashMsg;
 
-    public function __construct( Comment $comment, Tag $tag ){
+    public function __construct( Comment $comment, Tag $tag, FlashMessages $flashMsg ){
 
         $this->comment  =   $comment;
         $this->tag      =   $tag;
         $this->authUser =   Auth::user();
+        $this->flashMsg =   $flashMsg;
 
     }
     /**
@@ -59,9 +62,21 @@ class CommentsController extends Controller
      */
     public function store( Request $request )
     {
+
         $question_id    =   $request->get('post_id');
-        $comment        =   $this->comment->create($request->all());
-        $this->authUser->comments()->save($comment);
+
+        try{
+
+            $comment = $this->comment->create($request->all());
+            $this->authUser->comments()->save($comment);
+
+            $this->flashMsg->successMessage( 'answer', 'created!');
+
+        }
+        catch( QueryException $e ){
+
+            $this->flashMsg->failMessage( 'answer', 'created!');
+        }
 
         return redirect()->route('posts.show', $question_id);
 
@@ -105,9 +120,36 @@ class CommentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $comment = $this->comment->find($id);
-        $comment->update($id);
+
+        try{
+
+            $comment = $this->comment->find($id);
+            $comment->update($id);
+
+            $this->flashMsg->successMessage( 'answer', 'updated!');
+
+
+        }
+        catch( QueryException $e ){
+
+            $this->flashMsg->failMessage( 'answer', 'updated!');
+        }
+
+        return redirect()->back();
     }
+
+
+    /**
+     * Requires to confirm removing.
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete_confirm($id){
+
+        Session::flash('confirmDelete', $id);
+        return redirect()->back();
+    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -115,11 +157,13 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
+        $this->comment->destroy($id);
+        $this->flashMsg->successMessage( 'answer', 'deleted!');
 
+        return redirect()->back();
     }
-
     public function postVote( Request $request ){
 
         $user           = Auth::user();

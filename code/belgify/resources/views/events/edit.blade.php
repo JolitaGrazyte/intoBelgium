@@ -24,7 +24,7 @@
 
                     {!!Form::open(['route' => ['events.update', $id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH'])  !!}
 
-                    @include('events.form')
+                    @include('events.partials.form')
 
                     <div class="form-group">
                         <div class="col-md-10 col-md-offset-2">

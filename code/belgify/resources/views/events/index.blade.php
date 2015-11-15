@@ -4,7 +4,7 @@
 
 @section('content')
 
-    {{--{{ session('eventDelete') }}--}}
+    {{ session('eventDelete') }}
 
     <div class="events-wrapper">
 
@@ -14,17 +14,19 @@
 
             <div class="row">
 
-            @if (Session::has('confirmDelete'))
-
-               <div class="">
-
-                   <a href="{{ action('EventsController@destroy', Session::get('eventDelete')) }}">Yes</a> || <a href="{{ route('events.index') }}">Cancel</a>
-
-               </div>
-
-            @endif
-
                 @include('partials.search')
+
+                @if (Session::has('confirmDelete'))
+
+                    <div class="alert alert-danger ">
+
+                        <span>Are you sure you want to remove your post ? </span>
+
+                        <a href="{{ route('evnt-delete', session('confirmDelete')) }}">Yes</a> || <a href="">Cancel</a>
+
+                    </div>
+
+                @endif
 
             @if(Auth::check() && $auth->isLocal())
 
@@ -33,7 +35,7 @@
             @endif
 
 
-               @if(count($events))
+               @if(isset($events))
 
                    @each('dashboard.my_event', $events, 'event', 'events.no-events')
 
@@ -43,9 +45,5 @@
 
         </div>
     </div>
-
-
-
-
 
 @stop

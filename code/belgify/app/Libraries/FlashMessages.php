@@ -5,16 +5,16 @@ use Session;
 
 class FlashMessages {
 
-    public function successMessage( $txt ){
+    public function successMessage( $model, $txt ){
 
-        Session::flash('message', 'Item has been '.$txt.' successfully.');
+        Session::flash('message', 'Your '.$model. ' has been '.$txt.' successfully.');
         Session::flash('alert-class', 'alert-success');
 
     }
 
-    public function failMessage( $txt ){
+    public function failMessage( $model, $txt ){
 
-        Session::flash('message',"Item could not be ".$txt);
+        Session::flash('message','Your '.$model. " could not be ".$txt);
         Session::flash('alert-class', 'alert-danger');
 
     }
@@ -22,7 +22,7 @@ class FlashMessages {
     public function warning( $txt ){
 
         Session::flash('message', $txt);
-        Session::flash('alert-class', 'alert-danger');
+        Session::flash('alert-class', 'alert-warning');
 
     }
 

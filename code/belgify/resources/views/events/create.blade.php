@@ -24,7 +24,7 @@
 
                     {!!Form::open(['route' => 'events.store', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
-                    @include('events.form')
+                    @include('events.partials.form')
 
                     <div class="form-group">
 
