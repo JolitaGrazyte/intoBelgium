@@ -464,7 +464,7 @@ body > *{
   margin: 0;
 }
 
-.events-wrapper .img-wrapper, .d-post .img-wrapper{
+.events-wrapper .img-wrapper, .d-post .img-wrapper, .dashboard .img-wrapper{
   width: 4em;
   position: absolute;
   display: inline-block;
@@ -482,14 +482,14 @@ body > *{
   right: 1em;
 }
 
-.events-wrapper .img-wrapper p, .d-post .img-wrapper p{
+.events-wrapper .img-wrapper p, .d-post .img-wrapper p, .dashboard .img-wrapper p{
   font-size: 0.8em;
   color: #333;
   font-style: italic;
   text-align: center;
 }
 
-.events-wrapper .events-profile-img, .d-post .posts-profile-img {
+.events-wrapper .events-profile-img, .d-post .posts-profile-img, .dashboard .events-profile-img {
   width: 100%;
   border-radius: 1000px;
 }
@@ -613,7 +613,7 @@ body > *{
   color: #FFF;
 }
 
-.show-event .events-profile-img{
+.show-event .events-profile-img, .dashboard .events-profile-img{
   border-radius: 1000px;
   width: 4em;
 }
@@ -621,7 +621,7 @@ body > *{
 .show-event .img-wrapper{
 }
 
-.show-event .img-wrapper a{
+.show-event .img-wrapper a, .dashboard .img-wrapper a{
   font-weight: 600;
   font-size: 1.2em;
   text-decoration: none;
