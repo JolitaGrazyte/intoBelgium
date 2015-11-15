@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests;
 use Session;
+use App\Votes;
 
 
 class PostsController extends Controller
@@ -29,6 +30,8 @@ class PostsController extends Controller
         $this->flashMsg = $flashMsg;
         $this->authUser = Auth::user();
 
+
+
     }
     /**
      * Display a listing of the resource.
@@ -41,6 +44,7 @@ class PostsController extends Controller
         $user       =   $this->authUser;
         $user_id    =   !is_null($user) ? $user->id : 0;
 
+//        dd($posts->find(1)->votes);
 
         return view('posts.index', compact('posts'))->withTitle('Questions');
     }
@@ -209,6 +213,35 @@ class PostsController extends Controller
         $this->syncTags($new_post, $tags);
 
         $this->flashMsg->successMessage( 'question',$msg);
+
+    }
+
+    /**
+     *  Method to post vote for answers.
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postVote( Request $request ){
+
+        $user           = Auth::user();
+        $vote           = new Votes();
+        $voteable_id    = $request->get('voteable_id');
+        $exist          = $vote->voteExists($user->id,  $voteable_id, 'App\Post');
+
+        if(!$exist){
+
+            $vote = $vote->create(['voteable_id'   => $voteable_id, 'voteable_type' => 'App\Post']);
+            $user->votes()->save($vote);
+
+            Session::flash('message', "Thank you for voting!");
+            Session::flash('alert-class', 'alert-success');
+        }
+        else {
+            Session::flash('message', "Maybe you have forgotten, but you already have voted for this question.");
+            Session::flash('alert-class', 'alert-warning');
+        }
+
+        return redirect()->back();
 
     }
 }

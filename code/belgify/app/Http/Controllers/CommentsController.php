@@ -178,12 +178,12 @@ class CommentsController extends Controller
 
         $user           = Auth::user();
         $vote           = new Votes();
-        $comment_id     = $request->get('comment_id');
-        $exist          = $vote->voteExists($user->id,  $comment_id);
+        $voteable_id    = $request->get('voteable_id');
+        $exist          = $vote->voteExists($user->id,  $voteable_id, 'App\Comment');
 
         if(!$exist){
 
-            $vote = $vote->create(['comment_id'   => $comment_id]);
+            $vote = $vote->create(['voteable_id'   => $voteable_id, 'voteable_type' => 'App\Comment']);
             $user->votes()->save($vote);
 
             Session::flash('message', "Thank you for voting!");

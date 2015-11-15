@@ -8,15 +8,20 @@ class Votes extends Model
 {
     protected $table = 'votes';
 
-    protected $fillable = ['user_id', 'comment_id'];
+    protected $fillable = ['user_id', 'voteable_id', 'voteable_type'];
 
     protected $primaryKey = "id";
 
 
-    public function comments()
+    public function voteable()
     {
-        return $this->belongsTo('App\Comment', 'comment_id');
+        return $this->morphTo();
     }
+
+//    public function comments()
+//    {
+//        return $this->belongsTo('App\Comment', 'comment_id');
+//    }
 
     /**
      *
@@ -30,8 +35,8 @@ class Votes extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
-    public function voteExists($user_id,  $comment_id){
+    public function voteExists($user_id,  $id, $model){
 
-        return $this->where('user_id', $user_id)->where('comment_id', $comment_id)->exists();
+        return $this->where('user_id', $user_id)->where('voteable_id', $id)->where('voteable_type', $model)->exists();
     }
 }

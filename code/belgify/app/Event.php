@@ -46,24 +46,6 @@ class Event extends Model
         return $this->morphToMany('App\Tag', 'taggable')->withTimestamps();
     }
 
-    /**
-     * Scope of events that are active.
-     *
-     * @param $q
-     */
-    public function scopeActive($q){
-        $q->where('is_active', 1);
-    }
-
-    /**
-     * Scope of events that are public.
-     *
-     * @param $q
-     */
-    public function scopePublic($q){
-        $q->where('is_public', 1);
-
-    }
 
     public function location(){
 
@@ -85,7 +67,7 @@ class Event extends Model
 
     public function scopeMyevent($q, $user_id){
 
-        $q->where('user_id', $user_id);
+        return $q->where('user_id', $user_id);
     }
 
 }

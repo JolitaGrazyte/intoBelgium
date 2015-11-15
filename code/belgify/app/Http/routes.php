@@ -68,7 +68,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     post('/dashboard/{id}',          ['as' => 'follow',          'uses' => 'DashboardController@postFollow']);
     get('/comments/create/{id}',    [ 'as' => 'answer',         'uses' => 'CommentsController@create']);
-    post('/comments/post-vote',      ['as' => 'postVote',        'uses' =>  'CommentsController@postVote']);
+    post('/comments/post-vote',      ['as' => 'comment-vote',    'uses' =>  'CommentsController@postVote']);
+    post('/posts/post-vote',      ['as' => 'post-vote',    'uses' =>  'PostsController@postVote']);
 
 });
 

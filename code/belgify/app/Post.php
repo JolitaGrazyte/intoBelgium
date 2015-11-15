@@ -44,12 +44,22 @@ class Post extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function votes()
-    {
-        return $this->hasManyThrough('App\Votes', 'App\Comment');
+    public function votes(){
+
+        return $this->morphMany('App\Votes', 'voteable');
     }
+
+
+
+//    /**
+//     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+//     */
+//    public function votes()
+//    {
+//        return $this->hasManyThrough('App\Votes', 'App\Comment');
+//    }
 
 
     /**

@@ -23,6 +23,14 @@ class DashboardController extends Controller
         $my_questions   =   $user->posts;
         $i_follow       =   $user->following;
 
+//        foreach($i_follow as $f){
+//
+//            $arr[] = [$f->username .' '.$f->events_attending];
+//
+//            dd($arr);
+//
+//        }
+
         $events_attending = $user->events_attending;
 
 

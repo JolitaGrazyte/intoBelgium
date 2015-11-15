@@ -79,6 +79,7 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('App\Event');
     }
 
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -96,15 +97,6 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasOne('App\Image', 'imageable_id');
     }
 
-
-    /**
-     * @param $query
-     * @return mixed
-     */
-    public function scopeEvents($query)
-    {
-        return $query->where();
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

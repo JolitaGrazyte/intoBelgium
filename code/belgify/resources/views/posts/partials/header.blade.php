@@ -52,6 +52,12 @@
         <p class="v">{{ $post->votes->count() }}</p>
         <p>{{ $post->votes->count() == 1 ?'vote':'votes'}}</p>
     </div>
+    <div class="pull-right">
+        {!! Form::open(['route' =>  ['post-vote'], 'class' => '', 'role' => 'form']) !!}
+        {!! Form::hidden('voteable_id', $post->id) !!}
+        {!! Form::submit('Place your vote !!!', ['class' => 'btn']) !!}
+        {!! Form::close() !!}
+    </div>
 
 
 </div>

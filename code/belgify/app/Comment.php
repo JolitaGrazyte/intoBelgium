@@ -29,14 +29,23 @@ class Comment extends Model
         return $this->belongsTo('App\Post', 'post_id');
     }
 
-
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Get the tags for the blog post.
      */
-    public function votes(){
-
-        return $this->hasMany('App\Votes', 'comment_id', 'id');
+    public function votes()
+    {
+        return $this->morphMany('App\Votes', 'voteable');
     }
+
+
+//
+//    /**
+//     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+//     */
+//    public function votes(){
+//
+//        return $this->hasMany('App\Votes', 'comment_id', 'id');
+//    }
 
 
     public function scopePopular($query)

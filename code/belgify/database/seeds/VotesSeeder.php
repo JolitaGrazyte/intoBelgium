@@ -18,7 +18,8 @@ class VotesSeeder extends Seeder
             $votes[] =
                 [
 
-                    'comment_id'    =>  rand(1, 200),
+                    'voteable_id'   =>  rand(1, 200),
+                    'voteable_type' =>  $this->model(rand(0, 1)),
                     'user_id'       =>  rand(1, 27)
                 ];
 
@@ -64,5 +65,10 @@ class VotesSeeder extends Seeder
 //        ];
 
         DB::table('votes')->insert($votes);
+    }
+
+    function model($nr){
+
+        return $nr == 1 ? 'App\Post' : 'App\Comment';
     }
 }

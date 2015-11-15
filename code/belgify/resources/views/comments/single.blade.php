@@ -34,6 +34,8 @@
         <div>
             <p class="answer-body">{{ $com->body }}</p>
         </div>
+
+        <div><strong>VOTES: {{ $com->votes->count() }}</strong> </div>
     </div>
 
     <div class="row">
@@ -48,8 +50,8 @@
             @else
 
                 <div class="pull-right">
-                    {!! Form::open(['route' =>  ['postVote'], 'class' => '', 'role' => 'form']) !!}
-                    {!! Form::hidden('comment_id', $com->id) !!}
+                    {!! Form::open(['route' =>  ['comment-vote'], 'class' => '', 'role' => 'form']) !!}
+                    {!! Form::hidden('voteable_id', $com->id) !!}
                     {!! Form::submit('Place your vote !!!', ['class' => 'btn']) !!}
                     {!! Form::close() !!}
                 </div>
