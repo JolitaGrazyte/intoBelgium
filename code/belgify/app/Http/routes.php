@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth'], function(){
 //SEARCH
 
 get('/{tag}',       ['as' => 'tag-search',  'uses' => 'SearchController@index']);
-post('search',      ['as' => 'search',      'uses' => 'SearchController@search']);
+post('search',      ['as' => 'search',      'uses' => 'SearchController@index']);
 get('search-json',  ['as' => 'search-json', 'uses' => 'SearchController@getAutocomplete']);
 
 //Extra routes
