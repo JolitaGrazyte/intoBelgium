@@ -34,11 +34,15 @@
 
                             @if(isset($my_events))
 
+                                <h2>My events</h2>
+
                                 @each('dashboard.my_event', $my_events, 'event', 'events.partials.no-events')
 
                             @endif
 
                             @if(isset($events_attending))
+
+                                <h2>Events i'm going to</h2>
 
                                 @each('dashboard.my_event', $events_attending, 'event', 'events.partials.no-events')
 
