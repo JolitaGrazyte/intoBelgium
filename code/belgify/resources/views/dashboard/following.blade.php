@@ -10,6 +10,8 @@
     <div>
 
         <div class="followed-username"> {{ $followed->username }} </div>
+
+
     </div>
 </div>
 

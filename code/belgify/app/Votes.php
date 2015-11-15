@@ -18,11 +18,6 @@ class Votes extends Model
         return $this->morphTo();
     }
 
-//    public function comments()
-//    {
-//        return $this->belongsTo('App\Comment', 'comment_id');
-//    }
-
     /**
      *
      * Vote author, user who placed the vote.

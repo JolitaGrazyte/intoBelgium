@@ -21,15 +21,22 @@ class DashboardController extends Controller
         $user           =   Auth::user();
         $my_events      =   Event::myevent($user->id)->get();
         $my_questions   =   $user->posts;
-        $i_follow       =   $user->following;
+        $i_follow       =   $user->following->all();
 
-//        foreach($i_follow as $f){
-//
-//            $arr[] = [$f->username .' '.$f->events_attending];
-//
-//            dd($arr);
-//
-//        }
+//        dd($i_follow);
+
+        foreach($i_follow as $f){
+
+            $lastActivity[$f->id] = [
+                'last_comment'  => $f->comments->last(),
+                'last_event'    => $f->events->last(),
+                'last_evnt_attending' => $f->events_attending->last(),
+            ];
+        }
+
+        dd($lastActivity[11]['last_comment']['body']);
+
+        dd($lastActivity);
 
         $events_attending = $user->events_attending;
 
