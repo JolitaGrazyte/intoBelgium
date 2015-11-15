@@ -12,13 +12,13 @@
 
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-10 col-post ">
+            <div class="container post">
+                <div class="row post-form">
 
-            <h1>{{ $title }}</h1>
-
-            <div class="panel panel-default">
-
-                <div class="panel-body">
+                    <div class="col-md-12">
+                        <h1>{{ $title }}</h1>
+                    </div>
 
                     @include('partials.errors')
 
