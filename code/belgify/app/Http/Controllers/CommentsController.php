@@ -122,15 +122,13 @@ class CommentsController extends Controller
 
     public function postVote( Request $request ){
 
-        $user = Auth::user();
-
-        $ip     = $request->getClientIp();
-        $exist  = Votes::where('ip', $ip)->exists();
+        $user           = Auth::user();
+        $comment_id     = $request->get('comment_id');
+        $exist          = Votes::where('user_id', $user->id)->where('comment_id', $comment_id)->exists();
 
         if(!$exist){
 
             $vote = new Votes($request->all());
-            $vote->ip = $ip;
             $user->votes()->save($vote);
 
             Session::flash('message', "Thank you for voting!");
@@ -141,7 +139,7 @@ class CommentsController extends Controller
             Session::flash('alert-class', 'alert-warning');
         }
 
-        return redirect()->route('home');
+        return redirect()->back();
 
     }
 }

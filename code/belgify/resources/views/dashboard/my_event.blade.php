@@ -47,7 +47,14 @@
                 <p> starts at {{ $event->date->format('H:i') }} </p>
             </div>
 
-            <p class="attenders"> {{ $event->attenders->count()}} participants</p>
+
+        {{--TODO: TAGS style--}}
+        <div>
+            @each('partials.tags', $event->tags, 'tag')
+        </div>
+
+
+        <p class="attenders"> {{ $event->attenders->count()}} participants</p>
 
             @if(!Auth::check())
                 <p> Posted by: <a href="{{ url('/auth/login .content' ) }}" data-url="{{route('profile.show' , str_replace(' ', '-', $event->author->username ))}}" data-toggle="modal" data-target="#myModal">{{ $event->author->username }}</a>, <em>{{ $event->created_at->diffforHumans() }}</em> </p>

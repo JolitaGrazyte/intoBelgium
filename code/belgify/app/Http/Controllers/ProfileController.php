@@ -12,6 +12,7 @@ use App\Image;
 use Illuminate\Http\Response;
 use App\Libraries\ImageLib;
 use Auth;
+use Session;
 
 class ProfileController extends Controller
 {
@@ -101,6 +102,8 @@ class ProfileController extends Controller
 
         $username = str_replace(' ', '-', $user->username);
 
+        Session::flash('message', 'You have successfully updated your profile!' );
+
         if($request->file('image')){
 
 
@@ -108,14 +111,15 @@ class ProfileController extends Controller
 
             $img = ImageLib::addImage($request->file('image'), $username, $user->id );
 
-                return redirect()->route('profile.show', $username)->withMessage('Successfully saved!');
-
             }
             catch(QueryException $e){
 
-                redirect()->back()->withMessage('There were some problems uploading your image.');
+                Session::flash('message', 'There were some problems with your image.' );
+
             }
         }
+
+        return redirect()->route('profile.show', $username);
 
 
     }

@@ -78,10 +78,6 @@
 
     <script>
         $('#tag_list').select2();
-
-        $(function() {
-            $( "#datepicker" ).datepicker();
-        });
     </script>
 
 @stop

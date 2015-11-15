@@ -56,17 +56,10 @@
         <a class="title" href="{{ route('posts.show', $post->id) }}"> {{ $post->title }} </a>
 
         <div>
-            @if(count($post->tags))
-
-                @foreach( $post->tags as $tag )
-
-                    <p class="tag">{{ $tag->name }}</p>
-
-                @endforeach
-
-            @endif
-
+            @each('partials.tags', $post->tags, 'tag')
         </div>
+
+        {{--@include('partials.tags')--}}
 
         @if(!Auth::check())
             <p> Posted by: <a href="{{ url('/auth/login .content' ) }}" data-url="{{route('profile.show' , str_replace(' ', '-', $post->author->username ))}}" data-toggle="modal" data-target="#myModal">{{ $post->author->username }}</a>, <em>{{ $post->created_at->diffforHumans() }}</em> </p>

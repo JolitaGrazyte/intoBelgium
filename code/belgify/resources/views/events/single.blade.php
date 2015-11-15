@@ -14,6 +14,11 @@
 
             <h1 class="title">{{ $event->title }}</h1>
 
+            {{--TAGS--}}
+            <div>
+                @each('partials.tags', $event->tags, 'tag')
+            </div>
+
 
             {{--ATTEND BTN--}}
             @if(Auth::check())
