@@ -103,11 +103,15 @@ class CommentsController extends Controller
     {
         $comment = $this->comment->find($id);
 
+        $post  = $comment->post;
+
         $tags = $this->tag->lists('name', 'id');
 
         $comment_tags = $comment->tags;
 
-        return view('comments.create', compact('tags', 'comment', 'comment_tags'))->withTitle('Answer');
+
+
+        return view('comments.create', compact('tags', 'comment', 'comment_tags', 'post'))->withTitle('Answer');
     }
 
     /**
