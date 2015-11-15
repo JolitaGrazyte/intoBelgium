@@ -52,7 +52,7 @@
                 <div class="">
                     {!! Form::open(['route' =>  ['comment-vote'], 'class' => '', 'role' => 'form']) !!}
                     {!! Form::hidden('voteable_id', $com->id) !!}
-                    {!! Form::submit('Place your vote', ['class' => 'btn btn-vote']) !!}
+                    {!! Form::submit('Vote', ['class' => 'btn btn-vote']) !!}
                     {!! Form::close() !!}
                 </div>
 

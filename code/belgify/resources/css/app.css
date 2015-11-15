@@ -6031,6 +6031,51 @@ body > * {
   margin-top: 1.5em; }
 
 /******************
+    Profile
+******************/
+.profile-single {
+  margin-top: 4em;
+  margin-bottom: 4em; }
+
+.profile {
+  background-color: #333; }
+
+.btn-follow, .btn-following {
+  background-color: transparent !important;
+  color: #c1272d;
+  font-weight: bolder;
+  text-transform: uppercase;
+  border-radius: 0;
+  border: 3px solid #c1272d;
+  margin-top: 2em; }
+
+.btn-following {
+  background-color: #c1272d !important;
+  color: #FFF !important; }
+
+.profile-container {
+  padding-bottom: 4em;
+  background-color: #FFF;
+  margin-top: 3em;
+  margin-bottom: 3em; }
+
+.profile-single .title {
+  font-weight: bolder;
+  text-transform: uppercase;
+  color: #c1272d; }
+
+.edit-profile {
+  margin-bottom: 2em;
+  margin-top: 2em; }
+
+.edit-profile a {
+  border: 3px solid #333;
+  padding: 0.5em;
+  font-weight: bolder;
+  text-transform: uppercase;
+  color: #333; }
+
+/******************
     MODAL
 ******************/
 .modal-dialog {
