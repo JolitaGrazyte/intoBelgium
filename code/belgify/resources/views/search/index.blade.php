@@ -4,15 +4,37 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="search-wrapper">
 
-        {{--@include('partials.page-head')--}}
+        @include('partials.page-head')
 
-        <div class="row">
+        <div class="container">
 
-                @each('search.single', $search_results, 'result', 'search.no-results')
+            {{--@include('partials.page-head')--}}
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    <h2>Questions</h2>
+
+                    <hr/>
+
+                    @each('search.search_posts', $questions, 'result', 'search.no-results')
+
+                </div>
+                <div class="col-md-6">
+                    <h2>Events</h2>
+
+                    <hr/>
+
+                    @each('search.search_events', $tours, 'result', 'search.no-results')
+                </div>
+
+
+            </div>
 
         </div>
+
     </div>
 
 @stop

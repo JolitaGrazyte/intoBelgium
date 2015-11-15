@@ -93,6 +93,10 @@ class EventsController extends Controller
             $this->flashMsg->failMessage('event','added!');
         }
 
+        if ($request->ajax()) {
+            return response()->json(['success']);
+        }
+
         return redirect()->route('events.index');
     }
 
@@ -158,6 +162,10 @@ class EventsController extends Controller
         catch( QueryException $e ){
 
             $this->flashMsg->failMessage( 'event','updated!');
+        }
+
+        if ($request->ajax()) {
+            return response()->json(['success']);
         }
 
         return redirect()->route('events.index');

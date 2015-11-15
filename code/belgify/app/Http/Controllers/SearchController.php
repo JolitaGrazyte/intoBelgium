@@ -16,40 +16,10 @@ class SearchController extends Controller
 
         $term_search = is_null($term) ? $request->get('term') : $term;
 
-        $search_results  = [];
-        $tours      = $this->searchTours($term_search);
-        $questions  = $this->searchQuestions($term_search);
+        $tours      = $this->searchTours($term);
+        $questions  = $this->searchQuestions($term);
 
-        foreach($tours as $result){
-
-            $search_results[] = [
-
-                'id'            => $result->id,
-                'model'         => 'events',
-                'title'         => $result->title,
-                'body'          => $result->description,
-                'created_at'    => $result->created_at,
-
-            ];
-
-        }
-
-        foreach($questions as $result){
-
-            $search_results[] = [
-
-                'id'            => $result->id,
-                'model'         => 'posts',
-                'title'         => $result->title,
-                'body'          => $result->body,
-                'created_at'    => $result->created_at,
-
-            ];
-
-        }
-
-
-        return view('search.index', compact('search_results'))->withTitle('Search Results');
+        return view('search.index', compact('tours', 'questions'))->withTitle('Search Results');
     }
 
 

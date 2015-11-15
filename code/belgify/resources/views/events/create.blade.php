@@ -22,15 +22,15 @@
 
                     @include('partials.errors')
 
-                    {!!Form::open(['route' => 'events.store', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+                    {!!Form::open(['route' => 'events.store', 'class' => 'form-horizontal', 'id' => 'Form', 'role' => 'form'])  !!}
 
                     @include('events.partials.form')
 
                     <div class="form-group">
 
-                        <div class="col-md-10 col-md-offset-2">
+                        <div class="col-md-12">
 
-                            {!! Form::submit('Post', ['class' => 'btn btn-primary form-control']) !!}
+                            {!! Form::submit('Post', ['class' => 'btn btn-primary form-control btn-add']) !!}
 
                         </div>
 
