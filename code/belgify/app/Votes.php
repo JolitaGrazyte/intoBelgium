@@ -29,4 +29,9 @@ class Votes extends Model
 
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    public function voteExists($user_id,  $comment_id){
+
+        return $this->where('user_id', $user_id)->where('comment_id', $comment_id)->exists();
+    }
 }

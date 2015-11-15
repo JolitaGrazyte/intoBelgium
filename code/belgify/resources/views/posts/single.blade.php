@@ -1,5 +1,17 @@
 <div class="d-post">
 
+    @if (Session::has('confirmDelete'))
+
+        <div class="alert alert-danger ">
+
+            <span>Are you sure you want to remove your answer ? </span>
+
+            <a href="{{ route('comment-delete', session('confirmDelete')) }}">Yes</a> || <a href="">Cancel</a>
+
+        </div>
+
+    @endif
+
     @include('posts.partials.header')
 
     <div class="row answer-wrapper">

@@ -20,9 +20,9 @@
 
                     <div class="alert alert-danger ">
 
-                        <span>Are you sure you want to remove your post ? </span>
+                        <span>Are you sure you want to remove your event ? </span>
 
-                        <a href="{{ route('evnt-delete', session('confirmDelete')) }}">Yes</a> || <a href="">Cancel</a>
+                        <a href="{{ route('event-delete', session('confirmDelete')) }}">Yes</a> || <a href="">Cancel</a>
 
                     </div>
 

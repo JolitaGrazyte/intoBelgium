@@ -111,7 +111,7 @@ class CommentsController extends Controller
 
 
 
-        return view('comments.create', compact('tags', 'comment', 'comment_tags', 'post'))->withTitle('Answer');
+        return view('comments.edit', compact('tags', 'comment', 'comment_tags', 'post'))->withTitle('Answer');
     }
 
     /**
@@ -167,15 +167,23 @@ class CommentsController extends Controller
 
         return redirect()->back();
     }
+
+
+    /**
+     *  Method to post vote for answers.
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postVote( Request $request ){
 
         $user           = Auth::user();
+        $vote           = new Votes();
         $comment_id     = $request->get('comment_id');
-        $exist          = Votes::where('user_id', $user->id)->where('comment_id', $comment_id)->exists();
+        $exist          = $vote->voteExists($user->id,  $comment_id);
 
         if(!$exist){
 
-            $vote = new Votes($request->all());
+            $vote = $vote->create(['comment_id'   => $comment_id]);
             $user->votes()->save($vote);
 
             Session::flash('message', "Thank you for voting!");

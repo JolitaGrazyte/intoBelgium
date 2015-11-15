@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SearchJsonRequest;
-use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Event;
 use App\Post;
 use App\Tag;
@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Response;
 class SearchController extends Controller
 {
 
-    public function index($term){
+    public function index( Request $request ,$term= null){
+
+        $term_search = is_null($term) ? $request->get('term') : $term;
 
         $tours      = $this->searchTours($term);
         $questions  = $this->searchQuestions($term);
@@ -46,6 +48,35 @@ class SearchController extends Controller
         return $search_results;
 
     }
+
+    public function searchTours($keyword){
+
+        $events  = Event::whereHas('tags', function($query) use ($keyword){
+
+            $query->where('name','LIKE', '%'.$keyword.'%');
+
+        })
+            ->orWhere('title', 'LIKE', '%'.$keyword.'%')
+            ->orWhere('description', 'LIKE', '%'.$keyword.'%')
+            ->get();
+
+        return $events;
+    }
+
+    public function searchQuestions($keyword){
+
+        $posts  = Post::whereHas('tags', function($query) use ($keyword){
+
+            $query->where('name','LIKE', '%'.$keyword.'%');
+
+        })
+            ->orWhere('title', 'LIKE', '%'.$keyword.'%')
+            ->orWhere('body', 'LIKE', '%'.$keyword.'%')
+            ->get();
+
+        return $posts;
+    }
+
 
     public function getAutocomplete( SearchJsonRequest $request ){
 
@@ -87,33 +118,5 @@ class SearchController extends Controller
         $search_results = $this->searchTours($keyword);
 
         return view('search.index', compact('search_results'))->withTitle('Search result');
-    }
-
-    public function searchTours($keyword){
-
-        $events  = Event::whereHas('tags', function($query) use ($keyword){
-
-            $query->where('name','LIKE', '%'.$keyword.'%');
-
-        })
-            ->orWhere('title', 'LIKE', '%'.$keyword.'%')
-            ->orWhere('description', 'LIKE', '%'.$keyword.'%')
-            ->get();
-
-        return $events;
-    }
-
-    public function searchQuestions($keyword){
-
-        $posts  = Post::whereHas('tags', function($query) use ($keyword){
-
-            $query->where('name','LIKE', '%'.$keyword.'%');
-
-        })
-            ->orWhere('title', 'LIKE', '%'.$keyword.'%')
-            ->orWhere('body', 'LIKE', '%'.$keyword.'%')
-            ->get();
-
-        return $posts;
     }
 }
