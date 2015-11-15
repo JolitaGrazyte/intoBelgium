@@ -1,27 +1,24 @@
 
 <div class="form-group">
 
-    {!! Form::label('title', 'Title', ['class' => 'col-md-2 control-label']) !!}
-
-    <div class="col-md-10">
-
-        {!! Form::text('title', isset($event->title) ? $event->title :null, ['class' => 'form-control', 'placeholder' => 'title']) !!}
-
+    <div class="col-md-12">
+        <div id="title-group">
+            <p class="help-text"></p>
+            {!! Form::text('title', isset($event->title) ? $event->title :null, ['class' => 'form-control', 'placeholder' => 'title']) !!}
+        </div>
     </div>
 
 </div>
 
 <div class="form-group">
 
-    {!! Form::label('date', 'Date and time', ['class' => 'col-md-2 control-label']) !!}
+        <div class="input-group date col-md-10" id="datetimepicker">
 
-    <div class="input-group date col-md-9" id="datetimepicker">
+            {!! Form::text('date', isset($event->date) ? $event->date->format('d/m/Y H:i') :null, ['class' => 'form-control']) !!}
 
-        {!! Form::text('date', isset($event->date) ? $event->date->format('d/m/Y H:i') :null, ['class' => 'form-control']) !!}
+            <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
 
-        <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
-
-    </div>
+        </div>
 </div>
 
 <div class="form-group">
