@@ -16,8 +16,8 @@ class SearchController extends Controller
 
         $term_search = is_null($term) ? $request->get('term') : $term;
 
-        $tours      = $this->searchTours($term);
-        $questions  = $this->searchQuestions($term);
+        $tours      = $this->searchTours($term_search);
+        $questions  = $this->searchQuestions($term_search);
 
         return view('search.index', compact('tours', 'questions'))->withTitle('Search Results');
     }
