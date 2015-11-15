@@ -1,9 +1,9 @@
 @if(!is_null($follwd['last']))
 
-    <a href="{{ route('profile.show', str_replace(' ', '-', $follwd['person']->username) ) }}"><div class="col-md-3 following">
+    <a href="{{ route('profile.show', str_replace(' ', '-', $follwd['person']->username) ) }}"><div class="col-md-12 following">
             <div class="">
 
-                <div>
+                <div class="date">
                     {{ $follwd['last']['created_at']->format('d M Y') }}
                 </div>
 
@@ -20,7 +20,7 @@
             <div>
 
                 {{--<div class="followed-username"> {{ $followed->username }} </div>--}}
-                <div class="followed-username">{{ $follwd['person']->username }}
+                <div class="followed-username"><span class="username">{{ $follwd['person']->username }}</span>
 
                         @if($follwd['last']['table'] == 'events')
 
@@ -48,7 +48,7 @@
 
                 </div>
 
-                <h3>{{ $follwd['last']['table'] == 'comments' ? $follwd['last']->post->title :$follwd['last']['title'] }}</h3>
+                <h3 class="body">"{{ $follwd['last']['table'] == 'comments' ? $follwd['last']->post->title :$follwd['last']['title'] }}"</h3>
 
             </div>
         </div>

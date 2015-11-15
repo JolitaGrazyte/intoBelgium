@@ -71,9 +71,20 @@
                     <div>
                         @if(isset($followed))
 
-                            <h2>I'm following</h2>
+                            <h1 id="titleFollowing">I'm following</h1>
 
-                            @each('dashboard.following', $followed, 'follwd', 'partials.no-entries')
+                            <hr/>
+
+                            <div class="row">
+                                @foreach(array_chunk($followed, $followsplitter, true) as $column)
+                                    <div class="col-md-4">
+                                        @foreach($column as $follwd)
+                                                @include('dashboard.following', $follwd)
+                                        @endforeach
+                                    </div>
+                                @endforeach
+                            </div>
+
 
                         @endif
 
