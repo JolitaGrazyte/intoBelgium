@@ -83,5 +83,9 @@ class Event extends Model
         return $this->belongsToMany('App\User');
     }
 
+    public function scopeMyevent($q, $user_id){
+
+        $q->where('user_id', $user_id);
+    }
 
 }
