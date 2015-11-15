@@ -1,4 +1,1 @@
-
-<li><a href="{{ route('tag-search', $tag->name) }}">{{ $tag->name }}</a></li>
-
-
+<a href="{{ route('tag-search', $tag->name) }}" class="tag">{{ $tag->name }}</a>

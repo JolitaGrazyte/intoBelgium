@@ -11,7 +11,7 @@
 
         <div class="container show-event">
 
-            @include('events.single')
+            @include('events.partials.single')
 
         </div>
 

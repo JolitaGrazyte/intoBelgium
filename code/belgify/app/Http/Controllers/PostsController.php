@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
 use App\Libraries\FlashMessages;
 use App\Post;
 use App\Tag;
@@ -10,7 +9,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests;
-//use App\Http\Controllers\Controller;
+use Session;
 
 
 class PostsController extends Controller
@@ -75,7 +74,7 @@ class PostsController extends Controller
         }
         catch( QueryException $e ){
 
-            $this->flashMsg->failMessage('added!');
+            $this->flashMsg->failMessage('post','added!');
         }
 
         if ($request->ajax()) {
@@ -140,7 +139,7 @@ class PostsController extends Controller
         }
         catch( QueryException $e ){
 
-            $this->flashMsg->failMessage('updated!');
+            $this->flashMsg->failMessage('post','updated!');
         }
 
 
@@ -151,20 +150,32 @@ class PostsController extends Controller
         return redirect()->route('posts.index');
     }
 
+
+    /**
+     * Requires to confirm removing.
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete_confirm($id){
+
+        Session::flash('confirmDelete', $id);
+        return redirect()->back();
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $this->post->destroy($id);
+        $this->flashMsg->successMessage( 'post', 'deleted!');
 
-        return redirect()->route('posts.index');
+        return redirect()->back();
     }
-
-
     /**
      *
      * Sync tags when adding / updating.
@@ -197,7 +208,7 @@ class PostsController extends Controller
 
         $this->syncTags($new_post, $tags);
 
-        $this->flashMsg->successMessage($msg);
+        $this->flashMsg->successMessage( 'question',$msg);
 
     }
 }

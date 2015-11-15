@@ -1,3 +1,5 @@
+@include('partials.message')
+
 <div class="row header">
 
     <div class="col-md-2">
@@ -36,17 +38,16 @@
             <h4 class="title">{{ $post->title }}</h4>
             <p class="posted">Asked {{ $post->created_at->diffforHumans() }}</p>
             <p class="body-question"> {{ Request::is('posts') ? $post->body : substr($post->body, 0, 100) }}</p>
-            @if(count($post->tags))
 
-                @foreach( $post->tags as $tag )
+            <div>
+                @each('partials.tags', $post->tags, 'tag')
+            </div>
 
-                    <a href="{{ route('tag-search', $tag->name ) }}" class="tag">{{ $tag->name }}</a>
 
-                @endforeach
-
-            @endif
         </div>
+
     </div>
+
     <div class="col-md-2 d-votes">
         <p class="v">{{ $post->votes->count() }}</p>
         <p>{{ $post->votes->count() == 1 ?'vote':'votes'}}</p>

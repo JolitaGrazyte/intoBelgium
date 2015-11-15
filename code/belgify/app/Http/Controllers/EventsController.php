@@ -90,7 +90,7 @@ class EventsController extends Controller
         }
         catch( QueryException $e ){
 
-            $this->flashMsg->failMessage('added!');
+            $this->flashMsg->failMessage('event','added!');
         }
 
         return redirect()->route('events.index');
@@ -157,11 +157,23 @@ class EventsController extends Controller
         }
         catch( QueryException $e ){
 
-            $this->flashMsg->failMessage('updated!');
+            $this->flashMsg->failMessage( 'event','updated!');
         }
 
         return redirect()->route('events.index');
 
+    }
+
+
+    /**
+     * Requires to confirm removing.
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete_confirm($id){
+
+        Session::flash('confirmDelete', $id);
+        return redirect()->back();
     }
 
 
@@ -171,13 +183,12 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        Session::delete('confirmDelete');
-        Session::delete('eventDelete');
         $this->event->destroy($id);
+        $this->flashMsg->successMessage( 'event', 'deleted!');
 
-        return redirect()->route('events.index');
+        return redirect()->back();
     }
 
     /**
@@ -221,7 +232,7 @@ class EventsController extends Controller
 
         $this->syncTags($new_event, $tags);
 
-        $this->flashMsg->successMessage($msg);
+        $this->flashMsg->successMessage( 'event', $msg);
     }
 
     /**
