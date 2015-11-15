@@ -6026,6 +6026,9 @@ body > * {
 
 .btn-vote {
   border: solid 2px #c1272d;
+  color: #c1272d;
+  text-transform: uppercase;
+  font-weight: bolder;
   background-color: transparent;
   border-radius: 0;
   margin-top: 1.5em; }
@@ -6060,8 +6063,16 @@ body > * {
   font-weight: bolder;
   text-transform: uppercase;
   border-radius: 0;
-  border: 3px solid #c1272d;
+  border: 3px solid #c1272d !important;
   margin-top: 2em; }
+
+.btn-follow:hover {
+  background-color: #c1272d !important;
+  color: #FFF !important; }
+
+.btn-following:hover {
+  background-color: #FFF !important;
+  color: #c1272d !important; }
 
 .btn-following {
   background-color: #c1272d !important;
@@ -6331,7 +6342,32 @@ select {
   text-align: center;
   padding: 5rem;
   border: 1px solid #f2f2f2;
-  background-color: #f2f2f2; }
+  background-color: #f2f2f2;
+  float: left;
+  margin-bottom: 1em; }
+
+.following > * {
+  color: #333; }
+
+.following .date {
+  font-style: italic;
+  color: #999;
+  margin-bottom: 1em; }
+
+#titleFollowing {
+  margin-top: 1.5em;
+  margin-bottom: 1em; }
+
+.following .body {
+  font-size: 1.5em;
+  font-weight: bolder;
+  color: #000;
+  font-style: italic;
+  letter-spacing: 0.05em; }
+
+.following .username {
+  font-weight: 800;
+  color: #c1272d; }
 
 .followed-username {
   padding-top: 1rem; }
@@ -6647,7 +6683,8 @@ select {
   margin-bottom: 0; }
 
 .answers {
-  float: left; }
+  float: right;
+  margin-left: 1em; }
 
 .votes {
   float: right; }

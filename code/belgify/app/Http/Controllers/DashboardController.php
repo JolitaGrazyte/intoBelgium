@@ -47,7 +47,9 @@ class DashboardController extends Controller
 //        dd($followed);
         $events_attending = $user->events_attending;
 
-        return view('dashboard', compact('my_events', 'my_questions', 'i_follow', 'events_attending', 'followed'))->withTitle('Dashboard');
+        $followsplitter = ceil(count($followed) / 3);
+
+        return view('dashboard', compact('my_events', 'my_questions', 'i_follow', 'events_attending', 'followed', 'followsplitter'))->withTitle('Dashboard');
     }
 
 
