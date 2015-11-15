@@ -55,7 +55,7 @@
         <div class="">
             {!! Form::open(['route' =>  ['post-vote'], 'class' => '', 'role' => 'form']) !!}
             {!! Form::hidden('voteable_id', $post->id) !!}
-            {!! Form::submit('Place your vote', ['class' => 'btn btn-vote']) !!}
+            {!! Form::submit('Vote', ['class' => 'btn btn-vote']) !!}
             {!! Form::close() !!}
         </div>
     </div>
