@@ -6269,10 +6269,10 @@ select {
 .home_header {
   background-image: url("/img/img_7347.jpg");
   background-size: 100% auto;
-  background-position: center bottom;
+  background-position: center 80%;
   width: 100vw;
-  height: 65vh;
-  position: absolute;
+  height: 60vh;
+  position: relative;
   left: 0; }
 
 .home_header::after {
@@ -6302,7 +6302,7 @@ select {
   z-index: 10;
   position: absolute;
   display: inline-block;
-  top: 55%;
+  top: 60%;
   width: 100%;
   height: 70px;
   padding: 20px 30px;
@@ -6684,7 +6684,7 @@ select {
 
 .answers {
   float: right;
-  margin-left: 1em; }
+  margin-left: 0.5em; }
 
 .votes {
   float: right; }
@@ -7220,5 +7220,32 @@ select {
 
 .search {
   margin-bottom: 1em; }
+
+.home-content {
+  position: relative;
+  z-index: 1000; }
+
+.home-container {
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  width: 100vw; }
+
+.home-container .about {
+  position: relative;
+  width: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  text-align: center;
+  margin-top: 4em;
+  margin-bottom: 4em; }
+
+.home-container .about img {
+  width: 3em;
+  margin-bottom: 3em; }
+
+.home-container .about p {
+  font-weight: 600;
+  letter-spacing: 0.05em; }
 
 /*# sourceMappingURL=app.css.map */
