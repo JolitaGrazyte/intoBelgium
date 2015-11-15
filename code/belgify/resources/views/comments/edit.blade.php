@@ -19,7 +19,7 @@
 
                         @include('partials.errors')
 
-                        {!!Form::open(['route' => ['comments.update', $id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH'])  !!}
+                        {!!Form::open(['route' => ['comments.update', $comment->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH'])  !!}
 
                         <div class="form-group">
 

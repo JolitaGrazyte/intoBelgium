@@ -27,18 +27,7 @@
 
                         {!!Form::open(['route' => 'comments.store', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
 
-                        {!! Form::hidden('post_id', $post_id) !!}
-
-                        {{--<div class="form-group">--}}
-
-                            {{--{!! Form::label('title', 'Title', ['class' => 'col-md-1 control-label']) !!}--}}
-
-                            {{--<div class="col-md-11">--}}
-
-                                {{--{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'title']) !!}--}}
-
-                            {{--</div>--}}
-                        {{--</div>--}}
+                        {!! Form::hidden('post_id', $post->id) !!}
 
                         <div class="form-group">
                             <div class="col-md-12">
