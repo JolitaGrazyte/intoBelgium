@@ -6,14 +6,21 @@ $(document).ready(function(){
     });
 
     $('body').on('shown.bs.modal', '.modal', function (e) {
+
+        $('#tag_list').select2({placeholder:'please, choose some keywords'});
+
         var targetUrl;
 
         if($(e.relatedTarget).attr('data-url')){
             targetUrl = $(e.relatedTarget).attr('data-url');
+            console.log(targetUrl);
         }
         else{
             targetUrl  = 0;
         }
+
+        console.log(targetUrl);
+
         $('#Form').submit(function(e){
             postAjaxForm(e, $(this),  targetUrl);
         });
@@ -35,12 +42,16 @@ $(document).ready(function(){
         $form.find('select').each(function () {
             formData[$(this).attr('name')] = $(this).val();
         });
+        $form.find('textarea').each(function () {
+            formData[$(this).attr('name')] = $(this).val();
+        });
 
         $.ajax({
             method: 'POST',
             url: url,
             data: formData,
             success: function (data) {
+                console.log(data);
                 if ($.isArray(data)) {
                     if(targetUrl){
                         console.log("test");

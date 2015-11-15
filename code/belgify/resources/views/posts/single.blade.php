@@ -14,7 +14,7 @@
                 @if(Auth::check() && !$auth->isAuthor($post->author))
                     <div class="row answer-btn single-answer">
                         <div class="col-md-12">
-                            <a href="{{ route('answer', $post->id) }}" class="btn btn-link">
+                            <a href="{{ url('/comments/create/' .  $post->id . ' .post-form' ) }}" class="btn btn-link" data-url="{{ url('/posts', $post->id) }}" data-toggle="modal" data-target="#myModal">
                                 {{ !count($post->comments) ? 'Be the first!! ' : '' }} answer this question
                             </a>
                         </div>

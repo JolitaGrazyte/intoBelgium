@@ -5,6 +5,12 @@ body{
   font-family: "Avenir", sans-serif;
 }
 
+body > *{
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 .form-horizontal{
   height: auto;
   position: relative;
@@ -13,14 +19,14 @@ body{
 }
 
 .form-group p{
-  margin: 0;
+  margin: 0 !important;
   color: #c1272d;
-  margin-left: 0.2em;
-  margin-top: 1em;
+  margin-left: 0.2em !important;
+  margin-top: 1em !important;
 }
 
-.has-errors input{
-  border: solid 1px #c1272d;
+.has-errors input, .has-errors textarea{
+  border: solid 1px #c1272d !important;
 }
 
 .error-message{
@@ -63,11 +69,22 @@ body{
   position: relative;
   left: 50%;
   -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+
   padding: 1em;
 }
 
 .post-form{
-  width: 100%;
+  background-color: #FFF;
+  margin-top: 2em !important;
+  margin-bottom: 2em !important;
+}
+
+.col-post{
+  background-color: #EEE;
+  min-height: 100vh;
 }
 
 .auth-form .form-group, .post-form .form-group{

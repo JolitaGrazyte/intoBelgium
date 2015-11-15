@@ -34,7 +34,7 @@
             @else
 
                 <h3 class="add">
-                    <a href="{{ url('/posts/create .post') }}" data-toggle="modal" data-target="#myModal">Ask question</a>
+                    <a href="{{ url('/posts/create .post-form') }}" data-url="{{ url('/posts') }}" data-toggle="modal" data-target="#myModal">Ask question</a>
                 </h3>
 
             @endif
