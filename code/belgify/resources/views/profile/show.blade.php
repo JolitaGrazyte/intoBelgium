@@ -6,7 +6,8 @@
 
     <div class="container-fluid profile">
 
-    <div class="container profile-container">
+
+        <div class="container profile-container">
         <div class="row">
 
             <div class="col-md-12  profile-single">
@@ -124,6 +125,7 @@
         </div>
 
     </div>
+        <div class="background-profile"></div>
     </div>
 
 @stop
