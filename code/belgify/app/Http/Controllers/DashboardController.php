@@ -27,22 +27,31 @@ class DashboardController extends Controller
 
         foreach($i_follow as $f){
 
-            $lastActivity[$f->id] = [
-                'last_comment'  => $f->comments->last(),
-                'last_event'    => $f->events->last(),
-                'last_evnt_attending' => $f->events_attending->last(),
+//            $last_comment  = $f->comments->last();
+//            $last_event   = $f->events->last();
+            $last_post    = $f->posts->last();
+
+            $last_events_attending = $f->events_attending->last();
+
+//            $last =  $last_comment['created_at'] < $last_post['created_at'] ? $last_post:$last_comment;
+//            $last =  $last_post['created_at'] > $last_event['created_at'] ? $last_post:$last_event;
+//            $last =  $last_post['created_at'] > $last_event['created_at'] ? $last_post:$last_event;
+            $last =  $last_post['created_at'] > $last_events_attending['created_at'] ? $last_post:$last_events_attending;
+//
+//            dd($last);
+
+            $followed[$f->id] = [
+                'person' => $f,
+                'last'    => $last,
             ];
         }
 
-        dd($lastActivity[11]['last_comment']['body']);
-
-        dd($lastActivity);
-
+//        dd($followed);
         $events_attending = $user->events_attending;
 
-
-        return view('dashboard', compact('my_events', 'my_questions', 'i_follow', 'events_attending'))->withTitle('Dashboard');
+        return view('dashboard', compact('my_events', 'my_questions', 'i_follow', 'events_attending', 'followed'))->withTitle('Dashboard');
     }
+
 
     public function postFollow($id){
 

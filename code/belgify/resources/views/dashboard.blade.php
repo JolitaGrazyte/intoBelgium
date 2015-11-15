@@ -69,11 +69,11 @@
 
                         <div>
                     <div>
-                        @if(count($i_follow))
+                        @if(isset($followed))
 
                             <h2>I'm following</h2>
 
-                            @each('dashboard.following', $i_follow, 'followed', 'partials.no-entries')
+                            @each('dashboard.following', $followed, 'follwd', 'partials.no-entries')
 
                         @endif
 
@@ -82,7 +82,7 @@
                     @endif
                 </div>
             </div>
-
+        </div>
 
         </div>
 
