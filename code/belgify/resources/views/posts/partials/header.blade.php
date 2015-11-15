@@ -52,4 +52,6 @@
         <p class="v">{{ $post->votes->count() }}</p>
         <p>{{ $post->votes->count() == 1 ?'vote':'votes'}}</p>
     </div>
+
+
 </div>

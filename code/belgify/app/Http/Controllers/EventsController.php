@@ -132,7 +132,7 @@ class EventsController extends Controller
 
             $date = $event->date->format('d/m/Y H:i');
 
-            return view('events.edit', compact('locations', 'tags', 'event', 'id', 'evnt_tags', 'location', 'date', 'now'))->withTitle('Edit event');
+            return view('events.edit', compact('locations', 'tags', 'event', 'evnt_tags', 'location', 'date', 'now'))->withTitle('Edit event');
         }
 
         else return redirect()->route('events.index')->with("message", "Can't update, not your event!");

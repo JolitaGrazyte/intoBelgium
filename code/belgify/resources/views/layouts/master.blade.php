@@ -9,7 +9,7 @@
 
         {{--<link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">--}}
 
-        <link rel="stylesheet" href="{{ url('css/jquery-ui.min.css') }}">
+{{--        <link rel="stylesheet" href="{{ url('css/jquery-ui.min.css') }}">--}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">

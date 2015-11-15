@@ -57,11 +57,18 @@ Route::group(['middleware' => 'auth'], function(){
     resource('events',      'EventsController',     ['except' => ['index', 'show']]);
     resource('posts',       'PostsController',      ['except' => ['index', 'show']]);
     post('events/{id}',                     ['as' => 'attend',          'uses' => 'EventsController@postAttend']);
-    get('/events/delete-confirm/{id}',      ['as' => 'event-delete',    'uses' => 'EventsController@delete_confirm']);
-    get('delete/{id}',                          ['as' => 'evnt-delete', 'uses' => 'EventsController@delete']);
-    post('dashboard/{id}',          ['as' => 'follow',          'uses' => 'DashboardController@postFollow']);
+    get('/events/delete-confirm/{id}',      ['as' => 'event-delete-confirm',    'uses' => 'EventsController@delete_confirm']);
+    get('/events/delete/{id}',                      ['as' => 'event-delete', 'uses' => 'EventsController@delete']);
+
+    get('/question/delete-confirm/{id}',      ['as' => 'post-delete-confirm',   'uses' => 'PostsController@delete_confirm']);
+    get('/question/delete/{id}',              ['as' => 'post-delete',           'uses' => 'PostsController@delete']);
+
+    get('/answer/delete-confirm/{id}',      ['as' => 'comment-delete-confirm',  'uses' => 'CommentsController@delete_confirm']);
+    get('/answer/delete/{id}',              ['as' => 'comment-delete',          'uses' => 'CommentsController@delete']);
+
+    post('/dashboard/{id}',          ['as' => 'follow',          'uses' => 'DashboardController@postFollow']);
     get('/comments/create/{id}',    [ 'as' => 'answer',         'uses' => 'CommentsController@create']);
-    post('comments/post-vote',      ['as' => 'postVote',        'uses' =>  'CommentsController@postVote']);
+    post('/comments/post-vote',      ['as' => 'postVote',        'uses' =>  'CommentsController@postVote']);
 
 });
 

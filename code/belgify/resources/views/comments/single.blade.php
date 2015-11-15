@@ -43,7 +43,7 @@
             @if($auth->isAuthor($com->author))
 
                 <a href="{{ route('comments.edit', $com->id) }}">update</a>
-                <a href="{{ route('comments.destroy', $com->id) }}">delete</a>
+                <a href="{{ route('comment-delete-confirm', $com->id) }}">delete</a>
 
             @else
 

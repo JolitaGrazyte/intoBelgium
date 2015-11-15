@@ -22,7 +22,7 @@
 
                     @include('partials.errors')
 
-                    {!!Form::open(['route' => ['events.update', $id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH'])  !!}
+                    {!!Form::open(['route' => ['events.update', $event->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH'])  !!}
 
                     @include('events.partials.form')
 

@@ -21,55 +21,57 @@
 
                         {!!Form::open(['route' => ['comments.update', $comment->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH'])  !!}
 
-                        <div class="form-group">
+                        @include('comments.form')
 
-                            {!! Form::label('title', 'Title', ['class' => 'col-md-2 control-label']) !!}
+                        {{--<div class="form-group">--}}
 
-                            <div class="col-md-10">
+                            {{--{!! Form::label('title', 'Title', ['class' => 'col-md-2 control-label']) !!}--}}
 
-                                {!! Form::text('title', $comment->title, ['class' => 'form-control', 'placeholder' => 'title']) !!}
+                            {{--<div class="col-md-10">--}}
 
-                            </div>
-                        </div>
+                                {{--{!! Form::text('title', $comment->title, ['class' => 'form-control', 'placeholder' => 'title']) !!}--}}
 
-
-                        <div class="form-group">
-
-                            {!! Form::label('body', 'Body', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-                                {!! Form::textarea('body', $comment->body, ['class' => 'form-control',  'placeholder' => 'ask here your question']) !!}
-
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            {!! Form::label('tags', 'Tags', ['class' => 'col-md-2 control-label']) !!}
-
-                            <div class="col-md-10">
-
-                                {!! Form::select('tag_list[]', $tags , $comment_tags, [ 'id' => 'tag_list', 'class' => 'form-control',  'multiple']) !!}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
 
-                            </div>
+                        {{--<div class="form-group">--}}
 
-                        </div>
+                            {{--{!! Form::label('body', 'Body', ['class' => 'col-md-2 control-label']) !!}--}}
+
+                            {{--<div class="col-md-10">--}}
+
+                                {{--{!! Form::textarea('body', $comment->body,  ['class' => 'form-control',  'placeholder' => 'ask here your question']) !!}--}}
+
+                            {{--</div>--}}
+
+                        {{--</div>--}}
+
+                        {{--<div class="form-group">--}}
+
+                            {{--{!! Form::label('tags', 'Tags', ['class' => 'col-md-2 control-label']) !!}--}}
+
+                            {{--<div class="col-md-10">--}}
+
+                                {{--{!! Form::select('tag_list[]', $tags , $comment_tags, [ 'id' => 'tag_list', 'class' => 'form-control',  'multiple']) !!}--}}
 
 
-                        <div class="form-group">
+                            {{--</div>--}}
 
-                            <div class="col-md-10 col-md-offset-2">
+                        {{--</div>--}}
 
-                                {!! Form::submit('Post', ['class' => 'btn btn-primary form-control']) !!}
 
-                            </div>
+                        {{--<div class="form-group">--}}
 
-                        </div>
+                            {{--<div class="col-md-10 col-md-offset-2">--}}
 
-                        {!! Form::close() !!}
+                                {{--{!! Form::submit('Post', ['class' => 'btn btn-primary form-control']) !!}--}}
+
+                            {{--</div>--}}
+
+                        {{--</div>--}}
+
+                        {{--{!! Form::close() !!}--}}
 
                     </div>
                 </div>
