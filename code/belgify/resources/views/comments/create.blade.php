@@ -15,13 +15,13 @@
 
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-10 col-post ">
+            <div class="container post">
+                <div class="row post-form">
 
-            <h1>{{ $title }}</h1>
-
-            <div class="panel panel-default">
-
-                <div class="panel-body">
+                    <div class="col-md-12">
+                        <h1>{{ $title }}</h1>
+                    </div>
 
                     @include('partials.errors')
 
@@ -41,33 +41,28 @@
                         {{--</div>--}}
 
                         <div class="form-group">
-
-                            {!! Form::label('body', 'Body', ['class' => 'col-md-1 control-label']) !!}
-
-                            <div class="col-md-11">
-
-                                {!! Form::textarea('body', null, ['class' => 'form-control',  'placeholder' => 'ask here your question']) !!}
-
+                            <div class="col-md-12">
+                                <div id="body-group">
+                                    <p class="help-text"></p>
+                                    {!! Form::textarea('body', null, ['class' => 'form-control',  'placeholder' => 'Place your answer here']) !!}
+                                </div>
                             </div>
-
                         </div>
 
                         <div class="form-group">
 
-                            {!! Form::label('tags', 'Tags', ['class' => 'col-md-1 control-label']) !!}
-
-                            <div class="col-md-11">
-
-                                {!! Form::select('tag_list[]', $tags, null, [ 'id' => 'tag_list', 'class' => 'form-control',  'multiple']) !!}
-
+                            <div class="col-md-12">
+                                <div id="tag_list-group">
+                                    <p class="help-text"></p>
+                                    {!! Form::select('tag_list[]', $tags, null, [ 'id' => 'tag_list', 'class' => 'form-control',  'multiple']) !!}
+                                </div>
                             </div>
-
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-11 col-md-offset-1">
+                            <div class="col-md-12">
 
-                                {!! Form::submit('Post', ['class' => 'btn btn-primary form-control']) !!}
+                                {!! Form::submit('Post', ['class' => 'btn btn-primary form-control btn-add']) !!}
 
                             </div>
                         </div>
@@ -81,6 +76,6 @@
     </div>
 
     <script>
-        $('#tag_list').select2();
+        $('#tag_list').select2({placeholder:'please, choose some keywords'});
     </script>
 @stop

@@ -12,7 +12,7 @@
 
         </div>
 
-        <div class="col-md-10">
+        <div class="col-md-10 col-post ">
             <div class="container post">
                 <div class="row post-form">
 
@@ -20,10 +20,11 @@
                         <h1>{{ $title }}</h1>
                     </div>
 
+                    <hr/>
 
                     @include('partials.errors')
 
-                    {!!Form::open(['route' => 'posts.store', 'class' => 'form-horizontal', 'role' => 'form'])  !!}
+                    {!!Form::open(['route' => 'posts.store', 'class' => 'form-horizontal', 'id' => 'Form', 'role' => 'form'])  !!}
 
                     @include('posts.form')
 

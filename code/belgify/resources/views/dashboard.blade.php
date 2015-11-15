@@ -47,7 +47,7 @@
                             <h1>My questions</h1>
 
                             <h3 class="add">
-                                <a href="{{ route('posts.create') }}">Ask question</a>
+                                <a href="{{ url('/posts/create .post-form') }}" data-url="{{ url('/dashboard/my-questions') }}" data-toggle="modal" data-target="#myModal">Ask question</a>
                             </h3>
 
                             @each('dashboard.my_question', $my_questions, 'post', 'partials.no-entries')

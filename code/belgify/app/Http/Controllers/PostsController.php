@@ -78,6 +78,10 @@ class PostsController extends Controller
             $this->flashMsg->failMessage('added!');
         }
 
+        if ($request->ajax()) {
+            return response()->json(['success']);
+        }
+
         return redirect()->route('posts.index');
     }
 
@@ -137,6 +141,11 @@ class PostsController extends Controller
         catch( QueryException $e ){
 
             $this->flashMsg->failMessage('updated!');
+        }
+
+
+        if ($request->ajax()) {
+            return response()->json(['success']);
         }
 
         return redirect()->route('posts.index');
