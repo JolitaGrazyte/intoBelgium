@@ -23,7 +23,6 @@ class DashboardController extends Controller
         $my_questions   =   $user->posts;
         $i_follow       =   $user->following->all();
 
-//        dd($i_follow);
 
         foreach($i_follow as $f){
 
@@ -44,7 +43,6 @@ class DashboardController extends Controller
             ];
         }
 
-//        dd($followed);
         $events_attending = $user->events_attending;
 
         return view('dashboard', compact('my_events', 'my_questions', 'i_follow', 'events_attending', 'followed'))->withTitle('Dashboard');

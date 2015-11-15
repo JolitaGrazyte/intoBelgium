@@ -37,7 +37,7 @@
 
                @if(isset($events))
 
-                   @each('dashboard.my_event', $events, 'event', 'events.no-events')
+                   @each('dashboard.my_event', $events, 'event', 'events.partials.no-events')
 
                @endif
 
