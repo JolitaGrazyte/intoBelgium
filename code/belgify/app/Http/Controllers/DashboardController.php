@@ -27,22 +27,20 @@ class DashboardController extends Controller
 
         foreach($i_follow as $f){
 
-//            $last_comment  = $f->comments->last();
-//            $last_event   = $f->events->last();
+            $last_comment  = $f->comments->last();
+            $last_event   = $f->events->last();
             $last_post    = $f->posts->last();
 
             $last_events_attending = $f->events_attending->last();
 
-//            $last =  $last_comment['created_at'] < $last_post['created_at'] ? $last_post:$last_comment;
-//            $last =  $last_post['created_at'] > $last_event['created_at'] ? $last_post:$last_event;
-//            $last =  $last_post['created_at'] > $last_event['created_at'] ? $last_post:$last_event;
-            $last =  $last_post['created_at'] > $last_events_attending['created_at'] ? $last_post:$last_events_attending;
-//
-//            dd($last);
+            $last =  $last_comment['created_at'] < $last_post['created_at'] ? $last_post:$last_comment;
+            $last =  $last['created_at'] > $last_event['created_at'] ? $last:$last_event;
+            $last =  $last['created_at'] > $last_events_attending['created_at'] ? $last:$last_events_attending;
 
             $followed[$f->id] = [
                 'person' => $f,
                 'last'    => $last,
+                'last_post'     => $last_post,
             ];
         }
 

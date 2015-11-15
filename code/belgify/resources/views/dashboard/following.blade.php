@@ -20,9 +20,35 @@
             <div>
 
                 {{--<div class="followed-username"> {{ $followed->username }} </div>--}}
-                <div class="followed-username">{{ $follwd['person']->username }}  <em>{{ $follwd['last']['table'] == 'events'?'joined a tour':' asked a question:' }}</em></div>
+                <div class="followed-username">{{ $follwd['person']->username }}
 
-                <h3>{{ $follwd['last']['title'] }}</h3>
+                        @if($follwd['last']['table'] == 'events')
+
+
+
+                            @if($follwd['person']['id'] == $follwd['last']['user_id'])
+
+                            <em> posted a tour:</em>
+
+                            @else
+
+                                <em>joined a tour:</em>
+
+                            @endif
+
+                            @elseif($follwd['last']['table'] == 'posts')
+
+                            <em> asked a question:</em>
+
+                            @else
+
+                            <em> answered a question:</em>
+
+                        @endif
+
+                </div>
+
+                <h3>{{ $follwd['last']['table'] == 'comments' ? $follwd['last']->post->title :$follwd['last']['title'] }}</h3>
 
             </div>
         </div>
