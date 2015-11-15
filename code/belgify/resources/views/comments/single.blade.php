@@ -30,15 +30,15 @@
 
     </div>
 
-    <div class="col-md-10">
+    <div class="col-md-8">
         <div>
             <p class="answer-body">{{ $com->body }}</p>
         </div>
-
-        <div><strong>VOTES: {{ $com->votes->count() }}</strong> </div>
     </div>
 
-    <div class="row">
+    <div class="col-md-2 d-votes">
+        <p class="v">{{ $com->votes->count() }}</p>
+        <p>{{ $com->votes->count() == 1 ?'vote':'votes'}}</p>
 
         @if(Auth::check())
 
@@ -49,16 +49,21 @@
 
             @else
 
-                <div class="pull-right">
+                <div class="">
                     {!! Form::open(['route' =>  ['comment-vote'], 'class' => '', 'role' => 'form']) !!}
                     {!! Form::hidden('voteable_id', $com->id) !!}
-                    {!! Form::submit('Place your vote !!!', ['class' => 'btn']) !!}
+                    {!! Form::submit('Place your vote', ['class' => 'btn btn-vote']) !!}
                     {!! Form::close() !!}
                 </div>
 
             @endif
 
         @endif
+    </div>
+
+    <div class="row">
+
+
 
     </div>
 
