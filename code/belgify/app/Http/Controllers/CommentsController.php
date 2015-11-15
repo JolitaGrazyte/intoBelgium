@@ -167,9 +167,6 @@ class CommentsController extends Controller
 
         return redirect()->back();
     }
-
-
-    /**
      *  Method to post vote for answers.
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -197,4 +194,5 @@ class CommentsController extends Controller
         return redirect()->back();
 
     }
+
 }

@@ -1,16 +1,32 @@
-<a href="{{ route('profile.show', str_replace(' ', '-', $followed->username) ) }}"><div class="col-md-3 following">
-    <div class="">
-        @if(count($followed->avatar))
+@if(!is_null($follwd['last']))
 
-            <img class="avatars followed-avatar" src="{{ route('getImage', [$followed->avatar->filename,  'small'] ) }}" alt="{{ $followed->avatar->name }}">
+    <a href="{{ route('profile.show', str_replace(' ', '-', $follwd['person']->username) ) }}"><div class="col-md-3 following">
+            <div class="">
 
-        @endif
-    </div>
+                <div>
+                    {{ $follwd['last']['created_at']->format('d M Y') }}
+                </div>
 
-    <div>
+                @if(count($follwd['person']->avatar))
 
-        <div class="followed-username"> {{ $followed->username }} </div>
-    </div>
-</div>
+                    <img class="avatars followed-avatar" src="{{ route('getImage', [$follwd['person']->avatar->filename,  'small'] ) }}" alt="{{ $followed->avatar->name }}">
+                @else
 
-</a>
+                    <img class="events-profile-img" src="{{ url('/img/Profile_Dummy1.png') }}" alt="profile dummy">
+
+                @endif
+            </div>
+
+            <div>
+
+                {{--<div class="followed-username"> {{ $followed->username }} </div>--}}
+                <div class="followed-username">{{ $follwd['person']->username }}  <em>{{ $follwd['last']['table'] == 'events'?'joined a tour':' asked a question:' }}</em></div>
+
+                <h3>{{ $follwd['last']['title'] }}</h3>
+
+            </div>
+        </div>
+
+    </a>
+
+@endif
