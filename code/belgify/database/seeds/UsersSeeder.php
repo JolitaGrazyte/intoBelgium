@@ -22,6 +22,8 @@ class UsersSeeder extends Seeder
                 'email'         =>  'jolita.grazyte@student.kdg.be',
                 'password'      =>  Hash::make('testing'),
                 'location_id'   =>  1,
+                 'origin'        => 'Belgium',
+                'occupation'    =>  'Web-developer',
                 'role'          =>  1
 
             ],
@@ -34,6 +36,8 @@ class UsersSeeder extends Seeder
                 'email'         =>  'vic.denys@student.kdg.be',
                 'password'      =>  Hash::make('test'),
                 'location_id'   =>  1,
+                'origin'        => 'Belgium',
+                'occupation'    =>  'Web-developer',
                 'role'          =>  1
 
             ],
@@ -76,7 +80,7 @@ class UsersSeeder extends Seeder
                 'occupation'    =>  '',
                 'role'          =>  1
             ],
-
+//
             //6
             [
                 'first_name'    =>  'Jan',
@@ -89,9 +93,9 @@ class UsersSeeder extends Seeder
                 'occupation'    =>  'Dokter',
                 'role'          =>  1
             ],
-
-
-            //7
+//
+//
+//            //7
             [
                 'first_name'    =>  'Wout',
                 'last_name'     =>  'Peters',
@@ -140,6 +144,7 @@ class UsersSeeder extends Seeder
                 'password'      =>  Hash::make('test'),
                 'location_id'   =>  3,
                 'origin'        => 'Polen',
+                'occupation'    =>  '',
                 'role'          =>  2
             ],
 
@@ -152,18 +157,20 @@ class UsersSeeder extends Seeder
                 'password'      =>  Hash::make('test'),
                 'location_id'   =>  3,
                 'origin'        => 'Russia',
+                'occupation'    =>  '',
                 'role'          =>  2
             ],
 
             //12
             [
-                'first_name'    =>  'Halil',
-                'last_name'     =>  'Karan',
-                'username'      =>  'Halil Karan',
-                'email'         =>  'halil.karan@telenet.be',
+                'first_name'    =>  'Branislav',
+                'last_name'     =>  'Ivanovic',
+                'username'      =>  'Branislav Ivanovic',
+                'email'         =>  'Branislav.Ivanovic@telenet.be',
                 'password'      =>  Hash::make('test'),
                 'location_id'   =>  3,
-                'origin'        => 'Turkey',
+                'origin'        => 'Servië',
+                'occupation'    =>  '',
                 'role'          =>  2
             ],
 
@@ -176,6 +183,7 @@ class UsersSeeder extends Seeder
                 'password'      =>  Hash::make('test'),
                 'location_id'   =>  3,
                 'origin'        => 'Morocco',
+                'occupation'    =>  '',
                 'role'          =>  2
             ],
 
@@ -188,6 +196,7 @@ class UsersSeeder extends Seeder
                 'password'      =>  Hash::make('test'),
                 'location_id'   =>  3,
                 'origin'        => 'Turkey',
+                'occupation'    =>  '',
                 'role'          =>  2
             ],
 
@@ -200,6 +209,7 @@ class UsersSeeder extends Seeder
                 'password'      =>  Hash::make('test'),
                 'location_id'   =>  3,
                 'origin'        => 'Turkey',
+                'occupation'    =>  '',
                 'role'          =>  2
             ],
 
@@ -212,6 +222,7 @@ class UsersSeeder extends Seeder
                 'password'      =>  Hash::make('test'),
                 'location_id'   =>  3,
                 'origin'        => 'Morocco',
+                'occupation'    =>  '',
                 'role'          =>  2
             ],
 
@@ -225,14 +236,15 @@ class UsersSeeder extends Seeder
                 'password'      =>  Hash::make('test'),
                 'location_id'   =>  3,
                 'origin'        => 'Morocco',
+                'occupation'    =>  '',
                 'role'          =>  2
-            ],
+            ]
 
 
             ];
         DB::table('users')->insert($users);
 
-//        factory(User::class, 25)->create();
+        factory(User::class, 25)->create();
 
     }
 }

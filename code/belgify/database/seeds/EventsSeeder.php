@@ -65,7 +65,7 @@ class EventsSeeder extends Seeder
 
 
         ];
-//        DB::table('events')->insert($events);
+        DB::table('events')->insert($events);
 
 //        factory(Event::class, 50)->create();
     }

@@ -40,7 +40,7 @@ class DashboardController extends Controller
             $followed[$f->id] = [
                 'person' => $f,
                 'last'    => $last,
-                'last_post'     => $last_post,
+//                'last_post'     => $last_post,
             ];
         }
 

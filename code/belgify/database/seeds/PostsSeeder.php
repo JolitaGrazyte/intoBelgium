@@ -40,7 +40,7 @@ class PostsSeeder extends Seeder
                 'updated_at'  => $now
             ],
             [
-                'title'      => 'Cooking with belgium vegetable...',
+                'title'      => 'Cooking with belgium vegetables...',
                 'body'       => "I just came over to Belgium. I'm a cook. I would like to find a job as a chef, but not used to cook with Belgian vegetables.
                                 What are the vegetables of the season? And where do i buy them best? ",
                 'user_id'    =>  13,

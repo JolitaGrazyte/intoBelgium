@@ -1,3 +1,5 @@
+{{--{{dd($follwd)}}--}}
+
 @if(!is_null($follwd['last']))
 
     <a href="{{ route('profile.show', str_replace(' ', '-', $follwd['person']->username) ) }}"><div class="col-md-12 following">
@@ -23,8 +25,6 @@
                 <div class="followed-username"><span class="username">{{ $follwd['person']->username }}</span>
 
                         @if($follwd['last']['table'] == 'events')
-
-
 
                             @if($follwd['person']['id'] == $follwd['last']['user_id'])
 
