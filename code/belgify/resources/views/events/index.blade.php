@@ -30,7 +30,7 @@
 
             @if(Auth::check() && $auth->isLocal())
 
-               <h3 class="add"><a href="{{ route('events.create') }}">Add new event</a></h3>
+               <h3 class="add"><a href="{{ url('/events/create .post-form') }}" data-url="{{ url('/events') }}" data-toggle="modal" data-target="#myModal">Add new event</a></h3>
 
             @endif
 

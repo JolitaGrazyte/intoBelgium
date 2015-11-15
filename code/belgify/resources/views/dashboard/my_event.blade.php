@@ -7,7 +7,7 @@
                     <img src="{{ url('img/More_info.png') }}" alt="more info icon"/>
                 </div>
             </a>
-            <a class="y-edit" href="{{ route('events.edit', $event['id']) }}">
+            <a class="y-edit" href="{{ url('/events/' .  $event['id']) . '/edit .post-form' }}" data-url="{{ url('/events/' . $event['id']) }}" data-toggle="modal" data-target="#myModal">
                 <div class="wrapper">
                     <img src="{{ url('img/Edit.png') }}" alt="Edit icon"/>
                 </div>

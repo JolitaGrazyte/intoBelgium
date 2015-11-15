@@ -8,6 +8,7 @@ $(document).ready(function(){
     $('body').on('shown.bs.modal', '.modal', function (e) {
 
         $('#tag_list').select2({placeholder:'please, choose some keywords'});
+        $( "#datetimepicker" ).datetimepicker();
 
         var targetUrl;
 
@@ -68,6 +69,7 @@ $(document).ready(function(){
             },
             error: function (data) {
                 if (data['responseJSON']) {
+                    console.log(data['responseJSON']);
                     associate_errors(data['responseJSON'], $form);
                 }
             }

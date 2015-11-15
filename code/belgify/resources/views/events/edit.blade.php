@@ -12,24 +12,24 @@
 
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-10 col-post ">
+            <div class="container post">
+                <div class="row post-form">
 
-            <h1>{{ $title }}</h1>
-
-            <div class="panel panel-default">
-
-                <div class="panel-body">
+                    <div class="col-md-12">
+                        <h1>{{ $title }}</h1>
+                    </div>
 
                     @include('partials.errors')
 
-                    {!!Form::open(['route' => ['events.update', $event->id], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH'])  !!}
+                    {!!Form::open(['route' => ['events.update', $event->id], 'class' => 'form-horizontal', 'role' => 'form', 'id' => 'Form', 'method' => 'PATCH'])  !!}
 
                     @include('events.partials.form')
 
                     <div class="form-group">
-                        <div class="col-md-10 col-md-offset-2">
+                        <div class="col-md-12">
 
-                            {!! Form::submit('Post', ['class' => 'btn btn-primary form-control']) !!}
+                            {!! Form::submit('Post', ['class' => 'btn btn-primary form-control btn-add']) !!}
 
                         </div>
                     </div>

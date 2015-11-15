@@ -25,7 +25,7 @@ body > *{
   margin-top: 1em !important;
 }
 
-.has-errors input, .has-errors textarea{
+.has-errors input, .has-errors textarea, .has-error select{
   border: solid 1px #c1272d !important;
 }
 
@@ -142,6 +142,11 @@ body > *{
   margin-top: 1em;
 }
 
+select{
+  border: solid 1px #999 !important;
+  border-radius: 0 !important;
+  -webkit-appearance: none;
+}
 
 .auth-form button, .post-form button{
   border-radius: 0;
@@ -181,6 +186,27 @@ body > *{
   margin: 0;
   left: 0;
   top: 0;
+}
+
+#datetimepicker{
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+#datetimepicker input{
+  height: 2.5em;
+  width: 90%;
+  color: #999;
+}
+
+.input-group-addon{
+  height: 2.5em;
+  -webkit-appearance: none;
+  position: absolute;
+  display: inline-block;
+  margin-top: 1em;
+  /* padding: 0; */
+  width: 9%;
 }
 
 
