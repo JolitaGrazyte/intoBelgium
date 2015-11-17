@@ -12,6 +12,8 @@
 
             {{--@include('partials.page-head')--}}
 
+            <h3 class="dont-answer">Didn't find your answer? Login or sign up to start a new conversation</h3>
+
             <div class="row">
                 <div class="col-md-6">
 
