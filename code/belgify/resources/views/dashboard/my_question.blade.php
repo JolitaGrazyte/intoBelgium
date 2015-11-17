@@ -81,7 +81,7 @@
 
                 @else
 
-                    <img class="posts-profile-img" src="{{ url('/img/Profile_Dummy.png') }}" alt="profile dummy">
+                    <img class="posts-profile-img" src="{{ url('/img/Profile_Dummy1.png') }}" alt="profile dummy">
 
                 @endif
 
