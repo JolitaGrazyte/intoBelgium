@@ -11,7 +11,7 @@
 
                 @if(count($follwd['person']->avatar))
 
-                    <img class="avatars followed-avatar" src="{{ route('getImage', [$follwd['person']->avatar->filename,  'small'] ) }}" alt="{{ $followed->avatar->name }}">
+                    <img class="avatars followed-avatar" src="{{ route('getImage', [$follwd['person']->avatar->filename,  'small'] ) }}" alt="{{ $follwd['person']->avatar->name }}">
                 @else
 
                     <img class="events-profile-img" src="{{ url('/img/Profile_Dummy1.png') }}" alt="profile dummy">
@@ -48,7 +48,7 @@
 
                 </div>
 
-                <h3 class="body">"{{ $follwd['last']['table'] == 'comments' ? $follwd['last']->post->title :$follwd['last']['title'] }}"</h3>
+                <h3 class="body">"{{ $follwd['last']['table'] == 'comments' ? $follwd['last']->post->title : $follwd['last']['title'] }}"</h3>
 
             </div>
         </div>

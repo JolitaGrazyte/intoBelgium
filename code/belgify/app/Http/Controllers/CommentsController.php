@@ -10,6 +10,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use App\Votes;
 use Session;
+use App\Post;
 
 class CommentsController extends Controller
 {
@@ -47,10 +48,10 @@ class CommentsController extends Controller
      */
     public function create($question_id)
     {
-        $post_id    =   $question_id;
+        $post    =   Post::find($question_id);
         $tags       =   $this->tag->lists('name', 'id');
 
-        return view('comments.create', compact('tags', 'post_id'))->withTitle('Answer');
+        return view('comments.create', compact('tags', 'post'))->withTitle('Answer');
     }
 
     /**
@@ -167,10 +168,7 @@ class CommentsController extends Controller
 
         return redirect()->back();
     }
-     *  Method to post vote for answers.
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function postVote( Request $request ){
 
         $user           = Auth::user();
